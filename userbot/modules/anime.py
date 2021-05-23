@@ -661,7 +661,7 @@ def is_gif(file):
 
 
 CMD_HELP.update({
-    "anime": "✘ Pʟᴜɢɪɴ : `Anime`"\
+    "anime": "✘ Pʟᴜɢɪɴ : `Anime`\
     \n\n⚡𝘾𝙈𝘿⚡: `.anime` <Anime Name>\
     \n↳ : Returns With Anime Information.\
     \n\n⚡𝘾𝙈𝘿⚡: `.manga` <Manga Name>\
