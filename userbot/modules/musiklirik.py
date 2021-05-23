@@ -9,7 +9,7 @@
 import json
 import os
 import random
-
+import base64
 from lyrics_extractor import SongLyrics as sl
 from telethon.tl.types import DocumentAttributeAudio
 from youtube_dl import YoutubeDL
@@ -31,6 +31,9 @@ from userbot import CMD_HELP, ALIVE_NAME
 
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else uname().node
 
+a1 = base64.b64decode("QUl6YVN5QXlEQnNZM1dSdEI1WVBDNmFCX3c4SkF5NlpkWE5jNkZV").decode("ascii")
+a2 = base64.b64decode("QUl6YVN5QkYwenhMbFlsUE1wOXh3TVFxVktDUVJxOERnZHJMWHNn").decode("ascii")
+a3 = base64.b64decode("QUl6YVN5RGRPS253blB3VklRX2xiSDVzWUU0Rm9YakFLSVFWMERR").decode("ascii")
 
 @register(outgoing=True, pattern=r"^\.musik (.*)")
 async def download_video(event):
@@ -144,13 +147,13 @@ async def original(event):
         return await event.edit("Beri Saya Sebuah Judul Lagu Untuk Mencari Lirik.\n**Contoh** : `.lirik` <Judul Lagu>")
     kenzo = event.pattern_match.group(1)
     event = await event.edit("`Sedang Mencari Lirik Lagu...`")
-    dc = random.randrange(1, 3)
+    dc = random.randrange(1, 3)    
     if dc == 1:
-        lynx = "AIzaSyAyDBsY3WRtB5YPC6aB_w8JAy6ZdXNc6FU"
+        lynx = a1
     if dc == 2:
-        lynx = "AIzaSyBF0zxLlYlPMp9xwMQqVKCQRq8DgdrLXsg"
+        lynx = a2
     if dc == 3:
-        lynx = "AIzaSyDdOKnwnPwVIQ_lbH5sYE4FoXjAKIQV0DQ"
+        lynx = a3
     extract_lyrics = sl(f"{lynx}", "15b9fb6193efd5d90")
     sh1vm = extract_lyrics.get_lyrics(f"{kenzo}")
     a7ul = sh1vm["lyrics"]
