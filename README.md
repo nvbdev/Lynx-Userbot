@@ -41,6 +41,13 @@
 <h3 align="center">Userbot Used for Fun on Telegram, and for Maintianing Your Group.</h3>
 <p align="center">&nbsp;</p>
 
+### ⚒️ How To Get a API_ID and API_HASH ?
+
+**Generate API_ID and API_HASH Using Website⤵️**
+* [my.telegram.org](https://my.telegram.org)
+
+**Generate API_ID and API_HASH Using Bot⤵️**
+* [My Telegram Robot](t.me/MyTelegramDotOrgRobot)
 
 ### 🛠️ How To Get a STRING SESSION ?
 
