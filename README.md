@@ -47,7 +47,7 @@
 * [my.telegram.org](https://my.telegram.org)
 
 **Generate API_ID and API_HASH Using Bot⤵️**
-* [My Telegram Robot](t.me/MyTelegramDotOrgRobot)
+* [My Telegram Robot](https://t.me/MyTelegramDotOrgRobot)
 
 ### 🛠️ How To Get a STRING SESSION ?
 
