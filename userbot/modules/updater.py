@@ -221,11 +221,11 @@ async def upstream(event):
         await event.edit('` Proses Update ⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡, Updating...90%`')
         await event.edit('` Proses Update ⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡, Updating...100%`')
         await event.edit('#Installation\n`Update Sedang Berlangsung.\nMohon Tunggu Sebentar...`')
-    if conf == "pull":
+    if conf == "-pull":
         await pull(event, repo, ups_rem, ac_br)
         await asyncio.sleep(10)
         await event.delete()
-    elif conf == "push":
+    elif conf == "-push":
         await push(event, repo, ups_rem, ac_br, txt)
         await asyncio.sleep(10)
         await event.delete()
