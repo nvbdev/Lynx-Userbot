@@ -44,7 +44,7 @@ async def update_requirements():
         return repr(e)
 
 
-async def deploy(event, repo, ups_rem, ac_br, txt):
+async def push(event, repo, ups_rem, ac_br, txt):
     if HEROKU_API_KEY is not None:
         import heroku3
         heroku = heroku3.from_key(HEROKU_API_KEY)
@@ -109,7 +109,7 @@ async def deploy(event, repo, ups_rem, ac_br, txt):
     return
 
 
-async def update(event, repo, ups_rem, ac_br):
+async def pull(event, repo, ups_rem, ac_br):
     try:
         ups_rem.pull(ac_br)
     except GitCommandError:
@@ -221,12 +221,12 @@ async def upstream(event):
         await event.edit('` Proses Update ⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡, Updating...90%`')
         await event.edit('` Proses Update ⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡, Updating...100%`')
         await event.edit('`#Installation\nUpdate Sedang Berlangsung.\nMohon Tunggu Sebentar...`')
-    if conf == "-pull":
-        await update(event, repo, ups_rem, ac_br)
+    if conf == "pull":
+        await pull(event, repo, ups_rem, ac_br)
         await asyncio.sleep(10)
         await event.delete()
-    elif conf == "-push":
-        await deploy(event, repo, ups_rem, ac_br, txt)
+    elif conf == "push":
+        await push(event, repo, ups_rem, ac_br, txt)
         await asyncio.sleep(10)
         await event.delete()
     return
@@ -236,7 +236,7 @@ CMD_HELP.update({
     'update': "✘ Pʟᴜɢɪɴ : `Update`"\
     "\n\n⚡𝘾𝙈𝘿⚡: `.update`"
     "\n↳ : Untuk Melihat Update Terbaru dari 𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏."
-    "\n\n⚡𝘾𝙈𝘿⚡: `.update -pull <Nama Branch>`"
+    "\n\n⚡𝘾𝙈𝘿⚡: `.update -pull`"
     "\n↳ : Memperbarui Lynx-Userbot."
     "\n\n⚡𝘾𝙈𝘿⚡: `.update -push <Nama Branch>`"
     "\n↳ : Memperbarui 𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏 Dengan Cara Men-Deploy Ulang Otomatis Lewat Heroku."
