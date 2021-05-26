@@ -198,7 +198,7 @@ BITLY_TOKEN = os.environ.get("BITLY_TOKEN", None)
 TERM_ALIAS = os.environ.get("TERM_ALIAS", "Lynx-Userbot")
 
 # Bot Version
-BOT_VER = os.environ.get("BOT_VER", "0.2.7")
+BOT_VER = os.environ.get("BOT_VER", "0.2.8")
 
 # Default .alive Username
 ALIVE_USERNAME = os.environ.get("ALIVE_USERNAME", None)
