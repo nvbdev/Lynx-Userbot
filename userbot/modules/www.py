@@ -4,18 +4,20 @@
 # you may not use this file except in compliance with the License.
 #
 # Lynx Userbot
-""" Userbot module containing commands related to the \
-    Information Superhighway (yes, Internet). """
+"""Userbot module containing commands related to the \
+    Information Superhighway (yes, Internet)."""
 
 import asyncio
 import time
 import redis
 
 from datetime import datetime
+from telethon import functions
 
 from speedtest import Speedtest
 from userbot import CMD_HELP, StartTime, ALIVE_NAME
 from userbot.events import register
+from userbot.utils import humanbytes 
 
 
 async def get_readable_time(seconds: int) -> str:
@@ -136,44 +138,51 @@ async def redis(pong):
                     f"**╰━━━━━━━━━━━━━━━━━╯**" % (duration))
 
 
-@register(outgoing=True, pattern="^.speed$")
+# Port WeebProject
+@register(outgoing=True, pattern=r"^\.speedtest$")
 async def speedtst(spd):
-    """ For .speed command, use SpeedTest to check server speeds. """
-    await spd.edit("`Menjalankan Tes Kecepatan Jaringan, Mohon Tunggu...⚡`")
-    test = Speedtest()
+    """For .speed command, use SpeedTest to check server speeds."""
+    await spd.edit("`Running speed test...`")
 
+    test = Speedtest()
     test.get_best_server()
     test.download()
     test.upload()
     test.results.share()
     result = test.results.dict()
 
-    await spd.edit("**Kecepatan Jaringan:\n**"
-                   "✧ **Dimulai Pada :** "
-                   f"`{result['timestamp']}` \n"
-                   f" **━━━━━━━━━━━━━━━━━**\n\n"
-                   "✧ **Download:** "
-                   f"`{speed_convert(result['download'])}` \n"
-                   "✧ **Upload:** "
-                   f"`{speed_convert(result['upload'])}` \n"
-                   "✧ **Signal:** "
-                   f"`{result['ping']}` \n"
-                   "✧ **ISP:** "
-                   f"`{result['client']['isp']}` \n"
-                   "✧ **BOT:** ⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡")
+    msg = (
+        f"**Started at {result['timestamp']}**\n\n"
+        "**Client**\n"
+        f"**ISP :** `{result['client']['isp']}`\n"
+        f"**Country :** `{result['client']['country']}`\n\n"
+        "**Server**\n"
+        f"**Name :** `{result['server']['name']}`\n"
+        f"**Country :** `{result['server']['country']}`\n"
+        f"**Sponsor :** `{result['server']['sponsor']}`\n\n"
+        f"**Ping :** `{result['ping']}`\n"
+        f"**Upload :** `{humanbytes(result['upload'])}/s`\n"
+        f"**Download :** `{humanbytes(result['download'])}/s`"
+    )
+
+    await spd.delete()
+    await spd.client.send_file(
+        spd.chat_id,
+        result["share"],
+        caption=msg,
+        force_document=False,
+    )
 
 
-def speed_convert(size):
-    """
-    Hi human, you can't read bytes?
-    """
-    power = 2**10
-    zero = 0
-    units = {0: '', 1: 'Kb/s', 2: 'Mb/s', 3: 'Gb/s', 4: 'Tb/s'}
-    while size > power:
-        size /= power
-        zero += 1
-    return f"{round(size, 2)} {units[zero]}"
+@register(outgoing=True, pattern=r"^\.dc$")
+async def neardc(event):
+    """For .dc command, get the nearest datacenter information."""
+    result = await event.client(functions.help.GetNearestDcRequest())
+    await event.edit(
+        f"Country : `{result.country}`\n"
+        f"Nearest Datacenter : `{result.nearest_dc}`\n"
+        f"This Datacenter : `{result.this_dc}`"
+    )
 
 
 @register(outgoing=True, pattern="^.pong$")
@@ -185,13 +194,16 @@ async def pingme(pong):
     await pong.edit("😼")
     end = datetime.now()
     duration = (end - start).microseconds / 9000
-    await pong.edit(f"**🤴 Oᴡɴᴇʀ : {ALIVE_NAME}**\n`%sms`" % (duration))
+    await pong.edit(f"**🙅 Oᴡɴᴇʀ : {ALIVE_NAME}**\n`%sms`" % (duration))
 
 
 CMD_HELP.update({
-        "ping": "⚡𝘾𝙈𝘿⚡: `.ping` | `.lping` | `.xping` | `.sping`\
+        "speedtest": "✘ Pʟᴜɢɪɴ : `Speed Test`\
+         \n\n⚡𝘾𝙈𝘿⚡: `.ping` | `.lping` | `.xping` | `.sping`\
          \n↳ : Untuk Menunjukkan Ping Bot Anda.\
-         \n\n⚡𝘾𝙈𝘿⚡: `.speed`\
-         \n↳ : Untuk Menunjukkan Kecepatan Jaringan Anda.\
          \n\n⚡𝘾𝙈𝘿⚡: `.pong`\
-         \n↳ : Sama Seperti Perintah Ping."})
+         \n↳ : Sama Seperti Perintah Ping.\
+         \n\n⚡𝘾𝙈𝘿⚡: `.speedtest`\
+         \n↳ : Untuk Menunjukkan Kecepatan Jaringan Anda.\
+         \n\n⚡𝘾𝙈𝘿⚡: `.dc`\
+         \n↳ : Menemukan Server Dari Datacenter Kamu."})
