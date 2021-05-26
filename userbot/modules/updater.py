@@ -98,7 +98,7 @@ async def deploy(event, repo, ups_rem, ac_br, txt):
     if BOTLOG:
         await event.client.send_message(
             BOTLOG_CHATID, "#UpdateBOT ☑️\n"
-            f"⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡ Sudah Versi Terbaru.\nBranch :")
+            f"⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡ Sudah Versi Terbaru.\nBranch : `{ac_br}`")
 
     else:
         await event.edit('`[HEROKU]:'
@@ -126,7 +126,7 @@ async def update(event, repo, ups_rem, ac_br):
     if BOTLOG:
         await event.client.send_message(
             BOTLOG_CHATID, "#UpdateBOT ☑️\n"
-            f"⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡ Sudah Versi Terbaru.\nBranch : {ac_br}")
+            f"⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡ Sudah Versi Terbaru.\nBranch : `{ac_br}`")
         await asyncio.sleep(100)
         await event.delete()
 
@@ -219,12 +219,13 @@ async def upstream(event):
         await event.edit('` Proses Update ⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡, Loading....35%`')
         await event.edit('` Proses Update ⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡, Loading....77%`')
         await event.edit('` Proses Update ⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡, Updating...90%`')
-        await event.edit('` Proses Update ⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡, Mohon Tunggu Sebentar....100%`')
-    if conf == "pull":
+        await event.edit('` Proses Update ⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡, Updating...100%`')
+        await event.edit('`#Installation\nUpdate Sedang Berlangsung.\nMohon Tunggu Sebentar...`')
+    if conf == "-pull":
         await update(event, repo, ups_rem, ac_br)
         await asyncio.sleep(10)
         await event.delete()
-    elif conf == "push":
+    elif conf == "-push":
         await deploy(event, repo, ups_rem, ac_br, txt)
         await asyncio.sleep(10)
         await event.delete()
@@ -233,7 +234,7 @@ async def upstream(event):
 
 CMD_HELP.update({
     'update': "✘ Pʟᴜɢɪɴ : `Update`"\
-    "⚡𝘾𝙈𝘿⚡: `.update`"
+    "\n\n⚡𝘾𝙈𝘿⚡: `.update`"
     "\n↳ : Untuk Melihat Update Terbaru dari 𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏."
     "\n\n⚡𝘾𝙈𝘿⚡: `.update -pull <Nama Branch>`"
     "\n↳ : Memperbarui Lynx-Userbot."
