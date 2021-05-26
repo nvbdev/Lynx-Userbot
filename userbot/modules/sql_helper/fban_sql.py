@@ -4,7 +4,7 @@ except ImportError:
     raise AttributeError
 
 from sqlalchemy import Column, String, UnicodeText
-
+from sqlalchemy.exc import IntegrityError
 
 class Fban(BASE):
     __tablename__ = "fban"
@@ -42,3 +42,9 @@ def del_flist(chat_id):
 def del_flist_all():
     SESSION.execute("""TRUNCATE TABLE fban""")
     SESSION.commit()
+
+
+class IntegrityError(DatabaseError):
+    """Wraps a DB-API IntegrityError."""
+
+    code = "gkpj"
