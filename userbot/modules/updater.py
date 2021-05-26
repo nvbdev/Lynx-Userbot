@@ -91,14 +91,14 @@ async def deploy(event, repo, ups_rem, ac_br, txt):
             await asyncio.sleep(5)
             return await event.delete()
         else:
-            await event.edit("`Lynx-Userbot Berhasil Di Deploy. ☑️\n" "Restarting, Mohon Tunggu Sebentar.....`")
+            await event.edit("`Lynx-Userbot Berhasil Di Deploy.\n" "Restarting, Mohon Tunggu Sebentar...`")
             await asyncio.sleep(15)
             await event.delete()
 
-        if BOTLOG:
-            await event.client.send_message(
-                BOTLOG_CHATID, "#UpdateBOT \n"
-                "`Lynx-Userbot Berhasil Di Update`")
+    if BOTLOG:
+        await event.client.send_message(
+            BOTLOG_CHATID, "#UpdateBOT ☑️\n"
+            f"⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡ Sudah Versi Terbaru.\nBranch :")
 
     else:
         await event.edit('`[HEROKU]:'
@@ -117,7 +117,7 @@ async def update(event, repo, ups_rem, ac_br):
     await update_requirements()
     await event.edit('**⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡** `Berhasil Di Update!`')
     await asyncio.sleep(1)
-    await event.edit('**⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡** `Di Restart....`')
+    await event.edit('**⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡** `Di Restart...`')
     await asyncio.sleep(1)
     await event.edit('`Mohon Menunggu Beberapa Detik... 😼`')
     await asyncio.sleep(10)
@@ -125,8 +125,8 @@ async def update(event, repo, ups_rem, ac_br):
 
     if BOTLOG:
         await event.client.send_message(
-            BOTLOG_CHATID, "#BOT \n"
-            "**⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡ Telah Di Perbarui.**")
+            BOTLOG_CHATID, "#UpdateBOT ☑️\n"
+            f"⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡ Sudah Versi Terbaru.\nBranch : {ac_br}")
         await asyncio.sleep(100)
         await event.delete()
 
@@ -139,7 +139,7 @@ async def update(event, repo, ups_rem, ac_br):
 @register(outgoing=True, pattern=r"^.update(?: |$)(-pull|-push)?")
 async def upstream(event):
     "For .update command, check if the bot is up to date, update if specified"
-    await event.edit("`Mengecek Pembaruan, Silakan Menunggu....`")
+    await event.edit("`Mengecek Pembaruan, Silahkan Menunggu....`")
     conf = event.pattern_match.group(1)
     off_repo = UPSTREAM_REPO_URL
     force_update = False
@@ -232,11 +232,11 @@ async def upstream(event):
 
 
 CMD_HELP.update({
-    'update':
+    'update': "✘ Pʟᴜɢɪɴ : `Update`"\
     "⚡𝘾𝙈𝘿⚡: `.update`"
-    "\n↳ : Untuk Melihat Pembaruan Terbaru dari 𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏."
-    "\n\n⚡𝘾𝙈𝘿⚡: `.update -pull`"
+    "\n↳ : Untuk Melihat Update Terbaru dari 𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏."
+    "\n\n⚡𝘾𝙈𝘿⚡: `.update -pull <Nama Branch>`"
     "\n↳ : Memperbarui Lynx-Userbot."
-    "\n\n⚡𝘾𝙈𝘿⚡: `.update -push`"
+    "\n\n⚡𝘾𝙈𝘿⚡: `.update -push <Nama Branch>`"
     "\n↳ : Memperbarui 𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏 Dengan Cara Men-Deploy Ulang Otomatis Lewat Heroku."
 })
