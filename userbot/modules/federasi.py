@@ -2,7 +2,7 @@
 
 from userbot import CMD_HELP, bot
 from userbot.events import register
-from userbot.modules.sql_helper.fban_sql import IntegrityError
+from sqlalchemy.exc import IntegrityError
 
 @register(outgoing=True, disable_edited=True, pattern=r"^\.fban(?: |$)(.*)")
 async def fban(event):
