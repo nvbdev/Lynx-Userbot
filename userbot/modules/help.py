@@ -3,7 +3,7 @@
 # Licensed under the Raphielscape Public License, Version 1.d (the "License");
 # you may not use this file except in compliance with the License.
 #
-""" Userbot help command """
+"""Userbot help command"""
 
 import redis
 import sys
@@ -26,7 +26,7 @@ DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else uname().node
 
 @register(outgoing=True, pattern="^.help(?: |$)(.*)")
 async def help(event):
-    """ For .help command,"""
+    """For .help command,"""
     args = event.pattern_match.group(1).lower()
     if args:
         if args in CMD_HELP:
@@ -44,6 +44,6 @@ async def help(event):
                          f"**◑» Bᴏᴛ ᴏꜰ {DEFAULTUSER}**\n**◑» Pʟᴜɢɪɴ : {len(modules)}**\n\n"
                          "**• Mᴀɪɴ Mᴇɴᴜ :**\n"
                          f"╰►| {string} ◄─\n\n")
-        await event.reply(f"\n**Contoh** : Ketik <`.help afk`> Untuk Informasi Pengunaan.\nAtau Bisa Juga Ketik `.helpme` Untuk Menggunakan Menu Lain-Nya.")
+        await event.reply(f"\n**Contoh** : Ketik » `.help busy` Untuk Informasi Pengunaan Plugin Busy.\nAtau Bisa Juga Dengan Cara, Ketik `.helpme` Untuk Menggunakan Menu Lain-Nya Dari @BotFather.\n Jika Tidak Tahu Caranya, Silahkan Bertanya Pada @SyndicateTwenty4 .Terimakasih 🙏")
         await asyncio.sleep(1000)
         await event.delete()
