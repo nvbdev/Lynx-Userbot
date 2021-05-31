@@ -54,6 +54,6 @@ async def corona(event):
 
 CMD_HELP.update({"covid": "✘ Pʟᴜɢɪɴ : Covid"/
                  "\n\n⚡𝘾𝙈𝘿⚡: `.covid` <Country/Negara>"
-                 "\n↳ : Get an Information About COVID-19 Data in Your Country.\"
+                 "\n↳ : Get an Information About COVID-19 Data in Your Country."
                  "\n\n⚡𝘾𝙈𝘿⚡: `.covid`"
                  "\n↳ : Get an Information About COVID-19 Data in Worldwide."})
