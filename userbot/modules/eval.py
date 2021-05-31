@@ -3,7 +3,7 @@
 # Licensed under the Raphielscape Public License, Version 1.c (the "License");
 # you may not use this file except in compliance with the License.
 #
-""" Userbot module for executing code and terminal commands from Telegram. """
+"""Userbot module for executing code and terminal commands from Telegram."""
 
 import asyncio
 import io
@@ -78,7 +78,7 @@ async def aexec(code, smessatatus):
 
 @register(outgoing=True, pattern=r"^\.exec(?: |$|\n)([\s\S]*)")
 async def run(run_q):
-    """ For .exec command, which executes the dynamically created program """
+    """For .exec command, which executes the dynamically created program"""
     code = run_q.pattern_match.group(1)
 
     if run_q.is_channel and not run_q.is_group:
@@ -136,7 +136,7 @@ async def run(run_q):
 
 @register(outgoing=True, pattern=r"^\.term(?: |$|\n)(.*)")
 async def terminal_runner(term):
-    """ For .term command, runs bash commands and scripts on your server. """
+    """For .term command, runs bash commands and scripts on your server."""
     curruser = TERM_ALIAS if TERM_ALIAS else getuser()
     command = term.pattern_match.group(1)
     try:
@@ -188,9 +188,9 @@ async def terminal_runner(term):
 
 CMD_HELP.update(
     {
-        "eval": ">`.eval print('world')`" "\nUsage: Just like exec.",
-        "exec": ">`.exec print('hello')`" "\nUsage: Execute small python scripts.",
-        "term": ">`.term <cmd>`"
-        "\nUsage: Run bash commands and scripts on your server.",
+        "eval": "✘ Pʟᴜɢɪɴ : Eval"\ "\n\n⚡𝘾𝙈𝘿⚡: `.eval print('world')`" "\n↳ : Just Like exec.",
+        "exec": "✘ Pʟᴜɢɪɴ : Exec"\ "\n\n⚡𝘾𝙈𝘿⚡: `.exec print('hello')`" "\n↳ : Execute Small Python Scripts.",
+        "term": "✘ Pʟᴜɢɪɴ : Term"\ "\n\n⚡𝘾𝙈𝘿⚡: `.term <CMD>`"
+        "\n↳ : Run Bash Commands And Scripts on Your Server.",
     }
 )
