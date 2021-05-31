@@ -188,9 +188,9 @@ async def terminal_runner(term):
 
 CMD_HELP.update(
     {
-        "eval": "✘ Pʟᴜɢɪɴ : Eval"\ "\n\n⚡𝘾𝙈𝘿⚡: `.eval print('world')`" "\n↳ : Just Like exec.",
-        "exec": "✘ Pʟᴜɢɪɴ : Exec"\ "\n\n⚡𝘾𝙈𝘿⚡: `.exec print('hello')`" "\n↳ : Execute Small Python Scripts.",
-        "term": "✘ Pʟᴜɢɪɴ : Term"\ "\n\n⚡𝘾𝙈𝘿⚡: `.term <CMD>`"
+        "eval": "✘ Pʟᴜɢɪɴ : Eval" "\n\n⚡𝘾𝙈𝘿⚡: `.eval print('world')`" "\n↳ : Just Like exec.",
+        "exec": "✘ Pʟᴜɢɪɴ : Exec" "\n\n⚡𝘾𝙈𝘿⚡: `.exec print('hello')`" "\n↳ : Execute Small Python Scripts.",
+        "term": "✘ Pʟᴜɢɪɴ : Term" "\n\n⚡𝘾𝙈𝘿⚡: `.term <CMD>`"
         "\n↳ : Run Bash Commands And Scripts on Your Server.",
     }
 )
