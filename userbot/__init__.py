@@ -459,7 +459,7 @@ with bot:
             elif query.startswith("tb_btn"):
                 result = builder.article(
                     "Bantuan Dari ⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡ ",
-                    text="Daftar Modul",
+                    text="Daftar Plugins",
                     buttons=[],
                     link_preview=True)
             else:
@@ -470,7 +470,7 @@ with bot:
                         [
                             custom.Button.url(
                                 "⚡𝗟𝘆𝗻𝘅⚡",
-                                "https://github.com/KENZO-404/Lynx-Userbot"),
+                                "https://kenzo-404.github.io/Lynx-Userbot"),
                             custom.Button.url(
                                 "𝗢𝘄𝗻𝗲𝗿",
                                 "t.me/SyndicateTwenty4")] 
@@ -549,12 +549,12 @@ with bot:
     except BaseException:
         LOGS.info(
             "Mode Inline Bot Mu Nonaktif. "
-            "Untuk Mengaktifkan Pergi Ke @BotFather, lalu settings bot > pilih mode inline > Turn On. ")
+            "Untuk Mengaktifkannya, Sulahkan Pergi Ke @BotFather Lalu, Settings Bot > Pilih Mode Inline > Turn On. ")
     try:
         bot.loop.run_until_complete(check_botlog_chatid())
     except BaseException:
         LOGS.info(
-            "BOTLOG_CHATID environment variable isn't a "
-            "valid entity. Check your environment variables/config.env file."
+            "BOTLOG_CHATID Environment Variable Isn't a "
+            "Valid Entity. Please Check Your Environment variables/config.env File."
         )
         quit(1)
