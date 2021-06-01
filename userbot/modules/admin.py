@@ -903,6 +903,29 @@ async def get_bots(show):
         remove("botlist.txt")
 
 
+@register(outgoing=True, pattern="^.kickall(?: |$)(.*)")
+async def testing(event):
+    nikal = await event.get_chat()
+    chutiya = await event.client.get_me()
+    admin = nikal.admin_rights
+    creator = nikal.creator
+    if not admin and not creator:
+        await event.edit("`Terjadi Kesalahan, Anda Bukan Admin Disini Atau Anda Tidak Dapat Izin Oleh Owner.`")
+        return
+    await event.edit("`Sedang Mengeluarkan Semua Member Dalam Group Ini...`")
+# Thank for Dark_Cobra
+    everyone = await event.client.get_participants(event.chat_id)
+    for user in everyone:
+        if user.id == chutiya.id:
+            pass
+        try:
+            await event.client(EditBannedRequest(event.chat_id, int(user.id), ChatBannedRights(until_date=None, view_messages=True)))
+        except Exception as e:
+            await event.edit(str(e))
+        await sleep(.5)
+    await event.edit("☑️Berhasil, Anda Telah Menendang Semua Member Disini.")
+
+
 CMD_HELP.update(
     {
         "admin": "✘ Pʟᴜɢɪɴ : `Admin`"\
@@ -934,4 +957,6 @@ CMD_HELP.update(
         "\n\n⚡𝘾𝙈𝘿⚡: `.users` Atau >`.users` <Nama Member>"
         "\n↳ : Mendapatkan Daftar Pengguna Dalamm Group."
         "\n\n⚡𝘾𝙈𝘿⚡: `.setgpic` <Reply ke Gambar>"
-        "\n↳ : Mengganti Photo Profile Group."})
+        "\n↳ : Mengganti Photo Profile Group.
+        "\n\n⚡𝘾𝙈𝘿⚡: `.kickall`"
+        "\n↳ : Mengeluarkan Semua Member Di Dalam Group. (Only Admin)"})
