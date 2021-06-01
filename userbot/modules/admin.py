@@ -957,6 +957,6 @@ CMD_HELP.update(
         "\n\n⚡𝘾𝙈𝘿⚡: `.users` Atau >`.users` <Nama Member>"
         "\n↳ : Mendapatkan Daftar Pengguna Dalamm Group."
         "\n\n⚡𝘾𝙈𝘿⚡: `.setgpic` <Reply ke Gambar>"
-        "\n↳ : Mengganti Photo Profile Group.
+        "\n↳ : Mengganti Photo Profile Group."
         "\n\n⚡𝘾𝙈𝘿⚡: `.kickall`"
         "\n↳ : Mengeluarkan Semua Member Di Dalam Group. (Only Admin)"})
