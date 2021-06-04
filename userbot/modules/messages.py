@@ -142,17 +142,17 @@ async def _(event):
     await event.delete()
 
 
-CMD_HELP.update({"messages": "✘ Pʟᴜɢɪɴ : Messages in Group (Pesan)
-                 \n\n⚡𝘾𝙈𝘿⚡: >`.whisp` <Text/Pesan> & <Username>
-                 \n↳ : Untuk Mengirim Pesan Rahasia Di Group.
-                 \n\n⚡𝘾𝙈𝘿⚡: >`.purge`
-                 \n↳ : Membersihkan Semua Pesan Mulai Dari Pesan Yang Dibalas.
-                 \n\n⚡𝘾𝙈𝘿⚡: >`.purgeme <Angka>`
-                 \n↳ : Menghapus Jumlah Pesan Anda, Yang Mau Anda Hapus.
-                 \n\n⚡𝘾𝙈𝘿⚡: >`.del`
-                 \n↳ : Menghapus Pesan, Balas ke Pesan.
-                 \n\n⚡𝘾𝙈𝘿⚡: >`.edit <Pesan Baru>`
-                 \n↳ : Ganti Pesan Terakhir Anda Dengan <Pesan Baru>.
-                 \n\n⚡𝘾𝙈𝘿⚡: >`.sd <x> <Pesan>`
-                 \n↳ : Membuat Pesan Yang Hancur Sendiri Dalam x = Detik.
-                 \nJaga Agar Detik Dibawah 100 Karena Bot Anda Akan Tidur."})
+CMD_HELP.update({"messages": "✘ Pʟᴜɢɪɴ : Messages in Group (Pesan)"
+                 "\n\n⚡𝘾𝙈𝘿⚡: >`.whisp` <Text/Pesan> & <Username>"
+                 "\n↳ : Untuk Mengirim Pesan Rahasia Di Group."
+                 "\n\n⚡𝘾𝙈𝘿⚡: >`.purge`"
+                 "\n↳ : Membersihkan Semua Pesan Mulai Dari Pesan Yang Dibalas."
+                 "\n\n⚡𝘾𝙈𝘿⚡: >`.purgeme <Angka>`"
+                 "\n↳ : Menghapus Jumlah Pesan Anda, Yang Mau Anda Hapus."
+                 "\n\n⚡𝘾𝙈𝘿⚡: >`.del`"
+                 "\n↳ : Menghapus Pesan, Balas ke Pesan."
+                 "\n\n⚡𝘾𝙈𝘿⚡: >`.edit <Pesan Baru>`"
+                 "\n↳ : Ganti Pesan Terakhir Anda Dengan <Pesan Baru>."
+                 "\n\n⚡𝘾𝙈𝘿⚡: >`.sd <x> <Pesan>`"
+                 "\n↳ : Membuat Pesan Yang Hancur Sendiri Dalam x = Detik."
+                 "\nJaga Agar Detik Dibawah 100 Karena Bot Anda Akan Tidur."})
