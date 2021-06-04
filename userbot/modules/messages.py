@@ -129,15 +129,30 @@ async def selfdestruct(destroy):
     """
 
 
-CMD_HELP.update({"purge": ">`.purge`"
-                 "\nUsage: Membersihkan semua pesan mulai dari pesan yang dibalas.",
-                 "purgeme": ">`.purgeme <angka>`"
-                 "\nUsage: Menghapus jumlah pesan anda, yang mau anda hapus.",
-                 "del": ">`.del`"
-                 "\nUsage: Menghapus pesan, balas ke pesan.",
-                 "edit": ">`.edit <pesan baru>`"
-                 "\nUsage: Ganti pesan terakhir Anda dengan <pesan baru>.",
-                 "sd": ">`.sd <x> <pesan>`"
-                 "\nUsage: Membuat pesan yang hancur sendiri dalam x detik."
-                 "\nJaga agar detik di bawah 100 karena bot Anda akan tidur.",
-                 })
+@register(outgoing=True, pattern=r"^\.whisp(?: |$)(.*)")
+async def _(event):
+    if event.fwd_from:
+        return
+    wwwspr = event.pattern_match.group(1)
+    botusername = "@whisperBot"
+    if event.reply_to_msg_id:
+        await event.get_reply_message()
+    tap = await bot.inline_query(botusername, wwwspr)
+    await tap[0].click(event.chat_id)
+    await event.delete()
+
+
+CMD_HELP.update({"messages": "✘ Pʟᴜɢɪɴ : Messages in Group (Pesan)
+                 \n\n⚡𝘾𝙈𝘿⚡: >`.whisp` <Text/Pesan> & <Username>
+                 \n↳ : Untuk Mengirim Pesan Rahasia Di Group.
+                 \n\n⚡𝘾𝙈𝘿⚡: >`.purge`
+                 \n↳ : Membersihkan Semua Pesan Mulai Dari Pesan Yang Dibalas.
+                 \n\n⚡𝘾𝙈𝘿⚡: >`.purgeme <Angka>`
+                 \n↳ : Menghapus Jumlah Pesan Anda, Yang Mau Anda Hapus.
+                 \n\n⚡𝘾𝙈𝘿⚡: >`.del`
+                 \n↳ : Menghapus Pesan, Balas ke Pesan.
+                 \n\n⚡𝘾𝙈𝘿⚡: >`.edit <Pesan Baru>`
+                 \n↳ : Ganti Pesan Terakhir Anda Dengan <Pesan Baru>.
+                 \n\n⚡𝘾𝙈𝘿⚡: >`.sd <x> <Pesan>`
+                 \n↳ : Membuat Pesan Yang Hancur Sendiri Dalam x = Detik.
+                 \nJaga Agar Detik Dibawah 100 Karena Bot Anda Akan Tidur."})
