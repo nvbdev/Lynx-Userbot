@@ -44,7 +44,7 @@ async def bin(event):
     await event.edit("Checking...")
     async with event.client.conversation(chat) as conv:
           try:     
-              response = conv.wait_event(events.NewMessage(incoming=True,from_users=1448477501))
+              response = conv.wait_event(events.NewMessage(incoming=True,from_users=1453545888))
               await event.client.send_message(chat, f"/bin {lynx_input}")
               response = await response 
           except YouBlockedUserError: 
@@ -65,7 +65,7 @@ async def vbv(event):
     await event.edit("Checking...")
     async with event.client.conversation(chat) as conv:
           try:     
-              response = conv.wait_event(events.NewMessage(incoming=True,from_users=1448477501))
+              response = conv.wait_event(events.NewMessage(incoming=True,from_users=1453545888))
               await event.client.send_message(chat, f"/vbv {lynx_input}")
               response = await response 
           except YouBlockedUserError: 
@@ -86,7 +86,7 @@ async def key(event):
     await event.edit("Checking...")
     async with event.client.conversation(chat) as conv:
           try:     
-              response = conv.wait_event(events.NewMessage(incoming=True,from_users=1448477501))
+              response = conv.wait_event(events.NewMessage(incoming=True,from_users=1453545888))
               await event.client.send_message(chat, f"/key {lynx_input}")
               response = await response 
           except YouBlockedUserError: 
@@ -107,7 +107,7 @@ async def iban(event):
     await event.edit("Checking...")
     async with event.client.conversation(chat) as conv:
           try:     
-              response = conv.wait_event(events.NewMessage(incoming=True,from_users=1448477501))
+              response = conv.wait_event(events.NewMessage(incoming=True,from_users=1453545888))
               await event.client.send_message(chat, f"/iban {lynx_input}")
               response = await response 
           except YouBlockedUserError: 
@@ -128,7 +128,7 @@ async def ccheck(event):
     await event.edit("Checking...")
     async with event.client.conversation(chat) as conv:
           try:     
-              response = conv.wait_event(events.NewMessage(incoming=True,from_users=1448477501))
+              response = conv.wait_event(events.NewMessage(incoming=True,from_users=1453545888))
               await event.client.send_message(chat, f"/ss {lynx_input}")
               response = await response 
           except YouBlockedUserError: 
@@ -140,7 +140,7 @@ async def ccheck(event):
         
      
 # Ported for Lynx-Userbot             
-@register(outgoing=True, pattern=r"^\.ccbin(?: |$)(.*)")
+@register(outgoing=True, pattern=r"^\.gen4(?: |$)(.*)")
 async def ccbin(event):
     if event.fwd_from:
         return 
@@ -149,8 +149,28 @@ async def ccbin(event):
     await event.edit(f"Trying to generate CC from the given bin `{lynx_input}`")
     async with event.client.conversation(chat) as conv:
           try:     
-              response = conv.wait_event(events.NewMessage(incoming=True,from_users=1448477501))
-              await event.client.send_message(chat, f"/gen {lynx_input}")
+              response = conv.wait_event(events.NewMessage(incoming=True,from_users=1453545888))
+              await event.client.send_message(chat, f"/gen 4 {lynx_input}")
+              response = await response 
+          except YouBlockedUserError: 
+              await event.reply("Please Unblock @carol5_bot")
+              return
+          else: 
+             await event.delete()
+             await event.client.send_message(event.chat_id, response.message)
+
+
+@register(outgoing=True, pattern=r"^\.gen5(?: |$)(.*)")
+async def ccbin(event):
+    if event.fwd_from:
+        return 
+    lynx_input = event.pattern_match.group(1)
+    chat = "@carol5_bot"
+    await event.edit(f"Trying to generate CC from the given bin `{lynx_input}`")
+    async with event.client.conversation(chat) as conv:
+          try:     
+              response = conv.wait_event(events.NewMessage(incoming=True,from_users=1453545888))
+              await event.client.send_message(chat, f"/gen 5 {lynx_input}")
               response = await response 
           except YouBlockedUserError: 
               await event.reply("Please Unblock @carol5_bot")
@@ -162,18 +182,18 @@ async def ccbin(event):
 
 # Ported for Lynx-Userbot    
 CMD_HELP.update({
-    "ccarder": "⚡𝘾𝙈𝘿⚡: `.gencc`\
+    "ccarder": "⚡𝘾𝙈𝘿⚡: `.gen4` | `.gen5`\
 \n↳ : Generates Fake CC.\
-\n\n⚡𝘾𝙈𝘿⚡: `.ccheck` <query>\
+\n\n⚡𝘾𝙈𝘿⚡: `.ccheck` <Query>\
 \n↳ : Checks That The Given CC is Live or Not.\
-\n\n⚡𝘾𝙈𝘿⚡: `.iban` <query>\
+\n\n⚡𝘾𝙈𝘿⚡: `.iban` <Query>\
 \n↳ : Checks That The Given IBAN ID is Live or Not.\
-\n\n⚡𝘾𝙈𝘿⚡: `.key` <query>\
-\n↳ : Checks the status of probided key.\
-\n\n⚡𝘾𝙈𝘿⚡: `.vbv` <query>\
-\n↳ : Checks the vbv status of given card.\
-\n\n⚡𝘾𝙈𝘿⚡: `.bin` <query>\
-\n↳ : Checks that the given bin is valid or not.\
-\n\n⚡𝘾𝙈𝘿⚡: `.ccbin` <bin>\
-\n↳ : Generates CC from the given bin."
+\n\n⚡𝘾𝙈𝘿⚡: `.key` <Query>\
+\n↳ : Checks The Status of Probided Key.\
+\n\n⚡𝘾𝙈𝘿⚡: `.vbv` <Query>\
+\n↳ : Checks The Vbv Status of Given Card.\
+\n\n⚡𝘾𝙈𝘿⚡: `.bin` <Query>\
+\n↳ : Checks That The Given Bin is Valid or Not.\
+\n\n⚡𝘾𝙈𝘿⚡: `.ccbin` <Bin>\
+\n↳ : Generates CC From The Given Bin."
 })
