@@ -329,8 +329,8 @@ async def gspide(rk):
 CMD_HELP.update({
     "globaltools":
     "✘ Pʟᴜɢɪɴ : Global Tools\
-\n\n⚡𝘾𝙈𝘿⚡: `.gban` <Useraname/ID>\
-\n↳ : Melakukan Banned Secara Global Ke Semua Grup Dimana Anda Sebagai Admin.\
+\n\n⚡𝘾𝙈𝘿⚡: `.gban` <Username/ID>\
+\n↳ : Melakukan Banned Secara Global Ke Semua Group Dimana Anda Sebagai Admin.\
 \n\n⚡𝘾𝙈𝘿⚡: `.ungban` <Username/ID>\
 \n↳ : Membatalkan Banned Secara Global.\
 \n\n⚡𝘾𝙈𝘿⚡: `.gkick` <Text>\
