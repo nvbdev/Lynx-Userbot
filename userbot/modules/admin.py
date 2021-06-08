@@ -22,6 +22,7 @@ from telethon.tl.functions.channels import (
 from telethon.tl.functions.messages import UpdatePinnedMessageRequest
 from telethon.tl.types import (
     ChannelParticipantsAdmins,
+    ChannelParticipantsKicked,
     ChannelParticipantsBots,
     ChatAdminRights,
     ChatBannedRights,
@@ -509,7 +510,7 @@ async def gspider(gspdr):
                 BOTLOG_CHATID,
                 "#GLOBALMUTE\n"
                 f"PENGGUNA: [{user.first_name}](tg://user?id={user.id})\n"
-                f"GRUP: {gspdr.chat.title}(`{gspdr.chat_id}`)",
+                f"GROUP: {gspdr.chat.title}(`{gspdr.chat_id}`)",
             )
 
 
@@ -585,14 +586,14 @@ async def rm_deletedacc(show):
 async def get_admin(show):
     info = await show.client.get_entity(show.chat_id)
     title = info.title if info.title else "Grup Ini"
-    mentions = f"<b>✥ Daftar Admin Dalam Group {title}:</b> \n"
+    mentions = f"<b>{title}\nList of Admins In This Group :</b> \n"
     try:
         async for user in show.client.iter_participants(
             show.chat_id, filter=ChannelParticipantsAdmins
         ):
             if not user.deleted:
                 link = f'<a href="tg://user?id={user.id}">{user.first_name}</a>'
-                mentions += f"\n➤ {link}"
+                mentions += f"\n╰> {link}"
             else:
                 mentions += f"\nAkun Terhapus <code>{user.id}</code>"
     except ChatAdminRequiredError as err:
@@ -806,7 +807,7 @@ async def get_usersdel(show):
         await show.edit(mentions)
     except MessageTooLongError:
         await show.edit(
-            "Yang Mulia, Grup Ini Terlalu Besar, Mengunggah Daftar Akun Terhapus Sebagai File."
+            "Yang Mulia, Group Ini Terlalu Besar, Mengunggah Daftar Akun Terhapus Sebagai File."
         )
         file = open("daftarpengguna.txt", "w+")
         file.write(mentions)
@@ -903,20 +904,20 @@ async def get_bots(show):
         remove("botlist.txt")
 
 
-@register(outgoing=True, pattern="^.kickall(?: |$)(.*)")
-async def testing(event):
-    nikal = await event.get_chat()
-    chutiya = await event.client.get_me()
-    admin = nikal.admin_rights
-    creator = nikal.creator
+@register(outgoing=True, pattern="^.allkick(?: |$)(.*)")
+async def allkick(event):
+    lynxuser = await event.get_chat()
+    lynxget = await event.client.get_me()
+    admin = lynxuser.admin_rights
+    creator = lynxuser.creator
     if not admin and not creator:
-        await event.edit("`Terjadi Kesalahan, Anda Bukan Admin Disini Atau Anda Tidak Dapat Izin Oleh Owner.`")
+        await event.edit("`Terjadi Kesalahan, Plugin ini Khusus Untuk Owner.`")
         return
     await event.edit("`Sedang Mengeluarkan Semua Member Dalam Group Ini...`")
-# Thank for Dark_Cobra
+
     everyone = await event.client.get_participants(event.chat_id)
     for user in everyone:
-        if user.id == chutiya.id:
+        if user.id == lynxget.id:
             pass
         try:
             await event.client(EditBannedRequest(event.chat_id, int(user.id), ChatBannedRights(until_date=None, view_messages=True)))
@@ -926,9 +927,27 @@ async def testing(event):
     await event.edit("☑️Berhasil, Anda Telah Menendang Semua Member Disini.")
 
 
+@register(outgoing=True, pattern=r"^\.allunban(?: |$)(.*)", groups_only=True)
+async def _(event):
+    await event.edit("Sedang Mencari List Banning...")
+    p = 0
+    (await event.get_chat()).title
+    async for i in event.client.iter_participants(
+        event.chat_id,
+        filter=ChannelParticipantsKicked,
+        aggressive=True,
+    ):
+        try:
+            await event.client.edit_permissions(event.chat_id, i, view_messages=True)
+            p += 1
+        except BaseException:
+            pass
+    await event.edit("Success, List Semua Ban Didalam Group ini Telah Dihapus.")
+
+
 CMD_HELP.update(
     {
-        "admin": "✘ Pʟᴜɢɪɴ : `Admin`"\
+        "admin": "✘ Pʟᴜɢɪɴ : Admin's"\
         "\n\n⚡𝘾𝙈𝘿⚡: `.promote` <Username/Reply> <Nama Title (Optional)>"
         "\n↳ : Mempromosikan Member Sebagai Admin. (u/Owner)"
         "\n\n⚡𝘾𝙈𝘿⚡: `.demote` <Username/Reply>"
@@ -958,5 +977,7 @@ CMD_HELP.update(
         "\n↳ : Mendapatkan Daftar Pengguna Dalamm Group."
         "\n\n⚡𝘾𝙈𝘿⚡: `.setgpic` <Reply ke Gambar>"
         "\n↳ : Mengganti Photo Profile Group."
-        "\n\n⚡𝘾𝙈𝘿⚡: `.kickall`"
-        "\n↳ : Mengeluarkan Semua Member Di Dalam Group. (Only Admin)"})
+        "\n\n⚡𝘾𝙈𝘿⚡: `.allkick`"
+        "\n↳ : Mengeluarkan Semua Member Di Dalam Group. (Only Owner)"
+        "\n\n⚡𝘾𝙈𝘿⚡: `.allunban`"
+        "\n↳ : Menghapus/Membatalkan Semua Orang Yang Telah Di Ban Di Dalam Group."})
