@@ -159,7 +159,7 @@ async def gben(userbot):
     except BaseException:
         pass
     return await dark.edit(
-        f"╭─━━━━━━━━━━━━━━━─╮\nㅤㅤ⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡\n╭─━━━━━━━━━━━━━━━─╯\n**│⊙ GBAN By :** `{ALIVE_NAME}`\n**│⊙ User Account :** [{user.first_name}](tg://user?id={user.id})\n**│⊙ Action :** `Global Banned` ✅\n╰━━━━━━━━━━━━━━━━━╯"
+        f"╭─━━━━━━━━━━━━━━━─╮\nㅤㅤ⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡\n╭─━━━━━━━━━━━━━━━─╯\n**│• GBAN By :** `{ALIVE_NAME}`\n**│• User Account :** [{user.first_name}](tg://user?id={user.id})\n**│• Action :** `GBanned` ✅\n╰━━━━━━━━━━━━━━━━━╯"
     )
 
 
@@ -223,7 +223,7 @@ async def gunben(userbot):
     except BaseException:
         pass
     return await dark.edit(
-        f"╭─━━━━━━━━━━━━━━━─╮\nㅤㅤ⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡\n╭─━━━━━━━━━━━━━━━─╯\n**│⊙ UnGBAN By :** `{ALIVE_NAME}`\n**│⊙ User Account :** [{user.first_name}](tg://user?id={user.id})\n**│⊙ Action :** `Global Banned Canceled`\n╰━━━━━━━━━━━━━━━━━╯"
+        f"╭─━━━━━━━━━━━━━━━─╮\nㅤㅤ⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡\n╭─━━━━━━━━━━━━━━━─╯\n**│• UnGBAN By :** `{ALIVE_NAME}`\n**│• User Account :** [{user.first_name}](tg://user?id={user.id})\n**│• Action :** `GBanned` ❌\n╰━━━━━━━━━━━━━━━━━╯"
     )
 
 
