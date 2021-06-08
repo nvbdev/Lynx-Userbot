@@ -150,6 +150,7 @@ async def gben(userbot):
                 await dark.edit(f"⚡")
                 await asyncio.sleep(3)
                 await dark.edit(f"𝗚𝗹𝗼𝗯𝗮𝗹 𝗕𝗮𝗻𝗻𝗲𝗱 𝘼𝙘𝙩𝙞𝙫𝙚 ✅")
+                await asyncio.sleep(5)
             except BaseException:
                 b += 1
     else:
