@@ -177,8 +177,8 @@ ANTI_SPAMBOT_SHOUT = sb(os.environ.get("ANTI_SPAMBOT_SHOUT", "False"))
 # Youtube API key
 YOUTUBE_API_KEY = os.environ.get("YOUTUBE_API_KEY", None)
 
-# Untuk Perintah .lynx
-LYNX_TEKS_KUSTOM = os.environ.get("LYNX_TEKS_KUSTOM", None)
+# Untuk Perintah .lynx (alive)
+LYNX_TEXT_CUSTOM = os.environ.get("LYNX_TEXT_CUSTOM", None)
 
 # Default .alive Name
 ALIVE_NAME = os.environ.get("ALIVE_NAME", None)
