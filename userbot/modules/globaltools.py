@@ -1,12 +1,14 @@
+# Copyright © 2021 Lynx-Userbot (LLC Company)
+# GPL-3.0 License (General Public License) From Github Corporation.
 # Based On Plugins from Dark Cobra
-# Lynx Userbot © 2021
+
 
 import asyncio
 from telethon.events import ChatAction
-from userbot import ALIVE_NAME, CMD_HELP, bot
+from userbot import ALIVE_NAME, CMD_HELP, BOTLOG_CHATID, bot
 from telethon.tl.functions.contacts import BlockRequest, UnblockRequest
 from userbot.events import register
-from telethon.tl.types import MessageEntityMentionName
+from telethon.tl.types import MessageEntityMentionName, 
 
 
 async def get_full_user(event):
@@ -326,6 +328,109 @@ async def gspide(rk):
     return await rkp.edit(f"`{ALIVE_NAME}:` **Global Kicked [{user.first_name}](tg://user?id={user.id}) Dalam {a} Chat(s) **")
 
 
+@register(outgoing=True, pattern="^.gcast (.*)")
+async def gcast(event):
+    lynxuser = event.pattern_match.group(1)
+    if not lynxuser:
+        return await event.edit("`Mohon Berikan Sebuah Pesan`")
+    tt = event.text
+    msg = tt[6:]
+    lynxget = await event.edit("`Sedang Mengirim Pesan Secara Global... 📢`")
+    er = 0
+    done = 0
+    async for x in bot.iter_dialogs():
+        if x.is_group:
+            chat = x.id
+            try:
+                done += 1
+                await bot.send_message(chat, msg)
+            except BaseException:
+                er += 1
+    await lynxget.edit(f"**Berhasil Mengirim Pesan Ke** `{done}` **Group.\nGagal Mengirim Pesan Ke** `{er}` **Group.**")
+
+
+@register(outgoing=True, pattern=r"^\.gmute(?: |$)(.*)")
+async def gspider(gspdr):
+    # Admin or creator check
+    chat = await gspdr.get_chat()
+    admin = chat.admin_rights
+    creator = chat.creator
+
+    # If not admin and not creator, return
+    if not admin and not creator:
+        return await gspdr.edit(NO_ADMIN)
+
+    # Check if the function running under SQL mode
+    try:
+        from userbot.modules.sql_helper.gmute_sql import gmute
+    except AttributeError:
+        return await gspdr.edit(NO_SQL)
+
+    user, reason = await get_user_from_event(gspdr)
+    if not user:
+        return
+
+    # If pass, inform and start gmuting
+    await gspdr.edit("`Berhasil Membisukan Pengguna!`")
+    if gmute(user.id) is False:
+        await gspdr.edit("`Kesalahan! Pengguna Sudah Dibisukan.`")
+    else:
+        if reason:
+            await gspdr.edit(f"#GLOBALMUTE\n• **Alasan:** `{reason}`")
+        else:
+            await gspdr.edit("`Berhasil Membisukan Pengguna Secara Global!`")
+
+        if BOTLOG:
+            await gspdr.client.send_message(
+                BOTLOG_CHATID,
+                "#GLOBALMUTE\n"
+                f"PENGGUNA: [{user.first_name}](tg://user?id={user.id})\n"
+                f"GROUP: {gspdr.chat.title}(`{gspdr.chat_id}`)",
+            )
+
+
+@register(outgoing=True, pattern=r"^\.ungmute(?: |$)(.*)")
+async def ungmoot(un_gmute):
+    # Admin or creator check
+    chat = await un_gmute.get_chat()
+    admin = chat.admin_rights
+    creator = chat.creator
+
+    # If not admin and not creator, return
+    if not admin and not creator:
+        return await un_gmute.edit(NO_ADMIN)
+
+    # Check if the function running under SQL mode
+    try:
+        from userbot.modules.sql_helper.gmute_sql import ungmute
+    except AttributeError:
+        return await un_gmute.edit(NO_SQL)
+
+    user = await get_user_from_event(un_gmute)
+    user = user[0]
+    if not user:
+        return
+
+    # If pass, inform and start ungmuting
+    await un_gmute.edit("```Membuka Global Mute Pengguna Ini...```")
+
+    if ungmute(user.id) is False:
+        await un_gmute.edit("`Kesalahan! Pengguna Sedang Tidak Di Gmute.`")
+    else:
+        # Inform about success
+        await un_gmute.edit("```Berhasil! Pengguna Sudah Tidak Lagi Dibisukan.```")
+        await sleep(3)
+        await un_gmute.delete()
+
+        if BOTLOG:
+            await un_gmute.client.send_message(
+                BOTLOG_CHATID,
+                "#UnGLOBALMUTE\n"
+                f"PENGGUNA: [{user.first_name}](tg://user?id={user.id})\n"
+                f"GROUP: {un_gmute.chat.title}(`{un_gmute.chat_id}`)",
+            )
+
+
 CMD_HELP.update({
     "globaltools":
     "✘ Pʟᴜɢɪɴ : Global Tools\
@@ -333,5 +438,11 @@ CMD_HELP.update({
 \n↳ : Melakukan Banned Secara Global Ke Semua Group Dimana Anda Sebagai Admin.\
 \n\n⚡𝘾𝙈𝘿⚡: `.ungban` <Username/ID>\
 \n↳ : Membatalkan Banned Secara Global.\
+\n\n⚡𝘾𝙈𝘿⚡: `.gmute` <Username/Reply> <Alasan(Optional)>"
+\n↳ : Membisukan Pengguna Ke Semua Group, Dimana Kamu Sebagai Admin Group.\
+\n\n⚡𝘾𝙈𝘿⚡: `.ungmute` <Username/Reply>\
+\n↳ : Tag atau Reply Pesan Pengguna `.ungmute` Untuk Menghapus Pengguna Dari Daftar Global Mute.\
 \n\n⚡𝘾𝙈𝘿⚡: `.gkick` <Text>\
-\n↳ : Melakukan Kick Secara Global. Hampir Sama Dengan Global Ban, Tapi Ini Hanya Kick."})
+\n↳ : Melakukan Kick Secara Global. Hampir Sama Dengan Global Ban, Tapi Ini Hanya Kick.\
+\n\n⚡𝘾𝙈𝘿⚡: `.gcast` <Pesan>\
+\n↳ : Global Broadcast. Mengirim pesan ke Seluruh Grup yang Anda Masuki."})
