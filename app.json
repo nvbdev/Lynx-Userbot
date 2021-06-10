@@ -171,7 +171,7 @@
       "description": "Nama untuk menunjukan pesan .alive",
       "required": false
     },
-    "LYNX_TEKS_KUSTOM": {
+    "LYNX_TEXT_CUSTOM": {
       "description": "Kustom Pesan Alive Mu Untuk Perintah .lynx (Isi Terserah)",
       "required": false
     },
@@ -203,7 +203,7 @@
     },
     "INSTAGRAM_ALIVE": {
       "description": "Contoh : instagram.com/si_axeell , Silahkan diisi Dengan Username ig Kalian.",
-      "value": "",
+      "value": "instagram.com/username_ig",
       "required": false
    },
     "UB_BLACK_LIST_CHAT": {
