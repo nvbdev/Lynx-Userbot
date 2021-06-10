@@ -441,7 +441,8 @@ with bot:
                 u = await event.client.get_entity(event.chat_id)
                 await event.reply(
                     f"Hai 👋 [{get_display_name(u)}](tg://user?id={u.id}) Selamat Datang di Room ⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡\n Jika Kamu Ingin Membuat Userbot, Silahkan Tekan Menu Dibawah Ini\n",
-                    buttons=[Button.inline("DEPLOY", url="https://kenzo-404.github.io/Lynx-Userbot")],
+                    buttons=[Button.url("DEPLOY",
+                                        "https://kenzo-404.github.io/Lynx-Userbot")],
                 )
             else:
                 await event.reply(f"`Hai Yang Mulia {DEFAULTUSER}\n\nApa Kabarmu ? 🐱`")
