@@ -25,7 +25,7 @@ from requests import get
 from telethon.sync import TelegramClient, custom, events
 from telethon.sessions import StringSession
 from telethon import Button, events
-
+from telethon.utils import get_display_name
 
 redis_db = None
 
@@ -438,8 +438,9 @@ with bot:
         @tgbot.on(events.NewMessage(pattern="/start"))
         async def handler(event):
             if event.message.from_id != uid:
+                u = await event.client.get_entity(event.chat_id)
                 await event.reply(
-                    f"Hai 👋 [{user.first_name}](tg://user?id={user.id}) Selamat Datang di Room ⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡\n Jika Kamu Ingin Membuat Userbot, Silahkan Tekan Menu Dibawah Ini\n",
+                    f"Hai 👋 [{get_display_name(u)}](tg://user?id={u.id}) Selamat Datang di Room ⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡\n Jika Kamu Ingin Membuat Userbot, Silahkan Tekan Menu Dibawah Ini\n",
                     buttons=[Button.inline("DEPLOY", url="https://kenzo-404.github.io/Lynx-Userbot")],
                 )
             else:
