@@ -245,7 +245,7 @@ async def amireallyalive(alive):
         f"┞╼════════════════════╾┤\n"
         f"├◈ **{LYNX_TEXT_CUSTOM}**\n"
         f"╰╼════════════════════╾╯\n"
-        f"| [𝗥𝗲𝗽𝗼](https://kenzo-404.github.io/Lynx-Userbot) | [𝗟𝗼𝗿𝗱-𝗧𝗲𝗮𝗺](t.me/LordUserbot_Group) | " f"[𝗠𝘆 𝗜𝗻𝘀𝘁𝗮𝗴𝗿𝗮𝗺]({INSTAGRAM_ALIVE}) | ")
+        f"| [𝗥𝗲𝗽𝗼](https://kenzo-404.github.io/Lynx-Userbot) | [𝗟𝘆𝗻𝘅-𝗧𝗲𝗮𝗺](t.me/GroupTidakDiketahui) | " f"[𝗠𝘆 𝗜𝗻𝘀𝘁𝗮𝗴𝗿𝗮𝗺]({INSTAGRAM_ALIVE}) | ")
 
     if ALIVE_LOGO:
         try:
@@ -352,7 +352,7 @@ async def redis(alive):
     await asyncio.sleep(3)
     output = (
         f"**ㅤㅤ  ╭─━━═━═━═━═━━─╮**\n"
-        f"**       ⊏┊⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡ ⊨〛💨 **\n"
+        f"**       ⊏┊[⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡](t.me/LynxUserbot) ⊨〛💨 **\n"
         f"**ㅤㅤ  ╰─━━═━═━═━═━━─╯**\n"
         f"╭╼════════════════════╾╮\n"
         f"│    ⇱  𝐖𝐞𝐥𝐜𝐨𝐦𝐞 𝐓𝐨 𝐌𝐲 𝐏𝐫𝐨𝐟𝐢𝐥𝐞 ⇲ \n"
@@ -369,7 +369,7 @@ async def redis(alive):
         f"├◈ **Don't forget to support our**\n"
         f"│    **userbot, how to press below.**\n"
         f"╰╼════════════════════╾╯\n"
-        f"| [𝗥𝗲𝗽𝗼](https://kenzo-404.github.io/Lynx-Userbot) | [𝗟𝗼𝗿𝗱-𝗧𝗲𝗮𝗺](t.me/LordUserbot_Group) | " f"[𝗠𝘆 𝗜𝗻𝘀𝘁𝗮𝗴𝗿𝗮𝗺]({INSTAGRAM_ALIVE}) | ")
+        f"| [𝗥𝗲𝗽𝗼](https://kenzo-404.github.io/Lynx-Userbot) | [𝗟𝘆𝗻𝘅-𝗧𝗲𝗮𝗺](t.me/GroupTidakDiketahui) | " f"[𝗠𝘆 𝗜𝗻𝘀𝘁𝗮𝗴𝗿𝗮𝗺]({INSTAGRAM_ALIVE}) | ")
     if ALIVE_LOGO:
         try:
             logo = ALIVE_LOGO
@@ -411,8 +411,8 @@ async def amireallyalivereset(ureset):
 
 
 CMD_HELP.update({
-    "system":
-    "⚡𝘾𝙈𝘿⚡: `.sysd`"\
+    "system": "✘ Pʟᴜɢɪɴ : System Stats"
+"\n\n⚡𝘾𝙈𝘿⚡: `.sysd`"\
 "\n↳ : Shows system information using neofetch."
 "\n\n⚡𝘾𝙈𝘿⚡: `.db`"
 "\n↳ : Shows database related info."
@@ -420,8 +420,8 @@ CMD_HELP.update({
 "\n↳ : Show system specification."
 })
 CMD_HELP.update({
-    "alive":
-    "⚡𝘾𝙈𝘿⚡: `.alive` or `.on`"
+    "alive": "✘ Pʟᴜɢɪɴ : Alive"
+"\n\n⚡𝘾𝙈𝘿⚡: `.alive` or `.on`"
 "\n↳ : To see whether your bot is working or not."
 "\n\n⚡𝘾𝙈𝘿⚡: `.aliveu` <text>"
 "\n↳ : Changes the 'user' in alive to the text you want."
@@ -430,8 +430,8 @@ CMD_HELP.update({
 })
 CMD_HELP.update(
 {
-    "botversion":
-    "⚡𝘾𝙈𝘿⚡: `.botver`"
+    "botversion": "✘ Pʟᴜɢɪɴ : Robot Version"
+"\n\n⚡𝘾𝙈𝘿⚡: `.botver`"
 "\n↳ : Shows the userbot version."
 "\n\n⚡𝘾𝙈𝘿⚡: `.pip` <module(s)>"
 "\n↳ : Does a search of pip modules(s)."
