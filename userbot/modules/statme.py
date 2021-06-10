@@ -6,7 +6,7 @@ import time
 from telethon.events import NewMessage
 from telethon.tl.custom import Dialog
 from telethon.tl.types import Channel, Chat, User
-
+from userbot import CMD_HELP, bot
 from userbot.events import register
 
 logging.basicConfig(
@@ -108,3 +108,10 @@ def user_full_name(user):
     names = [i for i in list(names) if i]
     full_name = ' '.join(names)
     return full_name
+
+
+CMD_HELP.update({
+    "statsme":
+    "✘ Pʟᴜɢɪɴ : Statistic Dialogs\
+\n\n⚡𝘾𝙈𝘿⚡: `.stats`\
+\n↳ : Melihat Data Statistik Akun Telegram Anda."})
