@@ -3,7 +3,7 @@
 # Licensed under the Raphielscape Public License, Version 1.d (the "License");
 # you may not use this file except in compliance with the License.
 #
-""" Userbot module for getting information about the server. """
+"""Userbot Module For Getting Information About The Server."""
 
 
 import asyncio
@@ -18,7 +18,7 @@ import sys
 import time
 from datetime import datetime
 import psutil
-from userbot import ALIVE_LOGO, ALIVE_NAME, BOT_VER, LYNX_TEKS_KUSTOM, CMD_HELP, StartTime, UPSTREAM_REPO_BRANCH, INSTAGRAM_ALIVE, bot
+from userbot import ALIVE_LOGO, ALIVE_NAME, BOT_VER, LYNX_TEXT_CUSTOM, CMD_HELP, StartTime, UPSTREAM_REPO_BRANCH, INSTAGRAM_ALIVE, bot
 from userbot.events import register
 
 
@@ -223,24 +223,30 @@ async def pipcheck(pip):
         await pip.edit("Gunakan `.help pip` Untuk Melihat Contoh")
 
 
-@register(outgoing=True, pattern=r"^\.(?:Lynx|Lynxon)\s?(.)?")
+@register(outgoing=True, pattern=r"^\.(?:lynx|xon)\s?(.)?")
 async def amireallyalive(alive):
     user = await bot.get_me()
     await get_readable_time((time.time() - StartTime))
     output = (
-           f"**⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡** \n"
-        f"\n__**{LYNX_TEKS_KUSTOM}**__\n"
-        f"**══════════════════════**\n"
-        f"**🤴 Lynx** \n"
-        f" ↳ : `{DEFAULTUSER}` \n"
-        f"**🔎 Username** \n"
-        f" ↳ : `@{user.username}` \n"
-        f"╔═══════════════════════\n"
-        f"╟[•⚙️ `Telethon :`Ver {version.__version__} \n"
-        f"╟[•🐍 `Python   :`Ver {python_version()} \n"
-        f"╟[•👾 `Bot Ver  :`{BOT_VER} \n"
-        f"╟[•📂 `Modules  :`{len(modules)} \n"
-        f"╚═══════════════════════")
+        f"**ㅤㅤ  ╭─━━═━═━═━═━━─╮**\n"
+        f"**       ⊏┊[⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡](t.me/LynxUserbot) ⊨〛💨 **\n"
+        f"**ㅤㅤ  ╰─━━═━═━═━═━━─╯**\n"
+        f"╭╼════════════════════╾╮\n"
+        f"│    ⇱  𝐖𝐞𝐥𝐜𝐨𝐦𝐞 𝐓𝐨 𝐌𝐲 𝐏𝐫𝐨𝐟𝐢𝐥𝐞 ⇲ \n"
+        f"┟╼════════════════════╾┤\n"
+        f"╟◈ 😼  `Lynx     :` {DEFAULTUSER}\n"
+        f"╟◈ 🔎  `Username :` @{user.username}\n"
+        f"╟◈ ⚙️  `Telethon :` v. {version.__version__}\n"
+        f"╟◈ 🐍  `Python   :` v. {python_version()}\n"
+        f"╟◈ 👾  `Bot Ver  :` v. {BOT_VER}\n"
+        f"╟◈ 🛠️  `Branch   :` {UPSTREAM_REPO_BRANCH}\n"
+        f"╟◈ 💻  `System   :` Ubuntu 20.10\n"
+        f"╟◈ 📂  `Plugins  :` {len(modules)} Plugins\n"
+        f"┞╼════════════════════╾┤\n"
+        f"├◈ **{LYNX_TEXT_CUSTOM}**\n"
+        f"╰╼════════════════════╾╯\n"
+        f"| [𝗥𝗲𝗽𝗼](https://kenzo-404.github.io/Lynx-Userbot) | [𝗟𝗼𝗿𝗱-𝗧𝗲𝗮𝗺](t.me/LordUserbot_Group) | " f"[𝗠𝘆 𝗜𝗻𝘀𝘁𝗮𝗴𝗿𝗮𝗺]({INSTAGRAM_ALIVE}) | ")
+
     if ALIVE_LOGO:
         try:
             logo = ALIVE_LOGO
