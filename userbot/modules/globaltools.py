@@ -335,7 +335,7 @@ async def gcast(event):
         return await event.edit("`Mohon Berikan Sebuah Pesan`")
     tt = event.text
     msg = tt[6:]
-    lynxget = await event.edit("`Sedang Mengirim Pesan Secara Global... 📢`")
+    lynxget = await event.edit("`Sedang Mengirim Pesan Group Secara Global... 📢`")
     er = 0
     done = 0
     async for x in bot.iter_dialogs():
@@ -346,7 +346,28 @@ async def gcast(event):
                 await bot.send_message(chat, msg)
             except BaseException:
                 er += 1
-    await lynxget.edit(f"**Berhasil Mengirim Pesan Ke** `{done}` **Group.\nGagal Mengirim Pesan Ke** `{er}` **Group.**")
+    await lynxget.edit(f"**✔️Berhasil** Mengirim Pesan Ke : `{done}` Group.\n**❌Gagal** Mengirim Pesan Ke : `{er}` Group.")
+
+
+@register(outgoing=True, pattern="^.gucast (.*)")
+async def gucast(event):
+    lynxuser = event.pattern_match.group(1)
+    if not lynxuser:
+        return await event.edit("`Mohon Berikan Sebuah Pesan`")
+    tt = event.text
+    msg = tt[7:]
+    lynxget = await event.edit("`Sedang Mengirim Pivate Messages Secara Global... 📢`")
+    er = 0
+    done = 0
+    async for x in bot.iter_dialogs():
+        if x.is_user and not x.entity.bot:
+            chat = x.id
+            try:
+                done += 1
+                await bot.send_message(chat, msg)
+            except BaseException:
+                er += 1
+    await lynxget.edit(f"**✔️Berhasil** Mengirim Pesan Ke : `{done}` Orang.\n**❌Gagal** Mengirim Pesan Ke : `{er}` Orang.")
 
 
 @register(outgoing=True, pattern=r"^\.gmute(?: |$)(.*)")
@@ -445,4 +466,6 @@ CMD_HELP.update({
 \n\n⚡𝘾𝙈𝘿⚡: `.gkick` <Text>\
 \n↳ : Melakukan Kick Secara Global. Hampir Sama Dengan Global Ban, Tapi Ini Hanya Kick.\
 \n\n⚡𝘾𝙈𝘿⚡: `.gcast` <Pesan>\
-\n↳ : Global Broadcast. Mengirim pesan ke Seluruh Grup yang Anda Masuki."})
+\n↳ : Global Group Broadcast. Mengirim Pesan ke Seluruh Group yang Anda Masuki.
+\n\n⚡𝘾𝙈𝘿⚡: `.gucast` <Pesan>\
+\n↳ : Global Users Broadcast. Kirim Pesan itu Secara Global ke Semua Anggota Group Anda."})
