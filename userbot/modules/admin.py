@@ -865,7 +865,7 @@ async def _(event):
 
 CMD_HELP.update(
     {
-        "admin": "✘ Pʟᴜɢɪɴ : Admin's"\
+        "admin": "✘ Pʟᴜɢɪɴ : Administrator Group"\
         "\n\n⚡𝘾𝙈𝘿⚡: `.promote` <Username/Reply> <Nama Title (Optional)>"
         "\n↳ : Mempromosikan Member Sebagai Admin. (u/Owner)"
         "\n\n⚡𝘾𝙈𝘿⚡: `.demote` <Username/Reply>"
