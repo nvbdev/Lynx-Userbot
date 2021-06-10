@@ -466,6 +466,6 @@ CMD_HELP.update({
 \n\n⚡𝘾𝙈𝘿⚡: `.gkick` <Text>\
 \n↳ : Melakukan Kick Secara Global. Hampir Sama Dengan Global Ban, Tapi Ini Hanya Kick.\
 \n\n⚡𝘾𝙈𝘿⚡: `.gcast` <Pesan>\
-\n↳ : Global Group Broadcast. Mengirim Pesan ke Seluruh Group yang Anda Masuki.
+\n↳ : Global Group Broadcast. Mengirim Pesan ke Seluruh Group yang Anda Masuki.\
 \n\n⚡𝘾𝙈𝘿⚡: `.gucast` <Pesan>\
 \n↳ : Global Users Broadcast. Kirim Pesan itu Secara Global ke Semua Anggota Group Anda."})
