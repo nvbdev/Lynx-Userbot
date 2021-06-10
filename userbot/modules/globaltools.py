@@ -225,7 +225,7 @@ async def gunben(userbot):
     except BaseException:
         pass
     return await dark.edit(
-        f"╭─━━━━━━━━━━━━━━━─╮\nㅤㅤ⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡\n╭─━━━━━━━━━━━━━━━─╯\n**│• UnGBAN By :** `{ALIVE_NAME}`\n**│• User Account :** [{user.first_name}](tg://user?id={user.id})\n**│• Action :** `GBanned` ❌\n╰━━━━━━━━━━━━━━━━━╯"
+        f"╭─━━━━━━━━━━━━━━━─╮\nㅤㅤ[⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡](t.me/LynxUserbot)\n╭─━━━━━━━━━━━━━━━─╯\n**│• UnGBAN By :** `{ALIVE_NAME}`\n**│• User Account :** [{user.first_name}](tg://user?id={user.id})\n**│• Action :** `GBanned` ❌\n╰━━━━━━━━━━━━━━━━━╯"
     )
 
 
