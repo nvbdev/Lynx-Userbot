@@ -439,7 +439,7 @@ with bot:
         async def handler(event):
             if event.message.from_id != uid:
                 await event.reply(
-                    f"Hai 👋 [{user.first_name}](tg://user?id={user.id}) Selamat Datang di Room ⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡\n Jika Kamu Ingin Membuat Userbot, Silahkan Tekan Menu Dibawah Ini\n,"
+                    f"Hai 👋 [{user.first_name}](tg://user?id={user.id}) Selamat Datang di Room ⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡\n Jika Kamu Ingin Membuat Userbot, Silahkan Tekan Menu Dibawah Ini\n",
                     buttons=[Button.inline("DEPLOY", url="https://kenzo-404.github.io/Lynx-Userbot")],
                 )
             else:
