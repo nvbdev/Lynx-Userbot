@@ -24,6 +24,8 @@ from dotenv import load_dotenv
 from requests import get
 from telethon.sync import TelegramClient, custom, events
 from telethon.sessions import StringSession
+from telethon import Button, events
+
 
 redis_db = None
 
@@ -436,9 +438,13 @@ with bot:
         @tgbot.on(events.NewMessage(pattern="/start"))
         async def handler(event):
             if event.message.from_id != uid:
-                await event.reply("⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡, Buat Userbot Mu Sendiri [Tekan Disini](https://kenzo-404.github.io/Lynx-Userbot)")
+                await event.reply(
+                    f"Hai 👋 [{user.first_name}](tg://user?id={user.id}) Selamat Datang di Room ⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡\n Jika Kamu Ingin Membuat Userbot, Silahkan Tekan Menu Dibawah Ini\n,"
+                    buttons=[Button.inline("DEPLOY", url="https://kenzo-404.github.io/Lynx-Userbot")],
+                )
             else:
                 await event.reply(f"`Hai Yang Mulia {DEFAULTUSER}\n\nApa Kabarmu ? 🐱`")
+
 
         @tgbot.on(events.InlineQuery)  # pylint:disable=E0602
         async def inline_handler(event):
@@ -465,14 +471,14 @@ with bot:
             else:
                 result = builder.article(
                     " ╔╡⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡╞╗ ",
-                    text="""**Anda Bisa Membuat ⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡ Anda Sendiri Dengan Cara :** __Tekan Dibawah Ini__ 👇""",
+                    text="""**Anda Bisa Membuat ⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡ Anda Sendiri Dengan Cara :**\n__Tekan Dibawah Ini__ 👇""",
                     buttons=[
                         [
                             custom.Button.url(
                                 "⚡𝗟𝘆𝗻𝘅⚡",
                                 "https://kenzo-404.github.io/Lynx-Userbot"),
                             custom.Button.url(
-                                "𝗢𝘄𝗻𝗲𝗿",
+                                "Dᴇᴠᴇʟᴏᴘᴇʀ",
                                 "t.me/SyndicateTwenty4")] 
                     ],
                     link_preview=False,
