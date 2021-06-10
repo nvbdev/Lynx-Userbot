@@ -122,7 +122,7 @@ async def repo_is_here(wannasee):
         "                  ʀᴇᴘᴏ\n"
         "    [⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡](https://kenzo-404.github.io/Lynx-Userbot)\n"
         "╭─━━━━━━━━━━━━━─╯\n"
-        "│⊙ **ᴏᴡɴᴇʀ :** [ᴀxᴇʟ](https://github.com/KENZO-404)\n"
+        "│⊙ **Dᴇᴠᴇʟᴏᴘᴇʀ :** [ᴀxᴇʟ](https://github.com/KENZO-404)\n"
         "╰━━━━━━━━━━━━━━━╯\n"
         "  𝗟𝗶𝗰𝗲𝗻𝘀𝗲 : [GPL-3.0 License](https://github.com/KENZO-404/Lynx-Userbot/blob/Lynx-Userbot/LICENSE)"
     )
