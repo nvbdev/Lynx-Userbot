@@ -441,8 +441,13 @@ with bot:
                 u = await event.client.get_entity(event.chat_id)
                 await event.reply(
                     f"Hai 👋 [{get_display_name(u)}](tg://user?id={u.id}) Selamat Datang di Room ⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡\n Jika Kamu Ingin Membuat Userbot, Silahkan Tekan Menu Dibawah Ini\n",
-                    buttons=[Button.url("DEPLOY",
-                                        "https://kenzo-404.github.io/Lynx-Userbot")],
+                    buttons=[
+                        [
+                             Button.url("Developer",
+                                        "https://github.com/KENZO-404"),
+                             Button.url("Deploy to Heroku",
+                                        "https://heroku.com/deploy?template=https://github.com/KENZO-404/Lynx-Userbot/tree/Lynx-Userbot")],
+                    ]
                 )
             else:
                 await event.reply(f"`Hai Yang Mulia {DEFAULTUSER}\n\nApa Kabarmu ? 🐱`")
