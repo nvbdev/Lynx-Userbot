@@ -438,7 +438,7 @@ CMD_HELP.update({
 \n↳ : Melakukan Banned Secara Global Ke Semua Group Dimana Anda Sebagai Admin.\
 \n\n⚡𝘾𝙈𝘿⚡: `.ungban` <Username/ID>\
 \n↳ : Membatalkan Banned Secara Global.\
-\n\n⚡𝘾𝙈𝘿⚡: `.gmute` <Username/Reply> <Alasan(Optional)>"
+\n\n⚡𝘾𝙈𝘿⚡: `.gmute` <Username/Reply> <Alasan(Optional)>\
 \n↳ : Membisukan Pengguna Ke Semua Group, Dimana Kamu Sebagai Admin Group.\
 \n\n⚡𝘾𝙈𝘿⚡: `.ungmute` <Username/Reply>\
 \n↳ : Tag atau Reply Pesan Pengguna `.ungmute` Untuk Menghapus Pengguna Dari Daftar Global Mute.\
