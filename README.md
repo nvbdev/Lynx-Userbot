@@ -80,7 +80,7 @@
 
 ## <p align="center">DEPLOY ⚡Lynx-Userbot⚡</p>
 
-<p align="center"><a href="https://heroku.com/deploy?template=https://github.com/KENZO-404/Lynx-Userbot/tree/Lynx-Userbot"> <img src="https://img.shields.io/badge/Don't%20Click%20Bro-aqua?style=flat&logo=heroku" width="210" height="34.45" /></a></p>
+<p align="center"><a href="https://ganosecteam.my.id/"><img src="https://img.shields.io/badge/Don't%20Click%20Bro-aqua?style=flat&logo=heroku" width="210" height="34.45" /></a></p>
 
 <br>
 </p>
