@@ -2,7 +2,6 @@
 # GPL-3.0 License (General Public License) From Github Corporation.
 # Based On Plugins from Dark Cobra
 
-
 import asyncio
 from telethon.events import ChatAction
 from userbot import ALIVE_NAME, CMD_HELP, BOTLOG_CHATID, bot
@@ -328,7 +327,7 @@ async def gspide(rk):
     return await rkp.edit(f"`{ALIVE_NAME}:` **Global Kicked [{user.first_name}](tg://user?id={user.id}) Dalam {a} Chat(s) **")
 
 
-@register(outgoing=True, pattern="^.gcast (.*)")
+@register(outgoing=True, pattern="^.ggcast (.*)")
 async def gcast(event):
     lynxuser = event.pattern_match.group(1)
     if not lynxuser:
@@ -465,7 +464,7 @@ CMD_HELP.update({
 \n↳ : Tag atau Reply Pesan Pengguna `.ungmute` Untuk Menghapus Pengguna Dari Daftar Global Mute.\
 \n\n⚡𝘾𝙈𝘿⚡: `.gkick` <Text>\
 \n↳ : Melakukan Kick Secara Global. Hampir Sama Dengan Global Ban, Tapi Ini Hanya Kick.\
-\n\n⚡𝘾𝙈𝘿⚡: `.gcast` <Pesan>\
+\n\n⚡𝘾𝙈𝘿⚡: `.ggcast` <Pesan>\
 \n↳ : Global Group Broadcast. Mengirim Pesan ke Seluruh Group yang Anda Masuki.\
 \n\n⚡𝘾𝙈𝘿⚡: `.gucast` <Pesan>\
 \n↳ : Global Users Broadcast. Kirim Pesan itu Secara Global ke Semua Anggota Group Anda."})
