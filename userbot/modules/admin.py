@@ -432,88 +432,6 @@ async def muter(moot):
             await moot.delete()
 
 
-@register(outgoing=True, pattern=r"^\.ungmute(?: |$)(.*)")
-async def ungmoot(un_gmute):
-    # Admin or creator check
-    chat = await un_gmute.get_chat()
-    admin = chat.admin_rights
-    creator = chat.creator
-
-    # If not admin and not creator, return
-    if not admin and not creator:
-        return await un_gmute.edit(NO_ADMIN)
-
-    # Check if the function running under SQL mode
-    try:
-        from userbot.modules.sql_helper.gmute_sql import ungmute
-    except AttributeError:
-        return await un_gmute.edit(NO_SQL)
-
-    user = await get_user_from_event(un_gmute)
-    user = user[0]
-    if not user:
-        return
-
-    # If pass, inform and start ungmuting
-    await un_gmute.edit("```Membuka Global Mute Pengguna Ini...```")
-
-    if ungmute(user.id) is False:
-        await un_gmute.edit("`Kesalahan! Pengguna Sedang Tidak Di Gmute.`")
-    else:
-        # Inform about success
-        await un_gmute.edit("```Berhasil! Pengguna Sudah Tidak Lagi Dibisukan```")
-        await sleep(3)
-        await un_gmute.delete()
-
-        if BOTLOG:
-            await un_gmute.client.send_message(
-                BOTLOG_CHATID,
-                "#UNGMUTE\n"
-                f"PENGGUNA: [{user.first_name}](tg://user?id={user.id})\n"
-                f"GRUP: {un_gmute.chat.title}(`{un_gmute.chat_id}`)",
-            )
-
-
-@register(outgoing=True, pattern=r"^\.gmute(?: |$)(.*)")
-async def gspider(gspdr):
-    # Admin or creator check
-    chat = await gspdr.get_chat()
-    admin = chat.admin_rights
-    creator = chat.creator
-
-    # If not admin and not creator, return
-    if not admin and not creator:
-        return await gspdr.edit(NO_ADMIN)
-
-    # Check if the function running under SQL mode
-    try:
-        from userbot.modules.sql_helper.gmute_sql import gmute
-    except AttributeError:
-        return await gspdr.edit(NO_SQL)
-
-    user, reason = await get_user_from_event(gspdr)
-    if not user:
-        return
-
-    # If pass, inform and start gmuting
-    await gspdr.edit("`Berhasil Membisukan Pengguna!`")
-    if gmute(user.id) is False:
-        await gspdr.edit("`Kesalahan! Pengguna Sudah Dibisukan.`")
-    else:
-        if reason:
-            await gspdr.edit(f"#GLOBALMUTE\n• **Alasan:** `{reason}`")
-        else:
-            await gspdr.edit("`Berhasil Membisukan Pengguna Secara Global!`")
-
-        if BOTLOG:
-            await gspdr.client.send_message(
-                BOTLOG_CHATID,
-                "#GLOBALMUTE\n"
-                f"PENGGUNA: [{user.first_name}](tg://user?id={user.id})\n"
-                f"GROUP: {gspdr.chat.title}(`{gspdr.chat_id}`)",
-            )
-
-
 @register(outgoing=True, pattern=r"^\.zombies(?: |$)(.*)", groups_only=False)
 async def rm_deletedacc(show):
 
@@ -960,13 +878,9 @@ CMD_HELP.update(
         "\n↳ : Membisukan Seseorang Di Group, Bisa Ke Admin Juga. :v"
         "\n\n⚡𝘾𝙈𝘿⚡: `.unmute` <Username/Reply>"
         "\n↳ : Membuka bisu orang yang dibisukan."
-        "\n\n⚡𝘾𝙈𝘿⚡: `.gmute` <Username/Reply> <Alasan(Optional)>"
-        "\n↳ : Membisukan Pengguna Ke Semua Group, Dimana Kamu Sebagai Admin Group.\nBisa Ke Admin ataupun Owner :v, Terkecuali @SyndicateTwenty4."
-        "\n\n⚡𝘾𝙈𝘿⚡: `.ungmute` <Username/Reply>"
-        "\n↳ : Tag atau Reply Pesan Pengguna `.ungmute` Untuk Menghapus Pengguna Dari Daftar Global Mute."
         "\n\n⚡𝘾𝙈𝘿⚡: `.zombies`"
         "\n↳ : Untuk Mencari Akun Terhapus di Dalam Group."
-        "Gunakan `.zombies clean` Untuk Membersihkan Group."
+        "Gunakan `.zombies clean` Untuk Membersihkan Akun Terhapus di Group."
         "\n\n⚡𝘾𝙈𝘿⚡: `.all`"
         "\n↳ : Tag Semua Member Dalam Group, Membutuhkan Bot @MentionBot."
         "\n\n⚡𝘾𝙈𝘿⚡: `.admins`"
