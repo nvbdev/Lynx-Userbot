@@ -161,7 +161,7 @@ async def gben(userbot):
     except BaseException:
         pass
     return await dark.edit(
-        f"╭─━━━━━━━━━━━━━━━─╮\nㅤㅤ⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡\n╭─━━━━━━━━━━━━━━━─╯\n**│• GBAN By :** `{ALIVE_NAME}`\n**│• User Account :** [{user.first_name}](tg://user?id={user.id})\n**│• Action :** `GBanned` ✅\n╰━━━━━━━━━━━━━━━━━╯"
+        f"╭─━━━━━━━━━━━━━━━─╮\nㅤㅤ[⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡](t.me/LynxUserbot)\n╭─━━━━━━━━━━━━━━━─╯\n**│• GBAN By :** `{ALIVE_NAME}`\n**│• User Account :** [{user.first_name}](tg://user?id={user.id})\n**│• Action :** `GBanned` ✅\n╰━━━━━━━━━━━━━━━━━╯"
     )
 
 
