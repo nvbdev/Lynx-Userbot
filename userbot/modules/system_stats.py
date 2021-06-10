@@ -390,7 +390,7 @@ async def redis(alive):
         await alive.delete()
 
 
-@register(outgoing=True, pattern="^.aliveu")
+@register(outgoing=True, pattern="^.edalive")
 async def amireallyaliveuser(username): 
     """ For .aliveu command, change the username in the .alive command. """
     message = username.text
@@ -423,7 +423,7 @@ CMD_HELP.update({
     "alive": "✘ Pʟᴜɢɪɴ : Alive"
 "\n\n⚡𝘾𝙈𝘿⚡: `.alive` or `.on`"
 "\n↳ : To see whether your bot is working or not."
-"\n\n⚡𝘾𝙈𝘿⚡: `.aliveu` <text>"
+"\n\n⚡𝘾𝙈𝘿⚡: `.edalive` <text>"
 "\n↳ : Changes the 'user' in alive to the text you want."
 "\n\n⚡𝘾𝙈𝘿⚡: `.restalive`"
 "\n↳ : Resets the user to default."
