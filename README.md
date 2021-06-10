@@ -34,7 +34,11 @@
 </p>
 
 ## ⚡Lynx Userbot⚡
-![Lynx Userbot](https://telegra.ph/file/f3c656862a017f945c0bc.png)
+
+<p align="center">
+   <a href = "https://heroku.com/deploy?template=https://github.com/KENZO-404/Lynx-Userbot/tree/Lynx-Userbot"><img src="https://telegra.ph/file/f3c656862a017f945c0bc.png" alt="Press to Takeoff" width="490px"></a>
+</p>
+<br>
 
 <h3 align="center">Userbot Used for Fun on Telegram, and for Maintianing Your Group.</h3>
 <p align="center">&nbsp;</p>
