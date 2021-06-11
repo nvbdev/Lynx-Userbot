@@ -13,6 +13,8 @@ import redis
 import io
 import random
 
+from datetime import datetime
+
 from sys import version_info
 from logging import basicConfig, getLogger, INFO, DEBUG
 from distutils.util import strtobool as sb
@@ -439,32 +441,25 @@ with bot:
         uid = me.id
         logo = "https://telegra.ph/file/f3c656862a017f945c0bc.png"
 
-        texthelp = f"""
-                   Jika Kamu Ingin Deploy Lynx-Robot
-                   Tekan » /deploy Melalui Heroku.
-                   """
 
         @tgbot.on(events.NewMessage(pattern="/start"))
         async def handler(event):
-            if event.message.from_id != uid:
+            if event.message.from_id and event.is_group != uid:
                 u = await event.client.get_entity(event.chat_id)
                 await event.reply(
                     f"Hai 👋 [{get_display_name(u)}](tg://user?id={u.id}) Selamat Datang di ⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡\nJika Kalian Ingin Mengetahui Lynx-Robot Lebih Lanjut,\nSilahkan Pilih Menu Dibawah Ini.\n",
                     buttons=[
                         [
-                             Button.url("Developer",
+                             Button.url("👤 Developer",
                                         "https://github.com/KENZO-404"),
-                             Button.url("Bantuan",
+                             Button.url("🚨 Bantuan",
                                         "https://telegra.ph/Bantuan-06-11")],
                     ]
                 )
-            else:
-                await event.reply(f"`Hai Lynx {DEFAULTUSER} Gimana Kabarmu ? 🐱`")
-
 
         @tgbot.on(events.NewMessage(pattern="/deploy"))
         async def handler(event):
-            if event.message.from_id != uid:
+            if event.message.from_id and event.is_group != uid:
                 await event.reply(
                     f"⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡ Deploy to Heroku, Click Here 👇🏻",
                     buttons=[
@@ -472,17 +467,15 @@ with bot:
                         [Button.inline("❌Close", data="closeit")],
                     ],
                 )
-            else:
-                await event.reply(f"`Hai Lynx {DEFAULTUSER} ? 😎`")
 
 
         @tgbot.on(events.NewMessage(pattern="/repo"))
         async def handler(event):
-            if event.message.from_id != uid:
+            if event.message.from_id and event.is_group != uid:
                 u = await event.client.get_entity(event.chat_id)
                 await event.message.get_sender()
                 text = (
-                   f"**Haii 😼 [{get_display_name(u)}](tg://user?id={u.id}) My Name is 𝗟𝘆𝗻𝘅 🐈\n"
+                   f"Haii 😼 [{get_display_name(u)}](tg://user?id={u.id}) My Name is 𝗟𝘆𝗻𝘅 🐈\n"
                    f"Lynx Used For Fun On Telegram✨,\n"
                    f"and For Maintaining Your Group 🛠️.\n"
                    f"I was **Created by :** @SyndicateTwenty4 For Various Userbots on Github.\n")
@@ -496,6 +489,16 @@ with bot:
                                          ]
                                      ]
                                      )
+
+        @tgbot.on(events.NewMessage(pattern="/ping"))
+        async def _(event):
+            start = datetime.now()
+            end = datetime.now()
+            ms = (end - start).microseconds / 1000
+            await tgbot.send_message(
+                event.chat_id,
+                f"**PONG !!**\n `{ms}ms`",
+            )
 
         @tgbot.on(events.InlineQuery)  # pylint:disable=E0602
         async def inline_handler(event):
