@@ -14,7 +14,8 @@
 <a href="https://www.codefactor.io/repository/github/kenzo-404/lynx-userbot"><img src="https://www.codefactor.io/repository/github/kenzo-404/lynx-userbot/badge" alt="CodeFactor" /></a>
 <p/>
 
-![Repo Size](https://img.shields.io/github/repo-size/KENZO-404/Lynx-Userbot?&style=plastic&logo=github)
+<p align="center">
+ <a href="https://img.shields.io/github/repo-size/KENZO-404/Lynx-Userbot?&style=plastic&logo=github"
 [![GitHub issues](https://img.shields.io/github/issues/KENZO-404/Lynx-Userbot?&style=plastic&logo=github)](https://github.com/KENZO-404/Lynx-Userbot/issues)
 [![GitHub commit activity](https://img.shields.io/github/commit-activity/m/KENZO-404/Lynx-Userbot?&style=plastic&logo=github)](https://github.com/KENZO-404/Lynx-Userbot/graphs/commit-activity)
 [![GitHub contributors](https://img.shields.io/github/contributors/KENZO-404/Lynx-Userbot?&style=plastic&logo=github)](https://GitHub.com/KENZO-404/Lynx-Userbot/graphs/contributors/)
