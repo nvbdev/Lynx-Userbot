@@ -498,7 +498,7 @@ with bot:
                 start = datetime.now()
                 end = datetime.now()
                 ms = (end - start).microseconds / 1000
-                await event.reply(
+                await tgbot.send_message(
                     event.chat_id,
                     f"**PONG !!**\n `{ms}ms`",
                 )
