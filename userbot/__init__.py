@@ -11,6 +11,7 @@ import time
 import re
 import redis
 import io
+import random
 
 from sys import version_info
 from logging import basicConfig, getLogger, INFO, DEBUG
@@ -435,13 +436,10 @@ with bot:
         dugmeler = CMD_HELP
         me = bot.get_me()
         uid = me.id
-
-
-texthelp = f"""
-Jika Kamu Ingin Deploy Lynx-Robot
-Tekan » /deploy Untuk Deploy Melalui Heroku.
-"""            
-
+        texthelp = f"""
+                   Jika Kamu Ingin Deploy Lynx-Robot
+                   Tekan » /deploy Untuk Deploy Melalui Heroku.
+                   """
 
         @tgbot.on(events.NewMessage(pattern="/start"))
         async def handler(event):
