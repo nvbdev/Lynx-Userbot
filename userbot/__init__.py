@@ -442,9 +442,9 @@ with bot:
         logo = "https://telegra.ph/file/f3c656862a017f945c0bc.png"
 
 
-        @tgbot.on(events.NewMessage(pattern="/start"))
+        @tgbot.on(events.NewMessage(outgoing=True, pattern="/start"))
         async def handler(event):
-            if event.message.from_id and event.is_group != uid:
+            if event.message.from_id != uid:
                 u = await event.client.get_entity(event.chat_id)
                 await event.reply(
                     f"Hai 👋 [{get_display_name(u)}](tg://user?id={u.id}) Selamat Datang di ⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡\nJika Kalian Ingin Mengetahui Lynx-Robot Lebih Lanjut,\nSilahkan Pilih Menu Dibawah Ini.\n",
@@ -457,9 +457,9 @@ with bot:
                     ]
                 )
 
-        @tgbot.on(events.NewMessage(pattern="/deploy"))
+        @tgbot.on(events.NewMessage(outgoing=True, pattern="/deploy"))
         async def handler(event):
-            if event.message.from_id and event.is_group != uid:
+            if event.message.from_id != uid:
                 await event.reply(
                     f"⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡ Deploy to Heroku, Click Here 👇🏻",
                     buttons=[
@@ -469,9 +469,9 @@ with bot:
                 )
 
 
-        @tgbot.on(events.NewMessage(pattern="/repo"))
+        @tgbot.on(events.NewMessage(outgoing=True, pattern="/repo"))
         async def handler(event):
-            if event.message.from_id and event.is_group != uid:
+            if event.message.from_id != uid:
                 u = await event.client.get_entity(event.chat_id)
                 await event.message.get_sender()
                 text = (
@@ -490,15 +490,16 @@ with bot:
                                      ]
                                      )
 
-        @tgbot.on(events.NewMessage(pattern="/ping"))
-        async def _(event):
-            start = datetime.now()
-            end = datetime.now()
-            ms = (end - start).microseconds / 1000
-            await tgbot.send_message(
-                event.chat_id,
-                f"**PONG !!**\n `{ms}ms`",
-            )
+        @tgbot.on(events.NewMessage(outgoing=True, pattern=r'\.ping'))
+        async def ping(event):
+            if event.is_reply:
+                start = datetime.now()
+                end = datetime.now()
+                ms = (end - start).microseconds / 1000
+                await event.reply(
+                    event.chat_id,
+                    f"**PONG !!**\n `{ms}ms`",
+                )
 
         @tgbot.on(events.InlineQuery)  # pylint:disable=E0602
         async def inline_handler(event):
