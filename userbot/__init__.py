@@ -436,7 +436,7 @@ with bot:
         dugmeler = CMD_HELP
         me = bot.get_me()
         uid = me.id
-        logo = ALIVE_LOGO
+        logo = "https://telegra.ph/file/f3c656862a017f945c0bc.png"
 
         texthelp = f"""
                    Jika Kamu Ingin Deploy Lynx-Robot
@@ -489,8 +489,8 @@ with bot:
                                      buttons=[
                                          [
                                              custom.Button.url(
-                                                 text="⛑ Group Support ⛑",
-                                                 url="https://t.me/SharingUserbot"
+                                                 text="🇮🇩 Repository 🇮🇩",
+                                                 url="https://kenzo-404.github.io/Lynx-Userbot/"
                                              )
                                          ]
                                      ]
