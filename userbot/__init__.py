@@ -437,7 +437,7 @@ with bot:
         uid = me.id
 
 
-Bantuan_Lynx_msg = f"""
+texthelp = f"""
 Jika Kamu Ingin Deploy Lynx-Robot
 Tekan » /deploy Untuk Deploy Melalui Heroku.
 """            
@@ -454,7 +454,7 @@ Tekan » /deploy Untuk Deploy Melalui Heroku.
                              Button.url("Developer",
                                         "https://github.com/KENZO-404"),
                              Button.inline("Bantuan",
-                                           data="bantuan")],
+                                           data="bantuann")],
                     ]
                 )
             else:
@@ -476,7 +476,7 @@ Tekan » /deploy Untuk Deploy Melalui Heroku.
 
         @callback("bantuann")
         async def own(event):
-            await event.edit(Bantuan_Lynx_msg, buttons=[Button.inline("Close", data="closeit")])
+            await event.edit(texthelp, buttons=[Button.inline("Close", data="closeit")])
 
         @callback("closeit")
         async def closet(lynxd):
