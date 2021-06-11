@@ -435,22 +435,50 @@ with bot:
         me = bot.get_me()
         uid = me.id
 
+
+Bantuan_Lynx = """
+Jika Kamu Ingin Deploy Lynx-Robot
+Tekan » /deploy Untuk Deploy Melalui Heroku."""            
+
+
         @tgbot.on(events.NewMessage(pattern="/start"))
         async def handler(event):
             if event.message.from_id != uid:
                 u = await event.client.get_entity(event.chat_id)
                 await event.reply(
-                    f"Hai 👋 [{get_display_name(u)}](tg://user?id={u.id}) Selamat Datang di Room ⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡\n Jika Kamu Ingin Membuat Userbot, Silahkan Tekan Menu Dibawah Ini\n",
+                    f"Hai 👋 [{get_display_name(u)}](tg://user?id={u.id}) Selamat Datang di ⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡\nJika Kalian Ingin Mengetahui Lynx-Robot Lebih Lanjut,\nSilahkan Pilih Menu Dibawah Ini.\n",
                     buttons=[
                         [
                              Button.url("Developer",
                                         "https://github.com/KENZO-404"),
-                             Button.url("Deploy to Heroku",
-                                        "https://heroku.com/deploy?template=https://github.com/KENZO-404/Lynx-Userbot/tree/Lynx-Userbot")],
+                             Button.inline("Bantuan",
+                                           data="bantuan")],
                     ]
                 )
             else:
-                await event.reply(f"`Hai Yang Mulia {DEFAULTUSER}\n\nApa Kabarmu ? 🐱`")
+                await event.reply(f"`Hai Lynx {DEFAULTUSER} Gimana Kabarmu ? 🐱`")
+
+
+        @tgbot.on(events.NewMessage(pattern="/deploy"))
+        async def deployed(event):
+            if event.message.from_id and event.is_group != uid:
+                await event.reply(
+                    f"⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡ Deploy to Heroku, Click 👇🏻",
+                    buttons=[Button.url("Deploy to Heroku",
+                                        "https://heroku.com/deploy?template=https://github.com/KENZO-404/Lynx-Userbot/tree/Lynx-Userbot")],
+                            [Button.inline("Close",
+                                           data="closeit")
+                    ]
+                )
+
+
+        @callback("bantuann")
+        async def own(event):
+            await event.edit(Bantuan_Lynx, buttons=[Button.inline("Close", data="closeit")])
+
+        @callback("closeit")
+        async def closet(lynxd):
+            await lynxd.delete()
 
 
         @tgbot.on(events.InlineQuery)  # pylint:disable=E0602
