@@ -180,12 +180,24 @@
       "value": "Isi id group mu",
       "required": false
     },
+    "G_DRIVE_FOLDER_ID": {
+      "description": "Create a folder and put that folder's id here.check folder link for id.",
+      "required": false
+    },
     "G_DRIVE_DATA": {
       "description": "Enter the Google Drive authentication data, as a JSON structure.",
       "required": false
     },
     "G_DRIVE_INDEX_URL": {
       "description": " How to get this?? tutorial https://www.youtube.com/watch?v=h1RFMgFhCs0&t=203s",
+      "required": false
+    },
+    "G_PHOTOS_CLIENT_ID": {
+      "description": "get the client id from https://j.mp/39lWQQm",
+      "required": false
+    },
+    "G_PHOTOS_CLIENT_SECRET": {
+      "description": "get the client secret from https://j.mp/39lWQQm",
       "required": false
     },
     "BITLY_TOKEN": {
