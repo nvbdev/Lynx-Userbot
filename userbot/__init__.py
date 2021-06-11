@@ -442,34 +442,36 @@ with bot:
         logo = "https://telegra.ph/file/f3c656862a017f945c0bc.png"
 
 
-        @tgbot.on(events.NewMessage(outgoing=True, pattern="/start"))
+        @tgbot.on(events.NewMessage(pattern="/start"))
         async def handler(event):
             if event.message.from_id != uid:
                 u = await event.client.get_entity(event.chat_id)
                 await event.reply(
-                    f"Hai 👋 [{get_display_name(u)}](tg://user?id={u.id}) Selamat Datang di ⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡\nJika Kalian Ingin Mengetahui Lynx-Robot Lebih Lanjut,\nSilahkan Pilih Menu Dibawah Ini.\n",
+                    f"Hai 👋 [{get_display_name(u)}](tg://user?id={u.id}) Selamat Datang di ⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡\nJika Kalian Datang Kesinj dan Ingin Mengetahui Lynx-Robot Lebih Lanjut,\nSilahkan Pilih Menu Dibawah Ini.\n",
                     buttons=[
                         [
-                             Button.url("👤 Developer",
-                                        "https://github.com/KENZO-404"),
-                             Button.url("🚨 Bantuan",
+                             Button.url("📢 𝗖𝗵𝗮𝗻𝗻𝗲𝗹 📢",
+                                        "t.me/FederationSuperGroup/3"),
+                             Button.url("🚨 𝗠𝗲𝗻𝘂-𝗕𝗮𝗻𝘁𝘂𝗮𝗻 🚨",
                                         "https://telegra.ph/Bantuan-06-11")],
+                             [Button.url("👤 𝗗𝗲𝘃𝗲𝗹𝗼𝗽𝗲𝗿 👤",
+                                        "t.me/FederationSuperGroup/17")],
                     ]
                 )
 
-        @tgbot.on(events.NewMessage(outgoing=True, pattern="/deploy"))
+        @tgbot.on(events.NewMessage(pattern="/deploy"))
         async def handler(event):
             if event.message.from_id != uid:
                 await event.reply(
                     f"⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡ Deploy to Heroku, Click Here 👇🏻",
                     buttons=[
-                        [Button.url("Deploy to Heroku", "https://heroku.com/deploy?template=https://github.com/KENZO-404/Lynx-Userbot/tree/Lynx-Userbot")],
-                        [Button.inline("❌Close", data="closeit")],
+                        [Button.url("⚒️ 𝗗𝗘𝗣𝗟𝗢𝗬 ⚒️", "https://heroku.com/deploy?template=https://github.com/KENZO-404/Lynx-Userbot/tree/Lynx-Userbot")],
+                        [Button.url("👥 𝗚𝗥𝗢𝗨𝗣 👥", "t.me/GroupTidakDiketahui")],
                     ],
                 )
 
 
-        @tgbot.on(events.NewMessage(outgoing=True, pattern="/repo"))
+        @tgbot.on(events.NewMessage(pattern="/repo"))
         async def handler(event):
             if event.message.from_id != uid:
                 u = await event.client.get_entity(event.chat_id)
@@ -483,23 +485,22 @@ with bot:
                                      buttons=[
                                          [
                                              custom.Button.url(
-                                                 text="🇮🇩 Repository 🇮🇩",
+                                                 text="🇮🇩 𝗥𝗲𝗽𝗼𝘀𝗶𝘁𝗼𝗿𝘆 🇮🇩",
                                                  url="https://kenzo-404.github.io/Lynx-Userbot/"
                                              )
                                          ]
                                      ]
                                      )
 
-        @tgbot.on(events.NewMessage(outgoing=True, pattern=r'\.ping'))
-        async def ping(event):
-            if event.is_reply:
-                start = datetime.now()
-                end = datetime.now()
-                ms = (end - start).microseconds / 1000
-                await event.reply(
-                    event.chat_id,
-                    f"**PONG !!**\n `{ms}ms`",
-                )
+        @tgbot.on(events.NewMessage(pattern="/ping"))
+        async def _(event):
+            start = datetime.now()
+            end = datetime.now()
+            ms = (end - start).microseconds / 1000
+            await event.reply(
+                event.chat_id,
+                f"**PONG !!**\n `{ms}ms`",
+            )
 
         @tgbot.on(events.InlineQuery)  # pylint:disable=E0602
         async def inline_handler(event):
