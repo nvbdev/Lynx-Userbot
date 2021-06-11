@@ -493,14 +493,15 @@ with bot:
                                      )
 
         @tgbot.on(events.NewMessage(pattern="/ping"))
-        async def _(event):
-            start = datetime.now()
-            end = datetime.now()
-            ms = (end - start).microseconds / 1000
-            await event.reply(
-                event.chat_id,
-                f"**PONG !!**\n `{ms}ms`",
-            )
+        async def handler(event):
+            if event.message.from_id != uid:
+                start = datetime.now()
+                end = datetime.now()
+                ms = (end - start).microseconds / 1000
+                await event.reply(
+                    event.chat_id,
+                    f"**PONG !!**\n `{ms}ms`",
+                )
 
         @tgbot.on(events.InlineQuery)  # pylint:disable=E0602
         async def inline_handler(event):
