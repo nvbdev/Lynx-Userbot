@@ -20,7 +20,7 @@
 [![GitHub contributors](https://img.shields.io/github/contributors/KENZO-404/Lynx-Userbot?&style=plastic&logo=github)](https://GitHub.com/KENZO-404/Lynx-Userbot/graphs/contributors/)
 [![PR Open](https://img.shields.io/github/issues-pr/KENZO-404/Lynx-Userbot?&style=plastic&logo=github)](https://github.com/KENZO-404/Lynx-Userbot/pulls)
 [![PR Closed](https://img.shields.io/github/issues-pr-closed/KENZO-404/Lynx-Userbot?&style=plastic&logo=github)](https://github.com/KENZO-404/Lynx-Userbot/pulls?q=is:closed)
-<p/>
+</p>
 
 <p align="center">
 <a href="https://github.com/KENZO-404/Lynx-Userbot/commits/Lynx-Userbot"><img src="https://img.shields.io/github/last-commit/KENZO-404/Lynx-Userbot?color=ff69b4&logo=github&logoColor=ff69b4&style=for-the-badge" /></a>
