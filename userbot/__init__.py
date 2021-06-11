@@ -464,11 +464,10 @@ with bot:
             if event.message.from_id and event.is_group != uid:
                 await event.reply(
                     f"⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡ Deploy to Heroku, Click 👇🏻",
-                    buttons=[Button.url("Deploy to Heroku",
-                                        "https://heroku.com/deploy?template=https://github.com/KENZO-404/Lynx-Userbot/tree/Lynx-Userbot")],
-                            [Button.inline("Close",
-                                           data="closeit")
-                    ]
+                    buttons=[
+                        [Button.url("Deploy to Heroku", "https://heroku.com/deploy?template=https://github.com/KENZO-404/Lynx-Userbot/tree/Lynx-Userbot")],
+                        [Button.inline("Close", data="closeit")],
+                    ],
                 )
 
 
