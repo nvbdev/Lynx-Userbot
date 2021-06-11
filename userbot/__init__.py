@@ -10,6 +10,7 @@ import os
 import time
 import re
 import redis
+import io
 
 from sys import version_info
 from logging import basicConfig, getLogger, INFO, DEBUG
@@ -24,7 +25,7 @@ from dotenv import load_dotenv
 from requests import get
 from telethon.sync import TelegramClient, custom, events
 from telethon.sessions import StringSession
-from telethon import Button, events
+from telethon import Button, events, functions, types
 from telethon.utils import get_display_name
 
 redis_db = None
@@ -436,9 +437,10 @@ with bot:
         uid = me.id
 
 
-Bantuan_Lynx = """
+Bantuan_Lynx_msg = f"""
 Jika Kamu Ingin Deploy Lynx-Robot
-Tekan » /deploy Untuk Deploy Melalui Heroku."""            
+Tekan » /deploy Untuk Deploy Melalui Heroku.
+"""            
 
 
         @tgbot.on(events.NewMessage(pattern="/start"))
@@ -474,7 +476,7 @@ Tekan » /deploy Untuk Deploy Melalui Heroku."""
 
         @callback("bantuann")
         async def own(event):
-            await event.edit(Bantuan_Lynx, buttons=[Button.inline("Close", data="closeit")])
+            await event.edit(Bantuan_Lynx_msg, buttons=[Button.inline("Close", data="closeit")])
 
         @callback("closeit")
         async def closet(lynxd):
