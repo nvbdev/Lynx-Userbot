@@ -436,9 +436,11 @@ with bot:
         dugmeler = CMD_HELP
         me = bot.get_me()
         uid = me.id
+        logo = ALIVE_LOGO
+
         texthelp = f"""
                    Jika Kamu Ingin Deploy Lynx-Robot
-                   Tekan » /deploy Untuk Deploy Melalui Heroku.
+                   Tekan » /deploy Melalui Heroku.
                    """
 
         @tgbot.on(events.NewMessage(pattern="/start"))
@@ -451,8 +453,8 @@ with bot:
                         [
                              Button.url("Developer",
                                         "https://github.com/KENZO-404"),
-                             Button.inline("Bantuan",
-                                           data="bantuann")],
+                             Button.url("Bantuan",
+                                        "https://telegra.ph/Bantuan-06-11")],
                     ]
                 )
             else:
@@ -463,22 +465,36 @@ with bot:
         async def handler(event):
             if event.message.from_id != uid:
                 await event.reply(
-                    f"⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡ Deploy to Heroku, Click 👇🏻",
+                    f"⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡ Deploy to Heroku, Click Here 👇🏻",
                     buttons=[
                         [Button.url("Deploy to Heroku", "https://heroku.com/deploy?template=https://github.com/KENZO-404/Lynx-Userbot/tree/Lynx-Userbot")],
-                        [Button.inline("Close", data="closeit")],
+                        [Button.inline("❌Close", data="closeit")],
                     ],
                 )
+            else:
+                await event.reply(f"`Hai Lynx {DEFAULTUSER} ? 😎`")
 
 
-        @tgbot.on(events.callbackquery.CallbackQuery(b"bantuann")
-        async def bantu(event):
-            await event.edit(texthelp, buttons=[Button.inline("Close", data="closeit")])
-
-        @tgbot.on(events.callbackquery.CallbackQuery(b"closeit")
-        async def closet(lynxd):
-            await lynxd.delete()
-
+        @tgbot.on(events.NewMessage(pattern="/repo"))
+        async def handler(event):
+            if event.message.from_id != uid:
+                u = await event.client.get_entity(event.chat_id)
+                await event.message.get_sender()
+                text = (
+                   f"**Haii 😼 [{get_display_name(u)}](tg://user?id={u.id}) My Name is 𝗟𝘆𝗻𝘅 🐈\n"
+                   f"Lynx Used For Fun On Telegram✨,\n"
+                   f"and For Maintaining Your Group 🛠️.\n"
+                   f"I was **Created by :** @SyndicateTwenty4 For Various Userbots on Github.\n")
+                await tgbot.send_file(event.chat_id, logo, caption=text,
+                                     buttons=[
+                                         [
+                                             custom.Button.url(
+                                                 text="⛑ Group Support ⛑",
+                                                 url="https://t.me/SharingUserbot"
+                                             )
+                                         ]
+                                     ]
+                                     )
 
         @tgbot.on(events.InlineQuery)  # pylint:disable=E0602
         async def inline_handler(event):
