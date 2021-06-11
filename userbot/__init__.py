@@ -460,8 +460,8 @@ with bot:
 
 
         @tgbot.on(events.NewMessage(pattern="/deploy"))
-        async def deployed(event):
-            if event.message.from_id and event.is_group != uid:
+        async def handler(event):
+            if event.message.from_id != uid:
                 await event.reply(
                     f"⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡ Deploy to Heroku, Click 👇🏻",
                     buttons=[
@@ -471,11 +471,11 @@ with bot:
                 )
 
 
-        @callback("bantuann")
-        async def own(event):
+        @tgbot.on(events.callbackquery.CallbackQuery(b"bantuann")
+        async def bantu(event):
             await event.edit(texthelp, buttons=[Button.inline("Close", data="closeit")])
 
-        @callback("closeit")
+        @tgbot.on(events.callbackquery.CallbackQuery(b"closeit")
         async def closet(lynxd):
             await lynxd.delete()
 
