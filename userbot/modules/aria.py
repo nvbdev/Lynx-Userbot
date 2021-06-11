@@ -17,12 +17,7 @@ from userbot.utils import humanbytes
 
 
 def subprocess_run(cmd):
-    subproc = Popen(
-        cmd,
-        stdout=PIPE,
-        stderr=PIPE,
-        shell=True,
-        universal_newlines=True)
+    subproc = Popen(cmd, stdout=PIPE, stderr=PIPE, shell=True, universal_newlines=True)
     talk = subproc.communicate()
     exitCode = subproc.returncode
     if exitCode != 0:
@@ -39,7 +34,7 @@ trackers = f"[{trackers_list}]"
 cmd = f"aria2c \
 --enable-rpc \
 --rpc-listen-all=false \
---rpc-listen-port 8210 \
+--rpc-listen-port 6800 \
 --max-connection-per-server=10 \
 --rpc-max-request-size=1024M \
 --seed-time=0.01 \
@@ -57,11 +52,7 @@ if not os.path.isdir(TEMP_DOWNLOAD_DIRECTORY):
     os.makedirs(TEMP_DOWNLOAD_DIRECTORY)
 download_path = os.getcwd() + TEMP_DOWNLOAD_DIRECTORY.strip(".")
 
-aria2 = aria2p.API(
-    aria2p.Client(
-        host="http://localhost",
-        port=8210,
-        secret=""))
+aria2 = aria2p.API(aria2p.Client(host="http://localhost", port=6800, secret=""))
 
 aria2.set_global_options({"dir": download_path})
 
@@ -149,6 +140,7 @@ async def resume_all(event):
 
 @register(outgoing=True, pattern=r"^\.ashow(?: |$)(.*)")
 async def show_all(event):
+    output = "output.txt"
     downloads = aria2.get_downloads()
     msg = ""
     for download in downloads:
@@ -174,7 +166,6 @@ async def show_all(event):
         await event.delete()
     else:
         await event.edit("`Output is too big, sending it as a file...`")
-        output = "output.txt"
         with open(output, "w") as f:
             f.write(msg)
         await sleep(2)
@@ -202,29 +193,22 @@ async def check_progress_for_dl(gid, event, previous):
         file = aria2.get_download(gid)
         complete = file.is_complete
         try:
-            if not (complete or file.error_message):
+            if not complete and not file.error_message:
                 percentage = int(file.progress)
                 downloaded = percentage * int(file.total_length) / 100
-                prog_str = "[{0}{1}] `{2}`".format(
-                    "".join(
-                        "█" for i in range(
-                            math.floor(
-                                percentage /
-                                10))),
-                    "".join(
-                        "░" for i in range(
-                            10 -
-                            math.floor(
-                                percentage /
-                                10))),
+                prog_str = "`Downloading` | [{0}{1}] `{2}`".format(
+                    "".join(["●" for i in range(math.floor(percentage / 10))]),
+                    "".join(["○" for i in range(10 - math.floor(percentage / 10))]),
                     file.progress_string(),
                 )
                 msg = (
-                    f"{file.name} - Downloading\n"
+                    f"`Name`: `{file.name}`\n"
+                    f"`Status` -> **{file.status.capitalize()}**\n"
                     f"{prog_str}\n"
-                    f"`Size:` {humanbytes(downloaded)} of {file.total_length_string()}\n"
-                    f"`Speed:` {file.download_speed_string()}\n"
-                    f"`ETA:` {file.eta_string()}\n")
+                    f"`{humanbytes(downloaded)} of {file.total_length_string()}"
+                    f" @ {file.download_speed_string()}`\n"
+                    f"`ETA` -> {file.eta_string()}\n"
+                )
                 if msg != previous:
                     await event.edit(msg)
                     msg = previous
@@ -264,4 +248,6 @@ CMD_HELP.update(
         "\n\n>`.aclear`"
         "\nUsage: Clears the download queue, deleting all on-going downloads."
         "\n\n>`.ashow`"
-        "\nUsage: Shows progress of the on-going downloads."})
+        "\nUsage: Shows progress of the on-going downloads."
+    }
+)
