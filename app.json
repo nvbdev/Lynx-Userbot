@@ -133,10 +133,6 @@
       "description": "When a new person joins, the old welcome message is deleted.",
       "value": "True"
     },
-    "G_DRIVE_FOLDER_ID": {
-      "description": "Create a folder and put that folder's id here.check folder link for id.",
-      "required": false
-    },
     "HEROKU_MEMEZ": {
       "description": "This should be True if the userbot is running on a Heroku Dyno.",
       "value": "True",
@@ -181,23 +177,15 @@
     },
     "G_BAN_LOGGER_GROUP": {
       "description": "Buatlah Sebuah Grup Private/Public Lalu Masukkan Bot Rose Lalu Ketik /id.",
-      "value": "Isi id grup mu",
+      "value": "Isi id group mu",
       "required": false
     },
     "G_DRIVE_DATA": {
       "description": "Enter the Google Drive authentication data, as a JSON structure.",
       "required": false
     },
-    "G_PHOTOS_CLIENT_ID": {
-      "description": "get the client id from https://j.mp/39lWQQm",
-      "required": false
-    },
     "G_DRIVE_INDEX_URL": {
       "description": " How to get this?? tutorial https://www.youtube.com/watch?v=h1RFMgFhCs0&t=203s",
-      "required": false
-    },
-    "G_PHOTOS_CLIENT_SECRET": {
-      "description": "get the client secret from https://j.mp/39lWQQm",
       "required": false
     },
     "BITLY_TOKEN": {
