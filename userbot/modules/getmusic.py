@@ -221,17 +221,18 @@ async def _(event):
 
 CMD_HELP.update(
     {
-        "getmusic": ">`.songn <Artist - Song Title>`"
-        "\nUsage: Download music by name (@WooMaiBot)"
-        "\n\n>`.songl <Spotify/Deezer Link>`"
-        "\nUsage: Download music by link (@MusicsHunterBot)"
-        "\n\n>`.songf <Artist - Song Title>`"
-        "\nUsage: Download music by name (@SpotifyMusicDownloaderBot)"
-        "\n\n>`.songn now`"
-        "\nUsage: Download current LastFM scrobble with @WooMaiBot"
-        "\n\n>`.songf now`"
-        "\nUsage: Download current LastFM scrobble with @SpotifyMusicDownloaderBot"
-        "\n\n>`.vsong` <Artist - Song Title>"
-        "\nUsage: Finding and uploading videoclip.\n"
+        "getmusic": "✘ Pʟᴜɢɪɴ : Get Your Music"
+        "\n\n⚡𝘾𝙈𝘿⚡: `.songn <Artist - Song Title>`"
+        "\n↳ : Download Music by Name with (@WooMaiBot)"
+        "\n\n⚡𝘾𝙈𝘿⚡: `.songl <Spotify/Deezer Link>`"
+        "\n↳ : Download music by link (@MusicsHunterBot)"
+        "\n\n⚡𝘾𝙈𝘿⚡: `.songf <Artist - Song Title>`"
+        "\n↳ : Download Music by Name with (@SpotifyMusicDownloaderBot)"
+        "\n\n⚡𝘾𝙈𝘿⚡: `.songn now`"
+        "\n↳ : Download Current LastFM Scrobble with @WooMaiBot"
+        "\n\n⚡𝘾𝙈𝘿⚡: `.songf now`"
+        "\n↳ : Download Current LastFM Scrobble with @SpotifyMusicDownloaderBot"
+        "\n\n⚡𝘾𝙈𝘿⚡: `.vsong` <Artist - Song Title>"
+        "\n↳ : Finding and Uploading Videoclip.\n"
     }
 )
