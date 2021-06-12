@@ -2,7 +2,7 @@
 # GPL-3.0 License From Github (General Public License)
 # Ported From Cat Userbot For Lynx-Userbot By Alvin/LiuAlvinas.
 # Based On Plugins
-# Credits by Alvin/Liualvinas & Cat Userbot.
+# Credits @Cat-Userbot by Alvin from Lord-Userbot
 
 import time
 
@@ -14,7 +14,6 @@ from userbot import CMD_HELP, bot
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 
 #Ported by KENZO @TeamSecret_Kz
-
 @register(outgoing=True, pattern=r"^\.detect(?: |$)(.*)")
 async def detect(event):
     if event.fwd_from:
@@ -26,16 +25,16 @@ async def detect(event):
         return
     if input_str:
         try:
-            uid = int(input_str)
+            lynxuser = int(input_str)
         except ValueError:
             try:
                 u = await event.client.get_entity(input_str)
             except ValueError:
                 await edit.event("`Please Give ID/Username to Find History.`"
                                  )
-            uid = u.id
+            lynxuser = u.id
     else:
-        uid = reply_message.sender_id
+        lynxuser = reply_message.sender_id
     chat = "@tgscanrobot"
     event = await event.edit("`Currently Doing Account Detection...`")
     event = await event.edit("__Connecting to server telegram.__")
@@ -52,7 +51,7 @@ async def detect(event):
     event = await event.edit("__Connecting to server telegram...__")
     async with bot.conversation(chat) as conv:
         try:
-            await conv.send_message(f"{uid}")
+            await conv.send_message(f"{lynxuser}")
         except YouBlockedUserError:
             await steal.reply(
                 "```Please Unblock @tgscanrobot And Try Again.```"
@@ -73,9 +72,8 @@ def user_full_name(user):
     return " ".join(names)
 
 
-# Alvin Bau Sawi
 CMD_HELP.update({
-    "detection":
-        "⚡𝘾𝙈𝘿⚡: `.detect`\
-          \n↳ : Melihat Riwayat Grup Yang Pernah/Sedang dimasuki."
+    "detection": "✘ Pʟᴜɢɪɴ : Detection
+        \n\n⚡𝘾𝙈𝘿⚡: `.detect` <Reply/Username/ID>\
+        \n↳ : Melihat Riwayat Group Yang Pernah/Sedang Dimasuki."
 })
