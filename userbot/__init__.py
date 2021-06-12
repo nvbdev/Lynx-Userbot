@@ -443,8 +443,7 @@ with bot:
         dugmeler = CMD_HELP
         me = bot.get_me()
         uid = me.id
-        logo = "https://telegra.ph/file/f3c656862a017f945c0bc.png"
-
+        lynxlogo = "resource/logo/LynxUserbot-Logo-Button.jpg"
 
         @tgbot.on(events.NewMessage(pattern="/start"))
         async def handler(event):
@@ -485,7 +484,7 @@ with bot:
                    f"Lynx Used For Fun On Telegram✨,\n"
                    f"and For Maintaining Your Group 🛠️.\n"
                    f"I was **Created by :** @SyndicateTwenty4 For Various Userbots on Github.\n")
-                await tgbot.send_file(event.chat_id, logo, caption=text,
+                await tgbot.send_file(event.chat_id, lynxlogo, caption=text,
                                      buttons=[
                                          [
                                              custom.Button.url(
@@ -512,11 +511,11 @@ with bot:
             builder = event.builder
             result = None
             query = event.text
-            if event.query.user_id == uid and query.startswith("@UserButt"):
+            if event.query.user_id == uid and query.startswith("@LynxRobot"):
                 buttons = paginate_help(0, dugmeler, "helpme")
-                result = builder.article(
+                result = builder.photo(
+                    file=lynxlogo,
                     "Harap Gunakan .help Untuk Perintah",
-                    file=logo,
                     text="{}"f"\n\n**Bᴏᴛ ᴏꜰ {DEFAULTUSER}**\n\n"        "◎› **Pʟᴜɢɪɴꜱ :** `{}`\n◎› **Mᴇɴᴜ ᴏꜰ ʙᴏᴛ ↯** \n".format(
                         "** ╔╡⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡╞╗ **",
                         len(dugmeler),
@@ -573,7 +572,7 @@ with bot:
         async def on_plug_in_callback_query_handler(event):
             if event.query.user_id == uid:  # pylint:disable=E0602
                 await event.edit(
-                    file=logo,
+                    file=lynxlogo,
                     buttons=Button.inline("Oᴘᴇɴ Mᴀɪɴ Mᴇɴᴜ Aɢᴀɪɴ", data="ub_modul_"),
             )
 
