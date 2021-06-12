@@ -569,10 +569,15 @@ with bot:
         )
         async def on_plug_in_callback_query_handler(event):
             if event.query.user_id == uid:
+                current_page_number = int(
+                    event.data_match.group(1).decode("UTF-8"))
                 await event.edit(
                     file=lynxlogo,
                     buttons=Button.inline("Oᴘᴇɴ Mᴇɴᴜ", data="ub_modul_{}"),
                 )
+            else:
+                reply_pop_up_alert = f"🚫!WARNING!🚫 Jangan Menggunakan Milik {DEFAULTUSER}."
+                await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
 
 
         @tgbot.on(
@@ -621,7 +626,7 @@ with bot:
                     )
                 )
             else:
-                reply_pop_up_alert = f"🚫!WARNING!🚫 Dilarang Menggunakan Milik {DEFAULTUSER}."
+                reply_pop_up_alert = f"🚫!WARNING!🚫 Jangan Menggunakan Milik {DEFAULTUSER}."
 
             await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
 
