@@ -1,7 +1,5 @@
 import re
-
 from telethon.tl import types
-
 from userbot import CMD_HELP, bot
 from userbot.events import register
 
@@ -43,8 +41,9 @@ async def mention(event):
 
 CMD_HELP.update(
     {
-        "mentions": "Mentions users with a custom name."
-        "\nUsage: `Hi @ender1324[bluid boi]`"
-        "\nResult: Hi [bluid boi](tg://resolve?domain=ender1324)"
+        "mentions": ✘ Pʟᴜɢɪɴ : Mentions"
+        "\nMentions Users With a Custom Name."
+        "\n\nUsage : `Hi @ender1324[bluid boi]`"
+        "\nResult : Hi [bluid boi](tg://resolve?domain=ender1324)"
     }
 )
