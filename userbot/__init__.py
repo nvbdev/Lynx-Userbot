@@ -521,8 +521,7 @@ with bot:
                         len(dugmeler),
                     ),
                     buttons=buttons,
-                    link_preview=False,
-                )
+                    link_preview=False,)
             elif query.startswith("tb_btn"):
                 result = builder.article(
                     "Bantuan Dari ⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡ ",
