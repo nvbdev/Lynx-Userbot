@@ -443,7 +443,7 @@ with bot:
         dugmeler = CMD_HELP
         me = bot.get_me()
         uid = me.id
-        lynxlogo = "resource/logo/LynxUserbot-Logo-Button.jpg"
+        lynxlogo = "resource/logo/LynxUserbot-Button.jpg"
 
         @tgbot.on(events.NewMessage(pattern="/start"))
         async def handler(event):
