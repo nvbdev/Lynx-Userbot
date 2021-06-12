@@ -396,8 +396,8 @@ DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else uname().node
 # ============================================
 
 def paginate_help(page_number, loaded_modules, prefix):
-    number_of_rows = 5
-    number_of_cols = 4
+    number_of_rows = 4
+    number_of_cols = 3
     helpable_modules = [p for p in loaded_modules if not p.startswith("_")]
     helpable_modules = sorted(helpable_modules)
     modules = [
@@ -568,12 +568,15 @@ with bot:
             )
         )
         async def on_plug_in_callback_query_handler(event):
-            if event.query.user_id == uid:
+            if event.query.user_id == uid and query.startswith("@LynxRobot"):
                 current_page_number = int(
                     event.data_match.group(1).decode("UTF-8"))
+                b1 = paginate_help(0, dugmeler, "helpme")
+                # https://t.me/TelethonChat/115200
                 await event.edit(
                     file=lynxlogo,
-                    buttons=Button.inline("Oᴘᴇɴ Mᴇɴᴜ", data="ub_modul_{}"),
+                    link_preview=False,
+                    buttons=custom.Button.inline("Oᴘᴇɴ Mᴇɴᴜ", data="ub_modul_{}".format(b1, prefix, modulo_page),
                 )
             else:
                 reply_pop_up_alert = f"🚫!WARNING!🚫 Jangan Menggunakan Milik {DEFAULTUSER}."
