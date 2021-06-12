@@ -515,7 +515,7 @@ with bot:
                 result = builder.photo(
                     file=lynxlogo,
                     link_preview=False,
-                    text="{}"f"\n**Bᴏᴛ ᴏꜰ {DEFAULTUSER}**\n\n◎› **Pʟᴜɢɪɴꜱ :** `{}`\n◎› **Mᴇɴᴜ ᴏꜰ ʙᴏᴛ ↯**".format(
+                    text="{}"f"\n**Bᴏᴛ ᴏꜰ {DEFAULTUSER}**\n\n◎›" "**Pʟᴜɢɪɴꜱ :** `{len(modules)}`\n◎› **Mᴇɴᴜ ᴏꜰ ʙᴏᴛ ↯**".format(
                         len(dugmeler),
                     ),
                     buttons=buttons,
@@ -555,7 +555,7 @@ with bot:
                 buttons = paginate_help(
                     current_page_number + 1, dugmeler, "helpme")
                 # https://t.me/TelethonChat/115200
-                await event.edit(buttons=buttons, link_preview=False)
+                await event.edit(buttons=buttons)
             else:
                 reply_pop_up_alert = f"🚫!WARNING!🚫 Jangan Menggunakan Milik {DEFAULTUSER}."
                 await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
@@ -587,7 +587,7 @@ with bot:
                     current_page_number - 1, dugmeler, "helpme"  # pylint:disable=E0602
                 )
                 # https://t.me/TelethonChat/115200
-                await event.edit(buttons=buttons, link_preview=False)
+                await event.edit(buttons=buttons)
             else:
                 reply_pop_up_alert = f"🚫!WARNING!🚫 Jangan Menggunakan Milik {DEFAULTUSER}."
                 await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
