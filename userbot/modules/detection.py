@@ -73,7 +73,7 @@ def user_full_name(user):
 
 
 CMD_HELP.update({
-    "detection": "✘ Pʟᴜɢɪɴ : Detection
-        \n\n⚡𝘾𝙈𝘿⚡: `.detect` <Reply/Username/ID>\
-        \n↳ : Melihat Riwayat Group Yang Pernah/Sedang Dimasuki."
+    "detection": "✘ Pʟᴜɢɪɴ : Detection\
+         \n\n⚡𝘾𝙈𝘿⚡: `.detect` <Reply/Username/ID>\
+         \n↳ : Melihat Riwayat Group Yang Pernah/Sedang Dimasuki."
 })
