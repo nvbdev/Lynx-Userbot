@@ -422,7 +422,7 @@ def paginate_help(page_number, loaded_modules, prefix):
                 ),
             (
                 custom.Button.inline(
-                    "ᴄʟᴏꜱᴇ", data="close")
+                    "ᴄʟᴏꜱᴇ", data="{}_close")
                 ),
                 custom.Button.inline(
                     "Nᴇxᴛ╰⋗", data="{}_next({})".format(prefix, modulo_page)
@@ -517,7 +517,6 @@ with bot:
                     file=lynxlogo,
                     link_preview=False,
                     text="{}"f"\n\n**Bᴏᴛ ᴏꜰ {DEFAULTUSER}**\n\n"        "◎› **Pʟᴜɢɪɴꜱ :** `{}`\n◎› **Mᴇɴᴜ ᴏꜰ ʙᴏᴛ ↯** \n".format(
-                        "** ╔╡⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡╞╗ **",
                         len(dugmeler),
                     ),
                     buttons=buttons,
@@ -565,7 +564,7 @@ with bot:
 
         @tgbot.on(
             events.callbackquery.CallbackQuery(  # pylint:disable=E0602
-                data=re.compile(rb"close\((.+?)\)")
+                data=re.compile(rb"helpme_close\((.+?)\)")
             )
         )
         async def on_plug_in_callback_query_handler(event):
