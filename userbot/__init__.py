@@ -521,7 +521,7 @@ with bot:
                         len(dugmeler),
                     ),
                     buttons=buttons,
-                    link_preview=False,)
+                    link_preview=False)
             elif query.startswith("tb_btn"):
                 result = builder.article(
                     "Bantuan Dari ⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡ ",
@@ -531,7 +531,7 @@ with bot:
             else:
                 result = builder.article(
                     " ╔╡⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡╞╗ ",
-                    text="""**Anda Bisa Membuat ⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡ Anda Sendiri Dengan Cara :**\n__Tekan Dibawah Ini__ 👇""",
+                    text="""**Anda Bisa Membuat ⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡ Anda Sendiri\nDengan Cara :**__Tekan Dibawah Ini__ 👇""",
                     buttons=[
                         [
                             custom.Button.url(
@@ -539,7 +539,7 @@ with bot:
                                 "https://kenzo-404.github.io/Lynx-Userbot"),
                             custom.Button.url(
                                 "Dᴇᴠᴇʟᴏᴘᴇʀ",
-                                "t.me/SyndicateTwenty4")] 
+                                "t.me/FederationSuperGroup/17")] 
                     ],
                     link_preview=False,
                 )
