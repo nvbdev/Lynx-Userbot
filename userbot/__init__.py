@@ -443,6 +443,7 @@ with bot:
         me = bot.get_me()
         uid = me.id
         lynxlogo = "resource/logo/LynxUserbot-Button.jpg"
+        plugins = CMD_HELP
 
         @tgbot.on(events.NewMessage(pattern="/start"))
         async def handler(event):
@@ -515,7 +516,7 @@ with bot:
                 result = builder.photo(
                     file=lynxlogo,
                     link_preview=False,
-                    text="{}"f"\n**Bᴏᴛ ᴏꜰ {DEFAULTUSER}**\n\n◎› **Pʟᴜɢɪɴꜱ :** `{len(modules)}`\n◎› **Mᴇɴᴜ ᴏꜰ ʙᴏᴛ ↯**".format(
+                    text="{}"f"\n**Bᴏᴛ ᴏꜰ {DEFAULTUSER}**\n\n◎› **Pʟᴜɢɪɴꜱ :** `{len(plugins)}`\n◎› **Mᴇɴᴜ ᴏꜰ ʙᴏᴛ ↯**".format(
                         len(dugmeler),
                     ),
                     buttons=buttons,
