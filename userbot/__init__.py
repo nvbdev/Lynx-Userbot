@@ -515,7 +515,7 @@ with bot:
                 result = builder.photo(
                     file=lynxlogo,
                     link_preview=False,
-                    text="{}"f"\n**Bᴏᴛ ᴏꜰ {DEFAULTUSER}**\n\n◎›" "**Pʟᴜɢɪɴꜱ :** `{len(modules)}`\n◎› **Mᴇɴᴜ ᴏꜰ ʙᴏᴛ ↯**".format(
+                    text="{}"f"\n**Bᴏᴛ ᴏꜰ {DEFAULTUSER}**\n\n◎› **Pʟᴜɢɪɴꜱ :** `{len(modules)}`\n◎› **Mᴇɴᴜ ᴏꜰ ʙᴏᴛ ↯**".format(
                         len(dugmeler),
                     ),
                     buttons=buttons,
