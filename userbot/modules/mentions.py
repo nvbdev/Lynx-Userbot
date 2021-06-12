@@ -41,7 +41,7 @@ async def mention(event):
 
 CMD_HELP.update(
     {
-        "mentions": ✘ Pʟᴜɢɪɴ : Mentions"
+        "mentions": "✘ Pʟᴜɢɪɴ : Mentions"
         "\nMentions Users With a Custom Name."
         "\n\nUsage : `Hi @ender1324[bluid boi]`"
         "\nResult : Hi [bluid boi](tg://resolve?domain=ender1324)"
