@@ -516,7 +516,7 @@ with bot:
                 result = builder.photo(
                     file=lynxlogo,
                     link_preview=False,
-                    text="{}"f"\n**Bᴏᴛ ᴏꜰ {DEFAULTUSER}**\n\n◎› **Pʟᴜɢɪɴꜱ :** `{len(plugins)}`\n◎› **Mᴇɴᴜ ᴏꜰ ʙᴏᴛ ↯**".format(
+                    text=f"\n**Bᴏᴛ ᴏꜰ {DEFAULTUSER}**\n\n◎› **Pʟᴜɢɪɴꜱ :** `{len(plugins)}`\n◎› **Mᴇɴᴜ ᴏꜰ ʙᴏᴛ ↯**".format(
                         len(dugmeler),
                     ),
                     buttons=buttons,
@@ -568,11 +568,11 @@ with bot:
             )
         )
         async def on_plug_in_callback_query_handler(event):
-            if event.query.user_id == uid:  # pylint:disable=E0602
+            if event.query.user_id == uid:
                 await event.edit(
                     file=lynxlogo,
-                    buttons=Button.inline("Oᴘᴇɴ Mᴀɪɴ Mᴇɴᴜ Aɢᴀɪɴ", data="ub_modul_"),
-            )
+                    buttons=Button.inline("Oᴘᴇɴ Mᴇɴᴜ", data="ub_modul_{}"),
+                )
 
 
         @tgbot.on(
@@ -606,7 +606,7 @@ with bot:
                 if len(cmdhel) > 150:
                     help_string = (
                         str(CMD_HELP[modul_name]).replace('`', '')[:150] + "..."
-                        + "\n\nBaca Teks Berikutnya Ketik .help "
+                        + "\n\nBaca Text Berikutnya Ketik .help "
                         + modul_name
                         + " "
                     )
