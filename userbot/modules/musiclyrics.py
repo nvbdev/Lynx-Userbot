@@ -31,19 +31,20 @@ from userbot import CMD_HELP, ALIVE_NAME
 
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else uname().node
 
+# Fixes Bug by @Spidy
 a1 = base64.b64decode("QUl6YVN5QXlEQnNZM1dSdEI1WVBDNmFCX3c4SkF5NlpkWE5jNkZV").decode("ascii")
 a2 = base64.b64decode("QUl6YVN5QkYwenhMbFlsUE1wOXh3TVFxVktDUVJxOERnZHJMWHNn").decode("ascii")
 a3 = base64.b64decode("QUl6YVN5RGRPS253blB3VklRX2xiSDVzWUU0Rm9YakFLSVFWMERR").decode("ascii")
 
-@register(outgoing=True, pattern=r"^\.musik (.*)")
+@register(outgoing=True, pattern=r"^\.music (.*)")
 async def download_video(event):
     a = event.text
     if a[5] == "s":
         return
-    await event.edit("`Sedang Memproses Musik, Mohon Tunggu Sebentar...`")
+    await event.edit("`Sedang Memproses Music, Mohon Tunggu Sebentar...`")
     url = event.pattern_match.group(1)
     if not url:
-        return await event.edit("**List Error**\nCara Penggunaan : -`.musik <Judul Lagu>`")
+        return await event.edit("**List Error**\nCara Penggunaan : -`.music <Judul Lagu>`")
     search = SearchVideos(url, offset=1, mode="json", max_results=1)
     test = search.result()
     p = json.loads(test)
@@ -51,7 +52,7 @@ async def download_video(event):
     try:
         url = q[0]["link"]
     except BaseException:
-        return await event.edit("`Tidak Dapat Menemukan Musik...`")
+        return await event.edit("`Tidak Dapat Menemukan Music...`")
     type = "audio"
     await event.edit(f"`Persiapan Mendownload {url}...`")
     if type == "audio":
@@ -74,7 +75,7 @@ async def download_video(event):
             "logtostderr": False,
         }
     try:
-        await event.edit("`Mendapatkan Info Musik...`")
+        await event.edit("`Mendapatkan Info Music...`")
         with YoutubeDL(opts) as rip:
             rip_data = rip.extract_info(url)
     except DownloadError as DE:
@@ -141,10 +142,10 @@ Connected to server...
         pass
 
 
-@register(outgoing=True, pattern=r"^\.lirik (.*)")
+@register(outgoing=True, pattern=r"^\.lyrics (.*)")
 async def original(event):
     if not event.pattern_match.group(1):
-        return await event.edit("Beri Saya Sebuah Judul Lagu Untuk Mencari Lirik.\n**Contoh** : `.lirik` <Judul Lagu>")
+        return await event.edit("Beri Saya Sebuah Judul Lagu Untuk Mencari Lirik.\n**Contoh** : `.lyrics` <Judul Lagu>")
     kenzo = event.pattern_match.group(1)
     event = await event.edit("`Sedang Mencari Lirik Lagu...`")
     dc = random.randrange(1, 3)    
@@ -161,12 +162,12 @@ async def original(event):
     await event.delete()
 
 # For Lynx-Userbot by @Vckyouuu
-
 CMD_HELP.update(
     {
-        "musik&lirik": "⚡𝘾𝙈𝘿⚡: `.musik <Penyanyi atau Band - Judul Lagu>`\
-         \n↳ : Mengunduh Sebuah Lagu Yang Diinginkan.\
-         \n⚡𝘾𝙈𝘿⚡: `.lirik` <Penyanyi atau Band - Judul Lagu>`\
-         \n↳ : Mencari Lirik Lagu Yang Diinginkan."
+        "music&lyrics": "✘ Pʟᴜɢɪɴ : Music & Lyrics\
+         \n\n⚡𝘾𝙈𝘿⚡: `.music` <Penyanyi/Band - Judul Lagu>\
+         \n↳ : Mengunduh Sebuah Lagu Yang Anda Inginkan.\
+         \n⚡𝘾𝙈𝘿⚡: `.lirik` <Penyanyi/Band - Judul Lagu>\
+         \n↳ : Mencari Lirik Lagu Yang Anda Inginkan."
     }
 )
