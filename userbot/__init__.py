@@ -448,7 +448,7 @@ with bot:
                 data=re.compile("open")
             )
         )
-        async def opeenm(page_number, loaded_modules, prefix):
+        def opeenm(page_number, loaded_modules, prefix):
             number_of_rows = 4
             number_of_cols = 3
             helpable_modules = [p for p in loaded_modules if not p.startswith("_")]
