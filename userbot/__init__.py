@@ -203,7 +203,7 @@ BITLY_TOKEN = os.environ.get("BITLY_TOKEN", None)
 TERM_ALIAS = os.environ.get("TERM_ALIAS", "Lynx-Userbot")
 
 # Bot Version
-BOT_VER = os.environ.get("BOT_VER", "0.2.8")
+BOT_VER = os.environ.get("BOT_VER", "0.2.9")
 
 # Default .alive Username
 ALIVE_USERNAME = os.environ.get("ALIVE_USERNAME", None)
@@ -469,6 +469,7 @@ with bot:
 
         lynxlogo = "resource/logo/LynxUserbot-Button.jpg"
         plugins = CMD_HELP
+        vr = BOT_VER
 
         @tgbot.on(events.NewMessage(pattern="/start"))
         async def handler(event):
@@ -541,7 +542,7 @@ with bot:
                 result = builder.photo(
                     file=lynxlogo,
                     link_preview=False,
-                    text=f"\n**Bᴏᴛ ᴏꜰ {DEFAULTUSER}**\n\n◎› **Pʟᴜɢɪɴꜱ :** `{len(plugins)}`\n◎› **Mᴇɴᴜ ᴏꜰ ʙᴏᴛ ↯**".format(
+                    text=f"\n**Bᴏᴛ ᴏꜰ {DEFAULTUSER}**\n\n◎› **Bᴏᴛ ᴠᴇʀ :** `v.{len(vr)}`\n◎› **Pʟᴜɢɪɴꜱ :** `{len(plugins)}`\n\n◎› **Cᴏᴘʏʀɪɢʜᴛ © 𝟤𝟢𝟤𝟣 Lʏɴx-Uꜱᴇʀʙᴏᴛ**".format(
                         len(dugmeler),
                     ),
                     buttons=buttons,
