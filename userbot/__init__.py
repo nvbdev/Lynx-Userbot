@@ -572,6 +572,7 @@ with bot:
                 await event.edit(file=lynxlogo, link_preview=True, buttons=[
                     Button.url("⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡", "t.me/LynxUserbot"),
                     Button.inline("•Oᴘᴇɴ Mᴇɴᴜ• ", data="ub_modul_{}".format(x))
+                    for x in helpable_modules
                 ])
 
 
@@ -604,6 +605,8 @@ with bot:
                 modul_name = event.data_match.group(1).decode("UTF-8")
 
                 cmdhel = str(CMD_HELP[modul_name])
+                await event.edit(buttons=buttons
+                )
                 if len(cmdhel) > 150:
                     help_string = (
                         str(CMD_HELP[modul_name]).replace('`', '')[:150] + "..."
