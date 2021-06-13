@@ -568,7 +568,7 @@ with bot:
             )
         )
         async def on_plug_in_callback_query_handler(event):
-            if event.query.user_id == uid and query.startswith("@LynxRobot"):
+            if event.query.user_id == uid:  # @LynxUserbot
                 current_page_number = int(
                     event.data_match.group(1).decode("UTF-8"))
                 b1 = paginate_help(0, dugmeler, "helpme")
