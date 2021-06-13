@@ -572,7 +572,7 @@ with bot:
                 await event.edit(
                     file=lynxlogo,
                     link_preview=True,
-                    buttons=custom.Button.inline("Oᴘᴇɴ Mᴇɴᴜ", data="helpme"),
+                    buttons=custom.Button.inline("⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡", url="t.me/LynxUserbot"),
                 )
 
 
