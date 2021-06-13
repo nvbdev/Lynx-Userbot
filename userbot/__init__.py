@@ -571,7 +571,7 @@ with bot:
                 # https://t.me/TelethonChat/115200
                 await event.edit(file=lynxlogo, link_preview=True, buttons=[
                     Button.url("⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡", "t.me/LynxUserbot"),
-                    Button.inline("•Oᴘᴇɴ Mᴇɴᴜ• ", data="ub_modul_{}")
+                    Button.inline("•Oᴘᴇɴ Mᴇɴᴜ• ", data="{}_next({})".format(prefix, modulo_page))
                 ])
 
 
