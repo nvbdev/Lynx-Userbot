@@ -448,35 +448,21 @@ with bot:
                 data=re.compile("open")
             )
         )
-        async def opeenm(event):
+        async def _(event):
             buttons = [
                 (
                     custom.Button.inline(
-                        "⋖╯Pʀᴇᴠ", data="{}_prev({})".format(prefix, modulo_page)
+                        "⋖╯Pʀᴇᴠ", data="helpme_prev")
                     ),
                     custom.Button.inline(
-                        "ᴄʟᴏꜱᴇ", data="{}_close({})".format(prefix, modulo_page)
+                        "ᴄʟᴏꜱᴇ", data="helpme_close")
                     ),
                     custom.Button.inline(
-                    "Nᴇxᴛ╰⋗", data="{}_next({})".format(prefix, modulo_page)
+                    "Nᴇxᴛ╰⋗", data="helpme_next")
                     )
                 )
             ]
-            pairs = list(zip(modules[::number_of_cols],
-                             modules[1::number_of_cols],
-                             modules[2::number_of_cols]))
-            if len(modules) % number_of_cols == 1:
-                pairs.append((modules[-1],))
-            max_num_pages = ceil(len(pairs) / number_of_rows)
-            modulo_page = page_number % max_num_pages
-            if len(pairs) > number_of_rows:
-                pairs = pairs[
-                    modulo_page * number_of_rows: number_of_rows * (modulo_page + 1)
-                ]
-            await event.edit(modules.format(
-                     pairs,
-                     len(dugmeler)
-                 ),
+            await event.edit(
                  buttons=buttons,
                  link_preview=False,
             )
