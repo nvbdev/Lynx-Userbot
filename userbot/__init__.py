@@ -572,7 +572,13 @@ with bot:
                 await event.edit(
                     file=lynxlogo,
                     link_preview=True,
-                    buttons=Button.url("⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡", "t.me/LynxUserbot"),
+                    buttons=[
+                        Button.url("⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡", "t.me/LynxUserbot"),
+                        ],
+                        [
+                        Button.inline("Oᴘᴇɴ Mᴇɴᴜ", data="ub_modul_{}"),
+                        ],
+                   ]
                 )
 
 
@@ -594,9 +600,10 @@ with bot:
                 reply_pop_up_alert = f"🚫!WARNING!🚫 Jangan Menggunakan Milik {DEFAULTUSER}."
                 await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
 
+
         @tgbot.on(
             events.callbackquery.CallbackQuery(  # pylint:disable=E0602
-                data=re.compile(b"ub_modul_(.*)")
+                data=re.compile(rb"ub_modul_(.*)")
             )
         )
         async def on_plug_in_callback_query_handler(event):
