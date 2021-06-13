@@ -430,6 +430,56 @@ def paginate_help(page_number, loaded_modules, prefix):
     return pairs
 
 
+        @tgbot.on(
+            events.callbackquery.CallbackQuery(  # pylint:disable=E0602
+                data=re.compile("open")
+            )
+        )
+        async def opeenm(event):
+            helpable_modules = [p for p in loaded_modules if not p.startswith("_")]
+            helpable_modules = sorted(helpable_modules)
+            modules = [
+                custom.Button.inline("{} {} 」◑".format("◐「", x), data="ub_modul_{}".format(x))
+                for x in helpable_modules
+            ]
+            buttons = [
+                (
+                    custom.Button.inline(
+                        "⋖╯Pʀᴇᴠ", data="{}_prev({})".format(prefix, modulo_page)
+                    ),
+                    custom.Button.inline(
+                        "ᴄʟᴏꜱᴇ", data="{}_close({})".format(prefix, modulo_page)
+                    ),
+                    custom.Button.inline(
+                    "Nᴇxᴛ╰⋗", data="{}_next({})".format(prefix, modulo_page)
+                    )
+                )
+            ]
+            pairs = list(zip(modules[::number_of_cols],
+                             modules[1::number_of_cols],
+                             modules[2::number_of_cols]))
+            if len(modules) % number_of_cols == 1:
+                pairs.append((modules[-1],))
+            max_num_pages = ceil(len(pairs) / number_of_rows)
+            modulo_page = page_number % max_num_pages
+            if len(pairs) > number_of_rows:
+                pairs = pairs[
+                    modulo_page * number_of_rows: number_of_rows * (modulo_page + 1)
+                ]
+            await event.edit(modules.format(
+                     pairs,
+                     len(dugmeler)
+                 ),
+                 buttons=buttons,
+                 link_preview=False,
+            )
+
+
+
+
+
+
+
 with bot:
     try:
         tgbot = TelegramClient(
@@ -574,8 +624,7 @@ with bot:
                     link_preview=True,
                     buttons=[
                           Button.url("⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡", "t.me/LynxUserbot"),
-                          Button.inline("•Oᴘᴇɴ Mᴇɴᴜ• ", data="ub_modul_{}".format(x))
-                          for x in helpable_modules
+                          Button.inline("•Oᴘᴇɴ Mᴇɴᴜ• ", data="open")
                     ]
                 )
 
@@ -609,7 +658,6 @@ with bot:
                 modul_name = event.data_match.group(1).decode("UTF-8")
 
                 cmdhel = str(CMD_HELP[modul_name])
-                await event.edit(buttons=buttons)
                 if len(cmdhel) > 150:
                     help_string = (
                         str(CMD_HELP[modul_name]).replace('`', '')[:150] + "..."
