@@ -448,15 +448,7 @@ with bot:
                 data=re.compile("open")
             )
         )
-        def opeenm(page_number, loaded_modules, prefix):
-            number_of_rows = 4
-            number_of_cols = 3
-            helpable_modules = [p for p in loaded_modules if not p.startswith("_")]
-            helpable_modules = sorted(helpable_modules)
-            modules = [
-                custom.Button.inline("{} {} 」◑".format("◐「", x), data="ub_modul_{}".format(x))
-                for x in helpable_modules
-            ]
+        async def opeenm(event):
             buttons = [
                 (
                     custom.Button.inline(
