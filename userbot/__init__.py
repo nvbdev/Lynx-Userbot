@@ -575,13 +575,9 @@ with bot:
                 # https://t.me/TelethonChat/115200
                 await event.edit(
                     file=lynxlogo,
-                    link_preview=False,
+                    link_preview=True,
                     buttons=custom.Button.inline("Oᴘᴇɴ Mᴇɴᴜ", data="ub_modul_{}".format(b1, prefix, modulo_page),
                 )
-            else:
-                reply_pop_up_alert = f"🚫!WARNING!🚫 Jangan Menggunakan Milik {DEFAULTUSER}."
-
-            await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
 
 
         @tgbot.on(
