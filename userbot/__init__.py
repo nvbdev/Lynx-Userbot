@@ -578,7 +578,7 @@ with bot:
                         [
                         Button.inline("Oᴘᴇɴ Mᴇɴᴜ", data="ub_modul_{}"),
                         ],
-                   ]
+                    ]
                 )
 
 
