@@ -430,6 +430,15 @@ def paginate_help(page_number, loaded_modules, prefix):
     return pairs
 
 
+with bot:
+    try:
+        tgbot = TelegramClient(
+            "TG_BOT_TOKEN",
+            api_id=API_KEY,
+            api_hash=API_HASH).start(
+            bot_token=BOT_TOKEN)
+
+
         @tgbot.on(
             events.callbackquery.CallbackQuery(  # pylint:disable=E0602
                 data=re.compile("open")
