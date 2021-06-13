@@ -571,7 +571,8 @@ with bot:
             if event.query.user_id == uid:  # @LynxUserbot
                 current_page_number = int(
                     event.data_match.group(1).decode("UTF-8"))
-                b1 = paginate_help(0, dugmeler, "helpme")
+                b1 = paginate_help(
+                    current_page_number, dugmeler, "helpme")
                 # https://t.me/TelethonChat/115200
                 await event.edit(
                     file=lynxlogo,
