@@ -569,15 +569,11 @@ with bot:
         )
         async def on_plug_in_callback_query_handler(event):
             if event.query.user_id == uid:  # @LynxUserbot
-                current_page_number = int(
-                    event.data_match.group(1).decode("UTF-8"))
-                b1 = paginate_help(
-                    current_page_number, dugmeler, "helpme")
                 # https://t.me/TelethonChat/115200
                 await event.edit(
                     file=lynxlogo,
                     link_preview=True,
-                    buttons=custom.Button.inline("Oᴘᴇɴ Mᴇɴᴜ", data="ub_modul_{}".format(b1, prefix, modulo_page),
+                    buttons=custom.Button.inline("Oᴘᴇɴ Mᴇɴᴜ", data="ub_modul_{}".format(prefix, modulo_page),
                 )
 
 
