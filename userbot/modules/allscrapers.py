@@ -559,130 +559,99 @@ async def wolfram(wvent):
         )
 
 
-@register(outgoing=True, pattern=r"^\.ytsearch (.*)")
-async def yt_search(video_q):
-    query = video_q.pattern_match.group(1)
-    if not query:
-        await video_q.edit("`Enter query to search`")
-    await video_q.edit("`Processing...`")
-    try:
-        results = json.loads(YoutubeSearch(query, max_results=7).to_json())
-    except KeyError:
-        return await video_q.edit(
-            "`Youtube Search gone retard.\nCan't search this query!`"
+# Ported By @VckyouuBitch From Geez - Projects
+# Copyright © Geez - Projects
+
+
+from youtube_dl import YoutubeDL
+
+from userbot.events import register
+from userbot import CMD_HELP
+
+
+@register(outgoing=True, pattern=".yt(a|v|sa|sv) (.*)", disable_errors=True)
+async def download_from_youtube_(event):
+    opt = event.pattern_match.group(1).lower()
+    if opt == "a":
+        ytd = YoutubeDL(
+            {
+                "format": "bestaudio",
+                "writethumbnail": True,
+                "addmetadata": True,
+                "geo-bypass": True,
+                "nocheckcertificate": True,
+                "outtmpl": "%(id)s.mp3",
+            }
         )
-    output = f"**Search Query:**\n`{query}`\n\n**Results:**\n\n"
-    for i in results["videos"]:
-        output += f"● `{i['title']}`\nhttps://www.youtube.com{i['url_suffix']}\n\n"
-    await video_q.edit(output, link_preview=False)
-
-
-@register(outgoing=True, pattern=r"\.(aud|vid) (.*)")
-async def download_video(v_url):
-    url = v_url.pattern_match.group(2)
-    url = v_url.pattern_match.group(1).lower()
-
-    await v_url.edit("`Preparing to download...`")
-
-    if type == "aud":
-        opts = {
-            "format": "bestaudio",
-            "addmetadata": True,
-            "key": "FFmpegMetadata",
-            "writethumbnail": True,
-            "prefer_ffmpeg": True,
-            "geo_bypass": True,
-            "nocheckcertificate": True,
-            "postprocessors": [
-                {
-                    "key": "FFmpegExtractAudio",
-                    "preferredcodec": "mp3",
-                    "preferredquality": "320",
-                }
-            ],
-            "outtmpl": "%(id)s.mp3",
-            "quiet": True,
-            "logtostderr": False,
-        }
-        video = False
-        song = True
-
-    elif type == "vid":
-        opts = {
-            "format": "best",
-            "addmetadata": True,
-            "key": "FFmpegMetadata",
-            "prefer_ffmpeg": True,
-            "geo_bypass": True,
-            "nocheckcertificate": True,
-            "postprocessors": [
-                {"key": "FFmpegVideoConvertor", "preferedformat": "mp4"}
-            ],
-            "outtmpl": "%(id)s.mp4",
-            "logtostderr": False,
-            "quiet": True,
-        }
-        song = False
-        video = True
-
-    try:
-        await v_url.edit("`Fetching data, please wait..`")
-        with YoutubeDL(opts) as rip:
-            rip_data = rip.extract_info(url)
-    except DownloadError as DE:
-        return await v_url.edit(f"`{str(DE)}`")
-    except ContentTooShortError:
-        return await v_url.edit("`The download content was too short.`")
-    except GeoRestrictedError:
-        return await v_url.edit(
-            "`Video is not available from your geographic location "
-            "due to geographic restrictions imposed by a website.`"
+        url = event.pattern_match.group(2).lower()
+        if not url:
+            return await event.edit("Give me a (youtube) URL to download audio from!")
+        try:
+            request.get(url)
+        except BaseException:
+            return await event.edit("`Give A Direct Audio Link To Download`")
+        xx = await event.edit(get_string("com_1"))
+    elif opt == "v":
+        ytd = YoutubeDL(
+            {
+                "format": "best",
+                "writethumbnail": True,
+                "addmetadata": True,
+                "geo-bypass": True,
+                "nocheckcertificate": True,
+                "outtmpl": "%(id)s.mp4",
+            }
         )
-    except MaxDownloadsReached:
-        return await v_url.edit("`Max-downloads limit has been reached.`")
-    except PostProcessingError:
-        return await v_url.edit("`There was an error during post processing.`")
-    except UnavailableVideoError:
-        return await v_url.edit("`Media is not available in the requested format.`")
-    except XAttrMetadataError as XAME:
-        return await v_url.edit(f"`{XAME.code}: {XAME.msg}\n{XAME.reason}`")
-    except ExtractorError:
-        return await v_url.edit("`There was an error during info extraction.`")
-    except Exception as e:
-        return await v_url.edit(f"{str(type(e)): {str(e)}}")
-    c_time = time.time()
-    if song:
-        await v_url.edit(f"`Preparing to upload song:`\n**{rip_data['title']}**")
-        await v_url.client.send_file(
-            v_url.chat_id,
-            f"{rip_data['id']}.mp3",
-            supports_streaming=True,
-            attributes=[
-                DocumentAttributeAudio(
-                    duration=int(rip_data["duration"]),
-                    title=str(rip_data["title"]),
-                    performer=str(rip_data["uploader"]),
-                )
-            ],
-            progress_callback=lambda d, t: asyncio.get_event_loop().create_task(
-                progress(d, t, v_url, c_time, "Uploading..", f"{rip_data['title']}.mp3")
-            ),
+        url = event.pattern_match.group(2).lower()
+        if not url:
+            return await event.edit("Give me a (youtube) URL to download video from!")
+        try:
+            request.get(url)
+        except BaseException:
+            return await event.edit("`Give A Direct Video Link To Download`")
+        xx = await event.edit(get_string("com_1"))
+    elif opt == "sa":
+        ytd = YoutubeDL(
+            {
+                "format": "bestaudio",
+                "writethumbnail": True,
+                "addmetadata": True,
+                "geo-bypass": True,
+                "nocheckcertificate": True,
+                "outtmpl": "%(id)s.mp3",
+            }
         )
-        os.remove(f"{rip_data['id']}.mp3")
-        await v_url.delete()
-    elif video:
-        await v_url.edit(f"`Preparing to upload video:`\n**{rip_data['title']}**")
-        await v_url.client.send_file(
-            v_url.chat_id,
-            f"{rip_data['id']}.mp4",
-            supports_streaming=True,
-            caption=rip_data["title"],
-            progress_callback=lambda d, t: asyncio.get_event_loop().create_task(
-                progress(d, t, v_url, c_time, "Uploading..", f"{rip_data['title']}.mp4")
-            ),
+        try:
+            query = event.text.split(" ", 1)[1]
+        except IndexError:
+            return await event.edit("Give me a (youtube) search query to download audio from!"
+                                    )
+        xx = await event.edit("`Searching on YouTube...`")
+        url = await get_yt_link(query)
+        await xx.edit("`Downloading audio song...`")
+    elif opt == "sv":
+        ytd = YoutubeDL(
+            {
+                "format": "best",
+                "writethumbnail": True,
+                "addmetadata": True,
+                "geo-bypass": True,
+                "nocheckcertificate": True,
+                "outtmpl": "%(id)s.mp4",
+            }
         )
-        os.remove(f"{rip_data['id']}.mp4")
-        await v_url.delete()
+        try:
+            query = event.text.split(" ", 1)[1]
+        except IndexError:
+            return await event.edit("Give me a (youtube) search query to download video from!"
+                                    )
+        xx = await event.edit("`Searching YouTube...`")
+        url = await get_yt_link(query)
+        await xx.edit("`Downloading video song...`")
+    else:
+        return
+    await download_yt(xx, event, url, ytd)
+
 
 
 def deEmojify(inputString):
@@ -1420,7 +1389,7 @@ CMD_HELP.update(
 CMD_HELP.update(
     {
         "direct": "✘ Pʟᴜɢɪɴ : `Direct`"\
-        "\n\n⚡𝘾𝙈𝘿⚡`.direct` <Url>\
+        "\n\n⚡𝘾𝙈𝘿⚡`.direct` <Reply Url>\
     \n↳ : Reply to a Link or Paste a URL to Generate a Direct Download Link.\n**Supported Urls** : `Google Drive` - `Cloud Mail` - `Yandex.Disk` - `AFH` - `ZippyShare` - `MediaFire` - `SourceForge` - `OSDN` - `GitHub`"
     }
 )
@@ -1438,14 +1407,14 @@ CMD_HELP.update(
     }
 )
 
-CMD_HELP.update(
-    {
-       "youtube": "✘ Pʟᴜɢɪɴ : `Youtube`"\
-       "\n\n⚡𝘾𝙈𝘿⚡ : `.aud <link yt>`\
-    \n↳ : Downloads the AUDIO from the given link\
-    \n\n⚡𝘾𝙈𝘿⚡ : `.vid <link yt>`\
-    \n↳ : Downloads the VIDEO from the given link\
-    \n\n⚡𝘾𝙈𝘿⚡ : `.ytsearch <search>`\
-    \n↳ : Does a Youtube Search."
-    }
-)
+CMD_HELP.update({
+    "youtube": "✘ Pʟᴜɢɪɴ : Youtube Downloader\
+   \n\n⚡𝘾𝙈𝘿⚡: `.yta` <Link>\
+   \n↳ : Download Audio From The Link.\
+   \n\n⚡𝘾𝙈𝘿⚡: `.ytv` <Link>\
+   \n↳ : Download Video From The Link.\
+   \n\n⚡𝘾𝙈𝘿⚡: `.ytsa` <Query>\
+   \n↳ : Search and Download Audio From Youtube.\
+   \n\n⚡𝘾𝙈𝘿⚡: `.ytsv` <Query>\
+   \n↳ : Search and Download Video From Youtube."
+})
