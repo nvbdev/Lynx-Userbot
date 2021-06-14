@@ -430,7 +430,7 @@ def paginate_help(page_number, loaded_modules, prefix):
     else:
         pairs = pairs[
            modulo_page * number_of_rows: number_of_rows * (modulo_page + 1)
-        ] + [(Button.inline("•Oᴘᴇɴ Mᴇɴᴜ•", data="{}_open({})".format(prefix, modulo_page),)]
+        ] + [(Button.inline("•Oᴘᴇɴ Mᴇɴᴜ•", data="open")]
     return pairs
 
 
@@ -640,7 +640,7 @@ with bot:
 
         @tgbot.on(
             events.callbackquery.CallbackQuery(  # pylint:disable=E0602
-                data=re.compile(rb"helpme_open\((.+?)\)")
+                data=re.compile("open")
             )
         )
         async def on_plug_in_callback_query_handler(event):
