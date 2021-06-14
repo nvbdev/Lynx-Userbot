@@ -449,7 +449,8 @@ with bot:
             )
         )
         async def inline_handler(event):
-            if event.query.user_id == uid:  # pylint:disable=E0602
+            query = event.text
+            if event.query.user_id == uid and query.startswith("@LynxRobot"):  # pylint:disable=E0602
                 modul_name = event.data_match.group(1).decode("UTF-8")
                 buttons1 = [
                     (
@@ -482,7 +483,7 @@ with bot:
                     ),
                     help_string,
                     buttons=buttons1,
-                    link_preview=True
+                    link_preview=True,
                 )
 
 
