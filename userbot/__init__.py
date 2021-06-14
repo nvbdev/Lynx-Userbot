@@ -427,6 +427,10 @@ def paginate_help(page_number, loaded_modules, prefix):
                 )
             )
         ]
+    else:
+         pairs = pairs[
+            modulo_page * number_of_rows: number_of_rows * (modulo_page + 1)
+         ] + [Button.inline("•Oᴘᴇɴ Mᴇɴᴜ•", data="{prefix}_open({modulo_page})"),)]
     return pairs
 
 
@@ -444,16 +448,26 @@ with bot:
 
 
         @tgbot.on(
-            events.InlineQuery(  # pylint:disable=E0602
-                data=re.compile(rb"lynx_open_(.*)")
+            events.callbackquery.CallbackQuery(  # pylint:disable=E0602
+                data=re.compile(rb"helpme_open\((.+?)\)")
             )
         )
-        async def inline_handler(event):
-            builder = event.builder
-            result = None
-            query = event.text
-            if event.query.user_id == uid and query.startswith("@LynxRobot"):  # pylint:disable=E0602
+        async def on_plug_in_callback_query_handler(event):
+            if event.query.user_id == uid:  # pylint:disable=E0602
                 modul_name = event.data_match.group(1).decode("UTF-8")
+                buttons1 = [
+                    (
+                        custom.Button.inline(
+                            "⋖╯Pʀᴇᴠ", data="{prefix}_prev({modulo_page})")
+                        ),
+                        custom.Button.inline(
+                            "ᴄʟᴏꜱᴇ", data="{prefix}_close({modulo_page})")
+                        ),
+                        custom.Button.inline(
+                            "Nᴇxᴛ╰⋗", data="{prefix}_next({modulo_page})")
+                        )
+                    )
+                ]
                 cmdhel = str(CMD_HELP[modul_name])
                 if len(cmdhel) > 150:
                     help_string = (
@@ -464,20 +478,7 @@ with bot:
                     )
                 else:
                     help_string = str(CMD_HELP[modul_name]).replace('`', '')
-                buttons1 = [
-                    (
-                        custom.Button.inline(
-                            "⋖╯Pʀᴇᴠ", data="{}_prev({})".format(prefix, modulo_page)
-                        ),
-                        custom.Button.inline(
-                            "ᴄʟᴏꜱᴇ", data="{}_close({})".format(prefix, modulo_page)
-                        ),
-                        custom.Button.inline(
-                            "Nᴇxᴛ╰⋗", data="{}_next({})".format(prefix, modulo_page)
-                        )
-                    )
-                ]
-                result = builder.photo(
+                await event.edit(
                     file=lynxlogo,
                     link_preview=False,
                     text=f"\n**Bᴏᴛ ᴏꜰ {DEFAULTUSER}**\n\n◎› **Bᴏᴛ ᴠᴇʀ :** `v.{BOT_VER}`\n◎› **Pʟᴜɢɪɴꜱ :** `{len(plugins)}`\n\n**Cᴏᴘʏʀɪɢʜᴛ © 𝟤𝟢𝟤𝟣 Lʏɴx-Uꜱᴇʀʙᴏᴛ**".format(
@@ -485,7 +486,7 @@ with bot:
                     ),
                     buttons=buttons1,
                 )
-                await event.answer([result])
+
 
 
         lynxlogo = "resource/logo/LynxUserbot-Button.jpg"
@@ -622,7 +623,7 @@ with bot:
                     link_preview=True,
                     buttons=[
                           Button.url("⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡", "t.me/LynxUserbot"),
-                          Button.inline("•Oᴘᴇɴ Mᴇɴᴜ•", data="lynx_open{}")
+                          Button.inline("•Oᴘᴇɴ Mᴇɴᴜ•", data="{prefix}_open({modulo_page})")
                     ]
                 )
 
