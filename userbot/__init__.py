@@ -456,15 +456,9 @@ with bot:
             if event.query.user_id == uid:  # pylint:disable=E0602
                 modul_name = event.data_match.group(1).decode("UTF-8")
                 buttons1 = [
-                        custom.Button.inline(
-                            "⋖╯Pʀᴇᴠ", data=f"{prefix}_prev({modulo_page})")
-                        ),
-                        custom.Button.inline(
-                            "ᴄʟᴏꜱᴇ", data=f"{prefix}_close({modulo_page})")
-                        ),
-                        custom.Button.inline(
-                            "Nᴇxᴛ╰⋗", data=f"{prefix}_next({modulo_page})")
-                        )
+                    [custom.Button.inline("⋖╯Pʀᴇᴠ", data=f"{prefix}_prev({modulo_page})")],
+                    [custom.Button.inline("ᴄʟᴏꜱᴇ", data=f"{prefix}_close({modulo_page})")],
+                    [custom.Button.inline("Nᴇxᴛ╰⋗", data=f"{prefix}_next({modulo_page})")],
                 ]
                 cmdhel = str(CMD_HELP[modul_name])
                 if len(cmdhel) > 150:
@@ -484,7 +478,6 @@ with bot:
                     ),
                     buttons=buttons1,
                 )
-
 
 
         lynxlogo = "resource/logo/LynxUserbot-Button.jpg"
