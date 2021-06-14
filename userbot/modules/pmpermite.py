@@ -31,7 +31,7 @@ from userbot.events import register
 
 PM_PERMIT_PIC = os.environ.get("PM_PERMIT_PIC", None)
 if PM_PERMIT_PIC is None:
-  WARN_PIC = "https://telegra.ph/file/49ce66ba7e0fa0ce99210.png"
+  WARN_PIC = "resource/logo/LynxUserbot-Button.jpg"
 else:
   WARN_PIC = PM_PERMIT_PIC
 
@@ -51,7 +51,7 @@ DEF_UNAPPROVED_MSG = (
     "╰┈─────────────────────┈─➤\n"
     "▰▱▰▱▰▱▰▱▰▱▰▱▰▱▰▱▰▱\n"
     "┣[○› `PESAN OTOMATIS`\n"
-    f"┣[○› `BY` @LynxUserbot\n"
+    f"┣[○› `BY` © @LynxUserbot\n"
     "▰▱▰▱▰▱▰▱▰▱▰▱▰▱▰▱▰▱")
 
 # =================================================================
@@ -123,7 +123,7 @@ async def permitpm(event):
                     if BOTLOG:
                         await event.client.send_message(
                             BOTLOG_CHATID,
-                            "Yang Mulia, Telah Terjadi Masalah Saat Menghitung Private Message, Mohon Restart Saya 😿 !",
+                            "Mohon Maaf, Telah Terjadi Masalah Saat Menghitung Private Message, Mohon Restart Saya 😿 !",
                         )
                     return LOGS.info("CountPM wen't rarted boi")
 
@@ -188,7 +188,7 @@ async def auto_accept(event):
                     await event.client.send_message(
                         BOTLOG_CHATID,
                         "#AUTO-APPROVED\n"
-                        + "Pengguna: "
+                        + "User : "
                         + f"[{chat.first_name}](tg://user?id={chat.id})",
                     )
 
@@ -201,7 +201,7 @@ async def notifoff(noff_event):
     except AttributeError:
         return await noff_event.edit("`Running on Non-SQL mode!`")
     addgvar("NOTIF_OFF", True)
-    await noff_event.edit("`Notifikasi Dari Pesan Pribadi Tidak Disetujui, Telah Dibisukan!`")
+    await noff_event.edit("#NOTIF OFF ❌\n`Notifikasi Dari Pesan Pribadi Telah Dinonaktifkan.`")
 
 
 @register(outgoing=True, pattern=r"^\.notifon$")
@@ -212,7 +212,7 @@ async def notifon(non_event):
     except AttributeError:
         return await non_event.edit("`Running on Non-SQL mode!`")
     delgvar("NOTIF_OFF")
-    await non_event.edit("`Notifikasi Dari Pesan Pribadi Tidak Disetujui, Tidak Lagi Dibisukan!`")
+    await non_event.edit("#NOTIF ON ☑️\n`Notifikasi Dari Pesan Pribadi Telah Diaktifkan.`")
 
 
 @register(outgoing=True, pattern=r"^\.(?:setuju|ok)\s?(.)?")
@@ -251,9 +251,9 @@ async def approvepm(apprvpm):
     try:
         approve(uid)
     except IntegrityError:
-        return await apprvpm.edit("`Oke, Pesan Anda Sudah Diterima Oleh Pemilik Saya 😼`")
+        return await apprvpm.edit("⚡")
 
-    await apprvpm.edit(f"`𝙷𝚊𝚒 👋` [{name0}](tg://user?id={uid}) `𝙿𝚎𝚜𝚊𝚗 𝙰𝚗𝚍𝚊 𝚂𝚞𝚍𝚊𝚑 𝙳𝚒𝚝𝚎𝚛𝚒𝚖𝚊` ⚡")
+    await apprvpm.edit(f"[{name0}](tg://user?id={uid}) `𝙿𝚎𝚜𝚊𝚗 𝙰𝚗𝚍𝚊 𝚂𝚞𝚍𝚊𝚑 𝙳𝚒𝚝𝚎𝚛𝚒𝚖𝚊` ☑️")
     await apprvpm.delete(getmsg)
     await message.delete()
 
@@ -322,7 +322,7 @@ async def blockpm(block):
     if BOTLOG:
         await block.client.send_message(
             BOTLOG_CHATID,
-            "#BLOKIR\n" + "Pengguna: " + f"[{name0}](tg://user?id={uid})",
+            "#BLOKIR\n" + "User : " + f"[{name0}](tg://user?id={uid})",
         )
 
 
@@ -347,7 +347,7 @@ async def unblockpm(unblock):
 async def add_pmsg(cust_msg):
     """Set your own Unapproved message"""
     if not PM_AUTO_BAN:
-        return await cust_msg.edit("**Mohon Maaf Yang Mulia, Anda Harus Menyetel** `PM_AUTO_BAN` **Ke** `True`\n Silahkan Lakukan set var")
+        return await cust_msg.edit("**Mohon Maaf, Anda Harus Menyetel** `PM_AUTO_BAN` **Ke** `True`\n Silahkan Lakukan set var.\nUsage : `.set var PM_AUTO_BAN True`")
     try:
         import userbot.modules.sql_helper.globals as sql
     except AttributeError:
@@ -374,7 +374,7 @@ async def add_pmsg(cust_msg):
         else:
             return await cust_msg.edit("`Mohon Balas Ke Pesan`")
 
-        await cust_msg.edit("⚡`Pesan Berhasil Disimpan Ke Room Chat`⚡")
+        await cust_msg.edit("#SETTINGS ☑️\n`Pesan Berhasil Disimpan Ke Room Chat.`")
 
         if BOTLOG:
             await cust_msg.client.send_message(
@@ -384,44 +384,45 @@ async def add_pmsg(cust_msg):
     if conf.lower() == "reset":
         if custom_message is not None:
             sql.delgvar("unapproved_msg")
-            await cust_msg.edit("`Anda Telah Menghapus Pesan Custom PM Ke Default`")
+            await cust_msg.edit("#DELETE ☑️\n`Anda Telah Menghapus Pesan Custom PM Ke Default.`")
         else:
 
-            await cust_msg.edit("`Pesan PM Anda Sudah Default Sejak Awal`")
+            await cust_msg.edit("`Pesan PM Anda Sudah Default Sejak Awal.`")
 
     if conf.lower() == "get":
         if custom_message is not None:
             await cust_msg.edit(
-                "**Ini Adalah Pesan PM Yang Sekarang Dikirimkan Ke Room Chat Anda:**" f"\n\n{custom_message}"
+                f"**Ini Adalah Pesan PM Yang Sekarang Dikirimkan Ke Room Chat Anda :**\n\n{custom_message}"
             )
         else:
             await cust_msg.edit(
                 "*Anda Belum Menyetel Pesan PM*\n"
-                f"Masih Menggunakan Pesan PM Default: \n\n`{DEF_UNAPPROVED_MSG}`"
+                f"Masih Menggunakan Pesan PM Default : \n\n`{DEF_UNAPPROVED_MSG}`"
             )
 
 
 
 CMD_HELP.update(
     {
-        "pmpermit": "⚡𝘾𝙈𝘿⚡: >`.setuju | .ok`"
-        "\n↳ : Menerima pesan seseorang dengan cara balas pesannya atau tag dan juga untuk dilakukan di pm."
-        "\n\n⚡𝘾𝙈𝘿⚡: >`.tolak | .nopm`"
-        "\n↳ : Menolak pesan seseorang dengan cara balas pesannya atau tag dan juga untuk dilakukan di pm."
-        "\n\n⚡𝘾𝙈𝘿⚡: >`.block`"
+        "pmpermit": "✘ Pʟᴜɢɪɴ : Private Message Permite"
+        "\n\n⚡𝘾𝙈𝘿⚡: `.setuju | .ok`"
+        "\n↳ : Menerima Pesan Seseorang Dengan Cara Balas Pesannya Atau Tag dan Juga Untuk Dilakukan Di PM."
+        "\n\n⚡𝘾𝙈𝘿⚡: `.tolak | .nopm`"
+        "\n↳ : Menolak Pesan Seseorang Dengan Cara Balas Pesannya Atau Tag dan Juga Untuk Dilakukan Di PM."
+        "\n\n⚡𝘾𝙈𝘿⚡: `.block`"
         "\n↳ : Memblokir Orang Di PM."
-        "\n\n⚡𝘾𝙈𝘿⚡: >`.unblock`"
+        "\n\n⚡𝘾𝙈𝘿⚡: `.unblock`"
         "\n↳ : Membuka Blokir."
-        "\n\n⚡𝘾𝙈𝘿⚡: >`.notifoff`"
-        "\n↳ : Mematikan notifikasi pesan yang belum diterima."
-        "\n\n⚡𝘾𝙈𝘿⚡: >`.notifon`"
-        "\n↳ : Menghidupkan notifikasi pesan yang belum diterima."
-        "\n\n⚡𝘾𝙈𝘿⚡: >`.set pm_msg` <balas ke pesan>"
-        "\n↳ : Menyetel Pesan Pribadimu untuk orang yang pesannya belum diterima"
-        "\n\n⚡𝘾𝙈𝘿⚡: >`.get pm_msg`"
-        "\n↳ : Mendapatkan Custom pesan PM mu"
-        "\n\n⚡𝘾𝙈𝘿⚡: >`.reset pm_msg`"
-        "\n↳ : Menghapus pesan PM ke default"
-        "\n\nPesan Pribadi yang belum diterima saat ini tidak dapat disetel"
-        "\nke teks format kaya bold, underline, link, dll."
-        "\nPesan akan terkirim normal saja"})
+        "\n\n⚡𝘾𝙈𝘿⚡: `.notifoff`"
+        "\n↳ : Menonaktifkan Notifikasi Pesan Yang Belum Diterima."
+        "\n\n⚡𝘾𝙈𝘿⚡: `.notifon`"
+        "\n↳ : Mengaktifkan Notifikasi Pesan Yang Belum Diterima."
+        "\n\n⚡𝘾𝙈𝘿⚡: `.set pm_msg` <Reply Message>"
+        "\n↳ : Menyetel Pesan Pribadimu Untuk Orang Yang Pesannya Belum Diterima."
+        "\n\n⚡𝘾𝙈𝘿⚡: `.get pm_msg`"
+        "\n↳ : Mendapatkan Custom Pesan PM-Mu."
+        "\n\n⚡𝘾𝙈𝘿⚡: `.reset pm_msg`"
+        "\n↳ : Menghapus Pesan PM ke Default."
+        "\n\nPesan Pribadi Yang Belum Diterima Saat Ini Tidak Dapat Disetel"
+        "\nke Teks Format. Seperti : Bold, Underline, Link, dll."
+        "\nPesan Akan Terkirim Normal Saja."})
