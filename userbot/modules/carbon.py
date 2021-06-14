@@ -1,3 +1,7 @@
+# Ported By @VckyouuBitch From Geez-Projects
+# Fixes BUGS, HEHE USAHA MEMANG TIDAK MENGHIANATI HASIL:)
+
+
 import os
 from time import sleep
 from selenium import webdriver
@@ -352,7 +356,7 @@ async def carbon_api(e):
 
 
 CMD_HELP.update({
-    "carbon":
-    "`.carbon`value <values=1,2,3,4,5>\
-        \nUsage:reply or type .carbon1 or 2,3,4,5 value and beautify your text."
+    "carbon": "✘ Pʟᴜɢɪɴ : Carbon Lang\
+    \n\n⚡𝘾𝙈𝘿⚡: `.carbon`value <Values=1,2,3,4,5>\
+    \n↳ : Reply or Type `.carbon1` or 2,3,4,5 Value and Beautify Your Text."
 })
