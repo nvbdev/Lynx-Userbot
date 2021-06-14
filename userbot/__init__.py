@@ -581,7 +581,7 @@ with bot:
                     link_preview=False,
                     buttons=[
                           [Button.url("⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡", "t.me/LynxUserbot")],
-                          [Button.inline("•Oᴘᴇɴ Mᴇɴᴜ•", data="{}_open({})".format(prefix, modulo_page)],
+                          [Button.inline("•Oᴘᴇɴ Mᴇɴᴜ•", data="open")],
                     ]
                 )
 
