@@ -427,10 +427,6 @@ def paginate_help(page_number, loaded_modules, prefix):
                 )
             )
         ]
-    else:
-        pairs = pairs[
-           modulo_page * number_of_rows: number_of_rows * (modulo_page + 1)
-        ] + [(Button.inline("•Oᴘᴇɴ Mᴇɴᴜ•", data="open")]
     return pairs
 
 
@@ -574,14 +570,15 @@ with bot:
             )
         )
         async def on_plug_in_callback_query_handler(event):
+                instag = INSTAGRAM_ALIVE
             if event.query.user_id == uid:  # @LynxUserbot
                 # https://t.me/TelethonChat/115200
                 await event.edit(
                     file=lynxlogo,
-                    link_preview=False,
+                    link_preview=True,
                     buttons=[
                           [Button.url("⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡", "t.me/LynxUserbot")],
-                          [Button.inline("•Oᴘᴇɴ Mᴇɴᴜ•", data="open")],
+                          [Button.url("[⊙] 𝗠𝘆 𝗜𝗻𝘀𝘁𝗮𝗴𝗿𝗮𝗺", f"{instag}")],
                     ]
                 )
 
@@ -636,39 +633,6 @@ with bot:
                 reply_pop_up_alert = f"🚫!WARNING!🚫 Jangan Menggunakan Milik {DEFAULTUSER}."
 
             await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
-
-
-        @tgbot.on(
-            events.callbackquery.CallbackQuery(  # pylint:disable=E0602
-                data=re.compile("open")
-            )
-        )
-        async def on_plug_in_callback_query_handler(event):
-            if event.query.user_id == uid:  # pylint:disable=E0602
-                modul_name = event.data_match.group(1).decode("UTF-8")
-                buttons = [
-                    [Button.inline("⋖╯Pʀᴇᴠ", data="{}_prev({})".format(prefix, modulo_page)],
-                    [Button.inline("ᴄʟᴏꜱᴇ", data="{}_close({})".format(prefix, modulo_page)],
-                    [Button.inline("Nᴇxᴛ╰⋗", data="{}_next({})".format(prefix, modulo_page)],
-                ]
-                cmdhel = str(CMD_HELP[modul_name])
-                if len(cmdhel) > 150:
-                    help_string = (
-                        str(CMD_HELP[modul_name]).replace('`', '')[:150] + "..."
-                        + "\n\nBaca Text Berikutnya Ketik .help "
-                        + modul_name
-                        + " "
-                    )
-                else:
-                    help_string = str(CMD_HELP[modul_name]).replace('`', '')
-                await event.edit(
-                    file=lynxlogo,
-                    link_preview=False,
-                    text=f"\n**Bᴏᴛ ᴏꜰ {DEFAULTUSER}**\n\n◎› **Bᴏᴛ ᴠᴇʀ :** `v.{BOT_VER}`\n◎› **Pʟᴜɢɪɴꜱ :** `{len(plugins)}`\n\n**Cᴏᴘʏʀɪɢʜᴛ © 𝟤𝟢𝟤𝟣 Lʏɴx-Uꜱᴇʀʙᴏᴛ**".format(
-                        help_string,
-                    ),
-                    buttons=buttons,
-                )
 
 
     except BaseException:
