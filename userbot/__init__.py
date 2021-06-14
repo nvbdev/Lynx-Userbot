@@ -446,40 +446,6 @@ with bot:
         me = bot.get_me()
         uid = me.id
 
-
-        @tgbot.on(
-            events.callbackquery.CallbackQuery(  # pylint:disable=E0602
-                data=re.compile(rb"helpme_open\((.+?)\)")
-            )
-        )
-        async def on_plug_in_callback_query_handler(event):
-            if event.query.user_id == uid:  # pylint:disable=E0602
-                modul_name = event.data_match.group(1).decode("UTF-8")
-                buttons1 = [
-                    [custom.Button.inline("⋖╯Pʀᴇᴠ", data="{}_prev({})".format(prefix, modulo_page)],
-                    [custom.Button.inline("ᴄʟᴏꜱᴇ", data="{}_close({})".format(prefix, modulo_page)],
-                    [custom.Button.inline("Nᴇxᴛ╰⋗", data="{}_next({})".format(prefix, modulo_page)],
-                ]
-                cmdhel = str(CMD_HELP[modul_name])
-                if len(cmdhel) > 150:
-                    help_string = (
-                        str(CMD_HELP[modul_name]).replace('`', '')[:150] + "..."
-                        + "\n\nBaca Text Berikutnya Ketik .help "
-                        + modul_name
-                        + " "
-                    )
-                else:
-                    help_string = str(CMD_HELP[modul_name]).replace('`', '')
-                await event.edit(
-                    file=lynxlogo,
-                    link_preview=False,
-                    text=f"\n**Bᴏᴛ ᴏꜰ {DEFAULTUSER}**\n\n◎› **Bᴏᴛ ᴠᴇʀ :** `v.{BOT_VER}`\n◎› **Pʟᴜɢɪɴꜱ :** `{len(plugins)}`\n\n**Cᴏᴘʏʀɪɢʜᴛ © 𝟤𝟢𝟤𝟣 Lʏɴx-Uꜱᴇʀʙᴏᴛ**".format(
-                        help_string,
-                    ),
-                    buttons=buttons1,
-                )
-
-
         lynxlogo = "resource/logo/LynxUserbot-Button.jpg"
         plugins = CMD_HELP
 
@@ -670,6 +636,40 @@ with bot:
                 reply_pop_up_alert = f"🚫!WARNING!🚫 Jangan Menggunakan Milik {DEFAULTUSER}."
 
             await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
+
+
+        @tgbot.on(
+            events.callbackquery.CallbackQuery(  # pylint:disable=E0602
+                data=re.compile(rb"helpme_open\((.+?)\)")
+            )
+        )
+        async def on_plug_in_callback_query_handler(event):
+            if event.query.user_id == uid:  # pylint:disable=E0602
+                modul_name = event.data_match.group(1).decode("UTF-8")
+                buttons = [
+                    [Button.inline("⋖╯Pʀᴇᴠ", data="{}_prev({})".format(prefix, modulo_page)],
+                    [Button.inline("ᴄʟᴏꜱᴇ", data="{}_close({})".format(prefix, modulo_page)],
+                    [Button.inline("Nᴇxᴛ╰⋗", data="{}_next({})".format(prefix, modulo_page)],
+                ]
+                cmdhel = str(CMD_HELP[modul_name])
+                if len(cmdhel) > 150:
+                    help_string = (
+                        str(CMD_HELP[modul_name]).replace('`', '')[:150] + "..."
+                        + "\n\nBaca Text Berikutnya Ketik .help "
+                        + modul_name
+                        + " "
+                    )
+                else:
+                    help_string = str(CMD_HELP[modul_name]).replace('`', '')
+                await event.edit(
+                    file=lynxlogo,
+                    link_preview=False,
+                    text=f"\n**Bᴏᴛ ᴏꜰ {DEFAULTUSER}**\n\n◎› **Bᴏᴛ ᴠᴇʀ :** `v.{BOT_VER}`\n◎› **Pʟᴜɢɪɴꜱ :** `{len(plugins)}`\n\n**Cᴏᴘʏʀɪɢʜᴛ © 𝟤𝟢𝟤𝟣 Lʏɴx-Uꜱᴇʀʙᴏᴛ**".format(
+                        help_string,
+                    ),
+                    buttons=buttons,
+                )
+
 
     except BaseException:
         LOGS.info(
