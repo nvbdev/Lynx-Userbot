@@ -468,7 +468,7 @@ with bot:
 
 
         @tgbot.on(events.InlineQuery)  # pylint:disable=E0602
-        async def inline_handler(event):
+        async def opeen(event):
             builder = event.builder
             result = None
             query = event.text
