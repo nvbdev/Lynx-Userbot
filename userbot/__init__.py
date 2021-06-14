@@ -467,9 +467,50 @@ with bot:
                 )
 
 
+        @tgbot.on(events.InlineQuery)  # pylint:disable=E0602
+        async def inline_handler(event):
+            builder = event.builder
+            result = None
+            query = event.text
+            if event.query.user_id == uid and query.startswith("@LynxRobot"):
+                buttons = paginate_help(0, dugmeler, "open")
+                result = builder.photo(
+                    file=lynxlogo,
+                    link_preview=False,
+                    text=f"\n**Bᴏᴛ ᴏꜰ {DEFAULTUSER}**\n\n◎› **Bᴏᴛ ᴠᴇʀ :** `v.{BOT_VER}`\n◎› **Pʟᴜɢɪɴꜱ :** `{len(plugins)}`\n\n**Cᴏᴘʏʀɪɢʜᴛ © 𝟤𝟢𝟤𝟣 Lʏɴx-Uꜱᴇʀʙᴏᴛ**".format(
+                        len(dugmeler),
+                    ),
+                    buttons=buttons,
+                )
+            elif query.startswith("tb_btn"):
+                result = builder.article(
+                    "Bantuan Dari ⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡ ",
+                    text="Daftar Plugins",
+                    buttons=[],
+                    link_preview=True)
+            else:
+                result = builder.article(
+                    " ╔╡⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡╞╗ ",
+                    text="""**Anda Bisa Membuat ⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡ Anda Sendiri\nDengan Cara :**__Tekan Dibawah Ini__ 👇""",
+                    buttons=[
+                        [
+                            custom.Button.url(
+                                "⚡𝗟𝘆𝗻𝘅⚡",
+                                "https://kenzo-404.github.io/Lynx-Userbot"),
+                            custom.Button.url(
+                                "Dᴇᴠᴇʟᴏᴘᴇʀ",
+                                "t.me/FederationSuperGroup/17")] 
+                    ],
+                    link_preview=False,
+                )
+            await event.answer([result] if result else None)
+
+
+
+
         lynxlogo = "resource/logo/LynxUserbot-Button.jpg"
         plugins = CMD_HELP
-        vr = BOT_VER
+
 
         @tgbot.on(events.NewMessage(pattern="/start"))
         async def handler(event):
@@ -542,7 +583,7 @@ with bot:
                 result = builder.photo(
                     file=lynxlogo,
                     link_preview=False,
-                    text=f"\n**Bᴏᴛ ᴏꜰ {DEFAULTUSER}**\n\n◎› **Bᴏᴛ ᴠᴇʀ :** `v.{len(vr)}`\n◎› **Pʟᴜɢɪɴꜱ :** `{len(plugins)}`\n\n◎› **Cᴏᴘʏʀɪɢʜᴛ © 𝟤𝟢𝟤𝟣 Lʏɴx-Uꜱᴇʀʙᴏᴛ**".format(
+                    text=f"\n**Bᴏᴛ ᴏꜰ {DEFAULTUSER}**\n\n◎› **Bᴏᴛ ᴠᴇʀ :** `v.{BOT_VER}`\n◎› **Pʟᴜɢɪɴꜱ :** `{len(plugins)}`\n\n**Cᴏᴘʏʀɪɢʜᴛ © 𝟤𝟢𝟤𝟣 Lʏɴx-Uꜱᴇʀʙᴏᴛ**".format(
                         len(dugmeler),
                     ),
                     buttons=buttons,
