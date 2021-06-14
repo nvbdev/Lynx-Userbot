@@ -428,9 +428,9 @@ def paginate_help(page_number, loaded_modules, prefix):
             )
         ]
     else:
-         pairs = pairs[
-            modulo_page * number_of_rows: number_of_rows * (modulo_page + 1)
-         ] + [Button.inline("•Oᴘᴇɴ Mᴇɴᴜ•", data="{prefix}_open({modulo_page})"),)]
+        pairs = pairs[
+           modulo_page * number_of_rows: number_of_rows * (modulo_page + 1)
+        ] + [Button.inline("•Oᴘᴇɴ Mᴇɴᴜ•", data="{prefix}_open({modulo_page})"),)]
     return pairs
 
 
