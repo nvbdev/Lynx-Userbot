@@ -430,7 +430,7 @@ def paginate_help(page_number, loaded_modules, prefix):
     else:
         pairs = pairs[
            modulo_page * number_of_rows: number_of_rows * (modulo_page + 1)
-        ] + [Button.inline("•Oᴘᴇɴ Mᴇɴᴜ•", data="{prefix}_open({modulo_page})"),)]
+        ] + [(Button.inline("•Oᴘᴇɴ Mᴇɴᴜ•", data=f"{prefix}_open({modulo_page})"),)]
     return pairs
 
 
@@ -458,13 +458,13 @@ with bot:
                 buttons1 = [
                     (
                         custom.Button.inline(
-                            "⋖╯Pʀᴇᴠ", data="{prefix}_prev({modulo_page})")
+                            "⋖╯Pʀᴇᴠ", data=f"{prefix}_prev({modulo_page})")
                         ),
                         custom.Button.inline(
-                            "ᴄʟᴏꜱᴇ", data="{prefix}_close({modulo_page})")
+                            "ᴄʟᴏꜱᴇ", data=f"{prefix}_close({modulo_page})")
                         ),
                         custom.Button.inline(
-                            "Nᴇxᴛ╰⋗", data="{prefix}_next({modulo_page})")
+                            "Nᴇxᴛ╰⋗", data=f"{prefix}_next({modulo_page})")
                         )
                     )
                 ]
@@ -623,7 +623,7 @@ with bot:
                     link_preview=True,
                     buttons=[
                           Button.url("⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡", "t.me/LynxUserbot"),
-                          Button.inline("•Oᴘᴇɴ Mᴇɴᴜ•", data="{prefix}_open({modulo_page})")
+                          Button.inline("•Oᴘᴇɴ Mᴇɴᴜ•", data=f"{prefix}_open({modulo_page})")
                     ]
                 )
 
