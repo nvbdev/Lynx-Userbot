@@ -449,9 +449,21 @@ with bot:
             )
         )
         async def inline_handler(event):
+            builder = event.builder
+            result = None
             query = event.text
             if event.query.user_id == uid and query.startswith("@LynxRobot"):  # pylint:disable=E0602
                 modul_name = event.data_match.group(1).decode("UTF-8")
+                cmdhel = str(CMD_HELP[modul_name])
+                if len(cmdhel) > 150:
+                    help_string = (
+                        str(CMD_HELP[modul_name]).replace('`', '')[:150] + "..."
+                        + "\n\nBaca Text Berikutnya Ketik .help "
+                        + modul_name
+                        + " "
+                    )
+                else:
+                    help_string = str(CMD_HELP[modul_name]).replace('`', '')
                 buttons1 = [
                     (
                         custom.Button.inline(
@@ -465,26 +477,15 @@ with bot:
                         )
                     )
                 ]
-                cmdhel = str(CMD_HELP[modul_name])
-                if len(cmdhel) > 150:
-                    help_string = (
-                        str(CMD_HELP[modul_name]).replace('`', '')[:150] + "..."
-                        + "\n\nBaca Text Berikutnya Ketik .help "
-                        + modul_name
-                        + " "
-                    )
-                else:
-                    help_string = str(CMD_HELP[modul_name]).replace('`', '')
-
-                await event.edit(
+                result = builder.photo(
                     file=lynxlogo,
+                    link_preview=False,
                     text=f"\n**Bᴏᴛ ᴏꜰ {DEFAULTUSER}**\n\n◎› **Bᴏᴛ ᴠᴇʀ :** `v.{BOT_VER}`\n◎› **Pʟᴜɢɪɴꜱ :** `{len(plugins)}`\n\n**Cᴏᴘʏʀɪɢʜᴛ © 𝟤𝟢𝟤𝟣 Lʏɴx-Uꜱᴇʀʙᴏᴛ**".format(
-                        len(dugmeler),
+                        help_string,
                     ),
-                    help_string,
                     buttons=buttons1,
-                    link_preview=True,
                 )
+                await event.answer([result])
 
 
         lynxlogo = "resource/logo/LynxUserbot-Button.jpg"
