@@ -22,7 +22,7 @@ from userbot.events import register
 
 
 # Ported for Lynx-Userbot
-@register(outgoing=True, pattern=r"^\.gencc(?: |$)(.*)")
+@register(outgoing=True, pattern=r"^\.adcc(?: |$)(.*)")
 async def gencc(lynxevent):
     if lynxevent.fwd_from:
         return
@@ -182,7 +182,10 @@ async def ccbin(event):
 
 # Ported for Lynx-Userbot    
 CMD_HELP.update({
-    "ccarder": "⚡𝘾𝙈𝘿⚡: `.gen4` | `.gen5`\
+    "ccarder": "✘ Pʟᴜɢɪɴ : CC Carder\
+\n\n⚡𝘾𝙈𝘿⚡: `.adcc`
+\n↳ : Generate Fake Address\
+\n\n⚡𝘾𝙈𝘿⚡: `.gen4` | `.gen5`\
 \n↳ : Generates Fake CC.\
 \n\n⚡𝘾𝙈𝘿⚡: `.ccheck` <Query>\
 \n↳ : Checks That The Given CC is Live or Not.\
