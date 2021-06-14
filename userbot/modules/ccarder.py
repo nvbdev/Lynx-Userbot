@@ -183,7 +183,7 @@ async def ccbin(event):
 # Ported for Lynx-Userbot    
 CMD_HELP.update({
     "ccarder": "✘ Pʟᴜɢɪɴ : CC Carder\
-\n\n⚡𝘾𝙈𝘿⚡: `.adcc`
+\n\n⚡𝘾𝙈𝘿⚡: `.adcc`\
 \n↳ : Generate Fake Address\
 \n\n⚡𝘾𝙈𝘿⚡: `.gen4` | `.gen5`\
 \n↳ : Generates Fake CC.\
