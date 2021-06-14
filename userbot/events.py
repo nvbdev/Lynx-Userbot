@@ -77,6 +77,18 @@ def register(**args):
                 return
 
             try:
+                from userbot.modules.sql_helper.blacklist_sql import get_blacklist
+
+                for blacklisted in get_blacklist():
+                    if str(check.chat_id) == blacklisted.chat_id:
+                        return
+            except Exception:
+                pass
+
+            if check.via_bot_id and not insecure and check.out:
+                return
+
+            try:
                 await func(check)
 
             # Thanks to @kandnub for this HACK.
