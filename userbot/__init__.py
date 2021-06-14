@@ -430,7 +430,7 @@ def paginate_help(page_number, loaded_modules, prefix):
     else:
         pairs = pairs[
            modulo_page * number_of_rows: number_of_rows * (modulo_page + 1)
-        ] + [(Button.inline("•Oᴘᴇɴ Mᴇɴᴜ•", data=f"{prefix}_open({modulo_page})"),)]
+        ] + [(Button.inline("•Oᴘᴇɴ Mᴇɴᴜ•", data="{}_open({})".format(prefix, modulo_page),)]
     return pairs
 
 
@@ -456,9 +456,9 @@ with bot:
             if event.query.user_id == uid:  # pylint:disable=E0602
                 modul_name = event.data_match.group(1).decode("UTF-8")
                 buttons1 = [
-                    [custom.Button.inline("⋖╯Pʀᴇᴠ", data=f"{prefix}_prev({modulo_page})")],
-                    [custom.Button.inline("ᴄʟᴏꜱᴇ", data=f"{prefix}_close({modulo_page})")],
-                    [custom.Button.inline("Nᴇxᴛ╰⋗", data=f"{prefix}_next({modulo_page})")],
+                    [custom.Button.inline("⋖╯Pʀᴇᴠ", data="{}_prev({})".format(prefix, modulo_page)],
+                    [custom.Button.inline("ᴄʟᴏꜱᴇ", data="{}_close({})".format(prefix, modulo_page)],
+                    [custom.Button.inline("Nᴇxᴛ╰⋗", data="{}_next({})".format(prefix, modulo_page)],
                 ]
                 cmdhel = str(CMD_HELP[modul_name])
                 if len(cmdhel) > 150:
@@ -611,10 +611,11 @@ with bot:
             if event.query.user_id == uid:  # @LynxUserbot
                 # https://t.me/TelethonChat/115200
                 await event.edit(
-                    link_preview=True,
+                    file=lynxlogo,
+                    link_preview=False,
                     buttons=[
-                          Button.url("⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡", "t.me/LynxUserbot"),
-                          Button.inline("•Oᴘᴇɴ Mᴇɴᴜ•", data=f"{prefix}_open({modulo_page})")
+                          [Button.url("⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡", "t.me/LynxUserbot")],
+                          [Button.inline("•Oᴘᴇɴ Mᴇɴᴜ•", data="{}_open({})".format(prefix, modulo_page)],
                     ]
                 )
 
