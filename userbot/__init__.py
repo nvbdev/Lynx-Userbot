@@ -458,10 +458,10 @@ with bot:
                         ),
                         custom.Button.inline(
                             "ᴄʟᴏꜱᴇ", data="{}_close({})".format(prefix, modulo_page)
-                       ),
+                        ),
                         custom.Button.inline(
                             "Nᴇxᴛ╰⋗", data="{}_next({})".format(prefix, modulo_page)
-                       )
+                        )
                     )
                 ]
                 cmdhel = str(CMD_HELP[modul_name])
