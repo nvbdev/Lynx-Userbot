@@ -216,7 +216,7 @@ ALIVE_LOGO = os.environ.get(
     "ALIVE_LOGO") or "https://telegra.ph/file/f3c656862a017f945c0bc.png"
 
 # Link Instagram for CMD Alive 
-INSTAGRAM_ALIVE = os.environ.get("INSTAGRAM_ALIVE", None)
+INSTAGRAM_ALIVE = os.environ.get("INSTAGRAM_ALIVE") or "instagram.com/si_axeell"
 
 # Last.fm Module
 BIO_PREFIX = os.environ.get("BIO_PREFIX", None)
@@ -570,7 +570,6 @@ with bot:
             )
         )
         async def on_plug_in_callback_query_handler(event):
-                instag = INSTAGRAM_ALIVE
             if event.query.user_id == uid:  # @LynxUserbot
                 # https://t.me/TelethonChat/115200
                 await event.edit(
@@ -578,7 +577,7 @@ with bot:
                     link_preview=True,
                     buttons=[
                           [Button.url("⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡", "t.me/LynxUserbot")],
-                          [Button.url("[⊙] 𝗠𝘆 𝗜𝗻𝘀𝘁𝗮𝗴𝗿𝗮𝗺", f"{instag}")],
+                          [Button.url("[⊙] 𝗠𝘆 𝗜𝗻𝘀𝘁𝗮𝗴𝗿𝗮𝗺", f"{INSTAGRAM_ALIVE}")],
                     ]
                 )
 
