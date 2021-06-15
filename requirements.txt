@@ -83,7 +83,6 @@ youtube-dl>=2021.1.8
 youtube-search-python>=1.3.2
 youtube-search>=1.1.1
 justwatch
-deezloader
 zipfile38
 bitlyshortener
 validators
