@@ -440,13 +440,11 @@ except AttributeError:
 
 
 async def check_alive():
-    message = (
+    await bot.send_message(BOTLOG_CHATID,
         f"**⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡ Has Been Active !!**\n\n"
         f"**Telethon :** __{version.__version__}__\n"
         f"**Python :** __{python_version()}__\n"
-        f"**User :** __{DEFAULTUSER}__"
-    )
-    await bot.send_message(BOTLOG_CHATID, message)
+        f"**User :** __{DEFAULTUSER}__")
     return
 
 with bot:
