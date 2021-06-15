@@ -10,19 +10,20 @@ from userbot import (
     bot
 )
 import os
+import glob
 import shutil
 import subprocess
 import time
 import asyncio
 import random
 
-from telethon import events, functions, types, custom
-
 from userbot.utils import chrome, progress
 from userbot.utils.FastTelethon import upload_file
 from hachoir.metadata import extractMetadata
 from hachoir.parser import createParser
 from pylast import User
+
+from telethon import events, functions, types, custom
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 from telethon.tl.types import DocumentAttributeAudio, DocumentAttributeVideo
 
