@@ -447,7 +447,7 @@ async def check_alive():
         f"**User :** __{DEFAULTUSER}__"
     )
     await bot.send_message(BOTLOG_CHATID, message)
-    return True
+    return
 
 with bot:
     try:
