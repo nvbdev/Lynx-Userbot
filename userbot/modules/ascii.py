@@ -40,7 +40,7 @@ async def ascii(event):
             reply_message,
             "ASCII.tgs",
         )
-        os.system("lottie_convert.py ASCII.tgs ascii.png")
+        os.system('lottie_convert.py ASCII.tgs ascii.png', shell=False)
         IMG = "ascii.png"
     elif reply_message.video:
         video = await bot.download_media(
@@ -48,7 +48,7 @@ async def ascii(event):
             "ascii.mp4",
         )
         extractMetadata(createParser(video))
-        os.system("ffmpeg -i ascii.mp4 -vframes 1 -an -s 480x360 -ss 1 ascii.png")
+        os.system('ffmpeg -i ascii.mp4 -vframes 1 -an -s 480x360 -ss 1 ascii.png', shell=False)
         IMG = "ascii.png"
     else:
         IMG = await bot.download_media(
@@ -64,7 +64,7 @@ async def ascii(event):
         await asciiart(IMG, color1, color2, bgcolor)
         cmd = event.pattern_match.group(1)
         if cmd == "asciis":
-            os.system("cp ascii.png ascii.webp")
+            os.system('cp ascii.png ascii.webp', shell=False)
             ascii_file = "ascii.webp"
         else:
             ascii_file = "ascii.png"
@@ -75,9 +75,9 @@ async def ascii(event):
             reply_to=event.reply_to_msg_id,
         )
         await event.delete()
-        os.system("rm *.png *.webp *.mp4 *.tgs")
+        os.system('rm *.png *.webp *.mp4 *.tgs', shell=False)
     except BaseException as e:
-        os.system("rm *.png *.webp *.mp4 *.png")
+        os.system('rm *.png *.webp *.mp4 *.png', shell=False)
         return await event.edit(str(e))
 
 
