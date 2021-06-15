@@ -10,3 +10,19 @@ userbot/modules/sql_helper/__pycache__/*
 .vscode/*
 bin/*
 TG_BOT_TOKEN.session
+
+# virtualenv file
+.Python
+[Bb]in
+[Ii]nclude
+[Ll]ib
+[Ll]ib64
+[Ll]ocal
+[Ss]cripts
+pyvenv.cfg
+.venv
+pip-selfcheck.json
+
+# ignore log file
+
+*-lynxproject.log
