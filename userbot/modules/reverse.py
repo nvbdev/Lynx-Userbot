@@ -164,3 +164,4 @@ CMD_HELP.update(
         "\nIf counter is 0, only info and links will be provided."
         "\nBot might fail to upload images if a high number of results are requested."
     }
+)
