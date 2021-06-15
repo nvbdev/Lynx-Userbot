@@ -412,8 +412,14 @@ with bot:
 
 
 async def check_alive():
-    await bot.send_message(BOTLOG_CHATID, "```⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡Has Been Active!!```")
-    return
+    message = (
+        f"**⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡ Has Been Active !!**\n\n"
+        f"**Telethon :** __{version.__version__}__\n"
+        f"**Python :** __{python_version()}__\n"
+        f"**User :** __{DEFAULTUSER}__"
+    )
+    await bot.send_message(BOTLOG_CHATID, message)
+    return True
 
 with bot:
     try:
@@ -491,6 +497,7 @@ with bot:
         me = bot.get_me()
         uid = me.id
 
+        lynxlogo = "resource/logo/LynxUserbot-Button.jpg"
         plugins = CMD_HELP
 
         @tgbot.on(events.NewMessage(pattern="/start"))
@@ -533,7 +540,7 @@ with bot:
                    f"Lynx Used For Fun On Telegram✨,\n"
                    f"and For Maintaining Your Group 🛠️.\n"
                    f"I was **Created by :** @SyndicateTwenty4 For Various Userbots on Github.\n")
-                await tgbot.send_file(event.chat_id, file='resource/logo/LynxUserbot-Button.jpg',
+                await tgbot.send_file(event.chat_id, file=lynxlogo,
                                      caption=text,
                                      buttons=[
                                          [
@@ -564,7 +571,7 @@ with bot:
             if event.query.user_id == uid and query.startswith("@LynxRobot"):
                 buttons = paginate_help(0, dugmeler, "helpme")
                 result = builder.photo(
-                    file='resource/LynxUserbot-Button.jpg',
+                    file=lynxlogo,
                     link_preview=False,
                     text=f"\n**Bᴏᴛ ᴏꜰ {DEFAULTUSER}**\n\n◎› **Bᴏᴛ ᴠᴇʀ :** `v.{BOT_VER}`\n◎› **Pʟᴜɢɪɴꜱ :** `{len(plugins)}`\n\n**Cᴏᴘʏʀɪɢʜᴛ © 𝟤𝟢𝟤𝟣 Lʏɴx-Uꜱᴇʀʙᴏᴛ**".format(
                         len(dugmeler),
@@ -621,8 +628,8 @@ with bot:
         async def on_plug_in_callback_query_handler(event):
             if event.query.user_id == uid:  # @LynxUserbot
                 # https://t.me/TelethonChat/115200
-                await event.edit(event.chat_id,
-                    file='resource/logo/LynxUserbot-Button.jpg',
+                await event.edit(
+                    file=lynxlogo,
                     link_preview=True,
                     buttons=[
                           [Button.url("⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡", "t.me/LynxUserbot")],
