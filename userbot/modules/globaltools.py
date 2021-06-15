@@ -329,12 +329,12 @@ async def gspide(rk):
 
 @register(outgoing=True, pattern="^.ggcast (.*)")
 async def gcast(event):
-    lynxuser = event.pattern_match.group(1)
-    if not lynxuser:
+    xx = event.pattern_match.group(1)
+    if not xx:
         return await event.edit("`Mohon Berikan Sebuah Pesan`")
     tt = event.text
     msg = tt[6:]
-    lynxget = await event.edit("`Sedang Mengirim Pesan Group Secara Global... 📢`")
+    kk = await event.edit("`Sedang Mengirim Pesan Group Secara Global... 📢`")
     er = 0
     done = 0
     async for x in bot.iter_dialogs():
@@ -345,17 +345,17 @@ async def gcast(event):
                 await bot.send_message(chat, msg)
             except BaseException:
                 er += 1
-    await lynxget.edit(f"**✔️Berhasil** Mengirim Pesan Ke : `{done}` Group.\n**❌Gagal** Mengirim Pesan Ke : `{er}` Group.")
+    await kk.edit(f"**✔️Berhasil** Mengirim Pesan Ke : `{done}` Group.\n**❌Gagal** Mengirim Pesan Ke : `{er}` Group.")
 
 
 @register(outgoing=True, pattern="^.gucast (.*)")
 async def gucast(event):
-    lynxuser = event.pattern_match.group(1)
-    if not lynxuser:
+    xx = event.pattern_match.group(1)
+    if not xx:
         return await event.edit("`Mohon Berikan Sebuah Pesan`")
     tt = event.text
     msg = tt[7:]
-    lynxget = await event.edit("`Sedang Mengirim Pivate Messages Secara Global... 📢`")
+    kk = await event.edit("`Sedang Mengirim Pivate Messages Secara Global... 📢`")
     er = 0
     done = 0
     async for x in bot.iter_dialogs():
@@ -366,7 +366,7 @@ async def gucast(event):
                 await bot.send_message(chat, msg)
             except BaseException:
                 er += 1
-    await lynxget.edit(f"**✔️Berhasil** Mengirim Pesan Ke : `{done}` Orang.\n**❌Gagal** Mengirim Pesan Ke : `{er}` Orang.")
+    await kk.edit(f"**✔️Berhasil** Mengirim Pesan Ke : `{done}` Orang.\n**❌Gagal** Mengirim Pesan Ke : `{er}` Orang.")
 
 
 @register(outgoing=True, pattern=r"^\.gmute(?: |$)(.*)")
