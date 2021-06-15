@@ -6,7 +6,6 @@
 """ Userbot start point """
 
 from importlib import import_module
-from sys import argv
 
 from telethon.errors.rpcerrorlist import PhoneNumberInvalidError
 from userbot import BOT_VER, LOGS, bot
@@ -30,7 +29,4 @@ LOGS.info(
     f"⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡ ⚙️ V{BOT_VER} [TELAH DIAKTIFKAN!]")
 
 
-if len(argv) not in (1, 3, 4):
-    bot.disconnect()
-else:
-    bot.run_until_disconnected()
+bot.run_until_disconnected()
