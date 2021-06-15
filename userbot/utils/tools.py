@@ -28,6 +28,7 @@ from userbot import bot, LOGS
 from telethon.tl.functions.channels import GetParticipantRequest
 from telethon.tl.types import ChannelParticipantAdmin, ChannelParticipantCreator, DocumentAttributeFilename
 
+from html_telegraph_poster import TelegraphPoster
 
 async def md5(fname: str) -> str:
     hash_md5 = hashlib.md5()
@@ -148,3 +149,17 @@ async def check_media(reply_message):
         return False
     else:
         return data
+
+
+def post_to_telegraph(title, html_format_content):
+    post_client = TelegraphPoster(use_api=True)
+    auth_name = "Lynx-Userbot"
+    auth_url = "https://github.com/KENZO-404/Lynx-Userbot"
+    post_client.create_api_token(auth_name)
+    post_page = post_client.post(
+        title=title,
+        author=auth_name,
+        author_url=auth_url,
+        text=html_format_content,
+    )
+    return post_page["url"]
