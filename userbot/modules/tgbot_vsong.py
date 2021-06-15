@@ -14,7 +14,9 @@ import shutil
 import subprocess
 import time
 import asyncio
-from telethon import events
+import random
+
+from telethon import events, functions, types, custom
 
 from userbot.utils import chrome, progress
 from userbot.utils.FastTelethon import upload_file
@@ -38,7 +40,7 @@ async def getmusicvideo(cat):
     os.system(command)
 
 
-@tgbot.on(events.ChatAction(pattern="/vsong"))
+@tgbot.on(events.NewMessage(pattern="/vsong  (.*)"))
 async def handler(event):
     if event.message.from_id != uid:
     reply_to_id = event.message.id
