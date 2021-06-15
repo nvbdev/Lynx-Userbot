@@ -768,7 +768,6 @@ CMD_HELP.update(
         "\n\n⚡𝘾𝙈𝘿⚡: `.trt <text> [or reply]`"
         "\n↳ : Translates Text to the Language Which is set."
         "\nUse >`.lang trt <Language Code>` to set Language for trt. (Default is English)",
-        "\nCan Specify the Number of Results Needed (default is 3).",
         "imdb": "✘ Pʟᴜɢɪɴ : IMDB"
         "\n\n⚡𝘾𝙈𝘿⚡: `.imdb <Movie-Name>`"
         "\n↳ : Shows Movie Info and Other Stuff.",
