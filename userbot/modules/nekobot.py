@@ -2,10 +2,11 @@ import os
 import re
 
 import requests
+from html_telegraph_poster.upload_images import upload_image
 from PIL import Image
 from validators.url import url
 
-from userbot import CMD_HELP
+from userbot import CMD_HELP, bot
 from userbot.events import register
 
 EMOJI_PATTERN = re.compile(
@@ -43,6 +44,21 @@ async def trumptweet(text):
     img = Image.open("gpx.png").convert("RGB")
     img.save("gpx.webp", "webp")
     return "gpx.webp"
+
+
+async def phss(uplded, input, name):
+    web = requests.get(
+        f"https://nekobot.xyz/api/imagegen?type=phcomment&image={uplded}&text={input}&username={name}"
+    ).json()
+    alf = web.get("message")
+    uri = url(alf)
+    if not uri:
+        return "check syntax once more"
+    with open("alf.png", "wb") as f:
+        f.write(requests.get(alf).content)
+    img = Image.open("alf.png").convert("RGB")
+    img.save("alf.webp", "webp")
+    return "alf.webp"
 
 
 async def changemymind(text):
@@ -107,10 +123,16 @@ async def tweets(text1, text2):
 
 async def purge():
     try:
-        os.remove("gpx.png")
-        os.remove("gpx.webp")
+        os.system("rm *.png *.webp")
     except OSError:
         pass
+
+
+async def get_user_from_event(event):
+    if event.reply_to_msg_id:
+        previous_message = await event.get_reply_message()
+        user_obj = await event.client.get_entity(previous_message.sender_id)
+    return user_obj
 
 
 @register(outgoing=True, pattern=r"^\.trump(?: |$)(.*)")
@@ -130,6 +152,56 @@ async def trump(event):
     text = deEmojify(text)
     img = await trumptweet(text)
     await event.client.send_file(event.chat_id, img, reply_to=reply_to_id)
+    await event.delete()
+    await purge()
+
+@register(outgoing=True, pattern=r"^\.ph(?: |$)(.*)")
+async def phcomment(event):
+    try:
+        await event.edit("`Processing..`")
+        text = event.pattern_match.group(1)
+        reply = await event.get_reply_message()
+        if reply:
+            user = await get_user_from_event(event)
+            if user.last_name:
+                name = user.first_name + " " + user.last_name
+            else:
+                name = user.first_name
+            if text:
+                text = text
+            else:
+                text = str(reply.message)
+        elif text:
+            user = await bot.get_me()
+            if user.last_name:
+                name = user.first_name + " " + user.last_name
+            else:
+                name = user.first_name
+            text = text
+        else:
+            return await event.edit("`Give text..`")
+        try:
+            photo = await event.client.download_profile_photo(
+                user.id,
+                str(user.id) + ".png",
+                download_big=False,
+            )
+            uplded = upload_image(photo)
+        except BaseException:
+            uplded = "https://telegra.ph/file/7d110cd944d54f72bcc84.jpg"
+    except BaseException as e:
+        await purge()
+        return await event.edit(f"`Error: {e}`")
+    img = await phss(uplded, text, name)
+    try:
+        await event.client.send_file(
+            event.chat_id,
+            img,
+            reply_to=event.reply_to_msg_id,
+        )
+    except BaseException:
+        await purge()
+        return await event.edit("`Reply message has no text!`")
     await event.delete()
     await purge()
 
@@ -228,15 +300,18 @@ async def tweet(event):
 
 CMD_HELP.update(
     {
-        "nekobot": ">`.tweet` <username>.<tweet>"
-        "\nUsage: Create tweet with custom username.\n\n"
-        ">`.trump` <tweet>"
-        "\nUsage: Create tweet for Donald Trump.\n\n"
-        ">`.qg` <tweet>"
-        "\nUsage: Create tweet for `@QoryGore`.\n\n"
-        ">`.cmm` <text>"
-        "\nUsage: Create banner for Change My Mind.\n\n"
-        ">`.kanna` <text>"
-        "\nUsage: Kanna is writing your text."
+        "nekobot": "✘ Pʟᴜɢɪɴ : Nekobot"
+        "\n\n⚡𝘾𝙈𝘿⚡: `.tweet` <Username>.<Tweet>"
+        "\n↳ : Create Tweet with Custom Username."
+        "\n\n⚡𝘾𝙈𝘿⚡: `.trump` <Tweet>"
+        "\n↳ : Create Tweet for Donald Trump."
+        "\n\n⚡𝘾𝙈𝘿⚡: `.qg` <Tweet>"
+        "\n↳ : Create Tweet for `@QoryGore`."
+        "\n\n⚡𝘾𝙈𝘿⚡: `.cmm` <Text>"
+        "\n↳ : Create Banner for Change My Mind."
+        "\n\n⚡𝘾𝙈𝘿⚡: `.kanna` <Text>"
+        "\n↳ : Kanna is Writing Your Text."
+        "\n\n⚡𝘾𝙈𝘿⚡: `.ph` <Text/Reply with or w/o Text>"
+        "\n↳ : Writing Comment on P*rnhub XD"
     }
 )
