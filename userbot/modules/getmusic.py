@@ -322,8 +322,8 @@ async def _(event):
 
 
 temp_dl_path = os.path.join(TEMP_DOWNLOAD_DIRECTORY, str(time.time()))
-    if not os.path.exists('bin'):
-        os.makedirs('bin')
+    if not os.path.exists(temp_dl_path):
+        os.makedirs(temp_dl_path)
 
     required_link = event.pattern_match.group(1)
     required_qty = event.pattern_match.group(2)
