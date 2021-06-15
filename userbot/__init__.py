@@ -412,11 +412,7 @@ with bot:
 
 
 async def check_alive():
-    await bot.send_message(BOTLOG_CHATID, f"**⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡ Has Been Active !!**\n\n"
-        f"**Telethon :** __{version.__version__}__\n"
-        f"**Python :** __{python_version()}__\n"
-        f"**User :** __{DEFAULTUSER}__"
-    )
+    await bot.send_message(BOTLOG_CHATID, "```⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡Has Been Active!!```")
     return
 
 with bot:
