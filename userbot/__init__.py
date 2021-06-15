@@ -683,7 +683,7 @@ with bot:
             "Mode Inline Bot Mu Nonaktif. "
             "Untuk Mengaktifkannya, Silahkan Pergi Ke @BotFather Lalu, Settings Bot > Pilih Mode Inline > Turn On. ")
 
-    with bot:
+with bot:
     try:
         bot.loop.run_until_complete(check_botlog_chatid())
     except BaseException:
