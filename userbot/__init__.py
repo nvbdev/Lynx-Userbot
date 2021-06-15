@@ -490,7 +490,6 @@ with bot:
         me = bot.get_me()
         uid = me.id
 
-        lynxlogo = "resource/logo/LynxUserbot-Button.jpg"
         plugins = CMD_HELP
 
         @tgbot.on(events.NewMessage(pattern="/start"))
@@ -533,7 +532,8 @@ with bot:
                    f"Lynx Used For Fun On Telegram✨,\n"
                    f"and For Maintaining Your Group 🛠️.\n"
                    f"I was **Created by :** @SyndicateTwenty4 For Various Userbots on Github.\n")
-                await tgbot.send_file(event.chat_id, lynxlogo, caption=text,
+                await tgbot.send_file(event.chat_id, file='resource/logo/LynxUserbot-Button.jpg',
+                                     caption=text,
                                      buttons=[
                                          [
                                              custom.Button.url(
@@ -563,7 +563,7 @@ with bot:
             if event.query.user_id == uid and query.startswith("@LynxRobot"):
                 buttons = paginate_help(0, dugmeler, "helpme")
                 result = builder.photo(
-                    file=lynxlogo,
+                    file='resource/LynxUserbot-Button.jpg',
                     link_preview=False,
                     text=f"\n**Bᴏᴛ ᴏꜰ {DEFAULTUSER}**\n\n◎› **Bᴏᴛ ᴠᴇʀ :** `v.{BOT_VER}`\n◎› **Pʟᴜɢɪɴꜱ :** `{len(plugins)}`\n\n**Cᴏᴘʏʀɪɢʜᴛ © 𝟤𝟢𝟤𝟣 Lʏɴx-Uꜱᴇʀʙᴏᴛ**".format(
                         len(dugmeler),
@@ -620,8 +620,8 @@ with bot:
         async def on_plug_in_callback_query_handler(event):
             if event.query.user_id == uid:  # @LynxUserbot
                 # https://t.me/TelethonChat/115200
-                await event.edit(
-                    file=lynxlogo,
+                await event.edit(event.chat_id,
+                    file='resource/logo/LynxUserbot-Button.jpg',
                     link_preview=True,
                     buttons=[
                           [Button.url("⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡", "t.me/LynxUserbot")],
