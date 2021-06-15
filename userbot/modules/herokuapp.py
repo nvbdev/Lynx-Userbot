@@ -221,13 +221,14 @@ async def _(dyno):
     return os.remove("logs.txt")
 
 
-CMD_HELP.update({"herokuapp": "⚡𝘾𝙈𝘿⚡: `.kuota`"
+CMD_HELP.update({"herokuapp": "✘ Pʟᴜɢɪɴ : Heroku App"
+                 "\n\n⚡𝘾𝙈𝘿⚡: `.kuota`"
                  "\n↳ : Check Quota Dyno Heroku"
                  "\n\n⚡𝘾𝙈𝘿⚡: `.set var <NEW VAR> <VALUE>`"
                  "\n↳ : Tambahkan Variabel Baru Atau Memperbarui Variabel"
                  "\nSetelah Menyetel Variabel Tersebut, Lynx-Userbot Akan Di Restart."
                  "\n\n⚡𝘾𝙈𝘿⚡: `.get var atau .get var <VAR>`"
-                 "\n↳ : Dapatkan Variabel Yang Ada, !!PERINGATAN!! Gunakanlah Di Grup Privasi Anda."
+                 "\n↳ : Dapatkan Variabel Yang Ada, !!PERINGATAN!! Gunakanlah Di Group Privasi Anda."
                  "\nIni Mengembalikan Semua Informasi Pribadi Anda, Harap berhati-hati."
                  "\n\n⚡𝘾𝙈𝘿⚡: `.del var <VAR>`"
                  "\n↳ : Menghapus Variabel Yang Ada"
