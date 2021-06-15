@@ -25,7 +25,7 @@ else:
 
 
 async def get_tz(con):
-    """ Get time zone of the given country. """
+    """Get time zone of the given country."""
     """ Credits: @aragon12 and @zakaryan2004. """
     for c_code in c_n:
         if con == c_n[c_code]:
@@ -39,7 +39,7 @@ async def get_tz(con):
 
 @register(outgoing=True, pattern="^.weather(?: |$)(.*)")
 async def get_weather(weather):
-    """ For .weather command, gets the current weather of a city. """
+    """For .weather command, gets the current weather of a city."""
 
     if not OWM_API:
         await weather.edit(
@@ -135,7 +135,7 @@ async def get_weather(weather):
 
 
 CMD_HELP.update({
-    "weather":
-    "`.weather` <city> or `.weather` <city>, <country name/code>\
-    \nUsage: Gets the weather of a city."
+    "weather": "✘ Pʟᴜɢɪɴ : Weather\
+    \n\n⚡𝘾𝙈𝘿⚡: `.weather` <City> or `.weather` <City>, <Country Name/Code>\
+    \n↳ : Gets the Weather of a City."
 })
