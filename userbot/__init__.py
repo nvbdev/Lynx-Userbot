@@ -707,7 +707,7 @@ async def update_restart_msg(chat_id, msg_id):
         f"**Python :** __{python_version()}__\n"
         f"**User :** __{DEFAULTUSER}__"
     )
-    await bot.edit_message(chat_id, msg_id, message)
+    await bot.edit_message(BOTLOG_CHATID, chat_id, msg_id, message)
     return True
 
 try:
