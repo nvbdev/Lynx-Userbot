@@ -105,3 +105,4 @@ natsort
 hentai
 Faker==8.8.0
 js2py
+aiofile
