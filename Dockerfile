@@ -1,5 +1,5 @@
 # Docker Tag Images, Using Python Slim Buster.
-FROM biansepang/weebproject:buster
+FROM kenzo404/lynxuser:Buster
 # ==========================================
 #              Lynx - Userbot
 # ==========================================
