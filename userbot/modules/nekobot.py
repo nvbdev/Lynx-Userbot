@@ -155,6 +155,7 @@ async def trump(event):
     await event.delete()
     await purge()
 
+
 @register(outgoing=True, pattern=r"^\.ph(?: |$)(.*)")
 async def phcomment(event):
     try:

@@ -11,17 +11,12 @@ from time import sleep
 from os import environ, execle
 import asyncio
 import sys
-import os
 import io
 import sys
-from userbot import ALIVE_NAME, UPSTREAM_REPO_URL, BOTLOG, BOTLOG_CHATID, CMD_HELP, bot
+from userbot import ALIVE_NAME, BOTLOG, BOTLOG_CHATID, CMD_HELP, bot
 from userbot.events import register
 from userbot.utils import time_formatter
 import urllib
-import requests
-from bs4 import BeautifulSoup
-import re
-from PIL import Image
 
 
 # Ported for Lynx-Userbot by @SyndicateTwenty4
@@ -132,6 +127,7 @@ async def repo_is_here(wannasee):
         "  **Cᴏᴘʏʀɪɢʜᴛ © 𝟤𝟢𝟤𝟣** @LynxUserbot"
     )
 
+
 @register(outgoing=True, pattern="^.raw$")
 async def raw(event):
     the_real_message = None
@@ -154,7 +150,6 @@ async def raw(event):
             allow_cache=False,
             reply_to=reply_to_id,
             caption="`Here's the decoded message data !!`")
-
 
 
 CMD_HELP.update({

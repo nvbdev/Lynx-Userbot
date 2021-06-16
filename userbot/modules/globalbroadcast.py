@@ -2,10 +2,6 @@ from userbot.events import register
 from userbot import bot
 
 
-
-
-
-
 @register(outgoing=True, pattern="^.ggcast (.*)")
 async def gcast(event):
     xx = event.pattern_match.group(1)

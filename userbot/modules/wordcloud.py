@@ -93,5 +93,5 @@ async def _(event):
 
 
 CMD_HELP.update({"wordcloud": "✘ Pʟᴜɢɪɴ : WordCloud"
-     "\n\n⚡𝘾𝙈𝘿⚡: `.wc` <Reply Any Media>"
-     "\n↳ : Create Wordcloud Art From Media\n\n"})
+                 "\n\n⚡𝘾𝙈𝘿⚡: `.wc` <Reply Any Media>"
+                 "\n↳ : Create Wordcloud Art From Media\n\n"})

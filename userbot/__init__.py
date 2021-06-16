@@ -6,6 +6,9 @@
 # Ported @SyndicateTwenty4
 """Userbot initialization."""
 
+from userbot import (
+    ALIVE_NAME
+)
 import signal
 import os
 import time
@@ -92,7 +95,9 @@ LOGSPAMMER = sb(os.environ.get("LOGSPAMMER", "False"))
 CUSTOM_PMPERMIT_TEXT = os.environ.get("CUSTOM_PMPERMIT_TEXT", None)
 
 # Pm Permit Img
-PM_PERMIT_PIC = os.environ.get("PM_PERMIT_PIC", None) or "https://telegra.ph/file/49ce66ba7e0fa0ce99210.png"
+PM_PERMIT_PIC = os.environ.get(
+    "PM_PERMIT_PIC",
+    None) or "https://telegra.ph/file/49ce66ba7e0fa0ce99210.png"
 
 # Bleep Blop, this is a bot ;)
 PM_AUTO_BAN = sb(os.environ.get("PM_AUTO_BAN", "False"))
@@ -218,8 +223,9 @@ S_PACK_NAME = os.environ.get("S_PACK_NAME", None)
 ALIVE_LOGO = os.environ.get(
     "ALIVE_LOGO") or "https://telegra.ph/file/f3c656862a017f945c0bc.png"
 
-# Link Instagram for CMD Alive 
-INSTAGRAM_ALIVE = os.environ.get("INSTAGRAM_ALIVE") or "instagram.com/si_axeell"
+# Link Instagram for CMD Alive
+INSTAGRAM_ALIVE = os.environ.get(
+    "INSTAGRAM_ALIVE") or "instagram.com/si_axeell"
 
 # Last.fm Module
 BIO_PREFIX = os.environ.get("BIO_PREFIX", None)
@@ -411,7 +417,6 @@ with bot:
         quit(1)
 
 
-
 async def check_alive():
     await bot.send_message(BOTLOG_CHATID, "```⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡Has Been Active!!```")
     return
@@ -436,14 +441,12 @@ ISAFK = False
 AFKREASON = None
 ZALG_LIST = {}
 
-#Import Userbot - Ported by KENZO
-from userbot import (
-    ALIVE_NAME
-)
+# Import Userbot - Ported by KENZO
 
 # ================= CONSTANT =================
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else uname().node
 # ============================================
+
 
 def paginate_help(page_number, loaded_modules, prefix):
     number_of_rows = 4
@@ -503,15 +506,14 @@ with bot:
                     f"Hai 👋 [{get_display_name(u)}](tg://user?id={u.id}) Selamat Datang di ⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡\nJika Kalian Datang Kesini dan Ingin Mengetahui Lynx-Robot Lebih Lanjut,\nSilahkan Pilih **Menu Bantuan** Dibawah Ini.\n",
                     buttons=[
                         [
-                             Button.url("📢 𝗖𝗵𝗮𝗻𝗻𝗲𝗹 📢",
-                                        "t.me/FederationSuperGroup/3"),
-                             Button.url("🚨 𝗠𝗲𝗻𝘂-𝗕𝗮𝗻𝘁𝘂𝗮𝗻 🚨",
-                                        "https://telegra.ph/Bantuan-06-11")],
-                             [Button.url("👤 𝗗𝗲𝘃𝗲𝗹𝗼𝗽𝗲𝗿 👤",
-                                        "t.me/FederationSuperGroup/17")],
+                            Button.url("📢 𝗖𝗵𝗮𝗻𝗻𝗲𝗹 📢",
+                                       "t.me/FederationSuperGroup/3"),
+                            Button.url("🚨 𝗠𝗲𝗻𝘂-𝗕𝗮𝗻𝘁𝘂𝗮𝗻 🚨",
+                                       "https://telegra.ph/Bantuan-06-11")],
+                        [Button.url("👤 𝗗𝗲𝘃𝗲𝗹𝗼𝗽𝗲𝗿 👤",
+                                    "t.me/FederationSuperGroup/17")],
                     ]
                 )
-
 
         @tgbot.on(events.NewMessage(pattern="/deploy"))
         async def handler(event):
@@ -524,28 +526,27 @@ with bot:
                     ],
                 )
 
-
         @tgbot.on(events.NewMessage(pattern="/repo"))
         async def handler(event):
             if event.message.from_id != uid:
                 u = await event.client.get_entity(event.chat_id)
                 await event.message.get_sender()
                 text = (
-                   f"Haii 😼 [{get_display_name(u)}](tg://user?id={u.id}) My Name is 𝗟𝘆𝗻𝘅 🐈\n"
-                   f"Lynx Used For Fun On Telegram✨,\n"
-                   f"and For Maintaining Your Group 🛠️.\n"
-                   f"I was **Created by :** @SyndicateTwenty4 For Various Userbots on Github.\n")
+                    f"Haii 😼 [{get_display_name(u)}](tg://user?id={u.id}) My Name is 𝗟𝘆𝗻𝘅 🐈\n"
+                    f"Lynx Used For Fun On Telegram✨,\n"
+                    f"and For Maintaining Your Group 🛠️.\n"
+                    f"I was **Created by :** @SyndicateTwenty4 For Various Userbots on Github.\n")
                 await tgbot.send_file(event.chat_id, file=lynxlogo,
-                                     caption=text,
-                                     buttons=[
-                                         [
-                                             custom.Button.url(
-                                                 text="🇮🇩 𝗥𝗲𝗽𝗼𝘀𝗶𝘁𝗼𝗿𝘆 🇮🇩",
-                                                 url="https://kenzo-404.github.io/Lynx-Userbot/"
-                                             )
-                                         ]
-                                     ]
-                                     )
+                                      caption=text,
+                                      buttons=[
+                                          [
+                                              custom.Button.url(
+                                                  text="🇮🇩 𝗥𝗲𝗽𝗼𝘀𝗶𝘁𝗼𝗿𝘆 🇮🇩",
+                                                  url="https://kenzo-404.github.io/Lynx-Userbot/"
+                                              )
+                                          ]
+                                      ]
+                                      )
 
         @tgbot.on(events.NewMessage(pattern="/ping"))
         async def handler(event):
@@ -590,12 +591,10 @@ with bot:
                                 "https://kenzo-404.github.io/Lynx-Userbot"),
                             custom.Button.url(
                                 "Dᴇᴠᴇʟᴏᴘᴇʀ",
-                                "t.me/FederationSuperGroup/17")] 
-                    ],
+                                "t.me/FederationSuperGroup/17")]],
                     link_preview=False,
                 )
             await event.answer([result] if result else None)
-
 
         @tgbot.on(
             events.callbackquery.CallbackQuery(  # pylint:disable=E0602
@@ -614,7 +613,6 @@ with bot:
                 reply_pop_up_alert = f"🚫!WARNING!🚫 Jangan Menggunakan Milik {DEFAULTUSER}."
                 await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
 
-
         @tgbot.on(
             events.callbackquery.CallbackQuery(  # pylint:disable=E0602
                 data=re.compile(rb"helpme_close\((.+?)\)")
@@ -627,11 +625,10 @@ with bot:
                     file=lynxlogo,
                     link_preview=True,
                     buttons=[
-                          [Button.url("⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡", "t.me/LynxUserbot")],
-                          [Button.url("[⊙] 𝗠𝘆 𝗜𝗻𝘀𝘁𝗮𝗴𝗿𝗮𝗺", f"{INSTAGRAM_ALIVE}")],
+                        [Button.url("⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡", "t.me/LynxUserbot")],
+                        [Button.url("[⊙] 𝗠𝘆 𝗜𝗻𝘀𝘁𝗮𝗴𝗿𝗮𝗺", f"{INSTAGRAM_ALIVE}")],
                     ]
                 )
-
 
         @tgbot.on(
             events.callbackquery.CallbackQuery(  # pylint:disable=E0602
@@ -650,7 +647,6 @@ with bot:
             else:
                 reply_pop_up_alert = f"🚫!WARNING!🚫 Jangan Menggunakan Milik {DEFAULTUSER}."
                 await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
-
 
         @tgbot.on(
             events.callbackquery.CallbackQuery(  # pylint:disable=E0602
@@ -683,7 +679,6 @@ with bot:
                 reply_pop_up_alert = f"🚫!WARNING!🚫 Jangan Menggunakan Milik {DEFAULTUSER}."
 
             await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
-
 
     except BaseException:
         LOGS.info(

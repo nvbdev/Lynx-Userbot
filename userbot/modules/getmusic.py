@@ -4,23 +4,19 @@
 import asyncio
 import glob
 import os
-import shutil
 import subprocess
 import time
 
-import deezloader
 from hachoir.metadata import extractMetadata
 from hachoir.parser import createParser
 from pylast import User
 from telethon import events
 from telethon.errors.rpcerrorlist import YouBlockedUserError
-from telethon.tl.types import DocumentAttributeAudio, DocumentAttributeVideo
+from telethon.tl.types import DocumentAttributeVideo
 
 from userbot import (
     CMD_HELP,
-    DEEZER_ARL_TOKEN,
     LASTFM_USERNAME,
-    TEMP_DOWNLOAD_DIRECTORY,
     bot,
     lastfm,
 )
@@ -290,23 +286,18 @@ async def _(event):
         )
 
 
-
-CMD_HELP.update(
-    {
-        "getmusic": "✘ Pʟᴜɢɪɴ : Get Music"
-        "⚡𝘾𝙈𝘿⚡: `.song` <Artist - Title>"
-        "\n↳ : Finding and Uploading Song.\n\n"
-        "⚡𝘾𝙈𝘿⚡: `.vsong` <Artist - Title>"
-        "\n↳ : Finding and Uploading Videoclip.\n\n"
-        "⚡𝘾𝙈𝘿⚡: `.smd` <Artist - Title>"
-        "\n↳ : Download Music From Spotify use `@SpotifyMusicDownloaderBot`.\n\n"
-        "⚡𝘾𝙈𝘿⚡: `.smd now`"
-        "\n↳ : Download Current LastFM Scrobble use `@SpotifyMusicDownloaderBot`.\n\n"
-        "⚡𝘾𝙈𝘿⚡: `.net` <Artist - Title>"
-        "\n↳ : Download Music Use `@WooMaiBot`.\n\n"
-        "⚡𝘾𝙈𝘿⚡: `.net now`"
-        "\n↳ : Download Current LastFM Scrobble use `@WooMaiBot`.\n\n"
-        "⚡𝘾𝙈𝘿⚡: `.mhb <Spotify/Deezer Link>`"
-        "\n↳ : Download Music From Spotify or Deezer use `@MusicsHunterBot`."
-    }
-)
+CMD_HELP.update({"getmusic": "✘ Pʟᴜɢɪɴ : Get Music"
+                 "⚡𝘾𝙈𝘿⚡: `.song` <Artist - Title>"
+                 "\n↳ : Finding and Uploading Song.\n\n"
+                 "⚡𝘾𝙈𝘿⚡: `.vsong` <Artist - Title>"
+                 "\n↳ : Finding and Uploading Videoclip.\n\n"
+                 "⚡𝘾𝙈𝘿⚡: `.smd` <Artist - Title>"
+                 "\n↳ : Download Music From Spotify use `@SpotifyMusicDownloaderBot`.\n\n"
+                 "⚡𝘾𝙈𝘿⚡: `.smd now`"
+                 "\n↳ : Download Current LastFM Scrobble use `@SpotifyMusicDownloaderBot`.\n\n"
+                 "⚡𝘾𝙈𝘿⚡: `.net` <Artist - Title>"
+                 "\n↳ : Download Music Use `@WooMaiBot`.\n\n"
+                 "⚡𝘾𝙈𝘿⚡: `.net now`"
+                 "\n↳ : Download Current LastFM Scrobble use `@WooMaiBot`.\n\n"
+                 "⚡𝘾𝙈𝘿⚡: `.mhb <Spotify/Deezer Link>`"
+                 "\n↳ : Download Music From Spotify or Deezer use `@MusicsHunterBot`."})

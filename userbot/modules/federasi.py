@@ -4,6 +4,7 @@ from userbot import CMD_HELP, bot
 from userbot.events import register
 from sqlalchemy.exc import IntegrityError
 
+
 @register(outgoing=True, disable_edited=True, pattern=r"^\.fban(?: |$)(.*)")
 async def fban(event):
     """Bans a user from connected federations."""

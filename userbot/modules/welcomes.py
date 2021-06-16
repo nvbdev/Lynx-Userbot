@@ -171,7 +171,7 @@ async def del_welcome(event):
 
 
 CMD_HELP.update({
-    "welcome": "✘ Pʟᴜɢɪɴ : `Welcome`"\
+    "welcome": "✘ Pʟᴜɢɪɴ : `Welcome`"
     "\n\n⚡𝘾𝙈𝘿⚡: `.setwelcome` <Reply Text/Sticker>"
     "\n↳ : Menyimpan Pesan Welcome Di Group."
     "\n\nFormat Variabel Yang Bisa Digunakan Sebagai Berikut :"

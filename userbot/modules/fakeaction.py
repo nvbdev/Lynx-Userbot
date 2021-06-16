@@ -62,6 +62,8 @@ async def gbun(event):
 # Port by @VckyouuBitch (GeezProject)
 # Language en to id from King-Userbot
 # Installing in Lynx-Userbot
+
+
 @register(outgoing=True, pattern="^.ftyping(?: |$)(.*)")
 async def _(event):
     t = event.pattern_match.group(1)

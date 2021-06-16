@@ -17,7 +17,6 @@
 # Thanks @Spechide.
 
 import logging
-import redis
 
 from userbot import BOT_USERNAME
 from userbot.events import register

@@ -4,6 +4,7 @@ from telethon.tl.types import (
 
 from userbot.events import register
 
+
 @register(outgoing=True, pattern=r"^\.allunban(?: |$)(.*)", groups_only=True)
 async def _(event):
     await event.edit("Sedang Mencari List Banning...")

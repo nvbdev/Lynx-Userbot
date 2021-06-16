@@ -4,16 +4,14 @@
 # Based On Plugins
 # Credits @Cat-Userbot by Alvin from Lord-Userbot
 
-import time
 
-from telethon.tl.custom import Dialog
-from telethon.tl.functions.messages import ImportChatInviteRequest as Get
-from telethon.tl.types import User
 from userbot.events import register
 from userbot import CMD_HELP, bot
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 
-#Ported by KENZO @TeamSecret_Kz
+# Ported by KENZO @TeamSecret_Kz
+
+
 @register(outgoing=True, pattern=r"^\.detect(?: |$)(.*)")
 async def detect(event):
     if event.fwd_from:

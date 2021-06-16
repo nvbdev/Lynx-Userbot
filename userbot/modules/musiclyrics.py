@@ -5,7 +5,6 @@
 # Credits : @Ultroid
 
 
-
 import json
 import os
 import random
@@ -32,9 +31,13 @@ from userbot import CMD_HELP, ALIVE_NAME
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else uname().node
 
 # Fixes Bug by @Spidy
-a1 = base64.b64decode("QUl6YVN5QXlEQnNZM1dSdEI1WVBDNmFCX3c4SkF5NlpkWE5jNkZV").decode("ascii")
-a2 = base64.b64decode("QUl6YVN5QkYwenhMbFlsUE1wOXh3TVFxVktDUVJxOERnZHJMWHNn").decode("ascii")
-a3 = base64.b64decode("QUl6YVN5RGRPS253blB3VklRX2xiSDVzWUU0Rm9YakFLSVFWMERR").decode("ascii")
+a1 = base64.b64decode(
+    "QUl6YVN5QXlEQnNZM1dSdEI1WVBDNmFCX3c4SkF5NlpkWE5jNkZV").decode("ascii")
+a2 = base64.b64decode(
+    "QUl6YVN5QkYwenhMbFlsUE1wOXh3TVFxVktDUVJxOERnZHJMWHNn").decode("ascii")
+a3 = base64.b64decode(
+    "QUl6YVN5RGRPS253blB3VklRX2xiSDVzWUU0Rm9YakFLSVFWMERR").decode("ascii")
+
 
 @register(outgoing=True, pattern=r"^\.music (.*)")
 async def download_video(event):
@@ -148,7 +151,7 @@ async def original(event):
         return await event.edit("Beri Saya Sebuah Judul Lagu Untuk Mencari Lirik.\n**Contoh** : `.lyrics` <Judul Lagu>")
     kenzo = event.pattern_match.group(1)
     event = await event.edit("`Sedang Mencari Lirik Lagu...`")
-    dc = random.randrange(1, 3)    
+    dc = random.randrange(1, 3)
     if dc == 1:
         lynx = a1
     if dc == 2:

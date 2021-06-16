@@ -53,7 +53,8 @@ async def _(event):
     elif returned:
         evaluation = returned
 
-    final_output = "**EVAL**: \n`{}` \n\n**OUTPUT**: \n`{}` \n".format(cmd, evaluation)
+    final_output = "**EVAL**: \n`{}` \n\n**OUTPUT**: \n`{}` \n".format(
+        cmd, evaluation)
 
     if len(final_output) >= 4096:
         with io.BytesIO(str.encode(final_output)) as out_file:
@@ -98,8 +99,14 @@ async def run(run_q):
     else:
         clines = code.splitlines()
         codepre = (
-            clines[0] + "\n" + clines[1] + "\n" + clines[2] + "\n" + clines[3] + "..."
-        )
+            clines[0] +
+            "\n" +
+            clines[1] +
+            "\n" +
+            clines[2] +
+            "\n" +
+            clines[3] +
+            "...")
 
     command = "".join(f"\n {l}" for l in code.split("\n.strip()"))
     process = await asyncio.create_subprocess_exec(
@@ -186,11 +193,13 @@ async def terminal_runner(term):
         await term.edit(f"`{curruser}:~$ {command}\n{result}`")
 
 
-CMD_HELP.update(
-    {
-        "eval": "✘ Pʟᴜɢɪɴ : Eval" "\n\n⚡𝘾𝙈𝘿⚡: `.eval print('world')`" "\n↳ : Just Like exec.",
-        "exec": "✘ Pʟᴜɢɪɴ : Exec" "\n\n⚡𝘾𝙈𝘿⚡: `.exec print('hello')`" "\n↳ : Execute Small Python Scripts.",
-        "term": "✘ Pʟᴜɢɪɴ : Term" "\n\n⚡𝘾𝙈𝘿⚡: `.term <CMD>`"
-        "\n↳ : Run Bash Commands And Scripts on Your Server.",
-    }
-)
+CMD_HELP.update({"eval": "✘ Pʟᴜɢɪɴ : Eval"
+                 "\n\n⚡𝘾𝙈𝘿⚡: `.eval print('world')`"
+                 "\n↳ : Just Like exec.",
+                 "exec": "✘ Pʟᴜɢɪɴ : Exec"
+                 "\n\n⚡𝘾𝙈𝘿⚡: `.exec print('hello')`"
+                 "\n↳ : Execute Small Python Scripts.",
+                 "term": "✘ Pʟᴜɢɪɴ : Term"
+                 "\n\n⚡𝘾𝙈𝘿⚡: `.term <CMD>`"
+                 "\n↳ : Run Bash Commands And Scripts on Your Server.",
+                 })

@@ -140,7 +140,7 @@ async def download_api(dl):
         if error[0].text == "File Not Found.":
             await dl.edit(f"`FileNotFoundError`: {URL} is not found.")
             return
-    """ Enumerate data to make sure we download the matched version """ #PyLint - W0105
+    """ Enumerate data to make sure we download the matched version """  # PyLint - W0105
     datas = driver.find_elements_by_class_name("download__meta")
     md5_origin = None
     i = None
@@ -239,11 +239,11 @@ async def devices_specifications(request):
         return await request.edit("`Usage: .specs <brand> <device>`")
     all_brands = (
         BeautifulSoup(
-            get("https://www.devicespecifications.com/en/brand-more").content, "lxml"
-        )
-        .find("div", {"class": "brand-listing-container-news"})
-        .findAll("a")
-    )
+            get("https://www.devicespecifications.com/en/brand-more").content,
+            "lxml") .find(
+            "div",
+            {
+                "class": "brand-listing-container-news"}) .findAll("a"))
     brand_page_url = None
     try:
         brand_page_url = [

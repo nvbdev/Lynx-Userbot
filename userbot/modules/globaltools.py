@@ -9,17 +9,12 @@ from userbot.events import register
 
 from telethon.tl.functions.contacts import BlockRequest, UnblockRequest
 from telethon.tl.types import (
-    ChannelParticipantsAdmins,
-    ChannelParticipantsBots,
-    ChatAdminRights,
     ChatBannedRights,
     MessageEntityMentionName,
-    PeerChat,
 )
 from telethon.errors import (
     BadRequestError,
     ChatAdminRequiredError,
-    RightForbiddenError,
     UserAdminInvalidError,
 )
 
@@ -349,8 +344,6 @@ async def gspide(rk):
     return await rkp.edit(f"`{ALIVE_NAME}:` **Global Kicked [{user.first_name}](tg://user?id={user.id}) Dalam {a} Chat(s) **")
 
 
-
-
 @register(incoming=True, disable_errors=True)
 async def muter(moot):
     """Used for deleting the messages of muted people"""
@@ -389,7 +382,6 @@ async def muter(moot):
     for i in gmuted:
         if i.sender == str(moot.sender_id):
             await moot.delete()
-
 
 
 @register(outgoing=True, disable_errors=True, pattern=r"^\.gmute(?: |$)(.*)")
@@ -433,6 +425,7 @@ async def gspider(gspdr):
                 f"USER: [{user.first_name}](tg://user?id={user.id})\n"
                 f"CHAT: {gspdr.chat.title}(`{gspdr.chat_id}`)",
             )
+
 
 @register(outgoing=True, disable_errors=True, pattern=r"^\.ungmute(?: |$)(.*)")
 async def ungmoot(un_gmute):
