@@ -146,11 +146,11 @@ async def count(event):
             print(d)
 
     result += f"Total Data from `{DEFAULTUSER}` :\n\n"
-    result += f"`Pengguna :`\t**{u}**\n"
-    result += f"`Group :`\t**{g}**\n"
-    result += f"`Super Gorup Chat :`\t**{c}**\n"
+    result += f"`User    :`\t**{u}**\n"
+    result += f"`Owner   :`\t**{g}**\n"
     result += f"`Channel :`\t**{bc}**\n"
-    result += f"`Bot :`\t**{b}**"
+    result += f"`Bot     :`\t**{b}**"
+    result += f"`Super Group Chat :`\t**{c}**\n"
 
     await event.edit(result)
 
