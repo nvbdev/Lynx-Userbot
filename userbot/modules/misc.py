@@ -129,7 +129,7 @@ async def repo_is_here(wannasee):
         "│⊙ **Dᴇᴠᴇʟᴏᴘᴇʀ :** [ᴀxᴇʟ](https://github.com/KENZO-404)\n"
         "╰━━━━━━━━━━━━━━━╯\n"
         "  𝗟𝗶𝗰𝗲𝗻𝘀𝗲 : [GPL-3.0 License](https://github.com/KENZO-404/Lynx-Userbot/blob/Lynx-Userbot/LICENSE)\n"
-        "**Cᴏᴘʏʀɪɢʜᴛ © 𝟤𝟢𝟤𝟣 @LynxUserbot**"
+        "  **Cᴏᴘʏʀɪɢʜᴛ © 𝟤𝟢𝟤𝟣** @LynxUserbot"
     )
 
 @register(outgoing=True, pattern="^.raw$")
