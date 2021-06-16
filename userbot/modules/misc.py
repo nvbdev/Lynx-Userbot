@@ -8,13 +8,13 @@
 
 from random import randint
 from time import sleep
-from os import execl
+from os import environ, execle
 import asyncio
 import sys
 import os
 import io
 import sys
-from userbot import ALIVE_NAME, UPSTREAM_REPO_URL, BOTLOG, BOTLOG_CHATID, CMD_HELP, bot
+from userbot import ALIVE_NAME, UPSTREAM_REPO_URL, BOTLOG, BOTLOG_CHATID, CMD_HELP, lynxlogo, bot
 from userbot.events import register
 from userbot.utils import time_formatter
 import urllib
@@ -65,7 +65,7 @@ async def sleepybot(time):
 
 
 @register(outgoing=True, pattern="^.shutdown$")
-async def killdabot(event):
+async def killthebot(event):
     """For .shutdown command, shut the bot down."""
     await event.edit("`Mematikan Lynx-Userbot....`")
     await asyncio.sleep(7)
@@ -79,8 +79,6 @@ async def killdabot(event):
 @register(outgoing=True, pattern="^.restart$")
 async def killdabot(event):
     await event.edit("`Restarting Lynx-Userbot...`")
-    await asyncio.sleep(3)
-    await event.delete()
     if BOTLOG:
         await event.client.send_message(BOTLOG_CHATID, "#RESTARTBOT\n"
                                         "`Lynx-Userbot Reconnecting...`")
@@ -124,6 +122,7 @@ async def repeat(rep):
 async def repo_is_here(wannasee):
     """For .repo command, just returns the repo URL."""
     await wannasee.edit(
+        f"{lynxlogo}\n"
         "╭─━━━━━━━━━━━━━─╮\n"
         "                  ʀᴇᴘᴏ\n"
         "    [⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡](https://kenzo-404.github.io/Lynx-Userbot)\n"
