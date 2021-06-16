@@ -25,7 +25,7 @@
 
 <p align="center">
 <a href="https://github.com/KENZO-404/Lynx-Userbot/commits/Lynx-Userbot"><img src="https://img.shields.io/github/last-commit/KENZO-404/Lynx-Userbot?color=ff69b4&logo=github&logoColor=ff69b4&style=for-the-badge" /></a>
-<a href="https://github.com/KENZO-404/Lynx-Userbot/actions/workflows/main.yml"><img src="https://img.shields.io/github/workflow/status/KENZO-404/Lynx-Userbot/CI/Lynx-Userbot?style=for-the-badge&logo=github-actions&logoColor=aqua" alt="CI" /></a>
+<a href="https://github.com/KENZO-404/Lynx-Userbot/actions/workflows/main.yml"><img src="https://img.shields.io/github/workflow/status/KENZO-404/Lynx-Userbot/pylint/Lynx-Userbot?style=for-the-badge&logo=github-actions&logoColor=aqua" alt="CI" /></a>
 </p>
 <p align="center">
 <a href="https://pypi.org/project/Telethon/"><img src="https://img.shields.io/pypi/v/telethon?color=important&label=telethon&logo=python&logoColor=brightgreen&style=for-the-badge" /></a>
