@@ -94,7 +94,7 @@ async def is_admin(chat_id, user_id):
 
 
 async def runcmd(cmd: str) -> Tuple[str, str, int, int]:
-    """ run command in terminal """
+    """run command in terminal"""
     args = shlex.split(cmd)
     process = await asyncio.create_subprocess_exec(*args,
                                                    stdout=asyncio.subprocess.PIPE,
