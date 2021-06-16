@@ -6,9 +6,6 @@
 # Ported @SyndicateTwenty4
 """Userbot initialization."""
 
-from userbot import (
-    ALIVE_NAME
-)
 import signal
 import os
 import time
