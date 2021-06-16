@@ -12,7 +12,8 @@
 
 <p align="center">
 <a href="https://www.codefactor.io/repository/github/kenzo-404/lynx-userbot"><img src="https://www.codefactor.io/repository/github/kenzo-404/lynx-userbot/badge" alt="CodeFactor" /></a>
-<p/>
+<a href="https://www.codacy.com/gh/KENZO-404/Lynx-Userbot/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=KENZO-404/Lynx-Userbot&amp;utm_campaign=Badge_Grade"><img src="https://app.codacy.com/project/badge/Grade/a92b6d96ed1e4f2fa0a4d03e28894921"/></a>
+</p>
 
 <p align="center">
  <a href="https://img.shields.io/github/repo-size/KENZO-404/Lynx-Userbot?&style=plastic&logo=github"
