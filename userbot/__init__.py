@@ -411,8 +411,6 @@ with bot:
         quit(1)
 
 
-DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else uname().node
-
 
 async def check_alive():
     await bot.send_message(BOTLOG_CHATID, "```⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡Has Been Active!!```")
