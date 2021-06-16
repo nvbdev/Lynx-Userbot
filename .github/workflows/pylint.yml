@@ -1,7 +1,7 @@
 name: PEP8
 on:
   push:
-    branches: [ '*' ]
+    branches: [ Lynx-Userbot ]
 
 jobs:
   PEP8:
