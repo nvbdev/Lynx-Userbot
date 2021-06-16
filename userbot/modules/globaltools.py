@@ -4,10 +4,32 @@
 
 import asyncio
 from telethon.events import ChatAction
-from userbot import ALIVE_NAME, CMD_HELP, BOTLOG_CHATID, bot
-from telethon.tl.functions.contacts import BlockRequest, UnblockRequest
+from userbot import ALIVE_NAME, CMD_HELP, BOTLOG, BOTLOG_CHATID, bot
 from userbot.events import register
-from telethon.tl.types import MessageEntityMentionName, ChatAdminRights
+
+from telethon.tl.functions.contacts import BlockRequest, UnblockRequest
+from telethon.tl.types import (
+    ChannelParticipantsAdmins,
+    ChannelParticipantsBots,
+    ChatAdminRights,
+    ChatBannedRights,
+    MessageEntityMentionName,
+    PeerChat,
+)
+from telethon.errors import (
+    BadRequestError,
+    ChatAdminRequiredError,
+    RightForbiddenError,
+    UserAdminInvalidError,
+)
+
+NO_ADMIN = "`I am not an admin!`"
+NO_SQL = "`Running on Non-SQL mode!`"
+
+MUTE_RIGHTS = ChatBannedRights(until_date=None, send_messages=True)
+
+UNMUTE_RIGHTS = ChatBannedRights(until_date=None, send_messages=False)
+# ================================================
 
 
 async def get_full_user(event):
@@ -367,6 +389,48 @@ async def gucast(event):
             except BaseException:
                 er += 1
     await kk.edit(f"**✔️Berhasil** Mengirim Pesan Ke : `{done}` Orang.\n**❌Gagal** Mengirim Pesan Ke : `{er}` Orang.")
+
+
+
+@register(incoming=True, disable_errors=True)
+async def muter(moot):
+    """Used for deleting the messages of muted people"""
+    try:
+        from userbot.modules.sql_helper.gmute_sql import is_gmuted
+        from userbot.modules.sql_helper.spam_mute_sql import is_muted
+    except AttributeError:
+        return
+    muted = is_muted(moot.chat_id)
+    gmuted = is_gmuted(moot.sender_id)
+    rights = ChatBannedRights(
+        until_date=None,
+        send_messages=True,
+        send_media=True,
+        send_stickers=True,
+        send_gifs=True,
+        send_games=True,
+        send_inline=True,
+        embed_links=True,
+    )
+    if muted:
+        for i in muted:
+            if str(i.sender) == str(moot.sender_id):
+                try:
+                    await moot.delete()
+                    await moot.client(
+                        EditBannedRequest(moot.chat_id, moot.sender_id, rights)
+                    )
+                except (
+                    BadRequestError,
+                    UserAdminInvalidError,
+                    ChatAdminRequiredError,
+                    UserIdInvalidError,
+                ):
+                    await moot.client.send_read_acknowledge(moot.chat_id, moot.id)
+    for i in gmuted:
+        if i.sender == str(moot.sender_id):
+            await moot.delete()
+
 
 
 @register(outgoing=True, disable_errors=True, pattern=r"^\.gmute(?: |$)(.*)")
