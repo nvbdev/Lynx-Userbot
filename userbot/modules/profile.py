@@ -26,20 +26,20 @@ from telethon.tl.functions.users import GetFullUserRequest
 from telethon.tl.types import MessageEntityMentionName
 from telethon.utils import get_input_location
 
-from userbot import bot, CMD_HELP, TEMP_DOWNLOAD_DIRECTORY
+from userbot import bot, CMD_HELP, TEMP_DOWNLOAD_DIRECTORY, DEFAULTUSER
 from userbot.events import register
 
 # ====================== CONSTANT ===============================
-INVALID_MEDIA = "```Maaf Lord Media Tidak Valid.```"
-PP_CHANGED = "```Lord, Foto Profil Anda Telah Berhasil Diubah.```"
-PP_TOO_SMOL = "```Gambar Terlalu Kecil Lord, Mohon Gunakan Yang Lebih Besar.```"
-PP_ERROR = "```Kegagalan Terjadi Saat Proses Gambar, Foto Profil Gagal Diubah.```"
+INVALID_MEDIA = "```Mohon Maaf, Media Tidak Valid.```"
+PP_CHANGED = "```☑️ Foto Profil Anda Telah Berhasil Diubah.```"
+PP_TOO_SMOL = "```Ukuran Gambar Terlalu Kecil, Mohon Gunakan Yang Lebih Besar.```"
+PP_ERROR = "```❌ Kegagalan Terjadi Saat Proses Gambar, Foto Profile Gagal Diubah.```"
 
-BIO_SUCCESS = "```Lord, Bio Anda Telah Berhasil Diubah.```"
+BIO_SUCCESS = "```☑️ Bio Anda Telah Berhasil Diubah.```"
 
-NAME_OK = "```Lord, Nama Anda Telah Berhasil Diubah.```"
+NAME_OK = "``` ☑️ Nama Anda Telah Berhasil Diubah.```"
 USERNAME_SUCCESS = "```Username Anda Sudah Diubah.```"
-USERNAME_TAKEN = "```Mohon Maaf Lord, Username Itu Sudah Ada Yang Menggunakannya.```"
+USERNAME_TAKEN = "```Mohon Maaf, Username Itu Sudah Ada Yang Menggunakannya.```"
 # ===============================================================
 
 
@@ -126,7 +126,7 @@ async def count(event):
     bc = 0
     b = 0
     result = ""
-    await event.edit("`Sedang Dalam Proses....`")
+    await event.edit("`Sedang Dalam Prosess....`")
     dialogs = await bot.get_dialogs(limit=None, ignore_migrated=True)
     for d in dialogs:
         currrent_entity = d.entity
@@ -145,11 +145,12 @@ async def count(event):
         else:
             print(d)
 
-    result += f"`Pengguna:`\t**{u}**\n"
-    result += f"`Grup:`\t**{g}**\n"
-    result += f"`Super Grup:`\t**{c}**\n"
-    result += f"`Channel:`\t**{bc}**\n"
-    result += f"`Bot:`\t**{b}**"
+    result += f"Total Data from `{DEFAULTUSER}` :\n\n"
+    result += f"`Pengguna :`\t**{u}**\n"
+    result += f"`Group :`\t**{g}**\n"
+    result += f"`Super Gorup Chat :`\t**{c}**\n"
+    result += f"`Channel :`\t**{bc}**\n"
+    result += f"`Bot :`\t**{b}**"
 
     await event.edit(result)
 
@@ -178,7 +179,7 @@ async def remove_profilepic(delpfp):
                        file_reference=sep.file_reference))
     await delpfp.client(DeletePhotosRequest(id=input_photos))
     await delpfp.edit(
-        f"`Berhasil Menghapus {len(input_photos)} Foto Profil.`")
+        f"☑️`Berhasil Menghapus {len(input_photos)} Foto Profile.`")
 
 
 @register(pattern=".data(?: |$)(.*)", outgoing=True)
@@ -298,7 +299,7 @@ async def fetch_info(replied_user, event):
     caption += f"Nama Belakang: {last_name}\n"
     caption += f"Username: {username}\n"
     caption += f"Data Centre ID: {dc_id}\n"
-    caption += f"Total Foto Profil: {replied_user_profile_photos_count}\n"
+    caption += f"Total Foto Profile: {replied_user_profile_photos_count}\n"
     caption += f"Apakah Bot: {is_bot}\n"
     caption += f"Dibatasi: {restricted}\n"
     caption += f"Diverifikasi Oleh Telegram: {verified}\n"
@@ -311,21 +312,21 @@ async def fetch_info(replied_user, event):
     return photo, caption
 
 CMD_HELP.update({
-    "profil":
-    "`.username` <username baru>\
-\nUsage: Ganti Username Telegram.\
-\n\n`.name` <nama depan> Atau `.name` <Nama Depan> <Nama Belakang>\
-\nUsage: Ganti Nama Telegram Anda\
-\n\n`.setpfp`\
-\nUsage: Balas Ke Gambar Ketik .setpfp Untuk Mengganti Foto Profil Telegram.\
-\n\n`.setbio` <bio baru>\
-\nUsage: Untuk Mengganti Bio Telegram.\
-\n\n`.delpfp` Atau `.delpfp` <berapa profil>/<all>\
-\nUsage: Menghapus Foto Profil Telegram.\
-\n\n`.reserved`\
-\nUsage: Menunjukkan nama pengguna yang dipesan oleh Anda.\
-\n\n`.count`\
-\nUsage: Menghitung Grup, Chat, Bot etc...\
-\n\n`.data` <username> Atau Balas Ke Pesan Ketik `.data`\
-\nUsage: Mendapatkan Informasi Pengguna."
+    "profile": "✘ Pʟᴜɢɪɴ : Profile\
+\n\n⚡𝘾𝙈𝘿⚡: `.username` <Username Baru>\
+\n↳ : Ganti Username Telegram.\
+\n\n⚡𝘾𝙈𝘿⚡: `.name` <NamaDepan> Atau `.name` <NamaDepan> <NamaBelakang>\
+\n↳ : Ganti Nama Telegram Anda\
+\n\n⚡𝘾𝙈𝘿⚡: `.setpfp`\
+\n↳ : Balas Ke Gambar Ketik .setpfp Untuk Mengganti Foto Profile Telegram.\
+\n\n⚡𝘾𝙈𝘿⚡: `.setbio` <New Bio>\
+\n↳ : Untuk Mengganti Bio Telegram.\
+\n\n⚡𝘾𝙈𝘿⚡: `.delpfp` Atau `.delpfp` <Count>/<all>\
+\n↳ : Menghapus Foto Profile Telegram.\
+\n\n⚡𝘾𝙈𝘿⚡: `.reserved`\
+\n↳ : Menampilkan Data Yang Anda Simpan atau Buat.\
+\n\n⚡𝘾𝙈𝘿⚡: `.count`\
+\n↳ : Menghitung Grup, Chat, Bot etc...\
+\n\n⚡𝘾𝙈𝘿⚡: `.data` <Username> Atau Reply Ke Pesan Ketik `.data`\
+\n↳ : Mendapatkan Informasi Pengguna."
 })
