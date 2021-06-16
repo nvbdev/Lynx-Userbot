@@ -27,7 +27,7 @@ gTTS-token
 hachoir
 REPO_LINK
 heroku3>=3.4.0
-httplib
+httplib2
 humanize
 meval>=2.5
 lxml
