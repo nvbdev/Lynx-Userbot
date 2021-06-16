@@ -45,5 +45,5 @@ jobs:
           commit_options: '--no-verify --signoff'
           repository: .
           commit_user_name: KENZO-404
-          commit_user_email: latukolan420@gmail.com
-          commit_author: KENZO-404 <latukolan420@gmail.com>
+          commit_user_email: latukolan404@gmail.com
+          commit_author: KENZO-404 <latukolan404@gmail.com>
