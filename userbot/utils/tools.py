@@ -21,7 +21,7 @@ import asyncio
 import os
 from os.path import basename
 import os.path
-from typing import Optional
+from typing import Optional, Tuple
 from userbot import bot, LOGS
 
 from telethon.tl.functions.channels import GetParticipantRequest
