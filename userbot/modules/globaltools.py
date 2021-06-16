@@ -400,14 +400,6 @@ async def gspider(gspdr):
         else:
             await gspdr.edit("`Berhasil Membisukan Pengguna Secara Global!`")
 
-        if BOTLOG:
-            await gspdr.client.send_message(
-                BOTLOG_CHATID,
-                "#GLOBALMUTE\n"
-                f"PENGGUNA: [{user.first_name}](tg://user?id={user.id})\n"
-                f"GROUP: {gspdr.chat.title}(`{gspdr.chat_id}`)",
-            )
-
 
 @register(outgoing=True, pattern=r"^\.ungmute(?: |$)(.*)")
 async def ungmoot(un_gmute):
@@ -441,14 +433,6 @@ async def ungmoot(un_gmute):
         await un_gmute.edit("```Berhasil! Pengguna Sudah Tidak Lagi Dibisukan.```")
         await sleep(3)
         await un_gmute.delete()
-
-        if BOTLOG:
-            await un_gmute.client.send_message(
-                BOTLOG_CHATID,
-                "#UnGLOBALMUTE\n"
-                f"PENGGUNA: [{user.first_name}](tg://user?id={user.id})\n"
-                f"GROUP: {un_gmute.chat.title}(`{un_gmute.chat_id}`)",
-            )
 
 
 CMD_HELP.update({
