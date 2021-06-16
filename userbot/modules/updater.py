@@ -197,7 +197,7 @@ async def upstream(event):
     """ - Special case for deploy - """
     if conf == "-push":
         await event.edit("`Deploying userbot, please wait....`")
-        await deploy(event, repo, ups_rem, ac_br, txt)
+        await push(event, repo, ups_rem, ac_br, txt)
         return
 
     if changelog == "" and force_update is False:
