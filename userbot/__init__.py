@@ -411,8 +411,15 @@ with bot:
         quit(1)
 
 
+DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else uname().node
+
+
 async def check_alive():
-    await bot.send_message(BOTLOG_CHATID, "```⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡Has Been Active!!```")
+    await bot.send_message(BOTLOG_CHATID,
+                           text=f"**⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡ is Back Up and Running!**\n\n
+                                  **Telethon :** __{version.__version__}__\n
+                                  **Python :** __{python_version()}__\n
+                                  **User :** __{DEFAULTUSER}__")
     return
 
 with bot:
