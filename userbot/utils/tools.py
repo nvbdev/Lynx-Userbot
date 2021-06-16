@@ -93,16 +93,17 @@ async def is_admin(chat_id, user_id):
     return False
 
 
-async def run_cmd(cmd: List) -> (bytes, bytes):
-    process = await asyncio.create_subprocess_exec(
-        *cmd,
-        stdout=asyncio.subprocess.PIPE,
-        stderr=asyncio.subprocess.PIPE,
-    )
-    out, err = await process.communicate()
-    t_resp = out.strip()
-    e_resp = err.strip()
-    return t_resp, e_resp
+async def runcmd(cmd: str) -> Tuple[str, str, int, int]:
+    """ run command in terminal """
+    args = shlex.split(cmd)
+    process = await asyncio.create_subprocess_exec(*args,
+                                                   stdout=asyncio.subprocess.PIPE,
+                                                   stderr=asyncio.subprocess.PIPE)
+    stdout, stderr = await process.communicate()
+    return (stdout.decode('utf-8', 'replace').strip(),
+            stderr.decode('utf-8', 'replace').strip(),
+            process.returncode,
+            process.pid)
 
 
 async def take_screen_shot(video_file: str, duration: int, path: str = '') -> Optional[str]:
