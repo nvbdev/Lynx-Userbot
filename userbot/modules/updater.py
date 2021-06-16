@@ -60,7 +60,7 @@ async def print_changelogs(event, ac_br, changelog):
     return True
 
 
-async def deploy(event, repo, ups_rem, ac_br, txt):
+async def push(event, repo, ups_rem, ac_br, txt):
     if HEROKU_API_KEY is not None:
         import heroku3
 
@@ -142,7 +142,7 @@ async def update(event, repo, ups_rem, ac_br):
     execle(sys.executable, *args, environ)
 
 
-@register(outgoing=True, pattern=r"^\.update( now| deploy|$)")
+@register(outgoing=True, pattern=r"^\.update( -pull| -push|$)")
 async def upstream(event):
     "For .update command, check if the bot is up to date, update if specified"
     await event.edit("`Getting information....`")
@@ -195,7 +195,7 @@ async def upstream(event):
 
     changelog = await gen_chlog(repo, f"HEAD..upstream/{ac_br}")
     """ - Special case for deploy - """
-    if conf == "deploy":
+    if conf == "-push":
         await event.edit("`Deploying userbot, please wait....`")
         await deploy(event, repo, ups_rem, ac_br, txt)
         return
@@ -210,13 +210,13 @@ async def upstream(event):
     if conf == "" and force_update is False:
         await print_changelogs(event, ac_br, changelog)
         await event.delete()
-        return await event.respond('`do ".update now or .update deploy" to update.`')
+        return await event.respond('`do ".update -pull or .update -push" to update.`')
 
     if force_update:
         await event.edit(
             "`Force-Syncing to latest stable userbot code, please wait...`"
         )
-    if conf == "now":
+    if conf == "-pull":
         await event.edit("`Updating userbot, please wait....`")
         await update(event, repo, ups_rem, ac_br)
     return
@@ -224,14 +224,15 @@ async def upstream(event):
 
 CMD_HELP.update(
     {
-        "update": ">`.update`"
-        "\nUsage: Checks if the main userbot repository has any updates "
+        "update": "✘ Pʟᴜɢɪɴ : Update Userbot"
+        "\n\n⚡𝘾𝙈𝘿⚡: `.update`"
+        "\n↳ : Checks if the main userbot repository has any updates."
         "and shows a changelog if so."
-        "\n\n>`.update now`"
-        "\nUsage: Update your userbot, "
+        "\n\n⚡𝘾𝙈𝘿⚡: `.update -pull`"
+        "\n↳ : Update your userbot, "
         "if there are any updates in your userbot repository."
-        "\n\n>`.update deploy`"
-        "\nUsage: Deploy your userbot"
+        "\n\n⚡𝘾𝙈𝘿⚡: `.update -push`"
+        "\n↳ : Deploy your userbot"
         "\nThis will triggered deploy always, even no updates."
     }
 )
