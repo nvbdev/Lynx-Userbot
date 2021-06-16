@@ -210,7 +210,7 @@ async def upstream(event):
     if conf == "" and force_update is False:
         await print_changelogs(event, ac_br, changelog)
         await event.delete()
-        return await event.respond('`do ".update -pull or .update -push" to update.`')
+        return await event.respond('`".update -pull or .update -push"\nTo Update Userbot.`')
 
     if force_update:
         await event.edit(
