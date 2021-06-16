@@ -107,7 +107,7 @@ async def runcmd(cmd: str) -> Tuple[str, str, int, int]:
 
 
 async def take_screen_shot(video_file: str, duration: int, path: str = '') -> Optional[str]:
-    """ take a screenshot """
+    """take a screenshot"""
     LOGS.info(
         '[[[Extracting a frame from %s ||| Video duration => %s]]]',
         video_file,
