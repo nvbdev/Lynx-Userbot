@@ -2,8 +2,9 @@ from userbot.events import register
 from userbot import bot
 
 
-@register(outgoing=True, pattern="^.ggcast (.*)")
+@register(outgoing=True, pattern=r"^\.ggcast (.*)")
 async def gcast(event):
+    """Adds given chat to global group cast."""
     xx = event.pattern_match.group(1)
     if not xx:
         return await event.edit("`Mohon Berikan Sebuah Pesan`")
@@ -23,8 +24,9 @@ async def gcast(event):
     await kk.edit(f"**✔️Berhasil** Mengirim Pesan Ke : `{done}` Group.\n**❌Gagal** Mengirim Pesan Ke : `{er}` Group.")
 
 
-@register(outgoing=True, pattern="^.gucast (.*)")
+@register(outgoing=True, pattern=r"^\.gucast (.*)")
 async def gucast(event):
+    """Adds given chat to global user cast."""
     xx = event.pattern_match.group(1)
     if not xx:
         return await event.edit("`Mohon Berikan Sebuah Pesan`")
