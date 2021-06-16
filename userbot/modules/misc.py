@@ -123,14 +123,13 @@ async def repo_is_here(wannasee):
     """For .repo command, just returns the repo URL."""
     await wannasee.send_file(
         file=lynxlogo,
-        f"╭─━━━━━━━━━━━━━─╮\n"
-        f"                  ʀᴇᴘᴏ\n"
-        f"    [⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡](https://kenzo-404.github.io/Lynx-Userbot)\n"
-        f"╭─━━━━━━━━━━━━━─╯\n"
-        f"│⊙ **Dᴇᴠᴇʟᴏᴘᴇʀ :** [ᴀxᴇʟ](https://github.com/KENZO-404)\n"
-        f"╰━━━━━━━━━━━━━━━╯\n"
-        f"  𝗟𝗶𝗰𝗲𝗻𝘀𝗲 : [GPL-3.0 License](https://github.com/KENZO-404/Lynx-Userbot/blob/Lynx-Userbot/LICENSE)"
-    )
+        caption=f"╭─━━━━━━━━━━━━━─╮\n"
+                f"                  ʀᴇᴘᴏ\n"
+                f"    [⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡](https://kenzo-404.github.io/Lynx-Userbot)\n"
+                f"╭─━━━━━━━━━━━━━─╯\n"
+                f"│⊙ **Dᴇᴠᴇʟᴏᴘᴇʀ :** [ᴀxᴇʟ](https://github.com/KENZO-404)\n"
+                f"╰━━━━━━━━━━━━━━━╯\n"
+                f"  𝗟𝗶𝗰𝗲𝗻𝘀𝗲 : [GPL-3.0 License](https://github.com/KENZO-404/Lynx-Userbot/blob/Lynx-Userbot/LICENSE)")
 
 
 @register(outgoing=True, pattern="^.raw$")
