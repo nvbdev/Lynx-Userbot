@@ -1,3 +1,9 @@
+# © Copyright 2021 Lynx-Userbot LLC Company.
+# GPL-3.0 License From Github
+# Ported by @TeamSecret_Kz (KENZO)
+# WARNING !!
+# Credits by @TeamUltroid
+
 from userbot.events import register
 from userbot import bot
 
@@ -9,12 +15,12 @@ async def gcast(event):
     if not xx:
         return await event.edit("`Mohon Berikan Sebuah Pesan`")
     tt = event.text
-    msg = tt[6:]
+    msg = tt[7:]
     kk = await event.edit("`Sedang Mengirim Pesan Group Secara Global... 📢`")
     er = 0
     done = 0
     async for x in bot.iter_dialogs():
-        if x.is_group:
+        if x.is_group and not x.is_user:
             chat = x.id
             try:
                 done += 1
