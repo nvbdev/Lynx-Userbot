@@ -17,7 +17,6 @@ from userbot.events import register
 from userbot.utils import time_formatter
 
 
-
 @register(outgoing=True, pattern=r"^\.random")
 async def randomise(items):
     """For .random command, get a random item from the list of items."""
@@ -100,6 +99,7 @@ async def repeat(rep):
         replyText += toBeRepeated + "\n"
 
     await rep.edit(replyText)
+
 
 @register(outgoing=True, pattern="^.repo$")
 async def repo_is_here(wannasee):
