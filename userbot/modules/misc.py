@@ -6,45 +6,33 @@
 # You can find misc modules, which dont fit in anything xD
 """ Userbot module for other small commands. """
 
-from random import randint
-from time import sleep
-from os import environ, execle
-import asyncio
 import sys
 import io
 import sys
-from userbot import ALIVE_NAME, BOTLOG, BOTLOG_CHATID, CMD_HELP, bot
+from random import randint
+from time import sleep
+from os import environ, execle
+from userbot import BOTLOG, BOTLOG_CHATID, CMD_HELP, bot
 from userbot.events import register
 from userbot.utils import time_formatter
-import urllib
 
 
-# Ported for Lynx-Userbot by @SyndicateTwenty4
-# ================= CONSTANT =================
-DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else uname().node
-# REPOLINK = str(UPSTREAM_REPO_URL) if UPSTREAM_REPO_URL else "https://github.com/KENZO-404/Lynx-Userbot"
-# ============================================
 
-opener = urllib.request.build_opener()
-useragent = 'Mozilla/5.0 (Linux; Android 9; SM-G960F Build/PPR1.180610.011; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/78.0.3904.70 Mobile Safari/537.36'
-opener.addheaders = [('User-agent', useragent)]
-
-
-@register(outgoing=True, pattern="^.random")
+@register(outgoing=True, pattern=r"^\.random")
 async def randomise(items):
     """For .random command, get a random item from the list of items."""
     itemo = (items.text[8:]).split()
     if len(itemo) < 2:
-        await items.edit(
+        return await items.edit(
             "`2 or more items are required! Check .help random for more info.`"
         )
-        return
     index = randint(1, len(itemo) - 1)
-    await items.edit("**Query: **\n`" + items.text[8:] + "`\n**Output: **\n`" +
-                     itemo[index] + "`")
+    await items.edit(
+        "**Query: **\n`" + items.text[8:] + "`\n**Output: **\n`" + itemo[index] + "`"
+    )
 
 
-@register(outgoing=True, pattern="^.sleep ([0-9]+)$")
+@register(outgoing=True, pattern=r"^\.sleep ([0-9]+)$")
 async def sleepybot(time):
     """For .sleep command, let the userbot snooze for a few second."""
     counter = int(time.pattern_match.group(1))
@@ -59,24 +47,25 @@ async def sleepybot(time):
     await time.edit("`OK, I'm awake now.`")
 
 
-@register(outgoing=True, pattern="^.shutdown$")
+@register(outgoing=True, pattern=r"^\.shutdown$")
 async def killthebot(event):
     """For .shutdown command, shut the bot down."""
-    await event.edit("`Mematikan Lynx-Userbot....`")
-    await asyncio.sleep(7)
-    await event.delete()
+    await event.edit("`Shutting down...`")
     if BOTLOG:
-        await event.client.send_message(BOTLOG_CHATID, "#SHUTDOWN \n"
-                                        "`Lynx-Userbot Telah Dimatikan`")
+        await event.client.send_message(
+            BOTLOG_CHATID,
+            "#SHUTDOWN \n" "Bot shut down")
     await bot.disconnect()
 
 
-@register(outgoing=True, pattern="^.restart$")
+@register(outgoing=True, pattern=r"^\.restart$")
 async def killdabot(event):
-    await event.edit("`Restarting Lynx-Userbot...`")
+    await event.edit("`i would be back in a moment`")
     if BOTLOG:
-        await event.client.send_message(BOTLOG_CHATID, "#RESTARTBOT\n"
-                                        "`Lynx-Userbot Reconnecting...`")
+        await event.client.send_message(
+            BOTLOG_CHATID,
+            "#RESTART \n" "Restarting bot..."
+        )
     try:
         from userbot.modules.sql_helper.globals import addgvar, delgvar
 
@@ -99,9 +88,9 @@ async def reedme(e):
         "\n[Special - Note](https://telegra.ph/Special-Note-11-02)")
 
 
-@register(outgoing=True, pattern="^.repeat (.*)")
+@register(outgoing=True, pattern=r"^\.repeat (.*)")
 async def repeat(rep):
-    cnt, txt = rep.pattern_match.group(1).split(' ', 1)
+    cnt, txt = rep.pattern_match.group(1).split(" ", 1)
     replyCount = int(cnt)
     toBeRepeated = txt
 
@@ -111,7 +100,6 @@ async def repeat(rep):
         replyText += toBeRepeated + "\n"
 
     await rep.edit(replyText)
-
 
 @register(outgoing=True, pattern="^.repo$")
 async def repo_is_here(wannasee):
@@ -128,7 +116,7 @@ async def repo_is_here(wannasee):
     )
 
 
-@register(outgoing=True, pattern="^.raw$")
+@register(outgoing=True, pattern=r"^\.raw$")
 async def raw(event):
     the_real_message = None
     reply_to_id = None
@@ -141,40 +129,40 @@ async def raw(event):
         reply_to_id = event.message.id
     with io.BytesIO(str.encode(the_real_message)) as out_file:
         out_file.name = "raw_message_data.txt"
-        await event.edit(
-            "`Check the userbot log for the decoded message data !!`")
+        await event.edit("`Check the userbot log for the decoded message data !!`")
         await event.client.send_file(
             BOTLOG_CHATID,
             out_file,
             force_document=True,
             allow_cache=False,
             reply_to=reply_to_id,
-            caption="`Here's the decoded message data !!`")
+            caption="`Here's the decoded message data !!`",
+        )
 
 
 CMD_HELP.update({
-    "random":
-    "⚡𝘾𝙈𝘿⚡: `.random <item1> <item2> ... <itemN>`\
-    \n↳ : Get a random item from the list of items.",
-    "sleep":
-    "⚡𝘾𝙈𝘿⚡: `.sleep <seconds>`\
-    \n↳ : Let yours snooze for a few seconds.",
-    "shutdown":
-    "⚡𝘾𝙈𝘿⚡: `.shutdown`\
+    "random": "✘ Pʟᴜɢɪɴ : Random List\
+    \n\n⚡𝘾𝙈𝘿⚡: `.random <item1> <item2> ... <itemN>`\
+    \n↳ : Get a Random Item From The List of Items.",
+    "sleep": "✘ Pʟᴜɢɪɴ : Sleep\
+    \n\n⚡𝘾𝙈𝘿⚡: `.sleep <seconds>`\
+    \n↳ : Let Yours Snooze for a Few Seconds.",
+    "shutdown": "✘ Pʟᴜɢɪɴ : Shutdown\
+    \n\n⚡𝘾𝙈𝘿⚡: `.shutdown`\
     \n↳ : Shutdown bot",
-    "repo":
-    "⚡𝘾𝙈𝘿⚡: `.repo`\
+    "repo": "✘ Pʟᴜɢɪɴ : Repository\
+    \n\n⚡𝘾𝙈𝘿⚡: `.repo`\
     \n↳ : Github Repo of this bot",
-    "readme":
-    "⚡𝘾𝙈𝘿⚡: `.readme`\
-    \n↳ : Provide links to setup the userbot and it's modules.",
-    "repeat":
-    "⚡𝘾𝙈𝘿⚡: `.repeat <no> <text>`\
-    \n↳ : Repeats the text for a number of times. Don't confuse this with spam tho.",
-    "restart":
-    "⚡𝘾𝙈𝘿⚡: `.restart`\
+    "readme": "✘ Pʟᴜɢɪɴ : Read Me\
+    \n\n⚡𝘾𝙈𝘿⚡: `.readme`\
+    \n↳ : Provide Links to Setup The Userbot and it's modules.",
+    "repeat": "✘ Pʟᴜɢɪɴ : Repeat\
+    \n\n⚡𝘾𝙈𝘿⚡: `.repeat <no> <Text>`\
+    \n↳ : Repeats The Text for a Number of Times. Don't Confuse This With Spam tho.",
+    "restart": "✘ Pʟᴜɢɪɴ : Restart\
+    \n\n⚡𝘾𝙈𝘿⚡: `.restart`\
     \n↳ : Restarts the bot !!",
-    "raw":
-    "⚡𝘾𝙈𝘿⚡: `.raw`\
-    \n↳ : Get detailed JSON-like formatted data about replied message."
+    "raw": "✘ Pʟᴜɢɪɴ : RAW\
+    \n\n⚡𝘾𝙈𝘿⚡: `.raw`\
+    \n↳ : Get Detailed JSON-Like Formatted Data About Replied Message."
 })
