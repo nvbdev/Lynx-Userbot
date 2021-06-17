@@ -10,7 +10,7 @@ RUN git clone -b Lynx-Userbot https://github.com/KENZO-404/Lynx-Userbot /home/Ly
 # Copies config.env (if exists)
 COPY ./sample_config.env ./config.env* /home/Lynx-Userbot/
 
-WORKDIR /home/Lynx-Userbot
+WORKDIR /home/Lynx-Userbot/
 
 # Finishim
 CMD ["python3","-m","userbot"]
