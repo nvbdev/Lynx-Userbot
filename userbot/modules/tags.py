@@ -17,7 +17,7 @@ from userbot.events import register
 
 
 @register(outgoing=True,
-          pattern=r"^.tags(?: |$)(on|off|all|bots|rec|admins|owner)?")
+          pattern=r"^.tags(?: |$)(on|off|all|bots|rec|admin|owner)?")
 async def _(event):
     okk = event.text
     lll = event.pattern_match.group(2)
@@ -60,7 +60,7 @@ async def _(event):
         if "bot" in okk:
             if bb.bot:
                 xx += f"\n[{get_display_name(bb)}](tg://user?id={bb.id})"
-    await event.client.send_message(e.chat_id, xx)
+    await event.client.send_message(event.chat_id, xx)
     await event.delete()
 
 
