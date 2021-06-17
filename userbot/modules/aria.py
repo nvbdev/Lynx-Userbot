@@ -247,14 +247,12 @@ async def check_progress_for_dl(gid, event, previous):
                 )
 
 
-CMD_HELP.update(
-    {
-        "aria": "✘ Pʟᴜɢɪɴ : Aria"
-        "\n\n⚡𝘾𝙈𝘿⚡: `.aurl [URL]` / `.amag [Magnet Link]` / `.ator [Path to Torrent File]`"
-        "\n↳ : Downloads The File Into Your Userbot Server Storage."
-        "\n\n⚡𝘾𝙈𝘿⚡: `.apause (or) .aresume`"
-        "\n↳ : Pauses/Resumes On-going Downloads."
-        "\n\n⚡𝘾𝙈𝘿⚡: `.aclear`"
-        "\n↳ : Clears The Download Queue, Deleting All On-going Downloads."
-        "\n\n⚡𝘾𝙈𝘿⚡: `.ashow`"
-        "\n↳ : Shows Progress of The On-going Downloads."})
+CMD_HELP.update({"aria": "✘ Pʟᴜɢɪɴ : Aria"
+                 "\n\n⚡𝘾𝙈𝘿⚡: `.aurl [URL]` / `.amag [Magnet Link]` / `.ator [Path to Torrent File]`"
+                 "\n↳ : Downloads The File Into Your Userbot Server Storage."
+                 "\n\n⚡𝘾𝙈𝘿⚡: `.apause (or) .aresume`"
+                 "\n↳ : Pauses/Resumes On-going Downloads."
+                 "\n\n⚡𝘾𝙈𝘿⚡: `.aclear`"
+                 "\n↳ : Clears The Download Queue, Deleting All On-going Downloads."
+                 "\n\n⚡𝘾𝙈𝘿⚡: `.ashow`"
+                 "\n↳ : Shows Progress of The On-going Downloads."})
