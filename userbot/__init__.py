@@ -495,7 +495,7 @@ with bot:
         lynxlogo = "resource/logo/LynxUserbot-Button.jpg"
         plugins = CMD_HELP
 
-        @tgbot.on(events.NewMessage(pattern="/start"))
+        @tgbot.on(events.NewMessage(pattern=r"/start"))
         async def handler(event):
             if event.message.from_id != uid:
                 u = await event.client.get_entity(event.chat_id)
@@ -512,7 +512,7 @@ with bot:
                     ]
                 )
 
-        @tgbot.on(events.NewMessage(pattern="/deploy"))
+        @tgbot.on(events.NewMessage(pattern=r"/deploy"))
         async def handler(event):
             if event.message.from_id != uid:
                 await event.reply(
@@ -523,7 +523,7 @@ with bot:
                     ],
                 )
 
-        @tgbot.on(events.NewMessage(pattern="/repo"))
+        @tgbot.on(events.NewMessage(pattern=r"/repo"))
         async def handler(event):
             if event.message.from_id != uid:
                 u = await event.client.get_entity(event.chat_id)
@@ -545,7 +545,7 @@ with bot:
                                       ]
                                       )
 
-        @tgbot.on(events.NewMessage(pattern="/ping"))
+        @tgbot.on(events.NewMessage(pattern=r"/ping"))
         async def handler(event):
             if event.message.from_id != uid:
                 start = datetime.now()
