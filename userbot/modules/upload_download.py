@@ -24,8 +24,20 @@ from telethon.tl.types import DocumentAttributeAudio, DocumentAttributeVideo
 
 from userbot import CMD_HELP, LOGS, TEMP_DOWNLOAD_DIRECTORY
 from userbot.events import register
-from userbot.utils import humanbytes, progress, run_cmd
+from userbot.utils import humanbytes, progress
 from userbot.utils.FastTelethon import download_file, upload_file
+
+
+async def run_cmd(cmd: List) -> (bytes, bytes):
+    process = await asyncio.create_subprocess_exec(
+        *cmd,
+        stdout=asyncio.subprocess.PIPE,
+        stderr=asyncio.subprocess.PIPE,
+    )
+    out, err = await process.communicate()
+    t_resp = out.strip()
+    e_resp = err.strip()
+    return t_resp, e_resp
 
 
 @register(pattern=r"^\.dl(?: |$)(.*)", outgoing=True)
