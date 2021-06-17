@@ -51,19 +51,26 @@
 
 ### ⚒️ How To Get a API_ID and API_HASH ?
 
-**Generate API_ID and API_HASH Using Website⤵️**
-* [my.telegram.org](https://my.telegram.org)
+**Generate API_ID and API_HASH Using Website ⤵️**
 
-**Generate API_ID and API_HASH Using Bot⤵️**
-* [My Telegram Robot](https://t.me/MyTelegramDotOrgRobot)
+<p align="center">
+<a href="https://my.telegram.org"><img src="https://img.shields.io/badge/generate_api_id-web-red?style=for-the-badge&logo=repl.it" alt="generate_api" /></a>
+</p>
+
+**Generate API_ID and API_HASH Using Bot ⤵️**
+
+<p align="center">
+<a href="https://t.me/MyTelegramDotOrg"><img src="https://img.shields.io/badge/generate_api_id-bot-green?style=for-the-badge&logo=repl.it" alt="generate_api" /></a>
+</p>
 
 ### 🛠️ How To Get a STRING SESSION ?
 
-**Generate String Using Replit⤵️**
-
-<a href="https://replit.com/@KENZO404/Lynx-String-Session#main.py"><img src="https://img.shields.io/badge/run-string__session.py-magenta?style=for-the-badge&logo=repl.it" alt="generate_string" /></a>
-
-**Generate String Using Terminal⤵️**
+**Generate String Using Replit ⤵️**
+<p align="center">
+<a href="https://replit.com/@KENZO404/Lynx-String-Session#main.py"><img src="https://img.shields.io/badge/run-string__session.py-purple?style=for-the-badge&logo=repl.it" alt="generate_string" /></a>
+</p>
+  
+**Generate String Using Terminal ⤵️**
 ```
     STRING SESSION via TERMUX _>
 
