@@ -34,7 +34,7 @@ from pySmartDL import SmartDL
 
 from userbot import CMD_HELP, LOGS, TEMP_DOWNLOAD_DIRECTORY
 from userbot.events import register
-from userbot.modules.google_drive import create_app, get_mimeType, upload
+from userbot.modules.godrive import create_app, get_mimeType, upload
 from userbot.utils import humanbytes, time_formatter
 from userbot.utils.exceptions import CancelProcess
 
