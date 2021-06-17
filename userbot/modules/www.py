@@ -9,7 +9,6 @@
 
 import asyncio
 import time
-import redis
 
 from datetime import datetime
 from telethon import functions
@@ -48,7 +47,7 @@ async def get_readable_time(seconds: int) -> str:
 
 
 @register(outgoing=True, pattern="^.sping$")
-async def redis(pong):
+async def sping(pong):
     """ For .ping command, ping the userbot from any chat.  """
     await get_readable_time((time.time() - StartTime))
     start = datetime.now()
@@ -72,7 +71,7 @@ async def redis(pong):
 
 
 @register(outgoing=True, pattern="^.lping$")
-async def redis(pong):
+async def lping(pong):
     """ For .ping command, ping the userbot from any chat.  """
     uptime = await get_readable_time((time.time() - StartTime))
     start = datetime.now()
@@ -87,7 +86,7 @@ async def redis(pong):
 
 
 @register(outgoing=True, pattern="^.xping$")
-async def redis(pong):
+async def xping(pong):
     """ For .ping command, ping the userbot from any chat.  """
     uptime = await get_readable_time((time.time() - StartTime))
     start = datetime.now()
@@ -110,7 +109,7 @@ async def redis(pong):
 
 
 @register(outgoing=True, pattern="^.ping$")
-async def redis(pong):
+async def ping(pong):
     """ For .ping command, ping the userbot from any chat.  """
     uptime = await get_readable_time((time.time() - StartTime))
     start = datetime.now()
