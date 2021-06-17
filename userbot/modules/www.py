@@ -4,8 +4,8 @@
 # you may not use this file except in compliance with the License.
 #
 # Lynx Userbot
-"""Userbot module containing commands related to the \
-    Information Superhighway (yes, Internet)."""
+"""Userbot module containing commands related to the
+   Information Superhighway (yes, Internet)."""
 
 import asyncio
 import time
