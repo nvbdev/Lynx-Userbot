@@ -39,8 +39,8 @@
       "value": "False"
     },
     "BOTLOG_CHATID": {
-      "description": "Buatlah sebuah grup private/public masukan bot rose lalu ketik /id.",
-      "value": "False"
+      "description": "Kalau mau ChatID OFF '0' Aja, tapi BOTLOG = FALSE & LOGSPAMMER = False",
+      "value": "0"
     },
     "CONSOLE_LOGGER_VERBOSE": {
       "description": "If you need verbosity on the console logging",
