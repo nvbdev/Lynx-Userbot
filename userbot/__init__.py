@@ -10,7 +10,6 @@ import signal
 import os
 import time
 import re
-import redis
 import io
 import random
 
@@ -24,8 +23,6 @@ from math import ceil
 
 from pylast import LastFMNetwork, md5
 from pySmartDL import SmartDL
-from pymongo import MongoClient
-from redis import StrictRedis
 from dotenv import load_dotenv
 from requests import get
 from telethon.sync import TelegramClient, custom, events
@@ -82,10 +79,10 @@ API_HASH = os.environ.get("API_HASH", "")
 STRING_SESSION = os.environ.get("STRING_SESSION", "")
 
 # Logging channel/group ID configuration.
-BOTLOG_CHATID = int(os.environ.get("BOTLOG_CHATID", ""))
+BOTLOG_CHATID = int(os.environ.get("BOTLOG_CHATID", None))
 
 # Userbot logging feature switch.
-BOTLOG = sb(os.environ.get("BOTLOG", "True"))
+BOTLOG = sb(os.environ.get("BOTLOG", "False"))
 LOGSPAMMER = sb(os.environ.get("LOGSPAMMER", "False"))
 
 # Custom Module
@@ -100,14 +97,14 @@ PM_PERMIT_PIC = os.environ.get(
 PM_AUTO_BAN = sb(os.environ.get("PM_AUTO_BAN", "False"))
 
 # Send .chatid in any group with all your administration bots (added)
-G_BAN_LOGGER_GROUP = os.environ.get("G_BAN_LOGGER_GROUP", "")
+G_BAN_LOGGER_GROUP = os.environ.get("G_BAN_LOGGER_GROUP", None)
 if G_BAN_LOGGER_GROUP:
     G_BAN_LOGGER_GROUP = int(G_BAN_LOGGER_GROUP)
 
 # Heroku Credentials for updater.
 HEROKU_MEMEZ = sb(os.environ.get("HEROKU_MEMEZ", "False"))
-HEROKU_APP_NAME = os.environ.get("HEROKU_APP_NAME", "")
-HEROKU_API_KEY = os.environ.get("HEROKU_API_KEY", "")
+HEROKU_APP_NAME = os.environ.get("HEROKU_APP_NAME", None)
+HEROKU_API_KEY = os.environ.get("HEROKU_API_KEY", None)
 
 # JustWatch Country
 WATCH_COUNTRY = os.environ.get("WATCH_COUNTRY", "ID")
@@ -135,25 +132,6 @@ OCR_SPACE_API_KEY = os.environ.get("OCR_SPACE_API_KEY", None)
 # remove.bg API key
 REM_BG_API_KEY = os.environ.get("REM_BG_API_KEY", None)
 
-# Redis URI & Redis Password
-REDIS_URI = os.environ.get('REDIS_URI', None)
-REDIS_PASSWORD = os.environ.get('REDIS_PASSWORD', None)
-
-if REDIS_URI and REDIS_PASSWORD:
-    try:
-        REDIS_HOST = REDIS_URI.split(':')[0]
-        REDIS_PORT = REDIS_URI.split(':')[1]
-        redis_connection = redis.Redis(
-            host=REDIS_HOST, port=REDIS_PORT, password=REDIS_PASSWORD
-        )
-        redis_connection.ping()
-    except Exception as e:
-        LOGGER.exception(e)
-        print()
-        LOGGER.error(
-            "Make sure you have the correct Redis endpoint and password "
-            "and your machine can make connections."
-        )
 
 # Chrome Driver and Headless Google Chrome Binaries
 CHROME_DRIVER = os.environ.get("CHROME_DRIVER") or "/usr/bin/chromedriver"
@@ -171,9 +149,6 @@ WEATHER_DEFCITY = os.environ.get("WEATHER_DEFCITY", None)
 
 # Lydia API
 LYDIA_API_KEY = os.environ.get("LYDIA_API_KEY", None)
-
-# For MONGO based DataBase
-MONGO_URI = os.environ.get("MONGO_URI", None)
 
 # set blacklist_chats where you do not want userbot's features
 UB_BLACK_LIST_CHAT = os.environ.get("UB_BLACK_LIST_CHAT", None)
@@ -201,11 +176,8 @@ CLEAN_WELCOME = sb(os.environ.get("CLEAN_WELCOME", "True"))
 # Zipfile Module
 ZIP_DOWNLOAD_DIRECTORY = os.environ.get("ZIP_DOWNLOAD_DIRECTORY", "./zips")
 
-# bit.ly Module
-BITLY_TOKEN = os.environ.get("BITLY_TOKEN", None)
-
 # Bot Name
-TERM_ALIAS = os.environ.get("TERM_ALIAS", "Lynx-Userbot")
+TERM_ALIAS = os.environ.get("TERM_ALIAS", None)
 
 # Bot Version
 BOT_VER = os.environ.get("BOT_VER", "0.2.9")
@@ -265,14 +237,15 @@ if G_PHOTOS_AUTH_TOKEN_ID:
 GENIUS = os.environ.get("GENIUS_ACCESS_TOKEN", None)
 
 # IMG Stuff
-IMG_LIMIT = os.environ.get("IMG_LIMIT") or None
+IMG_LIMIT = os.environ.get("IMG_LIMIT", None)
+
 CMD_HELP = {}
 
 # Quotes API Token
 QUOTES_API_TOKEN = os.environ.get("QUOTES_API_TOKEN", None)
 
 # Wolfram Alpha API
-WOLFRAM_ID = os.environ.get("WOLFRAM_ID") or None
+WOLFRAM_ID = os.environ.get("WOLFRAM_ID", None)
 
 # Deezloader
 DEEZER_ARL_TOKEN = os.environ.get("DEEZER_ARL_TOKEN", None)
@@ -282,37 +255,11 @@ API_TOKEN = os.environ.get("API_TOKEN", None)
 API_URL = os.environ.get("API_URL", "http://antiddos.systems")
 
 # Inline bot helper
-BOT_TOKEN = os.environ.get("BOT_TOKEN") or None
-BOT_USERNAME = os.environ.get("BOT_USERNAME") or None
+BOT_TOKEN = os.environ.get("BOT_TOKEN", None)
+BOT_USERNAME = os.environ.get("BOT_USERNAME", None)
 
 # Uptobox
 USR_TOKEN = os.environ.get("USR_TOKEN_UPTOBOX", None)
-
-# Init Mongo
-MONGOCLIENT = MongoClient(MONGO_URI, 27017, serverSelectionTimeoutMS=1)
-MONGO = MONGOCLIENT.userbot
-
-
-def is_mongo_alive():
-    try:
-        MONGOCLIENT.server_info()
-    except BaseException:
-        return False
-    return True
-
-
-# Init Redis
-# Redis will be hosted inside the docker container that hosts the bot
-# We need redis for just caching, so we just leave it to non-persistent
-REDIS = StrictRedis(host='localhost', port=6379, db=0)
-
-
-def is_redis_alive():
-    try:
-        REDIS.ping()
-        return True
-    except BaseException:
-        return False
 
 
 # Setting Up CloudMail.ru and MEGA.nz extractor binaries,
@@ -413,19 +360,6 @@ with bot:
             "valid entity. Check your environment variables/config.env file.")
         quit(1)
 
-
-async def check_alive():
-    await bot.send_message(BOTLOG_CHATID, "```⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡Has Been Active!!```")
-    return
-
-with bot:
-    try:
-        bot.loop.run_until_complete(check_alive())
-    except BaseException:
-        LOGS.info(
-            "BOTLOG_CHATID environment variable isn't a "
-            "valid entity. Check your environment variables/config.env file.")
-        quit(1)
 
 # Global Variables
 COUNT_MSG = 0
