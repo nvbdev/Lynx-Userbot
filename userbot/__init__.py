@@ -359,6 +359,34 @@ with bot:
         quit(1)
 
 
+async def update_restart_msg(chat_id, msg_id):
+    DEFAULTUSER = ALIVE_NAME or "Set `ALIVE_NAME` ConfigVar!"
+    message = (
+        f"**⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡ is Back Up and Running!**\n\n"
+        f"**Telethon :** __{version.__version__}__\n"
+        f"**Python :** __{python_version()}__\n"
+        f"**User :** __{DEFAULTUSER}__"
+    )
+    await bot.edit_message(BOTLOG_CHATID, chat_id, msg_id, message)
+    return True
+
+try:
+    from userbot.modules.sql_helper.globals import delgvar, gvarstatus
+
+    chat_id, msg_id = gvarstatus("restartstatus").split("\n")
+    try:
+        with bot:
+            bot.loop.run_until_complete(
+                update_restart_msg(
+                    int(chat_id), int(msg_id)))
+    except BaseException:
+        pass
+    delgvar("restartstatus")
+except AttributeError:
+    pass
+
+
+
 # Global Variables
 COUNT_MSG = 0
 USERS = {}
@@ -613,39 +641,11 @@ with bot:
         LOGS.info(
             "Mode Inline Bot Mu Nonaktif. "
             "Untuk Mengaktifkannya, Silahkan Pergi Ke @BotFather Lalu, Settings Bot > Pilih Mode Inline > Turn On. ")
-
-with bot:
     try:
         bot.loop.run_until_complete(check_botlog_chatid())
     except BaseException:
         LOGS.info(
             "BOTLOG_CHATID environment variable isn't a "
-            "valid entity. Check your environment variables/config.env file.")
+            "valid entity. Check your environment variables/config.env file."
+        )
         quit(1)
-
-
-async def update_restart_msg(chat_id, msg_id):
-    DEFAULTUSER = ALIVE_NAME or "Set `ALIVE_NAME` ConfigVar!"
-    message = (
-        f"**⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡ is Back Up and Running!**\n\n"
-        f"**Telethon :** __{version.__version__}__\n"
-        f"**Python :** __{python_version()}__\n"
-        f"**User :** __{DEFAULTUSER}__"
-    )
-    await bot.edit_message(BOTLOG_CHATID, chat_id, msg_id, message)
-    return True
-
-try:
-    from userbot.modules.sql_helper.globals import delgvar, gvarstatus
-
-    chat_id, msg_id = gvarstatus("restartstatus").split("\n")
-    try:
-        with bot:
-            bot.loop.run_until_complete(
-                update_restart_msg(
-                    int(chat_id), int(msg_id)))
-    except BaseException:
-        pass
-    delgvar("restartstatus")
-except AttributeError:
-    pass
