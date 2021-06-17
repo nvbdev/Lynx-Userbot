@@ -247,6 +247,11 @@
     "BOT_USERNAME": {
       "description": "Username of the bot you created with @BotFather",
       "required": false
+    },
+    "TERM_ALIAS": {
+      "description": "Display user for .term command",
+      "value": "Lynx-Userbot",
+      "required": false
     }
   },
   "addons": [
