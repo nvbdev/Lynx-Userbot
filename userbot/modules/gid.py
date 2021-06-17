@@ -11,13 +11,13 @@ async def image_maker(event):
         replied_user.from_id, file="user.png", download_big=True
     )
     user_photo = Image.open("user.png")
-    id_template = Image.open("userbot/resources/FrameID.png")
+    id_template = Image.open("resource/fonts/Lynx-User.png")
     user_photo = user_photo.resize((989, 1073))
     id_template.paste(user_photo, (1229, 573))
     position = (2473, 481)
     draw = ImageDraw.Draw(id_template)
     color = "rgb(23, 43, 226)"  # red color
-    font = ImageFont.truetype("userbot/resources/fontx.ttf", size=200)
+    font = ImageFont.truetype("resource/Againts.ttf", size=200)
     draw.text(
         position,
         replied_user.sender.first_name.replace("\u2060", ""),
@@ -39,7 +39,8 @@ async def image_maker(event):
 
 CMD_HELP.update(
     {
-        "gid": "⚡**CMD**⚡ : `.gid`\
-        \n↳ : Reply to a user to generate ID Card."
+        "gid": "✘ Pʟᴜɢɪɴ : GID"
+        "\n\n⚡𝘾𝙈𝘿⚡: `.gid` <Reply>"
+        "\n↳ : Reply to a User to Generate ID Card."
     }
 )
