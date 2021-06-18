@@ -16,7 +16,6 @@ from os import remove
 from telethon import __version__, version
 import platform
 import sys
-import time
 from datetime import datetime
 import psutil
 from userbot import (
@@ -24,7 +23,6 @@ from userbot import (
     ALIVE_NAME,
     BOT_VER,
     CMD_HELP,
-    StartTime,
     UPSTREAM_REPO_BRANCH,
     INSTAGRAM_ALIVE,
     bot
