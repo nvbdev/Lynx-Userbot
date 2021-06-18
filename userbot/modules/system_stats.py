@@ -266,7 +266,6 @@ async def ireallyalive(event):
         await alive.edit(output)
 
 
-
 @register(outgoing=True, pattern=r"^\.(?:alive|on)\s?(.)?")
 async def amireallyalive(alive):
     """For .alive command, check if the bot is running."""
