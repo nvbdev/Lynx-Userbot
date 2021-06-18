@@ -576,12 +576,15 @@ with bot:
         )
         async def on_plug_in_callback_query_handler(event):
             if event.query.user_id == uid:  # Lynx-Openeer
+                modul_name = event.data_match.group(1).decode("UTF-8")
+
+                cmdhel = str(CMD_HELP[modul_name])
                 # https://t.me/TelethonChat/115200
                 await event.edit(
                     link_preview=True,
                     buttons=[
                         [Button.url("⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡", "t.me/LynxUserbot")],
-                        [Button.inline("Open Menu", data="ub_modul{}".format(x))],
+                        [Button.inline("Open Menu", data="ub_modul{}".format(cmdhel))],
                     ]
 
                 )
