@@ -18,7 +18,7 @@ from userbot.events import register
 
 @register(outgoing=True,
           pattern=r"^.tags(?: |$)(on|off|all|bots|rec|admin|owner)?")
-async def _(event):
+async def ngeteg(event):
     okk = event.text
     lll = event.pattern_match.group(2)
     users = 0
