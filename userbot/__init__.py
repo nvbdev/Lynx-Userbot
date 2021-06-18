@@ -583,7 +583,7 @@ with bot:
                     buttons=paginate_help(0, dugmeler, "helpme"
                                           ),
                     result,
-                    buttons=buttons,
+                    buttons=buttons
                 )
 
         @tgbot.on(
