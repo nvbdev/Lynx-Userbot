@@ -236,6 +236,7 @@ async def pipcheck(pip):
 async def amireallyalive(alive):
     user = await bot.get_me()
     await get_readable_time((time.time() - StartTime))
+    ALIVE_LOGO = lynxlogo
     output = (
        f"`Robot` is running on `{repo.active_branch.name}`\n"
        "`====================================`\n"
@@ -251,11 +252,11 @@ async def amireallyalive(alive):
        f"`Percentage: {svmem.percent}%`\n"
        "`====================================`\n"
     )
-    if lynxlogo:
+    if ALIVE_LOGO:
         try:
-            lynxuser = lynxlogo
+            logo = ALIVE_LOGO
             await alive.delete()
-            msg = await bot.send_file(alive.chat_id, lynxuser, caption=output)
+            msg = await bot.send_file(alive.chat_id, logo, caption=output)
             await asyncio.sleep(200)
             await msg.delete()
         except BaseException:
