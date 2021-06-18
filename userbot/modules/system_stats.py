@@ -237,21 +237,15 @@ async def pipcheck(pip):
 async def ireallyalive(event):
     """For .lynx command, check if the bot is running."""
     logo = ALIVE_LOGO
-    uname = platform.uname()
-    svmem = psutil.virtual_memory()
     output = (
         f"`Robot` is running on `{repo.active_branch.name}`\n"
         "`====================================`\n"
         f"🐍 `Python         :` v{python_version()}\n"
         f"⚙️ `Telethon       :` v{version.__version__}\n"
-        f"💻 `System         :` {uname.system}\n"
+        f"💻 `System         :` Ubuntu 20.10\n"
         f"👤 `User           :` {DEFAULTUSER}\n"
         "`====================================`\n"
-        "📊 **Memori Digunakan**\n"
-        f"`Total     : {get_size(svmem.total)}`\n"
-        f"`Available : {get_size(svmem.available)}`\n"
-        f"`Used      : {get_size(svmem.used)}`\n"
-        f"`Percentage: {svmem.percent}%`\n"
+        f"{str(memm)}\n"
         "`====================================`\n"
     )
     if ALIVE_LOGO:
@@ -323,11 +317,11 @@ async def amireallyalive(alive):
         f"│    ⇱  𝐖𝐞𝐥𝐜𝐨𝐦𝐞 𝐓𝐨 𝐌𝐲 𝐏𝐫𝐨𝐟𝐢𝐥𝐞 ⇲ \n"
         f"┟╼════════════════════╾┤\n"
         f"╟◈ 👤  `User     :` {DEFAULTUSER}\n"
-        f"╟◈ ⚙️  `Telethon :` v. {version.__version__}\n"
-        f"╟◈ 🐍  `Python   :` v. {python_version()}\n"
-        f"╟◈ 👾  `Bot Ver  :` v. {BOT_VER}\n"
+        f"╟◈ ⚙️  `Telethon :` v{version.__version__}\n"
+        f"╟◈ 🐍  `Python   :` v{python_version()}\n"
+        f"╟◈ 👾  `Bot Ver  :` v{BOT_VER}\n"
         f"╟◈ 🛠️  `Branch   :` {UPSTREAM_REPO_BRANCH}\n"
-        f"╟◈ 💻  `System   :` {uname.system}\n"
+        f"╟◈ 💻  `System   :` Ubuntu 20.10\n"
         f"╟◈ 📂  `Plugins  :` {len(modules)}\n"
         f"┞╼════════════════════╾┤\n"
         f"├◈ **Don't forget to support our**\n"
