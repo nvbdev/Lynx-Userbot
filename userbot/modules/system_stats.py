@@ -234,8 +234,7 @@ async def pipcheck(pip):
 
 @register(outgoing=True, pattern=r"^\.(?:lynx|xon)\s?(.)?")
 async def amireallyalive(alive):
-    await bot.get_me()
-    await get_readable_time((time.time() - StartTime))
+    logo = ALIVE_LOGO
     output = (
         f"`Robot` is running on `{repo.active_branch.name}`\n"
         "`====================================`\n"
@@ -252,23 +251,17 @@ async def amireallyalive(alive):
         "`====================================`\n"
     )
     if ALIVE_LOGO:
-        try:
-            logo = ALIVE_LOGO
-            await alive.delete()
-            msg = await bot.send_file(alive.chat_id, logo, caption=output)
-            await asyncio.sleep(200)
-            await msg.delete()
-        except BaseException:
-            await alive.edit(
-                output + "\n\n *`The Provided Logo Is Invalid."
-                "\nMake Sure The Link is Directed to The Logo Picture`"
-            )
-            await asyncio.sleep(100)
-            await alive.delete()
-    else:
-        await alive.edit(output)
-        await asyncio.sleep(100)
+    try:
+        logo = ALIVE_LOGO
+        await bot.send_file(alive.chat_id, logo, caption=output)
         await alive.delete()
+    except MediaEmptyError:
+        await alive.edit(
+            output + "\n\n *`The provided logo is invalid."
+            "\nMake sure the link is directed to the logo picture`"
+        )
+else:
+    await alive.edit(output)
 
 
 @register(outgoing=True, pattern=r"^\.(?:kenzo|iam)\s?(.)?")
@@ -287,27 +280,21 @@ async def amireallyalive(alive):
         f"╚══════════╣۩ ✞ ۩╠══════════╝ \n"
         f"🐈 : [𝗥𝗘𝗣𝗢-𝗟𝘆𝗻𝘅](https://kenzo-404.github.io/Lynx-Userbot)\n👥 : [𝗟𝘆𝗻𝘅-𝗧𝗲𝗮𝗺](t.me/GroupTidakDiketahui)")
     if ALIVE_LOGO:
-        try:
-            logo = ALIVE_LOGO
-            await alive.delete()
-            msg = await bot.send_file(alive.chat_id, logo, caption=output)
-            await asyncio.sleep(200)
-            await msg.delete()
-        except BaseException:
-            await alive.edit(
-                output + "\n\n *`The provided logo is invalid."
-                "\nMake sure the link is directed to the logo picture`"
-            )
-            await asyncio.sleep(100)
-            await alive.delete()
-    else:
-        await alive.edit(output)
-        await asyncio.sleep(100)
+    try:
+        logo = ALIVE_LOGO
+        await bot.send_file(alive.chat_id, logo, caption=output)
         await alive.delete()
+    except MediaEmptyError:
+        await alive.edit(
+            output + "\n\n *`The provided logo is invalid."
+            "\nMake sure the link is directed to the logo picture`"
+        )
+else:
+    await alive.edit(output)
 
 
 @register(outgoing=True, pattern=r"^\.(?:alive|on)\s?(.)?")
-async def redis(alive):
+async def iamreallyalive(alive):
     user = await bot.get_me()
     await get_readable_time((time.time() - StartTime))
     await alive.edit("__Connecting to server.__")
@@ -353,6 +340,7 @@ async def redis(alive):
     await asyncio.sleep(2.5)
     await alive.edit("😼")
     await asyncio.sleep(3)
+    logo = ALIVE_LOGO
     output = (
         f"**ㅤㅤ  ╭─━━═━═━═━═━━─╮**\n"
         f"**       ⊏┊[⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡](t.me/LynxUserbot) ⊨〛💨 **\n"
@@ -375,23 +363,17 @@ async def redis(alive):
         f"| [𝗥𝗲𝗽𝗼](https://kenzo-404.github.io/Lynx-Userbot) | [𝗟𝘆𝗻𝘅-𝗧𝗲𝗮𝗺](t.me/GroupTidakDiketahui) | "
         f"[𝗠𝘆 𝗜𝗻𝘀𝘁𝗮𝗴𝗿𝗮𝗺]({INSTAGRAM_ALIVE}) | ")
     if ALIVE_LOGO:
-        try:
-            logo = ALIVE_LOGO
-            await alive.delete()
-            msg = await bot.send_file(alive.chat_id, logo, caption=output)
-            await asyncio.sleep(500)
-            await msg.delete()
-        except BaseException:
-            await alive.edit(
-                output + "\n\n *`Logo Yang Disediakan Tidak Valid."
-                "\nPastikan Tautan Yang Anda Gunakan Valid`"
-            )
-            await asyncio.sleep(100)
-            await alive.delete()
-    else:
-        await alive.edit(output)
-        await asyncio.sleep(100)
+    try:
+        logo = ALIVE_LOGO
+        await bot.send_file(alive.chat_id, logo, caption=output)
         await alive.delete()
+    except MediaEmptyError:
+        await alive.edit(
+            output + "\n\n *`The provided logo is invalid."
+            "\nMake sure the link is directed to the logo picture`"
+        )
+else:
+    await alive.edit(output)
 
 
 @register(outgoing=True, pattern="^.edalive")
