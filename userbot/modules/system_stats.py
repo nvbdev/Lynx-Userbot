@@ -422,21 +422,17 @@ CMD_HELP.update({
     "\n\n⚡𝘾𝙈𝘿⚡: `.db`"
     "\n↳ : Shows database related info."
     "\n\n⚡𝘾𝙈𝘿⚡: `.spc`"
-    "\n↳ : Show system specification."
-})
-CMD_HELP.update({
+    "\n↳ : Show system specification.",
     "alive": "✘ Pʟᴜɢɪɴ : Alive"
     "\n\n⚡𝘾𝙈𝘿⚡: `.lynx` or `.xon` or `.alive`"
     "\n↳ : To see whether your bot is working or not."
     "\n\n⚡𝘾𝙈𝘿⚡: `.edalive` <text>"
     "\n↳ : Changes the 'user' in alive to the text you want."
     "\n\n⚡𝘾𝙈𝘿⚡: `.restalive`"
-    "\n↳ : Resets the user to default."
-})
-CMD_HELP.update({
-        "botversion": "✘ Pʟᴜɢɪɴ : Robot Version"
-        "\n\n⚡𝘾𝙈𝘿⚡: `.botver`"
-        "\n↳ : Shows the userbot version."
-        "\n\n⚡𝘾𝙈𝘿⚡: `.pip` <module(s)>"
-        "\n↳ : Does a search of pip modules(s)."
+    "\n↳ : Resets the user to default.",
+    "botversion": "✘ Pʟᴜɢɪɴ : Robot Version"
+    "\n\n⚡𝘾𝙈𝘿⚡: `.botver`"
+    "\n↳ : Shows the userbot version."
+    "\n\n⚡𝘾𝙈𝘿⚡: `.pip` <module(s)>"
+    "\n↳ : Does a search of pip modules(s)."
 })
