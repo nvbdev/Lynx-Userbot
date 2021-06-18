@@ -6,16 +6,11 @@
 """Userbot help command"""
 
 import asyncio
-from userbot import ALIVE_NAME, CMD_HELP
+from userbot import ALIVE_NAME, CMD_HELP, DEFAULTUSER
 from userbot.events import register
 from platform import uname
 
 modules = CMD_HELP
-
-# Ported by KENZO (Lynx-Userbot)
-# ================= CONSTANT =================
-DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else uname().node
-# ============================================
 
 
 @register(outgoing=True, pattern="^.help(?: |$)(.*)")
@@ -35,11 +30,11 @@ async def help(event):
             string += "`" + str(i)
             string += "`\t|  "
         await event.edit("⚡")
-        await asyncio.sleep(3)
+        await asyncio.sleep(2.5)
         await event.edit("**⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡**\n\n"
                          f"**◑» Bᴏᴛ ᴏꜰ {DEFAULTUSER}**\n**◑» Pʟᴜɢɪɴ : {len(modules)}**\n\n"
                          "**• Mᴀɪɴ Mᴇɴᴜ :**\n"
                          f"╰►| {string} ◄─\n\n")
-        await event.reply(f"\n**Contoh** : Ketik » `.help busy` Untuk Informasi Pengunaan Plugin Busy.\nAtau Bisa Juga Dengan Cara, Ketik `.helpme` Untuk Menggunakan Inline Bot Dari @BotFather.\n Jika Tidak Tahu Caranya, Silahkan Bertanya ke » [sini](t.me/SyndicateTwenty4) « Terimakasih 🙏")
+        await event.reply(f"\n**Contoh** : Ketik » `.help admin` Untuk Informasi Pengunaan Plugin Admin.")
         await asyncio.sleep(1000)
         await event.delete()
