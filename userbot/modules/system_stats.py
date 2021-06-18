@@ -26,8 +26,7 @@ from userbot import (
     StartTime,
     UPSTREAM_REPO_BRANCH,
     INSTAGRAM_ALIVE,
-    bot,
-    lynxlogo
+    bot
 )
 from userbot.events import register
 
