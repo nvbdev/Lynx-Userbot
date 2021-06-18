@@ -20,13 +20,13 @@ from userbot import (
     LOGS,
     PM_AUTO_BAN,
     ALIVE_NAME,
-    CUSTOM_PMPERMIT_TEXT,
-    bot
+    CUSTOM_PMPERMIT_TEXT
 )
 from userbot.events import register
 
 
-PM_PERMIT_PIC = os.environ.get("PM_PERMIT_PIC", None) or "resource/logo/LynxUserbot-Button.jpg"
+PM_PERMIT_PIC = os.environ.get("PM_PERMIT_PIC",
+                               None) or "resource/logo/LynxUserbot-Button.jpg"
 if PM_PERMIT_PIC is None:
     WARN_PIC = "resource/logo/LynxUserbot-Button.jpg"
 else:
@@ -98,13 +98,13 @@ async def permitpm(event):
                     ):
                         await message.delete()
                     await event.reply(
-                             file=file,
-                             caption=search
+                        file=file,
+                        caption=search
                     )
             else:
                 await event.reply(
-                         file=file,
-                         caption=search
+                    file=file,
+                    caption=search
                 )
             LASTMSG.update({event.chat_id: event.text})
             if notifsoff:
@@ -428,6 +428,4 @@ CMD_HELP.update(
         "\n↳ : Menghapus Pesan PM ke Default."
         "\n\nPesan Pribadi Yang Belum Diterima Saat Ini Tidak Dapat Disetel"
         "\nke Teks Format. Seperti : Bold, Underline, Link, dll."
-        "\nPesan Akan Terkirim Secara Normal."
-    }
-)
+        "\nPesan Akan Terkirim Secara Normal."})
