@@ -451,6 +451,7 @@ with bot:
         me = bot.get_me()
         uid = me.id
 
+        aliplogo = ALIVE_LOGO
         lynxlogo = "resource/logo/LynxUserbot-Button.jpg"
         plugins = CMD_HELP
 
@@ -564,7 +565,7 @@ with bot:
                 buttons = paginate_help(
                     current_page_number + 1, dugmeler, "helpme")
                 # https://t.me/TelethonChat/115200
-                await event.edit(buttons=buttons)
+                await event.edit(file=lynxlogo, buttons=buttons)
             else:
                 reply_pop_up_alert = f"🚫!WARNING!🚫 Jangan Menggunakan Milik {DEFAULTUSER}."
                 await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
@@ -576,17 +577,14 @@ with bot:
         )
         async def on_plug_in_callback_query_handler(event):
             if event.query.user_id == uid:  # Lynx-Openeer
-                modul_name = event.data_match.group(1).decode("UTF-8")
-
-                cmdhel = str(CMD_HELP[modul_name])
                 # https://t.me/TelethonChat/115200
                 await event.edit(
+                    file=aliplogo,
                     link_preview=True,
                     buttons=[
                         [Button.url("⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡", "t.me/LynxUserbot")],
-                        [Button.inline("Open Menu", data="ub_modul{}".format(cmdhel))],
+                        [Button.url("[⊙] 𝗠𝘆 𝗜𝗻𝘀𝘁𝗮𝗴𝗿𝗮𝗺", f"{INSTAGRAM_ALIVE}")],
                     ]
-
                 )
                 await event.delete()
 
@@ -603,7 +601,7 @@ with bot:
                     current_page_number - 1, dugmeler, "helpme"  # pylint:disable=E0602
                 )
                 # https://t.me/TelethonChat/115200
-                await event.edit(buttons=buttons)
+                await event.edit(file=aliplogo, buttons=buttons)
             else:
                 reply_pop_up_alert = f"🚫!WARNING!🚫 Jangan Menggunakan Milik {DEFAULTUSER}."
                 await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
@@ -631,7 +629,7 @@ with bot:
                 reply_pop_up_alert = (
                     help_string
                     if help_string is not None
-                    else "{} No document has been written for module.".format(
+                    else "{} Tidak Ada Document Yang Tertulis Untuk Plugin".format(
                         modul_name
                     )
                 )
