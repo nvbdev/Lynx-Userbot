@@ -571,23 +571,6 @@ with bot:
 
         @tgbot.on(
             events.callbackquery.CallbackQuery(  # pylint:disable=E0602
-                data=re.compile(rb"helpme_open\((.+?)\)")
-            )
-        )
-        async def on_plug_in_callback_query_handler(event):
-            if event.query.user_id == uid:  # @LynxUserbot
-                # https://t.me/TelethonChat/115200
-                await event.edit(
-                    file=lynxlogo,
-                    link_preview=True,
-                    buttons=paginate_help(0, dugmeler, "helpme"
-                                          ),
-                    result,
-                    buttons=buttons
-                )
-
-        @tgbot.on(
-            events.callbackquery.CallbackQuery(  # pylint:disable=E0602
                 data=re.compile(rb"helpme_close\((.+?)\)")
             )
         )
@@ -598,11 +581,11 @@ with bot:
                     link_preview=True,
                     buttons=[
                         [Button.url("⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡", "t.me/LynxUserbot")],
-                        [Button.inline("Open Menu", data="helpme_open{}")],
+                        [Button.inline("Open Menu", data="ub_modul{}".format(x))],
                     ],
-                    buttons=buttons,
                     result
                 )
+                await event.delete()
 
         @tgbot.on(
             events.callbackquery.CallbackQuery(  # pylint:disable=E0602
@@ -624,7 +607,7 @@ with bot:
 
         @tgbot.on(
             events.callbackquery.CallbackQuery(  # pylint:disable=E0602
-                data=re.compile(rb"ub_modul_(.*)")
+                data=re.compile(b"ub_modul_(.*)")
             )
         )
         async def on_plug_in_callback_query_handler(event):
