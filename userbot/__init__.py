@@ -582,8 +582,8 @@ with bot:
                     buttons=[
                         [Button.url("⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡", "t.me/LynxUserbot")],
                         [Button.inline("Open Menu", data="ub_modul{}".format(x))],
-                    ],
-                    result
+                    ]
+
                 )
                 await event.delete()
 
