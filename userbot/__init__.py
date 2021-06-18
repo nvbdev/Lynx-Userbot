@@ -178,7 +178,7 @@ ZIP_DOWNLOAD_DIRECTORY = os.environ.get("ZIP_DOWNLOAD_DIRECTORY", "./zips")
 TERM_ALIAS = os.environ.get("TERM_ALIAS", None)
 
 # Bot Version
-BOT_VER = os.environ.get("BOT_VER", "0.2.9")
+BOT_VER = os.environ.get("BOT_VER", "0.3.0")
 
 # Default .alive Username
 ALIVE_USERNAME = os.environ.get("ALIVE_USERNAME", None)
@@ -565,7 +565,7 @@ with bot:
                 buttons = paginate_help(
                     current_page_number + 1, dugmeler, "helpme")
                 # https://t.me/TelethonChat/115200
-                await event.edit(file=lynxlogo, buttons=buttons)
+                await event.edit(buttons=buttons)
             else:
                 reply_pop_up_alert = f"🚫!WARNING!🚫 Jangan Menggunakan Milik {DEFAULTUSER}."
                 await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
@@ -601,7 +601,7 @@ with bot:
                     current_page_number - 1, dugmeler, "helpme"  # pylint:disable=E0602
                 )
                 # https://t.me/TelethonChat/115200
-                await event.edit(file=aliplogo, buttons=buttons)
+                await event.edit(buttons=buttons)
             else:
                 reply_pop_up_alert = f"🚫!WARNING!🚫 Jangan Menggunakan Milik {DEFAULTUSER}."
                 await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
