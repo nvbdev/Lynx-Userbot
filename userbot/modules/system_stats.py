@@ -7,6 +7,7 @@
 
 
 import asyncio
+from telethon.errors.rpcerrorlist import MediaEmptyError
 from asyncio import create_subprocess_exec as asyncrunapp
 from asyncio.subprocess import PIPE as asyncPIPE
 from platform import python_version, uname
@@ -266,8 +267,7 @@ else:
 
 @register(outgoing=True, pattern=r"^\.(?:kenzo|iam)\s?(.)?")
 async def amireallyalive(alive):
-    await bot.get_me()
-    await get_readable_time((time.time() - StartTime))
+    logo = ALIVE_LOGO
     output = (
         f"**ㅤㅤㅤㅤ ⚡【𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏】⚡**\n"
         f"╔══════════╣۩ ✞ ۩╠══════════╗ \n"
@@ -295,8 +295,6 @@ else:
 
 @register(outgoing=True, pattern=r"^\.(?:alive|on)\s?(.)?")
 async def iamreallyalive(alive):
-    user = await bot.get_me()
-    await get_readable_time((time.time() - StartTime))
     await alive.edit("__Connecting to server.__")
     await alive.edit("__Connecting to server..__")
     await alive.edit("__Connecting to server...__")
@@ -376,24 +374,25 @@ else:
     await alive.edit(output)
 
 
-@register(outgoing=True, pattern="^.edalive")
+@register(outgoing=True, pattern=r"^\.dealiveu")
 async def amireallyaliveuser(username):
     """For .aliveu command, change the username in the .alive command."""
     message = username.text
-    output = ".aliveu [new username] tidak boleh kosong"
-    if not (message == ".aliveu" and message[7:8] != " "):
+    output = ".dealiveu [new user without brackets] nor can it be empty"
+    if not (message == ".dealiveu" or message[7:8] != " "):
         newuser = message[8:]
-        global DEFAULTUSER  # global statement
-        DEFAULTUSER = username
+        global DEFAULTUSER
+        DEFAULTUSER = newuser
         output = "Successfully changed user to " + newuser + "!"
     await username.edit("`" f"{output}" "`")
 
 
 @register(outgoing=True, pattern=r"^\.resetalive$")
 async def amireallyalivereset(ureset):
-    global DEFAULTUSER  # global statement
+    """For .resetalive command, reset the username in the .alive command."""
+    global DEFAULTUSER
     DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else uname().node
-    await ureset.edit("`" "Successfully Reset User For Ur Alive!" "`")
+    await ureset.edit("`" "Successfully reset user for alive!" "`")
 
 
 CMD_HELP.update({
@@ -407,7 +406,7 @@ CMD_HELP.update({
     "alive": "✘ Pʟᴜɢɪɴ : Alive"
     "\n\n⚡𝘾𝙈𝘿⚡: `.lynx` or `.xon` or `.alive`"
     "\n↳ : To see whether your bot is working or not."
-    "\n\n⚡𝘾𝙈𝘿⚡: `.edalive` <text>"
+    "\n\n⚡𝘾𝙈𝘿⚡: `.dealiveu` <New Username>"
     "\n↳ : Changes the 'user' in alive to the text you want."
     "\n\n⚡𝘾𝙈𝘿⚡: `.restalive`"
     "\n↳ : Resets the user to default.",
