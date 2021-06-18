@@ -237,7 +237,6 @@ async def pipcheck(pip):
 async def amireallyalive(alive):
     await bot.get_me()
     await get_readable_time((time.time() - StartTime))
-    ALIVE_LOGO = lynxlogo
     output = (
         f"`Robot` is running on `{repo.active_branch.name}`\n"
         "`====================================`\n"
@@ -255,7 +254,7 @@ async def amireallyalive(alive):
     )
     if ALIVE_LOGO:
         try:
-            logo = ALIVE_LOGO
+            logo = "resource/logo/LynxUserbot-Button.jpg"
             await alive.delete()
             msg = await bot.send_file(alive.chat_id, logo, caption=output)
             await asyncio.sleep(200)
