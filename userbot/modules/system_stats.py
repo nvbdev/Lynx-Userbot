@@ -237,6 +237,8 @@ async def pipcheck(pip):
 async def ireallyalive(event):
     """For .lynx command, check if the bot is running."""
     logo = ALIVE_LOGO
+    uname = platform.uname()
+    svmem = psutil.virtual_memory()
     output = (
         f"`Robot` is running on `{repo.active_branch.name}`\n"
         "`====================================`\n"
@@ -245,7 +247,7 @@ async def ireallyalive(event):
         f"💻 `System         :` {uname.system}\n"
         f"👤 `User           :` {DEFAULTUSER}\n"
         "`====================================`\n"
-        "📊 **Memory in use**\n"
+        "📊 **Memori Digunakan**\n"
         f"`Total     : {get_size(svmem.total)}`\n"
         f"`Available : {get_size(svmem.available)}`\n"
         f"`Used      : {get_size(svmem.used)}`\n"
@@ -320,8 +322,7 @@ async def amireallyalive(alive):
         f"╭╼════════════════════╾╮\n"
         f"│    ⇱  𝐖𝐞𝐥𝐜𝐨𝐦𝐞 𝐓𝐨 𝐌𝐲 𝐏𝐫𝐨𝐟𝐢𝐥𝐞 ⇲ \n"
         f"┟╼════════════════════╾┤\n"
-        f"╟◈ 👤  `Name     :` {DEFAULTUSER}\n"
-        f"╟◈ 🔎  `Username :` @{user.username}\n"
+        f"╟◈ 👤  `User     :` {DEFAULTUSER}\n"
         f"╟◈ ⚙️  `Telethon :` v. {version.__version__}\n"
         f"╟◈ 🐍  `Python   :` v. {python_version()}\n"
         f"╟◈ 👾  `Bot Ver  :` v. {BOT_VER}\n"
