@@ -253,7 +253,7 @@ async def amireallyalive(alive):
     )
     if ALIVE_LOGO:
         try:
-            logo = "resource/logo/LynxUserbot-Button.jpg"
+            logo = ALIVE_LOGO
             await alive.delete()
             msg = await bot.send_file(alive.chat_id, logo, caption=output)
             await asyncio.sleep(200)
