@@ -6,11 +6,11 @@
 # <https://www.github.com/TeamUltroid/Ultroid/blob/main/LICENSE/>.
 # Ported for Lynx-Userbot by @SyndicateTwenty4
 
-from telethon.tl.types import ChannelParticipantAdmin as admin
-from telethon.tl.types import ChannelParticipantCreator as owner
-from telethon.tl.types import UserStatusOffline as off
-from telethon.tl.types import UserStatusOnline as onn
-from telethon.tl.types import UserStatusRecently as rec
+from telethon.tl.types import ChannelParticipantAdmin
+from telethon.tl.types import ChannelParticipantCreator
+from telethon.tl.types import UserStatusOffline
+from telethon.tl.types import UserStatusOnline
+from telethon.tl.types import UserStatusRecently
 from telethon.utils import get_display_name
 from userbot import CMD_HELP
 from userbot.events import register
@@ -19,47 +19,47 @@ from userbot.events import register
 @register(outgoing=True,
           pattern=r"^.tags(?: |$)(on|off|all|bots|rec|admin|owner)?")
 async def ngeteg(event):
-    okk = event.text
-    lll = event.pattern_match.group(2)
+    kenzo = str(event.pattern_match.group(1))
+    okk = str(event.text)
     users = 0
     o = 0
     nn = 0
     rece = 0
-    if lll:
-        xx = f"{lll}"
+    if kenzo:
+        lyn = f"{kenzo}"
     else:
-        xx = ""
+        lyn = ""
     async for bb in event.client.iter_participants(event.chat_id, 99):
         users = users + 1
         x = bb.status
         y = bb.participant
-        if isinstance(x, onn):
+        if isinstance(x, UserStatusOnline) as on:
             o = o + 1
             if "on" in okk:
-                xx += f"\n[{get_display_name(bb)}](tg://user?id={bb.id})"
-        if isinstance(x, off):
+                lyn += f"\n[{get_display_name(bb)}](tg://user?id={bb.id})"
+        if isinstance(x, UserStatusOffline) as off:
             nn = nn + 1
             if "off" in okk:
                 if not (bb.bot or bb.deleted):
-                    xx += f"\n[{get_display_name(bb)}](tg://user?id={bb.id})"
-        if isinstance(x, rec):
+                    lyn += f"\n[{get_display_name(bb)}](tg://user?id={bb.id})"
+        if isinstance(x, UserStatusRecently) as rec:
             rece = rece + 1
             if "rec" in okk:
                 if not (bb.bot or bb.deleted):
-                    xx += f"\n[{get_display_name(bb)}](tg://user?id={bb.id})"
-        if isinstance(y, owner):
+                    lyn += f"\n[{get_display_name(bb)}](tg://user?id={bb.id})"
+        if isinstance(y, ChannelParticipantCreator) as owner:
             if "admin" or "owner" in okk:
-                xx += f"\n꧁[{get_display_name(bb)}](tg://user?id={bb.id})꧂"
-        if isinstance(y, admin):
+                lyn += f"\n꧁[{get_display_name(bb)}](tg://user?id={bb.id})꧂"
+        if isinstance(y, ChannelParticipantAdmin) as admin:
             if "admin" in okk:
                 if not bb.deleted:
-                    xx += f"\n[{get_display_name(bb)}](tg://user?id={bb.id})"
+                    lyn += f"\n[{get_display_name(bb)}](tg://user?id={bb.id})"
         if "all" in okk:
             if not (bb.bot or bb.deleted):
-                xx += f"\n[{get_display_name(bb)}](tg://user?id={bb.id})"
+                lyn += f"\n[{get_display_name(bb)}](tg://user?id={bb.id})"
         if "bot" in okk:
             if bb.bot:
-                xx += f"\n[{get_display_name(bb)}](tg://user?id={bb.id})"
+                lyn += f"\n[{get_display_name(bb)}](tg://user?id={bb.id})"
     await event.client.send_message(event.chat_id, xx)
     await event.delete()
 
