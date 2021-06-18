@@ -19,16 +19,15 @@ import time
 from datetime import datetime
 import psutil
 from userbot import (
-     ALIVE_LOGO,
-     ALIVE_NAME,
-     BOT_VER,
-     LYNX_TEXT_CUSTOM,
-     CMD_HELP,
-     StartTime,
-     UPSTREAM_REPO_BRANCH,
-     INSTAGRAM_ALIVE,
-     bot,
-     lynxlogo
+    ALIVE_LOGO,
+    ALIVE_NAME,
+    BOT_VER,
+    CMD_HELP,
+    StartTime,
+    UPSTREAM_REPO_BRANCH,
+    INSTAGRAM_ALIVE,
+    bot,
+    lynxlogo
 )
 from userbot.events import register
 
@@ -150,7 +149,8 @@ async def sysdetails(sysd):
 @register(outgoing=True, pattern=r"^\.botver$")
 async def bot_ver(event):
     """For .botver command, get the bot version."""
-    if not event.text[0].isalpha() and event.text[0] not in ("/", "#", "@", "!"):
+    if not event.text[0].isalpha() and event.text[0] not in (
+            "/", "#", "@", "!"):
         if which("git") is not None:
             ver = await asyncrunapp(
                 "git",
@@ -161,7 +161,8 @@ async def bot_ver(event):
                 stderr=asyncPIPE,
             )
             stdout, stderr = await ver.communicate()
-            verout = str(stdout.decode().strip()) + str(stderr.decode().strip())
+            verout = str(stdout.decode().strip()) + \
+                str(stderr.decode().strip())
 
             rev = await asyncrunapp(
                 "git",
@@ -172,7 +173,8 @@ async def bot_ver(event):
                 stderr=asyncPIPE,
             )
             stdout, stderr = await rev.communicate()
-            revout = str(stdout.decode().strip()) + str(stderr.decode().strip())
+            revout = str(stdout.decode().strip()) + \
+                str(stderr.decode().strip())
 
             await event.edit(
                 "`Lynx Version: " f"{verout}" "` \n" "`Revision: " f"{revout}" "`"
@@ -181,7 +183,6 @@ async def bot_ver(event):
             await event.edit(
                 "Shame that you don't have git, you're running - 'v1.beta.4' anyway!"
             )
-
 
 
 @register(outgoing=True, pattern=r"^\.pip(?: |$)(.*)")
@@ -234,23 +235,23 @@ async def pipcheck(pip):
 
 @register(outgoing=True, pattern=r"^\.(?:lynx|xon)\s?(.)?")
 async def amireallyalive(alive):
-    user = await bot.get_me()
+    await bot.get_me()
     await get_readable_time((time.time() - StartTime))
     ALIVE_LOGO = lynxlogo
     output = (
-       f"`Robot` is running on `{repo.active_branch.name}`\n"
-       "`====================================`\n"
-       f"🐍 `Python         :` v{python_version()}\n"
-       f"⚙️ `Telethon       :` v{version.__version__}\n"
-       f"💻 `System         :` {uname.system}\n"
-       f"👤 `User           :` {DEFAULTUSER}\n"
-       "`====================================`\n"
-       "📊 **Memory in use**\n"
-       f"`Total     : {get_size(svmem.total)}`\n"
-       f"`Available : {get_size(svmem.available)}`\n"
-       f"`Used      : {get_size(svmem.used)}`\n"
-       f"`Percentage: {svmem.percent}%`\n"
-       "`====================================`\n"
+        f"`Robot` is running on `{repo.active_branch.name}`\n"
+        "`====================================`\n"
+        f"🐍 `Python         :` v{python_version()}\n"
+        f"⚙️ `Telethon       :` v{version.__version__}\n"
+        f"💻 `System         :` {uname.system}\n"
+        f"👤 `User           :` {DEFAULTUSER}\n"
+        "`====================================`\n"
+        "📊 **Memory in use**\n"
+        f"`Total     : {get_size(svmem.total)}`\n"
+        f"`Available : {get_size(svmem.available)}`\n"
+        f"`Used      : {get_size(svmem.used)}`\n"
+        f"`Percentage: {svmem.percent}%`\n"
+        "`====================================`\n"
     )
     if ALIVE_LOGO:
         try:
@@ -286,8 +287,7 @@ async def amireallyalive(alive):
         f"╟⟩⟩ 👾 • `ʙᴏᴛ      :`v.{BOT_VER}                ㅤㅤㅤ ║\n"
         f"╟⟩⟩ 📂 • `ᴍᴏᴅᴜʟᴇ   :`{len(modules)} ㅤㅤㅤㅤㅤㅤㅤ   ║\n"
         f"╚══════════╣۩ ✞ ۩╠══════════╝ \n"
-        f"🐈 : [𝗥𝗘𝗣𝗢-𝗟𝘆𝗻𝘅](https://kenzo-404.github.io/Lynx-Userbot)\n👥 : [𝗟𝘆𝗻𝘅-𝗧𝗲𝗮𝗺](t.me/GroupTidakDiketahui)"
-    )
+        f"🐈 : [𝗥𝗘𝗣𝗢-𝗟𝘆𝗻𝘅](https://kenzo-404.github.io/Lynx-Userbot)\n👥 : [𝗟𝘆𝗻𝘅-𝗧𝗲𝗮𝗺](t.me/GroupTidakDiketahui)")
     if ALIVE_LOGO:
         try:
             logo = ALIVE_LOGO
