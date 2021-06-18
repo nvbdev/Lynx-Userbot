@@ -6,9 +6,8 @@
 """Userbot help command"""
 
 import asyncio
-from userbot import ALIVE_NAME, CMD_HELP, DEFAULTUSER
+from userbot import CMD_HELP, DEFAULTUSER
 from userbot.events import register
-from platform import uname
 
 modules = CMD_HELP
 
