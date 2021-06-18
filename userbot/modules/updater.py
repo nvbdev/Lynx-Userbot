@@ -120,7 +120,7 @@ async def push(event, repo, ups_rem, ac_br, txt):
     return
 
 
-async def update(event, repo, ups_rem, ac_br):
+async def pull(event, repo, ups_rem, ac_br):
     try:
         ups_rem.pull(ac_br)
     except GitCommandError:
@@ -218,7 +218,7 @@ async def upstream(event):
         )
     if conf == "-pull":
         await event.edit("`Updating userbot, please wait....`")
-        await update(event, repo, ups_rem, ac_br)
+        await pull(event, repo, ups_rem, ac_br)
     return
 
 
