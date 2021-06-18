@@ -21,11 +21,12 @@ from userbot import (
     PM_AUTO_BAN,
     ALIVE_NAME,
     CUSTOM_PMPERMIT_TEXT,
+    bot
 )
 from userbot.events import register
 
 
-PM_PERMIT_PIC = os.environ.get("PM_PERMIT_PIC", None)
+PM_PERMIT_PIC = os.environ.get("PM_PERMIT_PIC", None) or "resource/logo/LynxUserbot-Button.jpg"
 if PM_PERMIT_PIC is None:
     WARN_PIC = "resource/logo/LynxUserbot-Button.jpg"
 else:
@@ -96,9 +97,15 @@ async def permitpm(event):
                         event.chat_id, from_user="me", search=UNAPPROVED_MSG, file=WARN_PIC
                     ):
                         await message.delete()
-                    await event.reply(f"{WARN_PIC}\n\n{UNAPPROVED_MSG}")
+                    await event.reply(
+                             file=file,
+                             caption=search
+                    )
             else:
-                await event.reply(f"{WARN_PIC}\n\n{UNAPPROVED_MSG}")
+                await event.reply(
+                         file=file,
+                         caption=search
+                )
             LASTMSG.update({event.chat_id: event.text})
             if notifsoff:
                 await event.client.send_read_acknowledge(event.chat_id)
@@ -107,7 +114,7 @@ async def permitpm(event):
             else:
                 COUNT_PM[event.chat_id] = COUNT_PM[event.chat_id] + 1
 
-            if COUNT_PM[event.chat_id] > 4:
+            if COUNT_PM[event.chat_id] > 5:
                 await event.respond(
                     "`Anda Telah Di Blokir Karna Melakukan Spam Pesan`\n"
                     "`Ke Room Chat Saya 😼`"
@@ -120,7 +127,7 @@ async def permitpm(event):
                     if BOTLOG:
                         await event.client.send_message(
                             BOTLOG_CHATID,
-                            "Mohon Maaf, Telah Terjadi Masalah Saat Menghitung Private Message, Mohon Restart Saya 😿 !",
+                            "Mohon Maaf, Telah Terjadi Masalah Saat Menghitung Private Message, Mohon Restart Lynx !",
                         )
                     return LOGS.info("CountPM wen't rarted boi")
 
@@ -421,4 +428,6 @@ CMD_HELP.update(
         "\n↳ : Menghapus Pesan PM ke Default."
         "\n\nPesan Pribadi Yang Belum Diterima Saat Ini Tidak Dapat Disetel"
         "\nke Teks Format. Seperti : Bold, Underline, Link, dll."
-        "\nPesan Akan Terkirim Normal Saja."})
+        "\nPesan Akan Terkirim Secara Normal."
+    }
+)
