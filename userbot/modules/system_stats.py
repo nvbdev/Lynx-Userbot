@@ -249,7 +249,7 @@ async def ireallyalive(event):
     if ALIVE_LOGO:
         try:
             logo = ALIVE_LOGO
-            await bot.send_file(alive.chat_id, logo, caption=output)
+            await bot.send_file(event.chat_id, logo, caption=output)
             await event.delete()
         except MediaEmptyError:
             await event.edit(
