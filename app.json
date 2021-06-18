@@ -145,10 +145,6 @@
       "description": "Nama untuk menunjukan pesan .alive",
       "required": false
     },
-    "LYNX_TEXT_CUSTOM": {
-      "description": "Kustom Pesan Alive Mu Untuk Perintah .lynx (Isi Terserah)",
-      "required": false
-    },
     "S_PACK_NAME": {
       "description": "Nama Sticker Pack Mu",
       "required": false
