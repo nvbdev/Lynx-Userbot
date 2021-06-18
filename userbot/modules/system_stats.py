@@ -252,17 +252,17 @@ async def amireallyalive(alive):
         "`====================================`\n"
     )
     if ALIVE_LOGO:
-    try:
-        logo = ALIVE_LOGO
-        await bot.send_file(alive.chat_id, logo, caption=output)
-        await alive.delete()
-    except MediaEmptyError:
-        await alive.edit(
-            output + "\n\n *`The provided logo is invalid."
-            "\nMake sure the link is directed to the logo picture`"
-        )
-else:
-    await alive.edit(output)
+        try:
+            logo = ALIVE_LOGO
+            await bot.send_file(alive.chat_id, logo, caption=output)
+            await alive.delete()
+        except MediaEmptyError:
+            await alive.edit(
+                output + "\n\n *`The provided logo is invalid."
+                "\nMake sure the link is directed to the logo picture`"
+            )
+    else:
+        await alive.edit(output)
 
 
 @register(outgoing=True, pattern=r"^\.(?:kenzo|iam)\s?(.)?")
@@ -280,17 +280,17 @@ async def amireallyalive(alive):
         f"╚══════════╣۩ ✞ ۩╠══════════╝ \n"
         f"🐈 : [𝗥𝗘𝗣𝗢-𝗟𝘆𝗻𝘅](https://kenzo-404.github.io/Lynx-Userbot)\n👥 : [𝗟𝘆𝗻𝘅-𝗧𝗲𝗮𝗺](t.me/GroupTidakDiketahui)")
     if ALIVE_LOGO:
-    try:
-        logo = ALIVE_LOGO
-        await bot.send_file(alive.chat_id, logo, caption=output)
-        await alive.delete()
-    except MediaEmptyError:
-        await alive.edit(
-            output + "\n\n *`The provided logo is invalid."
-            "\nMake sure the link is directed to the logo picture`"
-        )
-else:
-    await alive.edit(output)
+        try:
+            logo = ALIVE_LOGO
+            await bot.send_file(alive.chat_id, logo, caption=output)
+            await alive.delete()
+        except MediaEmptyError:
+            await alive.edit(
+                output + "\n\n *`The provided logo is invalid."
+                "\nMake sure the link is directed to the logo picture`"
+            )
+    else:
+        await alive.edit(output)
 
 
 @register(outgoing=True, pattern=r"^\.(?:alive|on)\s?(.)?")
@@ -361,17 +361,17 @@ async def iamreallyalive(alive):
         f"| [𝗥𝗲𝗽𝗼](https://kenzo-404.github.io/Lynx-Userbot) | [𝗟𝘆𝗻𝘅-𝗧𝗲𝗮𝗺](t.me/GroupTidakDiketahui) | "
         f"[𝗠𝘆 𝗜𝗻𝘀𝘁𝗮𝗴𝗿𝗮𝗺]({INSTAGRAM_ALIVE}) | ")
     if ALIVE_LOGO:
-    try:
-        logo = ALIVE_LOGO
-        await bot.send_file(alive.chat_id, logo, caption=output)
-        await alive.delete()
-    except MediaEmptyError:
-        await alive.edit(
-            output + "\n\n *`The provided logo is invalid."
-            "\nMake sure the link is directed to the logo picture`"
-        )
-else:
-    await alive.edit(output)
+        try:
+            logo = ALIVE_LOGO
+            await bot.send_file(alive.chat_id, logo, caption=output)
+            await alive.delete()
+        except MediaEmptyError:
+            await alive.edit(
+                output + "\n\n *`The provided logo is invalid."
+                "\nMake sure the link is directed to the logo picture`"
+            )
+    else:
+        await alive.edit(output)
 
 
 @register(outgoing=True, pattern=r"^\.dealiveu")
