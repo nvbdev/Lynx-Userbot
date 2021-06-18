@@ -188,7 +188,7 @@ S_PACK_NAME = os.environ.get("S_PACK_NAME", None)
 
 # Default .alive Logo
 ALIVE_LOGO = os.environ.get(
-    "ALIVE_LOGO") or "https://telegra.ph/file/f3c656862a017f945c0bc.png"
+    "ALIVE_LOGO", None) or "https://telegra.ph/file/f3c656862a017f945c0bc.png"
 
 # Link Instagram for CMD Alive
 INSTAGRAM_ALIVE = os.environ.get(
@@ -451,7 +451,7 @@ with bot:
         me = bot.get_me()
         uid = me.id
 
-        aliplogo = ALIVE_LOGO
+        aliplogo = str(ALIVE_LOGO)
         lynxlogo = "resource/logo/LynxUserbot-Button.jpg"
         plugins = CMD_HELP
 
