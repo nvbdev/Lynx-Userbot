@@ -7,6 +7,7 @@
 
 
 import asyncio
+from git import Repo
 from telethon.errors.rpcerrorlist import MediaEmptyError
 from asyncio import create_subprocess_exec as asyncrunapp
 from asyncio.subprocess import PIPE as asyncPIPE
@@ -32,6 +33,7 @@ from userbot.events import register
 
 # ================= CONSTANT =================
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else uname().node
+repo = Repo()
 # ============================================
 
 
@@ -232,7 +234,8 @@ async def pipcheck(pip):
 
 
 @register(outgoing=True, pattern=r"^\.(?:lynx|xon)\s?(.)?")
-async def amireallyalive(alive):
+async def ireallyalive(event):
+    """For .lynx command, check if the bot is running."""
     logo = ALIVE_LOGO
     output = (
         f"`Robot` is running on `{repo.active_branch.name}`\n"
@@ -253,46 +256,20 @@ async def amireallyalive(alive):
         try:
             logo = ALIVE_LOGO
             await bot.send_file(alive.chat_id, logo, caption=output)
-            await alive.delete()
+            await event.delete()
         except MediaEmptyError:
-            await alive.edit(
+            await event.edit(
                 output + "\n\n *`The provided logo is invalid."
                 "\nMake sure the link is directed to the logo picture`"
             )
     else:
         await alive.edit(output)
 
-
-@register(outgoing=True, pattern=r"^\.(?:kenzo|iam)\s?(.)?")
-async def amireallyalive(alive):
-    logo = ALIVE_LOGO
-    output = (
-        f"**ㅤㅤㅤㅤ ⚡【𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏】⚡**\n"
-        f"╔══════════╣۩ ✞ ۩╠══════════╗ \n"
-        f"╟⟩⟩ 🤴 • `ᴏᴡɴᴇʀ    :`[ＫΞＮＺＯ](t.me/SyndicateTwenty4)             ㅤ ║\n"
-        f"╟⟩⟩ 🖥️ • `ꜱʏꜱᴛᴇᴍ.   :`Ubuntu 20.10            ║\n"
-        f"╟⟩⟩ ⚙️ • `ᴛᴇʟᴇᴛʜᴏɴ  :`v.{version.__version__}                ㅤㅤ  ║\n"
-        f"╟⟩⟩ 🐍 • `ᴘʏᴛʜᴏɴ.   :`v.{python_version()} ㅤㅤㅤㅤ         ║\n"
-        f"╟⟩⟩ 👾 • `ʙᴏᴛ      :`v.{BOT_VER}                ㅤㅤㅤ ║\n"
-        f"╟⟩⟩ 📂 • `ᴍᴏᴅᴜʟᴇ   :`{len(modules)} ㅤㅤㅤㅤㅤㅤㅤ   ║\n"
-        f"╚══════════╣۩ ✞ ۩╠══════════╝ \n"
-        f"🐈 : [𝗥𝗘𝗣𝗢-𝗟𝘆𝗻𝘅](https://kenzo-404.github.io/Lynx-Userbot)\n👥 : [𝗟𝘆𝗻𝘅-𝗧𝗲𝗮𝗺](t.me/GroupTidakDiketahui)")
-    if ALIVE_LOGO:
-        try:
-            logo = ALIVE_LOGO
-            await bot.send_file(alive.chat_id, logo, caption=output)
-            await alive.delete()
-        except MediaEmptyError:
-            await alive.edit(
-                output + "\n\n *`The provided logo is invalid."
-                "\nMake sure the link is directed to the logo picture`"
-            )
-    else:
-        await alive.edit(output)
 
 
 @register(outgoing=True, pattern=r"^\.(?:alive|on)\s?(.)?")
-async def iamreallyalive(alive):
+async def amireallyalive(alive):
+    """For .alive command, check if the bot is running."""
     await alive.edit("__Connecting to server.__")
     await alive.edit("__Connecting to server..__")
     await alive.edit("__Connecting to server...__")
@@ -374,7 +351,7 @@ async def iamreallyalive(alive):
 
 @register(outgoing=True, pattern=r"^\.dealiveu")
 async def amireallyaliveuser(username):
-    """For .aliveu command, change the username in the .alive command."""
+    """For .dealiveu command, change the username in the .alive command."""
     message = username.text
     output = ".dealiveu [new user without brackets] nor can it be empty"
     if not (message == ".dealiveu" or message[7:8] != " "):
