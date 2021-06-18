@@ -1,3 +1,6 @@
+# Copyright (C) 2020 Adek Maulana.
+# All rights reserved.
+
 """
    Heroku manager for your userbot
 """
@@ -48,8 +51,8 @@ async def variable(var):
             if variable in heroku_var:
                 if BOTLOG:
                     await var.client.send_message(
-                        BOTLOG_CHATID, "#ConfigVars\n\n"
-                        "**Config Vars**:\n"
+                        BOTLOG_CHATID, "#CONFIGVARS\n\n"
+                        "**Config Vars** :\n"
                         f"`{variable}` **=** `{heroku_var[variable]}`\n"
                     )
                     await var.edit("`Diterima Ke BOTLOG_CHATID...`")
@@ -67,8 +70,8 @@ async def variable(var):
                 for item in configvars:
                     msg += f"`{item}` = `{configvars[item]}`\n"
                 await var.client.send_message(
-                    BOTLOG_CHATID, "#CONFIGVARS\n\n"
-                    "**Config Vars**:\n"
+                    BOTLOG_CHATID, "#GETCONFIGVARS\n\n"
+                    "**Config Vars** :\n"
                     f"{msg}"
                 )
                 await var.edit("`Diterima Ke BOTLOG_CHATID`")
@@ -77,16 +80,16 @@ async def variable(var):
                 await var.edit("`Mohon Ubah BOTLOG Ke True`")
                 return False
     elif exe == "del":
-        await var.edit("`Menghapus Config Vars... 😼`")
+        await var.edit("`Menghapus Config Vars...`")
         variable = var.pattern_match.group(2)
         if variable == '':
-            await var.edit("`Mohon Tentukan Config Vars Yang Mau Anda Hapus`")
+            await var.edit("`Mohon Tentukan Config Vars Yang Mau Anda Hapus.`")
             return False
         if variable in heroku_var:
             if BOTLOG:
                 await var.client.send_message(
-                    BOTLOG_CHATID, "#MenghapusConfigVars\n\n"
-                    "**Menghapus Config Vars**:\n"
+                    BOTLOG_CHATID, "#DELCONFIGVARS\n\n"
+                    "**Menghapus Config Vars** :\n"
                     f"`{variable}`"
                 )
             await var.edit("`Config Vars Telah Dihapus`")
@@ -98,25 +101,30 @@ async def variable(var):
 
 @register(outgoing=True, pattern=r'^.set var (\w*) ([\s\S]*)')
 async def set_var(var):
-    await var.edit("`Sedang Menyetel Config Vars ヅ`")
+    if app is None:
+        return await var.edit(
+            "`[HEROKU]\nPlease setup your`  "
+            "**HEROKU_APP_NAME** and ***HEROKU_API_KEY**."
+        )
+    await var.edit("`Sedang Menyetel Config Vars...`")
     variable = var.pattern_match.group(1)
     value = var.pattern_match.group(2)
     if variable in heroku_var:
         if BOTLOG:
             await var.client.send_message(
-                BOTLOG_CHATID, "#SetelConfigVars\n\n"
+                BOTLOG_CHATID, "#SETCONFIGVARS\n\n"
                 "**Mengganti Config Vars**:\n"
                 f"`{variable}` = `{value}`"
             )
-        await var.edit("`Sedang Di Proses Yang Mulia, Mohon Menunggu Dalam Beberapa Detik 😼`")
+        await var.edit("`Sedang Dalam Prosess...\nMohon Menunggu Dalam Beberapa Detik.")
     else:
         if BOTLOG:
             await var.client.send_message(
-                BOTLOG_CHATID, "#MenambahkanConfigVar\n\n"
-                "**Menambahkan Config Vars**:\n"
+                BOTLOG_CHATID, "#ADDCONVIGVARS\n\n"
+                "**Menambahkan Config Vars** :\n"
                 f"`{variable}` **=** `{value}`"
             )
-        await var.edit("`Yang Mulia Menambahkan Config Vars...`")
+        await var.edit("`Sedang Menambahkan Config Vars...`")
     heroku_var[variable] = value
 
 
@@ -125,11 +133,14 @@ async def set_var(var):
 """
 
 
-@register(outgoing=True, pattern=r"^.kuota(?: |$)")
+@register(outgoing=True, pattern=r"^\.kuota(?: |$)")
 async def dyno_usage(dyno):
-    """
-        Get your account Dyno Usage
-    """
+    """Get your account Dyno Usage."""
+    if app is None:
+        return await dyno.edit(
+            "`[HEROKU]\nPlease setup your`  "
+            "**HEROKU_APP_NAME** and ***HEROKU_API_KEY**."
+        )
     await dyno.edit("⚡")
     await asyncio.sleep(1)
     useragent = (
@@ -138,21 +149,19 @@ async def dyno_usage(dyno):
         'Chrome/81.0.4044.117 Mobile Safari/537.36'
     )
     user_id = Heroku.account().id
-    headers = {
-        'User-Agent': useragent,
-        'Authorization': f'Bearer {HEROKU_API_KEY}',
-        'Accept': 'application/vnd.heroku+json; version=3.account-quotas',
-    }
-    path = "/accounts/" + user_id + "/actions/get-quota"
-    async with aiohttp.ClientSession() as session:
-        async with session.get(heroku_api + path, headers=headers) as r:
-            if r.status != 200:
-                await dyno.client.send_message(
-                    dyno.chat_id,
-                    f"`{r.reason}`",
-                    reply_to=dyno.id
-                )
-                await dyno.edit("`Tidak Bisa Mendapatkan Informasi Dyno Anda 😿`")
+        headers = {
+            "User-Agent": useragent,
+            "Authorization": f"Bearer {HEROKU_API_KEY}",
+            "Accept": "application/vnd.heroku+json; version=3.account-quotas",
+        }
+        path = "/accounts/" + user_id + "/actions/get-quota"
+        async with aiohttp.ClientSession() as session:
+            async with session.get(heroku_api + path, headers=headers) as r:
+                if r.status != 200:
+                    await dyno.client.send_message(
+                        dyno.chat_id, f"`{r.reason}`", reply_to=dyno.id
+                    )
+                await dyno.edit("`Tidak Bisa Mendapatkan Informasi`")
                 return False
             result = await r.json()
             quota = result['account_quota']
@@ -194,21 +203,19 @@ async def dyno_usage(dyno):
                 "╰┈───────────────────┈╯ \n"
                 f"• Oᴡɴᴇʀ  : {ALIVE_NAME} \n"
             )
-            await asyncio.sleep(20)
-            await event.delete()
             return True
 
 
 @register(outgoing=True, pattern=r"^\.logs")
-async def _(dyno):
+async def logs(event):
     try:
         Heroku = heroku3.from_key(HEROKU_API_KEY)
         app = Heroku.app(HEROKU_APP_NAME)
     except BaseException:
-        return await dyno.reply(
+        return await event.reply(
             "`Please make sure your Heroku API Key, Your App name are configured correctly in the heroku var.`"
         )
-    await dyno.edit("`Sedang Mengambil Logs Anda Yang Mulia 😼`")
+    await event.edit("`Generate Logs...`")
     with open("logs.txt", "w") as log:
         log.write(app.get_log())
     fd = codecs.open("logs.txt", "r", encoding="utf-8")
@@ -216,7 +223,7 @@ async def _(dyno):
     key = (requests.post("https://nekobin.com/api/documents",
                          json={"content": data}) .json() .get("result") .get("key"))
     url = f"https://nekobin.com/raw/{key}"
-    await dyno.edit(f"`Ini Logs Heroku Anda Yang Mulia :`\n\nPaste Ke: [Nekobin]({url})")
+    await event.edit(f"`Logs :`\n\nPaste Ke: [Nekobin]({url})")
     return os.remove("logs.txt")
 
 
