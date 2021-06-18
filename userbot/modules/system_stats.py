@@ -240,12 +240,10 @@ async def ireallyalive(event):
     output = (
         f"`Robot` is running on `{repo.active_branch.name}`\n"
         "`====================================`\n"
-        f"🐍 `Python         :` v{python_version()}\n"
-        f"⚙️ `Telethon       :` v{version.__version__}\n"
+        f"🐍 `Python         :` v. {python_version()}\n"
+        f"⚙️ `Telethon       :` v. {version.__version__}\n"
         f"💻 `System         :` Ubuntu 20.10\n"
         f"👤 `User           :` {DEFAULTUSER}\n"
-        "`====================================`\n"
-        f"{str(memm)}\n"
         "`====================================`\n"
     )
     if ALIVE_LOGO:
@@ -317,9 +315,9 @@ async def amireallyalive(alive):
         f"│    ⇱  𝐖𝐞𝐥𝐜𝐨𝐦𝐞 𝐓𝐨 𝐌𝐲 𝐏𝐫𝐨𝐟𝐢𝐥𝐞 ⇲ \n"
         f"┟╼════════════════════╾┤\n"
         f"╟◈ 👤  `User     :` {DEFAULTUSER}\n"
-        f"╟◈ ⚙️  `Telethon :` v{version.__version__}\n"
-        f"╟◈ 🐍  `Python   :` v{python_version()}\n"
-        f"╟◈ 👾  `Bot Ver  :` v{BOT_VER}\n"
+        f"╟◈ ⚙️  `Telethon :` v. {version.__version__}\n"
+        f"╟◈ 🐍  `Python   :` v. {python_version()}\n"
+        f"╟◈ 👾  `Bot Ver  :` v. {BOT_VER}\n"
         f"╟◈ 🛠️  `Branch   :` {UPSTREAM_REPO_BRANCH}\n"
         f"╟◈ 💻  `System   :` Ubuntu 20.10\n"
         f"╟◈ 📂  `Plugins  :` {len(modules)}\n"
