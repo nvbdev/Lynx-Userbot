@@ -141,31 +141,30 @@ async def dyno_usage(dyno):
             "`[HEROKU]\nPlease setup your`  "
             "**HEROKU_APP_NAME** and ***HEROKU_API_KEY**."
         )
-    await dyno.edit("⚡")
-    await asyncio.sleep(1)
+    await dyno.edit("`Getting Information...`")
     useragent = (
-        'Mozilla/5.0 (Linux; Android 10; SM-G975F) '
-        'AppleWebKit/537.36 (KHTML, like Gecko) '
-        'Chrome/81.0.4044.117 Mobile Safari/537.36'
+        "Mozilla/5.0 (Linux; Android 10; SM-G975F) "
+        "AppleWebKit/537.36 (KHTML, like Gecko) "
+        "Chrome/81.0.4044.117 Mobile Safari/537.36"
     )
     user_id = Heroku.account().id
     headers = {
-         "User-Agent": useragent,
-          "Authorization": f"Bearer {HEROKU_API_KEY}",
-         "Accept": "application/vnd.heroku+json; version=3.account-quotas",
-         }
-     path = "/accounts/" + user_id + "/actions/get-quota"
-      async with aiohttp.ClientSession() as session:
-           async with session.get(heroku_api + path, headers=headers) as r:
-                if r.status != 200:
-                    await dyno.client.send_message(
-                        dyno.chat_id, f"`{r.reason}`", reply_to=dyno.id
-                    )
-                await dyno.edit("`Tidak Bisa Mendapatkan Informasi`")
+        "User-Agent": useragent,
+        "Authorization": f"Bearer {HEROKU_API_KEY}",
+        "Accept": "application/vnd.heroku+json; version=3.account-quotas",
+    }
+    path = "/accounts/" + user_id + "/actions/get-quota"
+    async with aiohttp.ClientSession() as session:
+        async with session.get(heroku_api + path, headers=headers) as r:
+            if r.status != 200:
+                await dyno.client.send_message(
+                    dyno.chat_id, f"`{r.reason}`", reply_to=dyno.id
+                )
+                await dyno.edit("`Can't get information...`")
                 return False
             result = await r.json()
-            quota = result['account_quota']
-            quota_used = result['quota_used']
+            quota = result["account_quota"]
+            quota_used = result["quota_used"]
 
             """ - User Quota Limit and Used - """
             remaining_quota = quota - quota_used
@@ -175,12 +174,11 @@ async def dyno_usage(dyno):
             minutes = math.floor(minutes_remaining % 60)
 
             """ - User App Used Quota - """
-            Apps = result['apps']
+            Apps = result["apps"]
             for apps in Apps:
-                if apps.get('app_uuid') == app.id:
-                    AppQuotaUsed = apps.get('quota_used') / 60
-                    AppPercentage = math.floor(
-                        apps.get('quota_used') * 100 / quota)
+                if apps.get("app_uuid") == app.id:
+                    AppQuotaUsed = apps.get("quota_used") / 60
+                    AppPercentage = math.floor(apps.get("quota_used") * 100 / quota)
                     break
             else:
                 AppQuotaUsed = 0
@@ -204,27 +202,6 @@ async def dyno_usage(dyno):
                 f"• Oᴡɴᴇʀ  : {ALIVE_NAME} \n"
             )
             return True
-
-
-@register(outgoing=True, pattern=r"^\.logs")
-async def logs(event):
-    try:
-        Heroku = heroku3.from_key(HEROKU_API_KEY)
-        app = Heroku.app(HEROKU_APP_NAME)
-    except BaseException:
-        return await event.reply(
-            "`Please make sure your Heroku API Key, Your App name are configured correctly in the heroku var.`"
-        )
-    await event.edit("`Generate Logs...`")
-    with open("logs.txt", "w") as log:
-        log.write(app.get_log())
-    fd = codecs.open("logs.txt", "r", encoding="utf-8")
-    data = fd.read()
-    key = (requests.post("https://nekobin.com/api/documents",
-                         json={"content": data}) .json() .get("result") .get("key"))
-    url = f"https://nekobin.com/raw/{key}"
-    await event.edit(f"`Logs :`\n\nPaste Ke: [Nekobin]({url})")
-    return os.remove("logs.txt")
 
 
 CMD_HELP.update({"herokuapp": "✘ Pʟᴜɢɪɴ : Heroku App"
