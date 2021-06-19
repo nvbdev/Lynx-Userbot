@@ -18,7 +18,7 @@
 
 import logging
 from datetime import datetime
-from userbot import API_HASH, BOT_TOKEN, BOT_USERNAME, ALIVE_LOGO, DEFAULTUSER, BOT_VER, INSTAGRAM_ALIVE, LOGS, BOTLOG_CHATID bot
+from userbot import API_HASH, BOT_TOKEN, BOT_USERNAME, ALIVE_LOGO, DEFAULTUSER, BOT_VER, INSTAGRAM_ALIVE, LOGS, BOTLOG_CHATID, bot
 from userbot.events import register
 
 from telethon.sync import TelegramClient, custom, events
