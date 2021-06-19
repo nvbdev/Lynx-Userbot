@@ -5,13 +5,9 @@
    Heroku manager for your userbot
 """
 
-import codecs
 import heroku3
 import aiohttp
 import math
-import os
-import requests
-import asyncio
 
 from userbot import (
     HEROKU_APP_NAME,
@@ -178,7 +174,8 @@ async def dyno_usage(dyno):
             for apps in Apps:
                 if apps.get("app_uuid") == app.id:
                     AppQuotaUsed = apps.get("quota_used") / 60
-                    AppPercentage = math.floor(apps.get("quota_used") * 100 / quota)
+                    AppPercentage = math.floor(
+                        apps.get("quota_used") * 100 / quota)
                     break
             else:
                 AppQuotaUsed = 0
