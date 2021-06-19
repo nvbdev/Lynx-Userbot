@@ -21,12 +21,9 @@ import logging
 from userbot import BOT_USERNAME
 from userbot.events import register
 
-from requests import get
 from telethon.sync import TelegramClient, custom, events
-from telethon.sessions import StringSession
-from telethon import Button, functions, types
+from telethon import Button
 from telethon.utils import get_display_name
-
 
 
 logging.basicConfig(
@@ -280,7 +277,6 @@ with bot:
             "valid entity. Check your environment variables/config.env file."
         )
         quit(1)
-
 
 
 @register(outgoing=True, pattern=r"^\.helpme")
