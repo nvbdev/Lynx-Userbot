@@ -81,6 +81,7 @@ pymongo[srv]
 youtube-dl
 youtube-search-python>=1.3.2
 youtube-search
+youtube_dl
 justwatch
 zipfile38
 validators
