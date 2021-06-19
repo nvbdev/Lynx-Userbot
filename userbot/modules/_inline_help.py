@@ -272,7 +272,6 @@ with bot:
         )
 
 
-
 @register(outgoing=True, pattern=r"^\.helpme")
 async def yardim(event):
     try:
