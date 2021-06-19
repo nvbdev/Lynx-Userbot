@@ -18,7 +18,7 @@
 
 import logging
 
-from userbot import BOT_USERNAME
+from userbot import BOT_USERNAME, BOT_TOKEN, API_HASH, API_ID, bot
 from userbot.events import register
 
 from telethon.sync import TelegramClient, custom, events
