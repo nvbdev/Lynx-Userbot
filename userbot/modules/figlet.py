@@ -49,9 +49,9 @@ async def figlet(e):
     await e.delete()
 
 CMD_HELP.update({
-    "figlet":
-        ">`.fg`"
-    "\nUsage: Enhance ur text to strip line with anvil."
-    "\n\nExample: `.figlet TEXT.STYLE`"
-    "\nSTYLE LIST: `slant`, `3D`, `5line`, `alpha`, `banner`, `doh`, `iso`, `letter`, `allig`, `dotm`, `bubble`, `bulb`, `digi`"
+    "figlet": "✘ Pʟᴜɢɪɴ : Figlet"
+    "\n\n⚡𝘾𝙈𝘿⚡: `.fg` TEXT.STYLE"
+    "\n↳ : Enhance ur text to strip line with anvil."
+    "\n\nExample : `.fg Okay.3D`"
+    "\nSTYLE List: `slant`| `3D`| `5line`| `alpha`| `banner`| `doh`| `iso`| `letter`| `allig`| `dotm`| `bubble`| `bulb`| `digi`"
 })
