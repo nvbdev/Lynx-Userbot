@@ -39,14 +39,14 @@ async def glitch(event):
         return
     reply_message = await event.get_reply_message()
     if not reply_message.media:
-        await event.edit("`Bales Ke Gambar/Sticker`")
+        await event.edit("`Bales Ke Gambar/Sticker.`")
         return
     await bot.download_file(reply_message.media)
     await event.edit("`Sedang Mendownload Media....`")
     if event.is_reply:
         data = await check_media(reply_message)
         if isinstance(data, bool):
-            await event.edit("`File Tidak Di Dukung...`")
+            await event.edit("`File Media Tidak Di Dukung...`")
             return
     else:
         await event.edit("`Balas Ke Media....`")
@@ -58,7 +58,7 @@ async def glitch(event):
             raise ValueError
     except ValueError:
         value = 2
-    await event.edit("```Melakukan Glitch Pada Media Ini ツ```")
+    await event.edit("```Melakukan Glitch Pada Media Ini.```")
     await asyncio.sleep(2)
     file_name = "glitch.png"
     to_download_directory = TEMP_DOWNLOAD_DIRECTORY
@@ -81,7 +81,7 @@ async def glitch(event):
         duration=DURATION,
         loop=LOOP,
     )
-    await event.edit("`Sedang Mengunggah Media Yang Telah Di Glitch ツ`")
+    await event.edit("`Sedang Mengunggah Media Yang Telah Di Glitch.`")
     c_time = time.time()
     nosave = await event.client.send_file(
         event.chat_id,
@@ -113,7 +113,7 @@ async def draw_meme_text(image_path, text):
     os.remove(image_path)
     i_width, i_height = img.size
     m_font = ImageFont.truetype(
-        "LordFont/FontLord.ttf", int((70 / 640) * i_width)
+        "resource/fonts/Againts.ttf", int((70 / 640) * i_width)
     )
     if ";" in text:
         upper_text, lower_text = text.split(";")
@@ -247,7 +247,8 @@ async def check_media(reply_message):
 
 CMD_HELP.update(
     {
-        "glitch": ">`.glitch <1-8>`"
-        "\nUsage: Balas Ke Sticker/Gambar.\nGlitch Level 1-8 Jika Tidak Membuat Level Maka Otomatis Default Level 2"
+        "glitch": "✘ Pʟᴜɢɪɴ : Glitch"
+        "\n\n⚡𝘾𝙈𝘿⚡: `.glitch <1-8>`"
+        "\n↳ : Reply Ke Sticker/Gambar.\nGlitch Level 1-8. Jika Tidak Membuat Level Maka Otomatis Default Level 2"
     }
 )
