@@ -175,7 +175,6 @@ async def _(event):
             await event.edit(animation_chars[i % 6])
 
 
-
 CMD_HELP.update({
     "animasi3": "✘ Pʟᴜɢɪɴ : Animasi 3\
     \n\n⚡𝘾𝙈𝘿⚡: `.nah` ; `.huh` ; `.owner`\
