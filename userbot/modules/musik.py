@@ -166,9 +166,9 @@ async def original(event):
 CMD_HELP.update(
     {
         "music&lyrics": "✘ Pʟᴜɢɪɴ : Music & Lyrics\
-         \n\n⚡𝘾𝙈𝘿⚡: `.music` <Penyanyi/Band - Judul Lagu>\
+         \n\n⚡𝘾𝙈𝘿⚡: `.music` <Penyanyi/Band - JudulLagu>\
          \n↳ : Mengunduh Sebuah Lagu Yang Anda Inginkan.\
-         \n⚡𝘾𝙈𝘿⚡: `.lyrics` <Penyanyi/Band - Judul Lagu>\
+         \n⚡𝘾𝙈𝘿⚡: `.lyrics` <Penyanyi/Band - JudulLagu>\
          \n↳ : Mencari Lirik Lagu Yang Anda Inginkan."
     }
 )
