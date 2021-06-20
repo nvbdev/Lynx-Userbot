@@ -1,4 +1,4 @@
-# Alvin Gans
+
 
 from time import sleep
 from userbot import CMD_HELP, bot
@@ -173,19 +173,19 @@ async def _(event):
             await asyncio.sleep(animation_interval)
 
             await event.edit(animation_chars[i % 6])
-# Alvin Imut
-# Alvin Gans
-# Lord
+
+
+
 CMD_HELP.update({
-    "animasi":
-    "⚡𝘾𝙈𝘿⚡: `.nah` ; `.huh` ; `.owner`\
+    "animasi3": "✘ Pʟᴜɢɪɴ : Animasi 3\
+    \n\n⚡𝘾𝙈𝘿⚡: `.nah` ; `.huh` ; `.owner`\
     \n↳ : Cobain Aja Sendiri.\
     \n\n⚡𝘾𝙈𝘿⚡: `.bunga` ; `.buah`\
-    \n↳ : animasi.\
+    \n↳ : Coba saja ketik su.\
     \n\n⚡𝘾𝙈𝘿⚡: `.waktu`\
-    \n↳ : animasi.\
+    \n↳ : Ketik Sendiri.\
     \n\n⚡𝘾𝙈𝘿⚡: `.hua`\
-    \n↳ : nangis.\
-    \n\n⚡𝘾𝙈𝘿⚡: `.ceritacinta` ; `.canda`\
-    \n↳ : liat sendiri"
+    \n↳ : Nangis.\
+    \n\n⚡𝘾𝙈𝘿⚡: `.ceritacinta` & `.canda`\
+    \n↳ : lihat sendiri."
 })
