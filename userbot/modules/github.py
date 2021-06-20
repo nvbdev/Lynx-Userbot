@@ -47,7 +47,7 @@ async def github(event):
 
 
 CMD_HELP.update({
-     "github": "✘ Pʟᴜɢɪɴ : Github Info"
-     "\n\n⚡𝘾𝙈𝘿⚡: `.git <Github Username>`"
-     "\n↳ : Like .whois but for GitHub Usernames."
+    "github": "✘ Pʟᴜɢɪɴ : Github Info"
+    "\n\n⚡𝘾𝙈𝘿⚡: `.git <Github Username>`"
+    "\n↳ : Like .whois but for GitHub Usernames."
 })
