@@ -1,12 +1,16 @@
 import os
 import re
+import asyncio
 
 import requests
 from html_telegraph_poster.upload_images import upload_image
-from PIL import Image
+from PIL import Image, ImageDraw, ImageFont
 from validators.url import url
+from telegraph import exceptions
+from telegraph import upload_file
+from wget import download
 
-from userbot import CMD_HELP, bot
+from userbot import CMD_HELP, TEMP_DOWNLOAD_DIRECTORY, bot
 from userbot.events import register
 
 EMOJI_PATTERN = re.compile(
@@ -28,6 +32,15 @@ EMOJI_PATTERN = re.compile(
 
 def deEmojify(inputString: str) -> str:
     return re.sub(EMOJI_PATTERN, "", inputString)
+
+
+def convert_toimage(image):
+    img = Image.open(image)
+    if img.mode != "RGB":
+        img = img.convert("RGB")
+    img.save("temp.jpg", "jpeg")
+    os.remove(image)
+    return "temp.jpg"
 
 
 # for nekobot
@@ -119,6 +132,71 @@ async def tweets(text1, text2):
     img = Image.open("gpx.png").convert("RGB")
     img.save("gpx.webp", "webp")
     return "gpx.webp"
+
+
+async def trap(text1, text2, text3):
+    r = requests.get(
+        f"https://nekobot.xyz/api/imagegen?type=trap&name={text1}&author={text2}&image={text3}"
+    ).json()
+    sandy = r.get("message")
+    caturl = url(sandy)
+    if not caturl:
+        return "check syntax once more"
+    with open("temp.png", "wb") as f:
+        f.write(requests.get(sandy).content)
+    img = Image.open("temp.png")
+    if img.mode != "RGB":
+        img = img.convert("RGB")
+    img.save("temp.jpg", "jpeg")
+    return "temp.jpg"
+
+
+async def threats(text):
+    r = requests.get(
+        f"https://nekobot.xyz/api/imagegen?type=threats&url={text}").json()
+    sandy = r.get("message")
+    caturl = url(sandy)
+    if not caturl:
+        return "check syntax once more"
+    with open("temp.png", "wb") as f:
+        f.write(requests.get(sandy).content)
+    img = Image.open("temp.png")
+    if img.mode != "RGB":
+        img = img.convert("RGB")
+    img.save("temp.jpg", "jpeg")
+    return "temp.jpg"
+
+
+async def trash(text):
+    r = requests.get(
+        f"https://nekobot.xyz/api/imagegen?type=trash&url={text}").json()
+    sandy = r.get("message")
+    caturl = url(sandy)
+    if not caturl:
+        return "check syntax once more"
+    with open("temp.png", "wb") as f:
+        f.write(requests.get(sandy).content)
+    img = Image.open("temp.png")
+    if img.mode != "RGB":
+        img = img.convert("RGB")
+    img.save("temp.jpg", "jpeg")
+    return "temp.jpg"
+
+
+async def moditweet(text):
+    r = requests.get(
+        f"https://nekobot.xyz/api/imagegen?type=tweet&text={text}&username=narendramodi"
+    ).json()
+    sandy = r.get("message")
+    caturl = url(sandy)
+    if not caturl:
+        return "check syntax once more"
+    with open("temp.png", "wb") as f:
+        f.write(requests.get(sandy).content)
+    img = Image.open("temp.png").convert("RGB")
+    img.save("temp.jpg", "jpeg")
+    return "temp.jpg"
+
 
 
 async def purge():
@@ -249,6 +327,199 @@ async def cmm(event):
     await purge()
 
 
+@register(pattern="^.trap(?: |$)(.*)", outgoing=True)
+async def nekobot(e):
+    input_str = e.pattern_match.group(1)
+    input_str = deEmojify(input_str)
+    if "|" in input_str:
+        text1, text2 = input_str.split("|")
+    else:
+        await e.edit(
+            "Balas Ke Gambar Atau Sticker Lalu Ketik `.trap (Nama Orang Yang Di Trap)|(Nama Trap)`"
+        )
+        return
+    replied = await e.get_reply_message()
+    if not os.path.isdir(TEMP_DOWNLOAD_DIRECTORY):
+        os.makedirs(TEMP_DOWNLOAD_DIRECTORY)
+    if not replied:
+        await e.edit("reply to a supported media file")
+        return
+    if replied.media:
+        await e.edit("passing to telegraph...")
+    else:
+        await e.edit("reply to a supported media file")
+        return
+    download_location = await bot.download_media(replied,
+                                                 TEMP_DOWNLOAD_DIRECTORY)
+    if download_location.endswith((".webp")):
+        download_location = convert_toimage(download_location)
+    size = os.stat(download_location).st_size
+    if download_location.endswith((".jpg", ".jpeg", ".png", ".bmp", ".ico")):
+        if size > 5242880:
+            await e.edit(
+                "the replied file size is not supported it must me below 5 mb")
+            os.remove(download_location)
+            return
+        await e.edit("generating image..")
+    else:
+        await e.edit("the replied file is not supported")
+        os.remove(download_location)
+        return
+    try:
+        response = upload_file(download_location)
+        os.remove(download_location)
+    except exceptions.TelegraphException as exc:
+        await e.edit("ERROR: " + str(exc))
+        os.remove(download_location)
+        return
+    file = f"https://telegra.ph{response[0]}"
+    file = await trap(text1, text2, file)
+    await e.delete()
+    await bot.send_file(e.chat_id, file, reply_to=replied)
+
+
+@register(pattern="^.threat(?: |$)(.*)", outgoing=True)
+async def nekobot(event):
+    replied = await event.get_reply_message()
+    if not os.path.isdir(TEMP_DOWNLOAD_DIRECTORY):
+        os.makedirs(TEMP_DOWNLOAD_DIRECTORY)
+    if not replied:
+        await event.edit("reply to a supported media file")
+        return
+    if replied.media:
+        await event.edit("passing to telegraph...")
+    else:
+        await event.edit("reply to a supported media file")
+        return
+    download_location = await bot.download_media(replied,
+                                                 TEMP_DOWNLOAD_DIRECTORY)
+    if download_location.endswith((".webp")):
+        download_location = convert_toimage(download_location)
+    size = os.stat(download_location).st_size
+    if download_location.endswith((".jpg", ".jpeg", ".png", ".bmp", ".ico")):
+        if size > 5242880:
+            await event.edit(
+                "the replied file size is not supported it must me below 5 mb")
+            os.remove(download_location)
+            return
+        await event.edit("generating image..")
+    else:
+        await event.edit("the replied file is not supported")
+        os.remove(download_location)
+        return
+    try:
+        response = upload_file(download_location)
+        os.remove(download_location)
+    except exceptions.TelegraphException as exc:
+        await event.edit("ERROR: " + str(exc))
+        os.remove(download_location)
+        return
+    file = f"https://telegra.ph{response[0]}"
+    file = await threats(file)
+    await event.delete()
+    await bot.send_file(event.chat_id, file, reply_to=replied)
+
+
+@register(pattern="^.trash(?: |$)(.*)", outgoing=True)
+async def nekobot(event):
+    replied = await event.get_reply_message()
+    if not os.path.isdir(TEMP_DOWNLOAD_DIRECTORY):
+        os.makedirs(TEMP_DOWNLOAD_DIRECTORY)
+    if not replied:
+        await event.edit("reply to a supported media file")
+        return
+    if replied.media:
+        await event.edit("passing to telegraph...")
+    else:
+        await event.edit("reply to a supported media file")
+        return
+    download_location = await bot.download_media(replied,
+                                                 TEMP_DOWNLOAD_DIRECTORY)
+    if download_location.endswith((".webp")):
+        download_location = convert_toimage(download_location)
+    size = os.stat(download_location).st_size
+    if download_location.endswith((".jpg", ".jpeg", ".png", ".bmp", ".ico")):
+        if size > 5242880:
+            await event.edit(
+                "the replied file size is not supported it must me below 5 mb")
+            os.remove(download_location)
+            return
+        await event.edit("generating image..")
+    else:
+        await event.edit("the replied file is not supported")
+        os.remove(download_location)
+        return
+    try:
+        response = upload_file(download_location)
+        os.remove(download_location)
+    except exceptions.TelegraphException as exc:
+        await event.edit("ERROR: " + str(exc))
+        os.remove(download_location)
+        return
+    file = f"https://telegra.ph{response[0]}"
+    file = await trash(file)
+    await event.delete()
+    await bot.send_file(event.chat_id, file, reply_to=replied)
+
+
+@register(pattern="^.modi(?: |$)(.*)", outgoing=True)
+async def nekobot(event):
+    text = event.pattern_match.group(1)
+    reply_to_id = event.message
+    if event.reply_to_msg_id:
+        reply_to_id = await event.get_reply_message()
+    if not text:
+        if event.is_reply and not reply_to_id.media:
+            text = reply_to_id.message
+        else:
+            await event.edit("Send you text to modi so he can tweet.")
+            return
+    await event.edit("Requesting modi to tweet...")
+    text = deEmojify(text)
+    file = await moditweet(text)
+    await event.client.send_file(event.chat_id, file, reply_to=reply_to_id)
+    await event.delete()
+    await purge()
+
+
+@register(outgoing=True, pattern="^.fgs ((.*) ; (.*))")
+async def FakeGoogleSearch(event):
+    """ Get a user-customised google search meme! """
+    input_str = event.pattern_match.group(1)
+    if input_str is None:
+        await event.edit("No input found!", del_in=5)
+        return
+    if ";" in input_str:
+        search, result = input_str.split(";", 1)
+    else:
+        await event.edit("Invalid Input! Check help for more info!", del_in=5)
+        return
+
+    await event.edit('Connecting to `https://www.google.com/` ...')
+    await asyncio.sleep(2)
+    img = 'https://i.imgur.com/wNFr5X2.jpg'
+    r = download(img)
+    photo = Image.open(r)
+    drawing = ImageDraw.Draw(photo)
+    blue = (0, 0, 255)
+    black = (0, 0, 0)
+    font1 = ImageFont.truetype(
+        "userbot/utils/styles/ProductSans-BoldItalic.ttf", 20)
+    font2 = ImageFont.truetype(
+        "userbot/utils/styles/ProductSans-Light.ttf", 23)
+    drawing.text((450, 258), result, fill=blue, font=font1)
+    drawing.text((270, 37), search, fill=black, font=font2)
+    photo.save("downloads/test.jpg")
+    reply = event.pattern_match.group(2)
+    await event.delete()
+    reply_id = event.pattern_match.group(3) if reply else None
+    await event.client.send_file(
+        event.chat_id,
+        'downloads/test.jpg',
+        reply_to_message_id=reply_id)
+    os.remove('downloads/test.jpg')
+
+
 @register(outgoing=True, pattern=r"^\.kanna(?: |$)(.*)")
 async def kanna(event):
     text = event.pattern_match.group(1)
@@ -302,6 +573,10 @@ async def tweet(event):
 CMD_HELP.update(
     {
         "nekobot": "✘ Pʟᴜɢɪɴ : Nekobot"
+        "\n\n⚡𝘾𝙈𝘿⚡: `.fgs [Text Atas] ; [Text Bawah]`"
+        "\n↳ : Create Google Memes Custom Text."
+        "\n\n⚡𝘾𝙈𝘿⚡: `.modi` or `.threat` or `.trash` or `.trap` [Text]"
+        "\n↳ : Create Memes (Just for fun)."
         "\n\n⚡𝘾𝙈𝘿⚡: `.tweet` <Username>.<Tweet>"
         "\n↳ : Create Tweet with Custom Username."
         "\n\n⚡𝘾𝙈𝘿⚡: `.trump` <Tweet>"
