@@ -6,9 +6,6 @@
 <p align="center">
   <a href="https://github.com/KENZO-404/Lynx-Userbot"><img src="https://img.shields.io/github/stars/KENZO-404/Lynx-Userbot?style=social"></a>
   </p>
-<p align="center">
-  <a href="https://github.com/KENZO-404/Lynx-Userbot/blob/Lynx-Userbot/LICENSE"><img src="https://img.shields.io/github/license/KENZO-404/Lynx-Userbot?&style=social&logo=github">
-  </a></p>
 
 <p align="center">
 <a href="https://www.codefactor.io/repository/github/kenzo-404/lynx-userbot"><img src="https://www.codefactor.io/repository/github/kenzo-404/lynx-userbot/badge" alt="CodeFactor" /></a>
@@ -42,8 +39,14 @@
 </p>
 
 <p align="center">
-   <a href = "https://heroku.com/deploy?template=https://github.com/KENZO-404/Lynx-Userbot/tree/Lynx-Userbot"><img src="https://telegra.ph/file/f3c656862a017f945c0bc.png" alt="Press to Takeoff" width="490px"></a>
+<a href = "https://heroku.com/deploy?template=https://github.com/KENZO-404/Lynx-Userbot/tree/Lynx-Userbot"><img src="https://telegra.ph/file/f3c656862a017f945c0bc.png" alt="Press to Takeoff" width="490px"></a>
 </p>
+<p align="center">
+<a href="https://github.com/KENZO-404/Lynx-Userbot/blob/Lynx-Userbot/LICENSE"><img src="https://img.shields.io/badge/LICENSE-Raphielscape_Public_License_1.d-white?style=for-the-badge&logo=github" alt="generate_api"></a>
+</p>
+
+
+
 <br>
 
 <h3 align="center">Userbot Used for Fun on Telegram, and for Maintianing Your Group,If you found another repo like same from this repo plis report coz he don't have permission (KANGERR).</h3>
