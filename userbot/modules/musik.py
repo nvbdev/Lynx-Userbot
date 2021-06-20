@@ -4,7 +4,6 @@
 # Ported for Lynx-Userbot by @Vckyuouu (piki)
 # Credits : @Ultroid
 
-
 import json
 import os
 import random
@@ -24,10 +23,8 @@ from youtube_dl.utils import (
     XAttrMetadataError,
 )
 from youtubesearchpython import SearchVideos
-
 from userbot.events import register
 from userbot import CMD_HELP, ALIVE_NAME
-
 
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else uname().node
 
