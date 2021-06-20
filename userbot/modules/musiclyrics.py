@@ -145,7 +145,7 @@ Connected to server...
         pass
 
 
-@ register(outgoing=True, pattern=r"^\.lyrics (.*)")
+@register(outgoing=True, pattern=r"^\.lyrics (.*)")
 async def original(event):
     if not event.pattern_match.group(1):
         return await event.edit("Beri Saya Sebuah Judul Lagu Untuk Mencari Lirik.\n**Contoh** : `.lyrics` <Judul Lagu>")
