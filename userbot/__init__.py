@@ -518,7 +518,8 @@ with bot:
                 buttons = paginate_help(0, dugmeler, "helpme")
                 result = builder.document(
                     file=lynxlogo,
-                    link_preview=False,
+                    include_media=True,
+                    link_preview=True,
                     text=f"\n**Bᴏᴛ ᴏꜰ {DEFAULTUSER}**\n\n◎› **Bᴏᴛ ᴠᴇʀ :** `v.{BOT_VER}`\n◎› **Pʟᴜɢɪɴꜱ :** `{len(plugins)}`\n\n**Cᴏᴘʏʀɪɢʜᴛ © 𝟤𝟢𝟤𝟣 Lʏɴx-Uꜱᴇʀʙᴏᴛ**".format(
                         len(dugmeler),
                     ),
