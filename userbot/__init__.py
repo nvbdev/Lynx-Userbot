@@ -444,7 +444,7 @@ with bot:
         me = bot.get_me()
         uid = me.id
 
-        aliplogo = str(ALIVE_LOGO)
+        aliplogo = "https://telegra.ph/file/b6580efa28fdc144749d5.jpg"
         lynxlogo = "resource/logo/LynxUserbot-Button.jpg"
         plugins = CMD_HELP
 
