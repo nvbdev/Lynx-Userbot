@@ -155,14 +155,13 @@ async def original(event):
         lynX = a2
     if dc == 3:
         lynX = a3
-    extract_lyrics=sl(f"{lynX}", "15b9fb6193efd5d90")
+    extract_lyrics = sl(f"{lynX}", "15b9fb6193efd5d90")
     k3nz = extract_lyrics.get_lyrics(f"{kenzo}")
     ax3l = k3nz["lyrics"]
     await event.client.send_message(event.chat_id, ax3l, reply_to=event.reply_to_msg_id)
     await event.delete()
 
 # For Lynx-Userbot
-# Credits @Ultroid.
 CMD_HELP.update(
     {
         "music&lyrics": "✘ Pʟᴜɢɪɴ : Music & Lyrics\
