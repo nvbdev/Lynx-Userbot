@@ -435,8 +435,8 @@ async def typewriter(typew):
 # Create by myself @localheart
 
 CMD_HELP.update({
-    "gabut":
-    "⚡𝘾𝙈𝘿⚡: `.gabut` atau `.dino`\
+    "animasi1": "✘ Pʟᴜɢɪɴ : Animasi 1\
+    \n\n⚡𝘾𝙈𝘿⚡: `.gabut` atau `.dino`\
     \n↳ : Dikala gabut, yaaa pake aja xixixi.\
     \n\n⚡𝘾𝙈𝘿⚡: `.yatim`\
     \n↳ : Buat bercandaan, kalo gasuka jangan dipake.\
