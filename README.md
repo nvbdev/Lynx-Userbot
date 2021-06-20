@@ -42,7 +42,7 @@
 <a href = "https://heroku.com/deploy?template=https://github.com/KENZO-404/Lynx-Userbot/tree/Lynx-Userbot"><img src="https://telegra.ph/file/f3c656862a017f945c0bc.png" alt="Press to Takeoff" width="490px"></a>
 </p>
 <p align="center">
-<a href="https://github.com/KENZO-404/Lynx-Userbot/blob/Lynx-Userbot/LICENSE"><img src="https://img.shields.io/badge/LICENSE-Raphielscape_Public_License_1.d-white?style=for-the-badge&logo=github" alt="generate_api"></a>
+<a href="https://github.com/KENZO-404/Lynx-Userbot/blob/Lynx-Userbot/LICENSE"><img src="https://img.shields.io/badge/LICENSE-Raphielscape_Public_License_1.d-yellow?style=for-the-badge&logo=github&logoColor=yellow" alt="generate_api"></a>
 </p>
 
 
