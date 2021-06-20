@@ -9,6 +9,8 @@ import json
 import os
 import random
 import base64
+import time
+
 from lyrics_extractor import SongLyrics as sl
 from telethon.tl.types import DocumentAttributeAudio
 from youtube_dl import YoutubeDL
@@ -42,12 +44,12 @@ a3 = base64.b64decode(
 @register(outgoing=True, pattern=r"^\.music (.*)")
 async def download_video(event):
     a = event.text
-    if a[5] == "s":
+    if len(a) >= 5 and a[5] == "s":
         return
-    await event.edit("`Sedang Memproses Music, Mohon Tunggu Sebentar...`")
+    lynx = await event.edit(event, "`Sedang Memproses Music, Mohon Tunggu Sebentar...`")
     url = event.pattern_match.group(1)
     if not url:
-        return await event.edit("**List Error**\nCara Penggunaan : -`.music <Judul Lagu>`")
+        return await lynx.edit("**List Error**\nCara Penggunaan : -`.music <Judul Lagu>`")
     search = SearchVideos(url, offset=1, mode="json", max_results=1)
     test = search.result()
     p = json.loads(test)
@@ -55,9 +57,9 @@ async def download_video(event):
     try:
         url = q[0]["link"]
     except BaseException:
-        return await event.edit("`Tidak Dapat Menemukan Music...`")
+        return await lynx.edit("`Tidak Dapat Menemukan Music...`")
     type = "audio"
-    await event.edit(f"`Persiapan Mendownload {url}...`")
+    await lynx.edit(f"`Persiapan Mendownload {url}...`")
     if type == "audio":
         opts = {
             "format": "bestaudio",
@@ -78,35 +80,35 @@ async def download_video(event):
             "logtostderr": False,
         }
     try:
-        await event.edit("`Mendapatkan Info Music...`")
+        await lynx.edit("`Mendapatkan Info Music...`")
         with YoutubeDL(opts) as rip:
             rip_data = rip.extract_info(url)
     except DownloadError as DE:
-        await event.edit(f"`{str(DE)}`")
+        await lynx.edit(f"`{str(DE)}`")
         return
     except ContentTooShortError:
-        await event.edit("`The download content was too short.`")
+        await lynx.edit("`The download content was too short.`")
         return
     except GeoRestrictedError:
-        await event.edit("`Video is not available from your geographic location due to"
+        await lynx.edit("`Video is not available from your geographic location due to"
                          + " geographic restrictions imposed by a website.`"
                          )
         return
     except MaxDownloadsReached:
-        await event.edit("`Max-downloads limit has been reached.`")
+        await lynx.edit("`Max-downloads limit has been reached.`")
         return
     except PostProcessingError:
-        await event.edit("`There was an error during post processing.`")
+        await lynx.edit("`There was an error during post processing.`")
         return
     except UnavailableVideoError:
-        await event.edit("`Media is not available in the requested format.`")
+        await lynx.edit("`Media is not available in the requested format.`")
         return
     except XAttrMetadataError as XAME:
-        return await event.edit(f"`{XAME.code}: {XAME.msg}\n{XAME.reason}`")
+        return await lynx.edit(f"`{XAME.code}: {XAME.msg}\n{XAME.reason}`")
     except ExtractorError:
-        return await event.edit("`There was an error during info extraction.`")
+        return await lynx.edit("`There was an error during info extraction.`")
     except Exception as e:
-        return await event.edit(f"{str(type(e)): {str(e)}}")
+        return await lynx.edit(f"{str(type(e)): {str(e)}}")
     dir = os.listdir()
     if f"{rip_data['id']}.mp3.jpg" in dir:
         thumb = f"{rip_data['id']}.mp3.jpg"
@@ -114,18 +116,18 @@ async def download_video(event):
         thumb = f"{rip_data['id']}.mp3.webp"
     else:
         thumb = None
-    upteload = """
-Connected to server...
-• {}
-• By - {}
-""".format(
-        rip_data["title"], rip_data["uploader"]
+    tail = time.time()
+    ttt = await uploader(
+        rip_data["id"] + ".mp3",
+        rip_data["title"] + ".mp3",
+        tail,
+        lynx,
+        "Uploading " + rip_data["title"],
     )
-    await event.edit(f"`{upteload}`")
     CAPT = f"╭┈────────────────┈\n➥ {rip_data['title']}\n➥ Uploader - {rip_data['uploader']}\n╭┈────────────────┈╯\n➥ By : {DEFAULTUSER}\n╰┈────────────────┈➤"
     await event.client.send_file(
         event.chat_id,
-        f"{rip_data['id']}.mp3",
+        ttt,
         thumb=thumb,
         supports_streaming=True,
         caption=CAPT,
@@ -137,7 +139,7 @@ Connected to server...
             )
         ],
     )
-    await event.delete()
+    await lynx.delete()
     os.remove(f"{rip_data['id']}.mp3")
     try:
         os.remove(thumb)
@@ -153,24 +155,25 @@ async def original(event):
     event = await event.edit("`Sedang Mencari Lirik Lagu...`")
     dc = random.randrange(1, 3)
     if dc == 1:
-        lynx = a1
+        lynX = a1
     if dc == 2:
-        lynx = a2
+        lynX = a2
     if dc == 3:
-        lynx = a3
-    extract_lyrics = sl(f"{lynx}", "15b9fb6193efd5d90")
-    sh1vm = extract_lyrics.get_lyrics(f"{kenzo}")
-    a7ul = sh1vm["lyrics"]
-    await event.client.send_message(event.chat_id, a7ul, reply_to=event.reply_to_msg_id)
+        lynX = a3
+    extract_lyrics = sl(f"{lynX}", "15b9fb6193efd5d90")
+    k3nz = extract_lyrics.get_lyrics(f"{kenzo}")
+    4xel = k3nz["lyrics"]
+    await event.client.send_message(event.chat_id, 4xel, reply_to=event.reply_to_msg_id)
     await event.delete()
 
-# For Lynx-Userbot by @Vckyouuu
+# For Lynx-Userbot
+# Credits @Ultroid.
 CMD_HELP.update(
     {
         "music&lyrics": "✘ Pʟᴜɢɪɴ : Music & Lyrics\
          \n\n⚡𝘾𝙈𝘿⚡: `.music` <Penyanyi/Band - Judul Lagu>\
          \n↳ : Mengunduh Sebuah Lagu Yang Anda Inginkan.\
-         \n⚡𝘾𝙈𝘿⚡: `.lirik` <Penyanyi/Band - Judul Lagu>\
+         \n⚡𝘾𝙈𝘿⚡: `.lyrics` <Penyanyi/Band - Judul Lagu>\
          \n↳ : Mencari Lirik Lagu Yang Anda Inginkan."
     }
 )
