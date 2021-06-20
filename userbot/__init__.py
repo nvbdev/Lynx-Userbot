@@ -445,7 +445,7 @@ with bot:
         uid = me.id
 
         aliplogo = str(ALIVE_LOGO)
-        lynxlogo = "resource/logo/Lynx-Userbot-LogoButton.gif"
+        lynxlogo = "resource/logo/KENZO-404LynxUser.mp4"
         plugins = CMD_HELP
 
         @tgbot.on(events.NewMessage(pattern=r"/start"))
@@ -519,7 +519,7 @@ with bot:
                 result = builder.document(
                     file=lynxlogo,
                     include_media=True,
-                    link_preview=True,
+                    link_preview=False,
                     text=f"\n**Bᴏᴛ ᴏꜰ {DEFAULTUSER}**\n\n◎› **Bᴏᴛ ᴠᴇʀ :** `v.{BOT_VER}`\n◎› **Pʟᴜɢɪɴꜱ :** `{len(plugins)}`\n\n**Cᴏᴘʏʀɪɢʜᴛ © 𝟤𝟢𝟤𝟣 Lʏɴx-Uꜱᴇʀʙᴏᴛ**".format(
                         len(dugmeler),
                     ),
