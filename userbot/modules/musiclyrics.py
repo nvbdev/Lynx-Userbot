@@ -122,7 +122,7 @@ Connected to server...
 """.format(
         rip_data["title"], rip_data["uploader"]
     await event.edit(f"`{upteload}`")
-    CAPT = f"╭┈────────────────┈\n➥ {rip_data['title']}\n➥ Uploader - {rip_data['uploader']}\n╭┈────────────────┈╯\n➥ By : {DEFAULTUSER}\n╰┈────────────────┈➤"
+    CAPT=f"╭┈────────────────┈\n➥ {rip_data['title']}\n➥ Uploader - {rip_data['uploader']}\n╭┈────────────────┈╯\n➥ By : {DEFAULTUSER}\n╰┈────────────────┈➤"
     await event.client.send_file(
         event.chat_id,
         f"{rip_data['id']}.mp3",
@@ -145,22 +145,22 @@ Connected to server...
         pass
 
 
-@register(outgoing=True, pattern=r"^\.lyrics (.*)")
+@ register(outgoing=True, pattern=r"^\.lyrics (.*)")
 async def original(event):
     if not event.pattern_match.group(1):
         return await event.edit("Beri Saya Sebuah Judul Lagu Untuk Mencari Lirik.\n**Contoh** : `.lyrics` <Judul Lagu>")
-    kenzo = event.pattern_match.group(1)
-    event = await event.edit("`Sedang Mencari Lirik Lagu...`")
+    kenzo=event.pattern_match.group(1)
+    event=await event.edit("`Sedang Mencari Lirik Lagu...`")
     dc=random.randrange(1, 3)
     if dc == 1:
-        lynX = a1
+        lynX=a1
     if dc == 2:
-        lynX = a2
+        lynX=a2
     if dc == 3:
-        lynX = a3
-    extract_lyrics = sl(f"{lynX}", "15b9fb6193efd5d90")
-    k3nz = extract_lyrics.get_lyrics(f"{kenzo}")
-    ax3l = k3nz["lyrics"]
+        lynX=a3
+    extract_lyrics=sl(f"{lynX}", "15b9fb6193efd5d90")
+    k3nz=extract_lyrics.get_lyrics(f"{kenzo}")
+    ax3l=k3nz["lyrics"]
     await event.client.send_message(event.chat_id, ax3l, reply_to=event.reply_to_msg_id)
     await event.delete()
 
