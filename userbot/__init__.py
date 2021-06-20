@@ -516,7 +516,7 @@ with bot:
             query = event.text
             if event.query.user_id == uid and query.startswith("@LynxRobot"):
                 buttons = paginate_help(0, dugmeler, "helpme")
-                result = builder.photo(
+                result = builder.document(
                     file=lynxlogo,
                     link_preview=False,
                     text=f"\n**Bᴏᴛ ᴏꜰ {DEFAULTUSER}**\n\n◎› **Bᴏᴛ ᴠᴇʀ :** `v.{BOT_VER}`\n◎› **Pʟᴜɢɪɴꜱ :** `{len(plugins)}`\n\n**Cᴏᴘʏʀɪɢʜᴛ © 𝟤𝟢𝟤𝟣 Lʏɴx-Uꜱᴇʀʙᴏᴛ**".format(
