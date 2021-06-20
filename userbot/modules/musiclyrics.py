@@ -162,8 +162,8 @@ async def original(event):
         lynX = a3
     extract_lyrics = sl(f"{lynX}", "15b9fb6193efd5d90")
     k3nz = extract_lyrics.get_lyrics(f"{kenzo}")
-    4xel = k3nz["lyrics"]
-    await event.client.send_message(event.chat_id, 4xel, reply_to=event.reply_to_msg_id)
+    ax3l = k3nz["lyrics"]
+    await event.client.send_message(event.chat_id, ax3l, reply_to=event.reply_to_msg_id)
     await event.delete()
 
 # For Lynx-Userbot
