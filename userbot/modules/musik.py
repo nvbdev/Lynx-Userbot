@@ -118,6 +118,7 @@ Connected to server...
 • By - {}
 """.format(
         rip_data["title"], rip_data["uploader"]
+    )
     await event.edit(f"`{upteload}`")
     CAPT = f"╭┈────────────────┈\n➥ {rip_data['title']}\n➥ Uploader - {rip_data['uploader']}\n╭┈────────────────┈╯\n➥ By : {DEFAULTUSER}\n╰┈────────────────┈➤"
     await event.client.send_file(
@@ -142,6 +143,8 @@ Connected to server...
         pass
 
 
+
+        
 @register(outgoing=True, pattern=r"^\.lyrics (.*)")
 async def original(event):
     if not event.pattern_match.group(1):
