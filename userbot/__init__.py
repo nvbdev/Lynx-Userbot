@@ -445,7 +445,7 @@ with bot:
         uid = me.id
 
         aliplogo = str(ALIVE_LOGO)
-        lynxlogo = "resource/logo/LynxUserbot-Button.jpg"
+        lynxlogo = "resource/logo/Lynx-Userbot-LogoButton.gif"
         plugins = CMD_HELP
 
         @tgbot.on(events.NewMessage(pattern=r"/start"))
