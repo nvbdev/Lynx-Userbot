@@ -184,7 +184,7 @@ S_PACK_NAME = os.environ.get("S_PACK_NAME", None)
 
 # Default .alive Logo
 ALIVE_LOGO = os.environ.get(
-    "ALIVE_LOGO", None) or "https://telegra.ph/file/f3c656862a017f945c0bc.png"
+    "ALIVE_LOGO", None) or "https://telegra.ph/file/78db3f8bc07d3c4a42c4f.mp4"
 
 # Link Instagram for CMD Alive
 INSTAGRAM_ALIVE = os.environ.get(
@@ -445,7 +445,7 @@ with bot:
         uid = me.id
 
         aliplogo = str(ALIVE_LOGO)
-        lynxlogo = "resource/logo/KENZO-404LynxUser.mp4"
+        lynxlogo = "resource/logo/LynxUserbot-Button.jpg"
         plugins = CMD_HELP
 
         @tgbot.on(events.NewMessage(pattern=r"/start"))
