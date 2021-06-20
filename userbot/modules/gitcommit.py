@@ -2,7 +2,7 @@
 #
 # Licensed under the Raphielscape Public License, Version 1.d (the "License");
 # you may not use this file except in compliance with the License.
-# Ported to UserBot by @Mayur_Karaniya
+# Ported to Lynx-Userbot by @KENZO-404
 
 from github import Github
 import os
@@ -15,7 +15,7 @@ from userbot.events import register
 from userbot import CMD_HELP, GITHUB_ACCESS_TOKEN, GIT_REPO_NAME, bot
 
 
-GIT_TEMP_DIR = "./userbot/temp/"
+GIT_TEMP_DIR = "userbot/modules/"
 # @borg.on(admin_cmd(pattern="commit ?(.*)", allow_sudo=True))
 
 
@@ -73,18 +73,18 @@ async def git_commit(file_name, mone):
             create_file = False
     file_name = "userbot/modules/" + file_name
     if create_file:
-        file_name = file_name.replace("./userbot/temp/", "")
+        file_name = file_name.replace("userbot/modules/", "")
         print(file_name)
         try:
             repo.create_file(
                 file_name,
                 "Uploaded New Plugin",
                 commit_data,
-                branch="master")
+                branch="Beta")
             print("Committed File")
             ccess = GIT_REPO_NAME
             ccess = ccess.strip()
-            await mone.edit(f"`Commited On Your Github Repo`\n\n[Your Modules](https://github.com/{ccess}/tree/sql-extended/userbot/modules/)")
+            await mone.edit(f"`Commited On Your Github Repo`\n\n[Your Modules](https://github.com/{ccess}/tree/Lynx-Userbot/userbot/modules/)")
         except BaseException:
             print("Cannot Create Plugin")
             await mone.edit("Cannot Upload Plugin")
@@ -93,8 +93,9 @@ async def git_commit(file_name, mone):
 
 
 CMD_HELP.update({
-    "gcommit":
-    ".gcommit\
+    "gcommit": "✘ Pʟᴜɢɪɴ : Github Commit\
+    \n\n⚡𝘾𝙈𝘿⚡: .gcommit [Reply File]\
     \nUsage: GITHUB File Uploader Plugin for userbot. Heroku Automation should be Enabled. Else u r not that lazy , For lazy people\
-\nInstructions:- Set GITHUB_ACCESS_TOKEN and GIT_REPO_NAME Variables in Heroku vars First\
-\n.commit reply_to_any_plugin can be any type of file too. but for plugin must be in .py ."})
+    \nInstructions:- Set GITHUB_ACCESS_TOKEN and GIT_REPO_NAME Variables in Heroku vars First\
+    \n.commit reply_to_any_plugin can be any type of file too. but for plugin must be in .py ."
+})
