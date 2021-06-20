@@ -1,4 +1,4 @@
-# Lord-Userbot
+
 from time import sleep
 from userbot import CMD_HELP, bot
 from userbot.events import register
@@ -302,15 +302,15 @@ async def typewriter(typew):
 
 
 CMD_HELP.update({
-    "vip":
-    "`.bulan` ; `.hati` ; `.bernyanyi`\
-    \nUsage: liat aja.\
-    \n\n`.helikopter` ; `.tank` ; `.tembak`\n`.bundir`\
-    \nUsage: liat sendiri\
-    \n\n`.y`\
-    \nUsage: jempol\
-    \n\n`.awkwok`\
-    \nUsage: ketawa lari.\
-    \n\n`.ular` ; `.babi` ; `.ajg`\
-    \nUsage: liat sendiri."
+    "animasi2": "✘ Pʟᴜɢɪɴ : Animasi 2\
+    \n\n⚡𝘾𝙈𝘿⚡: `.bulan` ; `.hati` ; `.bernyanyi`\
+    \n↳ : lihat saja.\
+    \n\n⚡𝘾𝙈𝘿⚡: `.helikopter` ; `.tank` ; `.tembak`\n`.bundir`\
+    \n↳ : lihat sendiri.\
+    \n\n⚡𝘾𝙈𝘿⚡: `.y`\
+    \n↳ : jempol\
+    \n\n⚡𝘾𝙈𝘿⚡: `.awkwok`\
+    \n↳ : ketawa lari.\
+    \n\n⚡𝘾𝙈𝘿⚡: `.ular` ; `.babi` ; `.ajg`\
+    \n↳ : lihat sendiri."
 })
