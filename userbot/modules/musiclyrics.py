@@ -91,8 +91,8 @@ async def download_video(event):
         return
     except GeoRestrictedError:
         await lynx.edit("`Video is not available from your geographic location due to"
-                         + " geographic restrictions imposed by a website.`"
-                         )
+                        + " geographic restrictions imposed by a website.`"
+                        )
         return
     except MaxDownloadsReached:
         await lynx.edit("`Max-downloads limit has been reached.`")
