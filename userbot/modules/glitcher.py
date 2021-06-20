@@ -1,14 +1,12 @@
 import asyncio
 import os
 import re
-import textwrap
 import time
 from userbot.utils import progress
 
 from glitch_this import ImageGlitcher
-from PIL import Image, ImageDraw, ImageFont
+from PIL import Image
 from telethon import functions, types
-from telethon.tl.types import DocumentAttributeFilename
 
 from userbot import CMD_HELP, TEMP_DOWNLOAD_DIRECTORY, bot
 from userbot.events import register
