@@ -116,7 +116,7 @@ async def set_var(var):
     else:
         if BOTLOG:
             await var.client.send_message(
-                BOTLOG_CHATID, "#ADDCONVIGVARS\n\n"
+                BOTLOG_CHATID, "#ADDCONFIGVARS\n\n"
                 "**Menambahkan Config Vars** :\n"
                 f"`{variable}` **=** `{value}`"
             )
