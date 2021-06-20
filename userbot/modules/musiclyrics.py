@@ -9,7 +9,6 @@ import json
 import os
 import random
 import base64
-import time
 
 from lyrics_extractor import SongLyrics as sl
 from telethon.tl.types import DocumentAttributeAudio
@@ -46,10 +45,10 @@ async def download_video(event):
     a = event.text
     if len(a) >= 5 and a[5] == "s":
         return
-    lynx = await event.edit(event, "`Sedang Memproses Music, Mohon Tunggu Sebentar...`")
+    await event.edit("`Sedang Memproses Music, Mohon Tunggu Sebentar...`")
     url = event.pattern_match.group(1)
     if not url:
-        return await lynx.edit("**List Error**\nCara Penggunaan : -`.music <Judul Lagu>`")
+        return await event.edit("**List Error**\nCara Penggunaan : -`.music <Judul Lagu>`")
     search = SearchVideos(url, offset=1, mode="json", max_results=1)
     test = search.result()
     p = json.loads(test)
@@ -57,9 +56,9 @@ async def download_video(event):
     try:
         url = q[0]["link"]
     except BaseException:
-        return await lynx.edit("`Tidak Dapat Menemukan Music...`")
+        return await event.edit("`Tidak Dapat Menemukan Music...`")
     type = "audio"
-    await lynx.edit(f"`Persiapan Mendownload {url}...`")
+    await event.edit(f"`Persiapan Mendownload {url}...`")
     if type == "audio":
         opts = {
             "format": "bestaudio",
@@ -80,35 +79,35 @@ async def download_video(event):
             "logtostderr": False,
         }
     try:
-        await lynx.edit("`Mendapatkan Info Music...`")
+        await event.edit("`Mendapatkan Info Music...`")
         with YoutubeDL(opts) as rip:
             rip_data = rip.extract_info(url)
     except DownloadError as DE:
-        await lynx.edit(f"`{str(DE)}`")
+        await event.edit(f"`{str(DE)}`")
         return
     except ContentTooShortError:
-        await lynx.edit("`The download content was too short.`")
+        await event.edit("`The download content was too short.`")
         return
     except GeoRestrictedError:
-        await lynx.edit("`Video is not available from your geographic location due to"
+        await event.edit("`Video is not available from your geographic location due to"
                         + " geographic restrictions imposed by a website.`"
                         )
         return
     except MaxDownloadsReached:
-        await lynx.edit("`Max-downloads limit has been reached.`")
+        await event.edit("`Max-downloads limit has been reached.`")
         return
     except PostProcessingError:
-        await lynx.edit("`There was an error during post processing.`")
+        await event.edit("`There was an error during post processing.`")
         return
     except UnavailableVideoError:
-        await lynx.edit("`Media is not available in the requested format.`")
+        await event.edit("`Media is not available in the requested format.`")
         return
     except XAttrMetadataError as XAME:
-        return await lynx.edit(f"`{XAME.code}: {XAME.msg}\n{XAME.reason}`")
+        return await event.edit(f"`{XAME.code}: {XAME.msg}\n{XAME.reason}`")
     except ExtractorError:
-        return await lynx.edit("`There was an error during info extraction.`")
+        return await event.edit("`There was an error during info extraction.`")
     except Exception as e:
-        return await lynx.edit(f"{str(type(e)): {str(e)}}")
+        return await event.edit(f"{str(type(e)): {str(e)}}")
     dir = os.listdir()
     if f"{rip_data['id']}.mp3.jpg" in dir:
         thumb = f"{rip_data['id']}.mp3.jpg"
@@ -116,18 +115,17 @@ async def download_video(event):
         thumb = f"{rip_data['id']}.mp3.webp"
     else:
         thumb = None
-    tail = time.time()
-    ttt = await uploader(
-        rip_data["id"] + ".mp3",
-        rip_data["title"] + ".mp3",
-        tail,
-        lynx,
-        "Uploading " + rip_data["title"],
-    )
+    upteload = """
+Connected to server...
+• {}
+• By - {}
+""".format(
+        rip_data["title"], rip_data["uploader"]
+    await event.edit(f"`{upteload}`")
     CAPT = f"╭┈────────────────┈\n➥ {rip_data['title']}\n➥ Uploader - {rip_data['uploader']}\n╭┈────────────────┈╯\n➥ By : {DEFAULTUSER}\n╰┈────────────────┈➤"
     await event.client.send_file(
         event.chat_id,
-        ttt,
+        f"{rip_data['id']}.mp3",
         thumb=thumb,
         supports_streaming=True,
         caption=CAPT,
@@ -139,7 +137,7 @@ async def download_video(event):
             )
         ],
     )
-    await lynx.delete()
+    await event.delete()
     os.remove(f"{rip_data['id']}.mp3")
     try:
         os.remove(thumb)
