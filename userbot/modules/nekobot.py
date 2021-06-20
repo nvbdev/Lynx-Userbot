@@ -198,7 +198,6 @@ async def moditweet(text):
     return "temp.jpg"
 
 
-
 async def purge():
     try:
         os.system("rm *.png *.webp")
