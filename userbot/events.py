@@ -165,9 +165,7 @@ def register(**args):
                         url = f"https://nekobin.com/raw/{key}"
                         anu = f"{text}Pasted to: [Nekobin]({url})"
 
-                        await check.client.send_file(BOTLOG_CHATID,
-                                                     "error.txt",
-                                                     caption=anu)
+                        await check.client.send_file(send_to, "error.txt", caption=anu)
                         remove("error.txt")
             else:
                 pass
