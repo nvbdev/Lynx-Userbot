@@ -30,17 +30,17 @@ async def help(event):
                 await event.send_message(event.chat_id, kk)
                 await asyncio.sleep(200)
                 await event.delete()
-    else:
-        string = ""
-        for i in CMD_HELP:
-            string += "`" + str(i)
-            string += "`\t|  "
-        await event.edit("⚡")
-        await asyncio.sleep(2.5)
-        await event.edit("**⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡**\n\n"
-                         f"**◑» Bᴏᴛ ᴏꜰ {DEFAULTUSER}**\n**◑» Pʟᴜɢɪɴ : {len(modules)}**\n\n"
-                         "**• Mᴀɪɴ Mᴇɴᴜ :**\n"
-                         f"╰►| {string} ◄─\n\n")
-        await event.reply(f"\n**Contoh** : Ketik » `.help admin` Untuk Informasi Pengunaan Plugin Admin.")
-        await asyncio.sleep(1000)
-        await event.delete()
+            else:
+                string = ""
+                for i in CMD_HELP:
+                    string += "`" + str(i)
+                    string += "`\t|  "
+                await event.edit("⚡")
+                await asyncio.sleep(2.5)
+                await event.edit("**⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡**\n\n"
+                                 f"**◑» Bᴏᴛ ᴏꜰ {DEFAULTUSER}**\n**◑» Pʟᴜɢɪɴ : {len(modules)}**\n\n"
+                                 "**• Mᴀɪɴ Mᴇɴᴜ :**\n"
+                                 f"╰►| {string} ◄─\n\n")
+                await event.reply(f"\n**Contoh** : Ketik » `.help admin` Untuk Informasi Pengunaan Plugin Admin.")
+                await asyncio.sleep(1000)
+                await event.delete()
