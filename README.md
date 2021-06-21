@@ -41,7 +41,7 @@
 <a href="https://github.com/KENZO-404/Lynx-Userbot/blob/Lynx-Userbot/LICENSE"><img src="https://img.shields.io/badge/LICENSE_UNDER-Raphielscape_Public_License_v1.d-yellow?style=for-the-badge&logo=github&logoColor=yellow" alt="generate_api"></a>
 </p>
 
-## <h2 align="center"> 🚫 DISCLAIMER 🚫 </p>
+<h4 align="center"> 🚫 DISCLAIMER 🚫 </p>
 
 ```
                 ⚠️ WARNING FOR YOU ⚠️
@@ -62,9 +62,9 @@ and you ended up in a Finale Battle with Telegram and at the end
 <h3 align="center">Lynx-Userbot Used for Fun on Telegram, and for Maintianing Your Group,If you found another repo like same from this repo plis report coz he don't have permission (KANGERR).</h3>
 <p align="center">&nbsp;</p>
 
-## <h2 align="center"> REQUIRED </p>
+## <h1 align="center"> REQUIRED </p>
 
-## <h3 align="center"> Get a API_ID and API_HASH </p>
+<h3 align="center"> Get a API_ID and API_HASH </p>
 <br>
 
 <p align="center"> 𝗨𝗦𝗜𝗡𝗚 • 𝙒𝙀𝘽𝙎𝙄𝙏𝙀 • </p>
@@ -80,7 +80,7 @@ and you ended up in a Finale Battle with Telegram and at the end
 </p>
 
 
-## <h3 align="center"> Get a STRING SESSION </p>
+# <h3 align="center"> Get a STRING SESSION </p>
 
 
 <p align="center"> 𝗨𝗦𝗜𝗡𝗚 • 𝙍𝙀𝙋𝙇𝙄𝙏 • </p>
@@ -111,11 +111,11 @@ and you ended up in a Finale Battle with Telegram and at the end
 
 ```
 
-### <h1 align="center"> DEPLOY </p>
+## <h1 align="center"> DEPLOY </p>
 
-### <p align="center"> Heroku </p> <p align="center"><a href="https://ganosecteam.my.id/"><img src="https://img.shields.io/badge/Don't%20Click%20Bro%20,%20Will be Ban-Purple?style=flat&logo=heroku" width="210" height="34.45" /></a></p>
+### <h2 align="center"> Heroku </p> <p align="center"><a href="https://ganosecteam.my.id/"><img src="https://img.shields.io/badge/Don't%20Click%20Bro%20,%20Will be Ban-Purple?style=flat&logo=heroku" width="210" height="34.45" /></a></p>
 
-### Using Git and Python3 -- on (Linux, macOS, and Android [via Termux])
+ 𝗨𝘀𝗶𝗻𝗴 𝗚𝗶𝘁 𝗮𝗻𝗱 𝗣𝘆𝘁𝗵𝗼𝗻𝟯 -- 𝗼𝗻 (𝗟𝗶𝗻𝘂𝘅, 𝗺𝗮𝗰𝗢𝗦, 𝗮𝗻𝗱 𝗔𝗻𝗱𝗿𝗼𝗶𝗱 [𝘃𝗶𝗮 𝗧𝗲𝗿𝗺𝘂𝘅])
 1. Clone this repository on your local machine and `cd` (or `chdir`, anti bloat guy) to it
 2. Set up Python virtual environment named "venv" inside it (Requires `virtualenv` installed on the system)
   - `virtualenv venv`
@@ -127,7 +127,7 @@ and you ended up in a Finale Battle with Telegram and at the end
 6. Run the bot: `bash ./exec.sh`
   - Protip: See what `bash ./exec.sh --help` tells you
 
-##### ※ Those steps are probably possible to pull off on Windows but it's pretty much unknown (different file tree paradigm, directory conventions, PowerShell instead of BASH or ZSH) -- If you're on Windows, you'd be better off running this on WSL (or WSL2)
+※ 𝗧𝗵𝗼𝘀𝗲 𝘀𝘁𝗲𝗽𝘀 𝗮𝗿𝗲 𝗽𝗿𝗼𝗯𝗮𝗯𝗹𝘆 𝗽𝗼𝘀𝘀𝗶𝗯𝗹𝗲 𝘁𝗼 𝗽𝘂𝗹𝗹 𝗼𝗳𝗳 𝗼𝗻 𝗪𝗶𝗻𝗱𝗼𝘄𝘀 𝗯𝘂𝘁 𝗶𝘁'𝘀 𝗽𝗿𝗲𝘁𝘁𝘆 𝗺𝘂𝗰𝗵 𝘂𝗻𝗸𝗻𝗼𝘄𝗻 (𝗱𝗶𝗳𝗳𝗲𝗿𝗲𝗻𝘁 𝗳𝗶𝗹𝗲 𝘁𝗿𝗲𝗲 𝗽𝗮𝗿𝗮𝗱𝗶𝗴𝗺, 𝗱𝗶𝗿𝗲𝗰𝘁𝗼𝗿𝘆 𝗰𝗼𝗻𝘃𝗲𝗻𝘁𝗶𝗼𝗻𝘀, 𝗣𝗼𝘄𝗲𝗿𝗦𝗵𝗲𝗹𝗹 𝗶𝗻𝘀𝘁𝗲𝗮𝗱 𝗼𝗳 𝗕𝗔𝗦𝗛 𝗼𝗿 𝗭𝗦𝗛) -- 𝗜𝗳 𝘆𝗼𝘂'𝗿𝗲 𝗼𝗻 𝗪𝗶𝗻𝗱𝗼𝘄𝘀, 𝘆𝗼𝘂'𝗱 𝗯𝗲 𝗯𝗲𝘁𝘁𝗲𝗿 𝗼𝗳𝗳 𝗿𝘂𝗻𝗻𝗶𝗻𝗴 𝘁𝗵𝗶𝘀 𝗼𝗻 𝗪𝗦𝗟 (𝗼𝗿 𝗪𝗦𝗟𝟮)
 
 
 <br>
