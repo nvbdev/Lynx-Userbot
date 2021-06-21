@@ -34,8 +34,8 @@ async def help(event):
                          f"**◑» Bᴏᴛ ᴏꜰ {DEFAULTUSER}**\n**◑» Pʟᴜɢɪɴ : {len(modules)}**\n\n"
                          "**• Mᴀɪɴ Mᴇɴᴜ :**\n"
                          f"╰►| {string} ◄─\n\n"
-                         f"**License : [Raphielscape Public License 1.d](https://github.com/KENZO-404/Lynx-Userbot/blob/Lynx-Userbot/LICENSE)**"
-                         "**Copyright © 2021 Lynx-Userbot LLC Company**\n")
+                         f"**License : [Raphielscape Public License 1.d](https://github.com/KENZO-404/Lynx-Userbot/blob/Lynx-Userbot/LICENSE)**\n"
+                         f"**Copyright © 2021 [Lynx-Userbot LLC Company](https://kenzo-404.github.io/Lynx-Userbot/)**")
         await event.reply(f"\n**Contoh** : Ketik » `.help admin` Untuk Informasi Pengunaan Plugin Admin.")
         await asyncio.sleep(1000)
         await event.delete()
