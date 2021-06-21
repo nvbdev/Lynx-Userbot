@@ -42,5 +42,3 @@ async def help(event):
                                  "**• Mᴀɪɴ Mᴇɴᴜ :**\n"
                                  f"╰►| {string} ◄─\n\n")
                 await event.reply(f"\n**Contoh** : Ketik » `.help admin` Untuk Informasi Pengunaan Plugin Admin.")
-                await asyncio.sleep(1000)
-                await event.delete()
