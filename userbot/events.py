@@ -146,7 +146,7 @@ def register(**args):
                         file.write(ftext)
 
                     if LOGSPAMMER:
-                        await check.respond(BOTLOG_CHATID,
+                        await check.respond(
                             "`Sorry, my userbot has crashed.\
                         \nThe error logs are stored in the userbot's log chat.`"
                         )
@@ -166,7 +166,6 @@ def register(**args):
                         anu = f"{text}Pasted to: [Nekobin]({url})"
 
                         await check.client.send_file(BOTLOG_CHATID,
-                                                     send_to,
                                                      "error.txt",
                                                      caption=anu)
                         remove("error.txt")
