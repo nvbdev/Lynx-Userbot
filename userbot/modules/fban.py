@@ -1,6 +1,7 @@
 # Copyright (C) 2020 KenHV
-# Port for Lynx-Userbot
-# GNU General Public License v3.0
+# Licensed under the Raphielscape Public License, Version 1.d
+# you may not use this file except in compliance with the License.
+# Ported Lynx-Userbot
 
 from sqlalchemy.exc import IntegrityError
 
@@ -75,7 +76,7 @@ async def fban(event):
         status = f"Success! Fbanned in {total} feds."
 
     await event.edit(
-        f"**Fbanned **{user_link}!\n**Reason:** {reason}\n**Status:** {status}"
+        f"**Fbanned **{user_link}!\n**Reason :** {reason}\n**Status :** {status}"
     )
 
 
@@ -214,13 +215,14 @@ async def delf(event):
 
 CMD_HELP.update(
     {
-        "federation": "⚡𝘾𝙈𝘿⚡: `.fban <id/username> <reason>`"
+        "federation": "✘ Pʟᴜɢɪɴ : Federation"
+        "\n\n⚡𝘾𝙈𝘿⚡: `.fban <ID/Username> <Reason>`"
         "\n↳ : Bans user from connected federations."
         "\nYou can reply to the user whom you want to fban or manually pass the username/id."
-        "\n\n⚡𝘾𝙈𝘿⚡: `.unfban <id/username> <reason>`"
+        "\n\n⚡𝘾𝙈𝘿⚡: `.unfban <ID/Username> <Reason>`"
         "\n↳ : Same as fban but unbans the user"
-        "\n\n⚡𝘾𝙈𝘿⚡: `.addf <name>`"
-        "\n↳ : Adds current group and stores it as <name> in connected federations."
+        "\n\n⚡𝘾𝙈𝘿⚡: `.addf <Name Fed>`"
+        "\n↳ : Adds current group and stores it as <Name> in connected federations."
         "\nAdding one group is enough for one federation."
         "\n\n⚡𝘾𝙈𝘿⚡: `.delf`"
         "\n↳ : Removes current group from connected federations."
