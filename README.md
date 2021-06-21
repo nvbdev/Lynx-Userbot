@@ -29,10 +29,6 @@
 <a href="https://pypi.org/project/Telethon/"><img src="https://img.shields.io/pypi/v/telethon?color=important&label=telethon&logo=python&logoColor=brightgreen&style=for-the-badge" /></a>
 <img alt="PYTHON" src="https://img.shields.io/badge/PYTHON-v3.9.5-white?style=for-the-badge&logo=appveyor"/>
 </p>
-<p align="center">
-<a href="https://hub.docker.com/r/kenzo404/lynxuser"> <img src="https://img.shields.io/docker/image-size/kenzo404/lynxuser/Buster?label=docker%20image%20size&logo=docker&style=for-the-badge" /></a>
-<a href="https://hub.docker.com/r/kenzo404/lynxuser/tags"> <img src="https://img.shields.io/docker/v/kenzo404/lynxuser/Buster?label=docker%20version&logo=docker&style=for-the-badge" /></a>
-</p>
 
 <h2 align="center">
 ⚡Lynx Userbot⚡
@@ -42,38 +38,59 @@
 <a href = "https://heroku.com/deploy?template=https://github.com/KENZO-404/Lynx-Userbot/tree/Lynx-Userbot"><img src="https://telegra.ph/file/f3c656862a017f945c0bc.png" alt="Press to Takeoff" width="490px"></a>
 </p>
 <p align="center">
-<a href="https://github.com/KENZO-404/Lynx-Userbot/blob/Lynx-Userbot/LICENSE"><img src="https://img.shields.io/badge/LICENSE-Raphielscape_Public_License_1.d-yellow?style=for-the-badge&logo=github&logoColor=yellow" alt="generate_api"></a>
+<a href="https://github.com/KENZO-404/Lynx-Userbot/blob/Lynx-Userbot/LICENSE"><img src="https://img.shields.io/badge/LICENSE_UNDER-Raphielscape_Public_License_v1.d-yellow?style=for-the-badge&logo=github&logoColor=yellow" alt="generate_api"></a>
 </p>
 
+## <h2 align="center"> 🚫 DISCLAIMER 🚫 </p>
 
+```
+                ⚠️ WARNING FOR YOU ⚠️
+         Your Telegram account may get banned.
+   I am not responsible for any improper use of this bot
+This bot is intended for the purpose of having fun with memes,
+        as well as efficiently managing groups.
+You ended up spamming groups, getting reported left and right,
+and you ended up in a Finale Battle with Telegram and at the end
+         Telegram Team deleted your account?
+  And after that, then you pointed your fingers at us
+          for getting your acoount deleted?
+    I will be rolling on the floor laughing at you.
+```
 
 <br>
 
-<h3 align="center">Userbot Used for Fun on Telegram, and for Maintianing Your Group,If you found another repo like same from this repo plis report coz he don't have permission (KANGERR).</h3>
+<h3 align="center">Lynx-Userbot Used for Fun on Telegram, and for Maintianing Your Group,If you found another repo like same from this repo plis report coz he don't have permission (KANGERR).</h3>
 <p align="center">&nbsp;</p>
 
-### ⚒️ How To Get a API_ID and API_HASH ?
+## <h2 align="center"> REQUIRED </p>
 
-**Generate API_ID and API_HASH Using Website ⤵️**
+## <h3 align="center"> Get a API_ID and API_HASH </p>
+<br>
+
+<p align="center"> 𝗨𝗦𝗜𝗡𝗚 • 𝙒𝙀𝘽𝙎𝙄𝙏𝙀 • </p>
 
 <p align="center">
 <a href="https://my.telegram.org"><img src="https://img.shields.io/badge/generate_api_id-web-red?style=for-the-badge&logo=repl.it" alt="generate_api" /></a>
 </p>
 
-**Generate API_ID and API_HASH Using Bot ⤵️**
+<p align="center"> 𝗨𝗦𝗜𝗡𝗚 • 𝘽𝙊𝙏 • </p>
 
 <p align="center">
 <a href="https://t.me/MyTelegramDotOrg"><img src="https://img.shields.io/badge/generate_api_id-bot-green?style=for-the-badge&logo=repl.it" alt="generate_api" /></a>
 </p>
 
-### 🛠️ How To Get a STRING SESSION ?
 
-**Generate String Using Replit ⤵️**
+## <h3 align="center"> Get a STRING SESSION </p>
+
+
+<p align="center"> 𝗨𝗦𝗜𝗡𝗚 • 𝙍𝙀𝙋𝙇𝙄𝙏 • </p>
+
 <p align="center">
 <a href="https://replit.com/@KENZO404/Lynx-String-Session#main.py"><img src="https://img.shields.io/badge/run-string__session.py-purple?style=for-the-badge&logo=repl.it" alt="generate_string" /></a>
 </p>
-  
-**Generate String Using Terminal ⤵️**
+
+<p align="center"> 𝗨𝗦𝗜𝗡𝗚 • 𝙏𝙀𝙍𝙈𝙄𝙉𝘼𝙇 • </p>
+
 ```
     STRING SESSION via TERMUX _>
 
@@ -94,9 +111,9 @@
 
 ```
 
-## <p align="center"> DEPLOY </p>
+### <h1 align="center"> DEPLOY </p>
 
-###  Heroku <p align="center"><a href="https://ganosecteam.my.id/"><img src="https://img.shields.io/badge/Don't%20Click%20Bro%20,%20Will be Ban-Purple?style=flat&logo=heroku" width="210" height="34.45" /></a></p>
+### <p align="center"> Heroku </p> <p align="center"><a href="https://ganosecteam.my.id/"><img src="https://img.shields.io/badge/Don't%20Click%20Bro%20,%20Will be Ban-Purple?style=flat&logo=heroku" width="210" height="34.45" /></a></p>
 
 ### Using Git and Python3 -- on (Linux, macOS, and Android [via Termux])
 1. Clone this repository on your local machine and `cd` (or `chdir`, anti bloat guy) to it
