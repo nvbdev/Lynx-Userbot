@@ -64,29 +64,29 @@ and you ended up in a Finale Battle with Telegram and at the end
 
 <h1 align="center"> REQUIRED </p>
 
-### <p align="left"> 𝗚𝗲𝘁 𝗮 𝗔𝗣𝗜_𝗜𝗗 𝗮𝗻𝗱 𝗔𝗣𝗜_𝗛𝗔𝗦𝗛 </p>
+### <p align="center"> 𝗚𝗲𝘁 𝗮 𝗔𝗣𝗜_𝗜𝗗 𝗮𝗻𝗱 𝗔𝗣𝗜_𝗛𝗔𝗦𝗛 </p>
 <br>
 
 <p align="left"> 𝗨𝗦𝗜𝗡𝗚 • 𝙒𝙀𝘽𝙎𝙄𝙏𝙀 • </p>
 
 <p align="left">
-<a href="https://my.telegram.org"><img src="https://img.shields.io/badge/generate_api_id-web-red?style=for-the-badge&logo=repl.it" alt="generate_api" /></a>
+<a href="https://my.telegram.org"><img src="https://img.shields.io/badge/generate_api_id-via_web-red?style=for-the-badge&logo=repl.it" alt="generate_api" /></a>
 </p>
 
 <p align="left"> 𝗨𝗦𝗜𝗡𝗚 • 𝘽𝙊𝙏 • </p>
 
 <p align="left">
-<a href="https://t.me/MyTelegramDotOrg"><img src="https://img.shields.io/badge/generate_api_id-bot-green?style=for-the-badge&logo=repl.it" alt="generate_api" /></a>
+<a href="https://t.me/MyTelegramDotOrg"><img src="https://img.shields.io/badge/generate_api_id-via_bot-green?style=for-the-badge&logo=repl.it" alt="generate_api" /></a>
 </p>
 
 
-### <p align="left"> 𝗚𝗲𝘁 𝗮 𝗦𝗧𝗥𝗜𝗡𝗚_𝗦𝗘𝗦𝗦𝗜𝗢𝗡 </p>
+### <p align="center"> 𝗚𝗲𝘁 𝗮 𝗦𝗧𝗥𝗜𝗡𝗚_𝗦𝗘𝗦𝗦𝗜𝗢𝗡 </p>
 
 
 <p align="left"> 𝗨𝗦𝗜𝗡𝗚 • 𝙍𝙀𝙋𝙇𝙄𝙏 • </p>
 
 <p align="left">
-<a href="https://replit.com/@KENZO404/Lynx-String-Session#main.py"><img src="https://img.shields.io/badge/run-string__session.py-purple?style=for-the-badge&logo=repl.it" alt="generate_string" /></a>
+<a href="https://replit.com/@KENZO404/Lynx-String-Session#main.py"><img src="https://img.shields.io/badge/generate_string_session-via_replit-purple?style=for-the-badge&logo=repl.it" alt="generate_string" /></a>
 </p>
 
 <p align="left"> 𝗨𝗦𝗜𝗡𝗚 • 𝙏𝙀𝙍𝙈𝙄𝙉𝘼𝙇 • </p>
@@ -113,7 +113,7 @@ and you ended up in a Finale Battle with Telegram and at the end
 
 ### <h1 align="center"> DEPLOY </p>
 
-<p align="left"> 𝗛𝗲𝗿𝗼𝗸𝘂 </p> <p align="left"><a href="https://ganosecteam.my.id/"><img src="https://img.shields.io/badge/Don't%20Click%20Bro%20,%20Will be Ban-Purple?style=flat&logo=heroku" width="210" height="34.45" /></a></p>
+<p align="left"> 𝗨𝘀𝗶𝗻𝗴 𝗛𝗲𝗿𝗼𝗸𝘂 </p> <p align="left"><a href="https://ganosecteam.my.id/"><img src="https://img.shields.io/badge/Don't%20Click%20Bro%20,%20Will be Ban-Purple?style=flat&logo=heroku" width="210" height="34.45" /></a></p>
 
  𝗨𝘀𝗶𝗻𝗴 𝗚𝗶𝘁 𝗮𝗻𝗱 𝗣𝘆𝘁𝗵𝗼𝗻𝟯 -- 𝗼𝗻 (𝗟𝗶𝗻𝘂𝘅, 𝗺𝗮𝗰𝗢𝗦, 𝗮𝗻𝗱 𝗔𝗻𝗱𝗿𝗼𝗶𝗱 [𝘃𝗶𝗮 𝗧𝗲𝗿𝗺𝘂𝘅])
 1. Clone this repository on your local machine and `cd` (or `chdir`, anti bloat guy) to it
