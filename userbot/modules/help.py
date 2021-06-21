@@ -17,12 +17,19 @@ async def help(event):
     """For .help command,"""
     args = event.pattern_match.group(1).lower()
     if args:
-        if args in CMD_HELP:
-            await event.edit(str(CMD_HELP[args]))
-        else:
-            await event.edit("**Plugin yang anda ketik salah ❌\nMohon ketik plugin dengan benar.**")
-            await asyncio.sleep(200)
-            await event.delete()
+        try:
+            if args in HELP:
+                output = f"**Plugin** - `{args}`\n"
+                for i in HELP[args]:
+                    output += i
+                output += "\n© @LynxUserbot"
+                await event.client_send_message(event.chat_id, output)
+            elif args in CMD_HELP:
+                kk = f"**Plugin {args} Salah ❌\nMohon Ketik Nama Plugin Dengan Benar.**"
+                kk += str(CMD_HELP[args])
+                await event.send_message(event.chat_id, kk)
+                await asyncio.sleep(200)
+                await event.delete()
     else:
         string = ""
         for i in CMD_HELP:
