@@ -8,6 +8,7 @@ from userbot import ALIVE_NAME, CMD_HELP, BOTLOG, BOTLOG_CHATID, DEVELOPER, bot
 from userbot.events import register
 import userbot.modules.sql_helper.globalban_sql as gban_sql
 
+from userbot.utils import edit_or_reply, edit_delete
 from telethon.tl.functions.channels import EditBannedRequest
 from telethon.tl.functions.messages import ImportChatInviteRequest
 from telethon.tl.functions.contacts import BlockRequest, UnblockRequest
