@@ -14,7 +14,8 @@ import random
 
 from datetime import datetime
 from time import sleep
-
+from platform import python_version
+from telethon import TelegramClient, version
 from sys import version_info
 from logging import basicConfig, getLogger, INFO, DEBUG
 from distutils.util import strtobool as sb
