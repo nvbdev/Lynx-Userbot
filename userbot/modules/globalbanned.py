@@ -16,10 +16,9 @@ from telethon.tl.functions.messages import ImportChatInviteRequest
 from telethon.tl.types import Channel, ChatBannedRights, MessageEntityMentionName
 
 import userbot.modules.sql_helper.globalban_sql as gban_sql
-from userbot import ALIVE_NAME, BOTLOG, BOTLOG_CHATID, CMD_HELP, DEVELOPER
+from userbot import ALIVE_NAME, BOTLOG, BOTLOG_CHATID, DEVELOPER
 from userbot.events import register
 from userbot.utils import edit_delete, edit_or_reply
-
 
 
 # ================================================
