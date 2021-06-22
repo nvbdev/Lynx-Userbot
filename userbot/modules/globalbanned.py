@@ -143,7 +143,7 @@ async def gban(event):
         await gbun.edit("**Anda Tidak Mempunyai Group Dan Anda Tidak Mempunyai Title Admin.**")
         return
     await gbun.edit(
-        f"**Pengguna** [Ini](tg://user?id={user.id}) **Sudah Berada Di Dalam Daftar** `{len(xel)}` **Group**"
+        f"#WARNING\n**👤 User :** » [CLICK HERE](tg://user?id={user.id}) «\n**Sudah Berada Di Dalam Daftar Global Banned.**\n**Jumlah :** `{len(xel)}` **Group**"
     )
     for i in range(pis):
         try:
@@ -173,21 +173,21 @@ async def gban(event):
                 BOTLOG_CHATID,
                 f"#GBANNED\
                 \nGlobal Banned\
-                \n**Pengguna : **[{user.first_name}](tg://user?id={user.id})\
-                \n**ID : **`{user.id}`\
+                \n**Pengguna :** [{user.first_name}](tg://user?id={user.id})\
+                \n**ID :** `{user.id}`\
                 \n**Reason :** `{reason}`\
-                \n__Banned Dalam {count} Group__\
-                \n**Waktu Yang Dibutuhkan : **`{timetaken} Detik`",
+                \n**Jumlah :** `{count}` **Group**\
+                \n**Waktu Yang Dibutuhkan :** `{timetaken}` **Detik**",
             )
         else:
             await event.client.send_message(
                 BOTLOG_CHATID,
                 f"#GBANNED\
                 \nGlobal Banned\
-                \n**Pengguna : **[{user.first_name}](tg://user?id={user.id})\
-                \n**ID : **`{user.id}`\
-                \n__Banned Dalam {count} Group__\
-                \n**Waktu Yang Dibutuhkan : **`{timetaken} Detik`",
+                \n**Pengguna :** [{user.first_name}](tg://user?id={user.id})\
+                \n**ID :** `{user.id}`\
+                \n**Jumlah :** `{count}` **Group**\
+                \n**Waktu Yang Dibutuhkan :** `{timetaken} **Detik**",
             )
         try:
             if reply:
@@ -210,7 +210,7 @@ async def ungban(event):
         gban_sql.freakungban(user.id)
     else:
         await ungbun.edit(
-            f"**Pengguna** [Ini](tg://user?id={user.id}) **ini tidak ada dalam daftar gban Anda**"
+            f"**👤 User :** » [CLICK HERE](tg://user?id={user.id}) «\n**Ini Tidak Ada Dalam Daftar GBAN Anda.**"
         )
         return
     xel = []
@@ -218,10 +218,10 @@ async def ungban(event):
     count = 0
     pis = len(xel)
     if pis == 0:
-        await ungbun.edit("**Anda Tidak mempunyai GC yang anda admin 🥺**")
+        await ungbun.edit("**Anda Tidak Mempunyai Group Dan Anda Tidak Mempunyai Title Admin.**")
         return
     await ungbun.edit(
-        f"**Pengguna** [Ini](tg://user?id={user.id}) **dalam** `{len(xel)}` **grup**"
+        f"Sedang Membatalkan Global Banned...\n**👤 User :** » [CLICK HERE](tg://user?id={user.id}) « \n**Jumlah :** `{len(xel)}` **Group**"
     )
     for i in range(pis):
         try:
@@ -237,11 +237,11 @@ async def ungban(event):
     timetaken = (end - start).seconds
     if reason:
         await ungbun.edit(
-            f"╭─━━━━━━━━━━━━━━━━─╮\nㅤ  ㅤ[⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡](t.me/LynxUserbot)\n╭─━━━━━━━━━━━━━━━━─╯\n**│• UNGBAN By :** `{ALIVE_NAME}`\n**│• User Account :** [{user.first_name}](tg://user?id={user.id})\n**│• Jumlah : {count} Group, Dalam {timetaken} Detik\n**│• Reason : {reason}\n**│• Action :** `UNGBanned` ❌\n╰━━━━━━━━━━━━━━━━━━╯"
+            f"╭─━━━━━━━━━━━━━━━━─╮\nㅤ  ㅤ[⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡](t.me/LynxUserbot)\n╭─━━━━━━━━━━━━━━━━─╯\n**│• UNGBAN By :** `{ALIVE_NAME}`\n**│• User Account :** [{user.first_name}](tg://user?id={user.id})\n**│• Jumlah : {count} Group, Dalam {timetaken} Detik\n**│• Reason : {reason}\n**│• Action :** `GBanned` ❌\n╰━━━━━━━━━━━━━━━━━━╯"
         )
     else:
         await ungbun.edit(
-            f"╭─━━━━━━━━━━━━━━━━─╮\nㅤ  ㅤ[⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡](t.me/LynxUserbot)\n╭─━━━━━━━━━━━━━━━━─╯\n**│• UNGBAN By :** `{ALIVE_NAME}`\n**│• User Account :** [{user.first_name}](tg://user?id={user.id})\n**│• Jumlah : {count} Group, Dalam {timetaken} Detik\n**│• Action :** `UNGBanned` ❌\n╰━━━━━━━━━━━━━━━━━━╯"
+            f"╭─━━━━━━━━━━━━━━━━─╮\nㅤ  ㅤ[⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡](t.me/LynxUserbot)\n╭─━━━━━━━━━━━━━━━━─╯\n**│• UNGBAN By :** `{ALIVE_NAME}`\n**│• User Account :** [{user.first_name}](tg://user?id={user.id})\n**│• Jumlah : {count} Group, Dalam {timetaken} Detik\n**│• Action :** `GBanned` ❌\n╰━━━━━━━━━━━━━━━━━━╯"
         )
 
     if BOTLOG and count != 0:
@@ -250,21 +250,21 @@ async def ungban(event):
                 BOTLOG_CHATID,
                 f"#UNGBANNED\
                 \nGlobal Unbanned\
-                \n**Pengguna : **[{user.first_name}](tg://user?id={user.id})\
-                \n**ID : **`{user.id}`\
+                \n**Pengguna :** [{user.first_name}](tg://user?id={user.id})\
+                \n**ID :** `{user.id}`\
                 \n**Reason :** `{reason}`\
-                \n__UNGBanned Dalam {count} Group__\
-                \n**Waktu Yang Di Butuhkan : **`{timetaken} Detik`",
+                \n**Jumlah :** `{count}` **Group**\
+                \n**Waktu Yang Di Butuhkan :** `{timetaken}` **Detik**",
             )
         else:
             await event.client.send_message(
                 BOTLOG_CHATID,
                 f"#UNGBANNED\
                 \nGlobal Unbaned\
-                \n**Pengguna : **[{user.first_name}](tg://user?id={user.id})\
-                \n**ID : **`{user.id}`\
-                \n__UNGBanned Dalam {count} Group__\
-                \n**Waktu Yang Di Butuhkan : **`{timetaken} Detik`",
+                \n**Pengguna :** [{user.first_name}](tg://user?id={user.id})\
+                \n**ID :** `{user.id}`\
+                \n**Jumlah :** `{count`} **Group**\
+                \n**Waktu Yang Di Butuhkan :** `{timetaken}` **Detik**",
             )
 
 
@@ -273,15 +273,15 @@ async def gablist(event):
     if event.fwd_from:  # This is created by catuserbot
         return
     gbanned_users = gban_sql.get_all_gbanned()
-    GBANNED_LIST = "**Daftar Global Banned :**\n"
+    GBANNED_LIST = "📖 **Daftar Global Banned :**\n"
     if len(gbanned_users) > 0:
         for a_user in gbanned_users:
             if a_user.reason:
-                GBANNED_LIST += f"│👤 User : [{a_user.chat_id}](tg://user?id={a_user.chat_id}) \nReason : `{a_user.reason}`\n"
+                GBANNED_LIST += f"**│👤 User :** [{a_user.chat_id}](tg://user?id={a_user.chat_id}) \n**│ Reason :** `{a_user.reason}`\n"
             else:
                 GBANNED_LIST += (
                     f"│👤 User : [{a_user.chat_id}](tg://user?id={a_user.chat_id}) `No Reason`\n"
                 )
     else:
-        GBANNED_LIST = "Daftar List Global Banned `Kosong`.\n Anda Belum Pernah Melakukan Global Banned Sebelumnya."
+        GBANNED_LIST = "Daftar List Global Banned : `Kosong`.\nAnda Belum Pernah Melakukan Global Banned Sebelumnya."
     await edit_or_reply(event, GBANNED_LIST)
