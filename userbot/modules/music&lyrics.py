@@ -1,7 +1,8 @@
 # © Copyright 2021 Lynx-Userbot LLC Company. (Axel Alexius Latukolan)
-# GPL-3.0 License (General Public License) From Github
-# WARNING !! Don't Delete This Hashtag if u Kang it !!
-# Ported for Lynx-Userbot by @Vckyuouu (piki)
+#
+# Licensed under the Raphielscape Public License, Version 1.d (the "License");
+# you may not use this file except in compliance with the License.
+# Ported to Lynx-Userbot by @Vckyuouu (piki)
 # Credits : @Ultroid
 
 import json
@@ -24,9 +25,8 @@ from youtube_dl.utils import (
 )
 from youtubesearchpython import SearchVideos
 from userbot.events import register
-from userbot import CMD_HELP, ALIVE_NAME
+from userbot import CMD_HELP, DEFAULTUSER
 
-DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else uname().node
 
 # Fixes Bug by @Spidy
 a1 = base64.b64decode(
@@ -120,7 +120,7 @@ Connected to server...
         rip_data["title"], rip_data["uploader"]
     )
     await event.edit(f"`{upteload}`")
-    CAPT = f"╭┈────────────────┈\n➥ {rip_data['title']}\n➥ Uploader - {rip_data['uploader']}\n╭┈────────────────┈╯\n➥ By : {DEFAULTUSER}\n╰┈────────────────┈➤"
+    CAPT = f"╭┈───────────────┈\n➥ `{rip_data['title']}`\n➥ **Uploader :** `{rip_data['uploader']}`\n╭┈───────────────┈╯\n➥ **Request By :** {DEFAULTUSER}\n╰┈───────────────┈➤"
     await event.client.send_file(
         event.chat_id,
         f"{rip_data['id']}.mp3",
@@ -148,7 +148,7 @@ async def original(event):
     if not event.pattern_match.group(1):
         return await event.edit("Beri Saya Sebuah Judul Lagu Untuk Mencari Lirik.\n**Contoh** : `.lyrics` <Judul Lagu>")
     kenzo = event.pattern_match.group(1)
-    event = await event.edit("`Sedang Mencari Lirik Lagu...`")
+    event = await event.edit("`🔍 Sedang Mencari Lirik Lagu...`")
     dc = random.randrange(1, 3)
     if dc == 1:
         lynX = a1
@@ -166,9 +166,9 @@ async def original(event):
 CMD_HELP.update(
     {
         "music&lyrics": "✘ Pʟᴜɢɪɴ : Music & Lyrics\
-         \n\n⚡𝘾𝙈𝘿⚡: `.music` <Penyanyi/Band - JudulLagu>\
+         \n\n⚡𝘾𝙈𝘿⚡: `.music` <Penyanyi/Band - Judul Lagu>\
          \n↳ : Mengunduh Sebuah Lagu Yang Anda Inginkan.\
-         \n⚡𝘾𝙈𝘿⚡: `.lyrics` <Penyanyi/Band - JudulLagu>\
+         \n\n⚡𝘾𝙈𝘿⚡: `.lyrics` <Penyanyi/Band - Judul Lagu>\
          \n↳ : Mencari Lirik Lagu Yang Anda Inginkan."
     }
 )
