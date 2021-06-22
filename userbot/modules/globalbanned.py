@@ -187,7 +187,7 @@ async def gban(event):
                 \n**Pengguna :** [{user.first_name}](tg://user?id={user.id})\
                 \n**ID :** `{user.id}`\
                 \n**Jumlah :** `{count}` **Group**\
-                \n**Waktu Yang Dibutuhkan :** `{timetaken} **Detik**",
+                \n**Waktu Yang Dibutuhkan :** `{timetaken}` **Detik**",
             )
         try:
             if reply:
@@ -263,7 +263,7 @@ async def ungban(event):
                 \nGlobal Unbaned\
                 \n**Pengguna :** [{user.first_name}](tg://user?id={user.id})\
                 \n**ID :** `{user.id}`\
-                \n**Jumlah :** `{count`} **Group**\
+                \n**Jumlah :** `{count}` **Group**\
                 \n**Waktu Yang Di Butuhkan :** `{timetaken}` **Detik**",
             )
 
