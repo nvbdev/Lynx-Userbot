@@ -237,11 +237,11 @@ async def ungban(event):
     timetaken = (end - start).seconds
     if reason:
         await ungbun.edit(
-            f"╭─━━━━━━━━━━━━━━━━─╮\nㅤ  ㅤ[⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡](t.me/LynxUserbot)\n╭─━━━━━━━━━━━━━━━━─╯\n**│• UNGBAN By :** `{ALIVE_NAME}`\n**│• User Account :** [{user.first_name}](tg://user?id={user.id})\n**│• Jumlah :** `{count}` **Group, Dalam** `{timetaken}` **Detik\n**│• Reason :** `{reason}`\n**│• Action :** `GBanned` ❌\n╰━━━━━━━━━━━━━━━━━━╯"
+            f"╭─━━━━━━━━━━━━━━━━─╮\nㅤ  ㅤ[⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡](t.me/LynxUserbot)\n╭─━━━━━━━━━━━━━━━━─╯\n**│• UNGBAN By :** `{ALIVE_NAME}`\n**│• User Account :** [{user.first_name}](tg://user?id={user.id})\n**│• Jumlah :** `{count}` **Group, Dalam** `{timetaken}` **Detik**\n**│• Reason :** `{reason}`\n**│• Action :** `GBanned` ❌\n╰━━━━━━━━━━━━━━━━━━╯"
         )
     else:
         await ungbun.edit(
-            f"╭─━━━━━━━━━━━━━━━━─╮\nㅤ  ㅤ[⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡](t.me/LynxUserbot)\n╭─━━━━━━━━━━━━━━━━─╯\n**│• UNGBAN By :** `{ALIVE_NAME}`\n**│• User Account :** [{user.first_name}](tg://user?id={user.id})\n**│• Jumlah :** `{count}` **Group, Dalam** `{timetaken}` **Detik\n**│• Action :** `GBanned` ❌\n╰━━━━━━━━━━━━━━━━━━╯"
+            f"╭─━━━━━━━━━━━━━━━━─╮\nㅤ  ㅤ[⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡](t.me/LynxUserbot)\n╭─━━━━━━━━━━━━━━━━─╯\n**│• UNGBAN By :** `{ALIVE_NAME}`\n**│• User Account :** [{user.first_name}](tg://user?id={user.id})\n**│• Jumlah :** `{count}` **Group, Dalam** `{timetaken}` **Detik**\n**│• Action :** `GBanned` ❌\n╰━━━━━━━━━━━━━━━━━━╯"
         )
 
     if BOTLOG and count != 0:
