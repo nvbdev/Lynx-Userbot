@@ -191,24 +191,6 @@ async def gban(event):
     if event.fwd_from:
         return
     gbun = await edit_or_reply(event, "𝘎𝘭𝘰𝘣𝘢𝘭 𝘉𝘢𝘯𝘯𝘦𝘥 𝘪𝘯 𝘗𝘳𝘰𝘨𝘳𝘦𝘴𝘴...")
-    gbun += await edit_or_reply(event, "𝘎𝘭𝘰𝘣𝘢𝘭 𝘉𝘢𝘯𝘯𝘦𝘥 𝘪𝘯 𝘗𝘳𝘰𝘨𝘳𝘦𝘴𝘴...🐈")
-    gbun += await edit_or_reply(event, "𝘎𝘭𝘰𝘣𝘢𝘭 𝘉𝘢𝘯𝘯𝘦𝘥 𝘪𝘯 𝘗𝘳𝘰𝘨𝘳𝘦𝘴𝘴..🐈")
-    gbun += await edit_or_reply(event, "𝘎𝘭𝘰𝘣𝘢𝘭 𝘉𝘢𝘯𝘯𝘦𝘥 𝘪𝘯 𝘗𝘳𝘰𝘨𝘳𝘦𝘴𝘴.🐈.")
-    gbun += await edit_or_reply(event, "𝘎𝘭𝘰𝘣𝘢𝘭 𝘉𝘢𝘯𝘯𝘦𝘥 𝘪𝘯 𝘗𝘳𝘰𝘨𝘳𝘦𝘴𝘴🐈..")
-    gbun += await edit_or_reply(event, "𝘎𝘭𝘰𝘣𝘢𝘭 𝘉𝘢𝘯𝘯𝘦𝘥 𝘪𝘯 𝘗𝘳𝘰𝘨𝘳𝘦𝘴🐈...")
-    gbun += await edit_or_reply(event, "𝘎𝘭𝘰𝘣𝘢𝘭 𝘉𝘢𝘯𝘯𝘦𝘥 𝘪𝘯 𝘗𝘳𝘰𝘨𝘳𝘦🐈𝘴...")
-    gbun += await edit_or_reply(event, "𝘎𝘭𝘰𝘣𝘢𝘭 𝘉𝘢𝘯𝘯𝘦𝘥 𝘪𝘯 𝘗𝘳𝘰𝘨𝘳🐈𝘴𝘴...")
-    gbun += await edit_or_reply(event, "𝘎𝘭𝘰𝘣𝘢𝘭 𝘉𝘢𝘯𝘯𝘦𝘥 𝘪𝘯 𝘗𝘳𝘰𝘨🐈𝘦𝘴𝘴...")
-    gbun += await edit_or_reply(event, "𝘎𝘭𝘰𝘣𝘢𝘭 𝘉𝘢𝘯𝘯𝘦𝘥 𝘪𝘯 𝘗𝘳𝘰🐈𝘳𝘦𝘴𝘴...")
-    gbun += await edit_or_reply(event, "𝘎𝘭𝘰𝘣𝘢𝘭 𝘉𝘢𝘯𝘯𝘦𝘥 𝘪𝘯 𝘗𝘳🐈𝘨𝘳𝘦𝘴𝘴...")
-    gbun += await edit_or_reply(event, "𝘎𝘭𝘰𝘣𝘢𝘭 𝘉𝘢𝘯𝘯𝘦𝘥 𝘪𝘯 𝘗🐈𝘰𝘨𝘳𝘦𝘴𝘴...")
-    gbun += await edit_or_reply(event, "𝘎𝘭𝘰𝘣𝘢𝘭 𝘉𝘢𝘯𝘯𝘦𝘥 𝘪𝘯 🐈𝘳𝘰𝘨𝘳𝘦𝘴𝘴...")
-    gbun += await edit_or_reply(event, "𝘎𝘭𝘰𝘣𝘢𝘭 𝘉𝘢𝘯𝘯𝘦𝘥 𝘪𝘯🐈𝘗𝘳𝘰𝘨𝘳𝘦𝘴𝘴...")
-    gbun += await edit_or_reply(event, "𝘎𝘭𝘰𝘣𝘢𝘭 𝘉𝘢𝘯𝘯𝘦𝘥 𝘪🐈 𝘗𝘳𝘰𝘨𝘳𝘦𝘴𝘴...")
-    gbun += await edit_or_reply(event, "𝘎𝘭𝘰𝘣𝘢𝘭 𝘉𝘢𝘯𝘯𝘦𝘥 🐈𝘯 𝘗𝘳𝘰𝘨𝘳𝘦𝘴𝘴...")
-    gbun += await edit_or_reply(event, "𝘎𝘭𝘰𝘣𝘢𝘭 𝘉𝘢𝘯𝘯𝘦𝘥🐈𝘪𝘯 𝘗𝘳𝘰𝘨𝘳𝘦𝘴𝘴...")
-    gbun += await edit_or_reply(event, "⚡")
-    gbun += await asyncio.sleep(2.5)
     start = datetime.now()
     user, reason = await get_user_from_event(event, gbun)
     if not user:
@@ -296,7 +278,7 @@ async def gban(event):
 async def ungban(event):
     if event.fwd_from:
         return
-    ungbun = await edit_or_reply(event, "`UnGbanning.....`")
+    ungbun = await edit_or_reply(event, "𝘜𝘯𝘎𝘭𝘰𝘣𝘢𝘭 𝘉𝘢𝘯𝘯𝘦𝘥 𝘪𝘯 𝘗𝘳𝘰𝘨𝘳𝘦𝘴𝘴...")
     start = datetime.now()
     user, reason = await get_user_from_event(event, ungbun)
     if not user:
