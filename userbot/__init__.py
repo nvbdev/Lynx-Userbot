@@ -353,9 +353,9 @@ async def update_restart_msg(chat_id, msg_id):
     DEFAULTUSER = ALIVE_NAME or "Set `ALIVE_NAME` ConfigVar!"
     message = (
         f"**⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡ is Back Up and Running!**\n\n"
-        f"⚙️**Telethon :** __{version.__version__}__\n"
-        f"🐍**Python :** __{python_version()}__\n"
-        f"👤**User :** __{DEFAULTUSER}__"
+        f"⚙️ **Telethon :** __{version.__version__}__\n"
+        f"🐍 **Python :** __{python_version()}__\n"
+        f"👤 **User :** __{DEFAULTUSER}__"
     )
     await bot.edit_message(chat_id, msg_id, message)
     return True
