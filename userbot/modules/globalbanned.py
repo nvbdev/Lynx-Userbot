@@ -108,7 +108,6 @@ async def get_user_from_event(event, uevent=None, secondgroup=None):
     return user_obj, extra
 
 
-
 @register(outgoing=True, pattern=r"^\.gban(?: |$)(.*)")
 async def gban(event):
     if event.fwd_from:

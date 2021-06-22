@@ -4,7 +4,6 @@
 # you may not use this file except in compliance with the License.
 # Based On Plugins from Dark Cobra
 
-import asyncio
 from telethon.events import ChatAction
 from userbot import ALIVE_NAME, CMD_HELP, BOTLOG, BOTLOG_CHATID, bot
 from userbot.events import register

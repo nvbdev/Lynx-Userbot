@@ -45,11 +45,13 @@ CONSOLE_LOGGER_VERBOSE = sb(os.environ.get("CONSOLE_LOGGER_VERBOSE", "False"))
 
 if CONSOLE_LOGGER_VERBOSE:
     basicConfig(
-        format="%(asctime)s - %(name)s - %(levelname)s - %(message)s", level=DEBUG,
+        format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+        level=DEBUG,
     )
 else:
-    basicConfig(format="%(asctime)s - %(name)s - %(levelname)s - %(message)s", level=INFO
-    )
+    basicConfig(
+        format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+        level=INFO)
 LOGS = getLogger(__name__)
 
 if version_info[0] < 3 or version_info[1] < 8:
@@ -86,7 +88,9 @@ LOGSPAMMER = sb(os.environ.get("LOGSPAMMER", "False"))
 CUSTOM_PMPERMIT_TEXT = os.environ.get("CUSTOM_PMPERMIT_TEXT", None)
 
 # Pm Permit Img
-PM_PERMIT_PIC = os.environ.get("PM_PERMIT_PIC", None) or "https://telegra.ph/file/49ce66ba7e0fa0ce99210.png"
+PM_PERMIT_PIC = os.environ.get(
+    "PM_PERMIT_PIC",
+    None) or "https://telegra.ph/file/49ce66ba7e0fa0ce99210.png"
 
 # Bleep Blop, this is a bot ;)
 PM_AUTO_BAN = sb(os.environ.get("PM_AUTO_BAN", "False"))
@@ -109,7 +113,9 @@ GIT_REPO_NAME = os.environ.get("GIT_REPO_NAME", None)
 GITHUB_ACCESS_TOKEN = os.environ.get("GITHUB_ACCESS_TOKEN", None)
 
 # Custom (forked) repo URL for updater.
-UPSTREAM_REPO_URL = os.environ.get("UPSTREAM_REPO_URL", "https://github.com/KENZO-404/Lynx-Userbot")
+UPSTREAM_REPO_URL = os.environ.get(
+    "UPSTREAM_REPO_URL",
+    "https://github.com/KENZO-404/Lynx-Userbot")
 UPSTREAM_REPO_BRANCH = os.environ.get("UPSTREAM_REPO_BRANCH", "Lynx-Userbot")
 
 # Console verbose logging
@@ -130,7 +136,8 @@ SUDO_USERS = {int(x) for x in os.environ.get("SUDO_USERS", "").split()}
 
 # Chrome Driver and Headless Google Chrome Binaries
 CHROME_DRIVER = os.environ.get("CHROME_DRIVER") or "/usr/bin/chromedriver"
-GOOGLE_CHROME_BIN = os.environ.get("GOOGLE_CHROME_BIN") or "/usr/bin/google-chrome"
+GOOGLE_CHROME_BIN = os.environ.get(
+    "GOOGLE_CHROME_BIN") or "/usr/bin/google-chrome"
 
 # set to True if you want to log PMs to your PM_LOGGR_BOT_API_ID
 NC_LOG_P_M_S = bool(os.environ.get("NC_LOG_P_M_S", False))
@@ -180,10 +187,13 @@ ALIVE_USERNAME = os.environ.get("ALIVE_USERNAME", None)
 S_PACK_NAME = os.environ.get("S_PACK_NAME", None)
 
 # Default .alive Logo
-ALIVE_LOGO = os.environ.get("ALIVE_LOGO", None) or "https://telegra.ph/file/78db3f8bc07d3c4a42c4f.mp4"
+ALIVE_LOGO = os.environ.get(
+    "ALIVE_LOGO",
+    None) or "https://telegra.ph/file/78db3f8bc07d3c4a42c4f.mp4"
 
 # Link Instagram for CMD Alive
-INSTAGRAM_ALIVE = os.environ.get("INSTAGRAM_ALIVE") or "instagram.com/si_axeell"
+INSTAGRAM_ALIVE = os.environ.get(
+    "INSTAGRAM_ALIVE") or "instagram.com/si_axeell"
 
 # Last.fm Module
 BIO_PREFIX = os.environ.get("BIO_PREFIX", None)
@@ -214,7 +224,8 @@ G_DRIVE_CLIENT_SECRET = os.environ.get("G_DRIVE_CLIENT_SECRET", None)
 G_DRIVE_AUTH_TOKEN_DATA = os.environ.get("G_DRIVE_AUTH_TOKEN_DATA", None)
 G_DRIVE_FOLDER_ID = os.environ.get("G_DRIVE_FOLDER_ID", None)
 G_DRIVE_INDEX_URL = os.environ.get("G_DRIVE_INDEX_URL", None)
-TEMP_DOWNLOAD_DIRECTORY = os.environ.get("TMP_DOWNLOAD_DIRECTORY", "./downloads")
+TEMP_DOWNLOAD_DIRECTORY = os.environ.get(
+    "TMP_DOWNLOAD_DIRECTORY", "./downloads")
 
 # Google Photos
 G_PHOTOS_CLIENT_ID = os.environ.get("G_PHOTOS_CLIENT_ID", None)
@@ -367,7 +378,9 @@ try:
     chat_id, msg_id = gvarstatus("restartstatus").split("\n")
     try:
         with bot:
-            bot.loop.run_until_complete(update_restart_msg(int(chat_id), int(msg_id)))
+            bot.loop.run_until_complete(
+                update_restart_msg(
+                    int(chat_id), int(msg_id)))
     except BaseException:
         pass
     delgvar("restartstatus")

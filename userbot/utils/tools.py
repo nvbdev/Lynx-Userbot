@@ -30,6 +30,7 @@ from telethon.tl.types import ChannelParticipantAdmin, ChannelParticipantCreator
 from html_telegraph_poster import TelegraphPoster
 from userbot import SUDO_USERS
 
+
 async def md5(fname: str) -> str:
     hash_md5 = hashlib.md5()
     with open(fname, "rb") as f:
