@@ -353,9 +353,9 @@ async def update_restart_msg(chat_id, msg_id):
     DEFAULTUSER = ALIVE_NAME or "Set `ALIVE_NAME` ConfigVar!"
     message = (
         f"**⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡ is Back Up and Running!**\n\n"
-        f"**Telethon :** __{version.__version__}__\n"
-        f"**Python :** __{python_version()}__\n"
-        f"**User :** __{DEFAULTUSER}__"
+        f"⚙️**Telethon :** __{version.__version__}__\n"
+        f"🐍**Python :** __{python_version()}__\n"
+        f"👤**User :** __{DEFAULTUSER}__"
     )
     await bot.edit_message(chat_id, msg_id, message)
     return True
@@ -513,7 +513,6 @@ with bot:
                 buttons = paginate_help(0, dugmeler, "helpme")
                 result = builder.photo(
                     file=lynxlogo,
-                    include_media=True,
                     link_preview=False,
                     text=f"\n**Bᴏᴛ ᴏꜰ {DEFAULTUSER}**\n\n◎› **Bᴏᴛ ᴠᴇʀ :** `v.{BOT_VER}`\n◎› **Pʟᴜɢɪɴꜱ :** `{len(plugins)}`\n\n**Cᴏᴘʏʀɪɢʜᴛ © 𝟤𝟢𝟤𝟣 Lʏɴx-Uꜱᴇʀʙᴏᴛ**".format(
                         len(dugmeler),
@@ -569,7 +568,6 @@ with bot:
                 # https://t.me/TelethonChat/115200
                 await event.edit(
                     file=aliplogo,
-                    include_media=True,
                     link_preview=True,
                     buttons=[
                         [Button.url("⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡", "t.me/LynxUserbot")],
