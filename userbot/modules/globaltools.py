@@ -3,6 +3,8 @@
 # Based On Plugins from Dark Cobra
 
 import asyncio
+import base64
+from datetime import datetime
 from telethon.events import ChatAction
 from userbot import ALIVE_NAME, CMD_HELP, BOTLOG, BOTLOG_CHATID, DEVELOPER, bot
 from userbot.events import register
