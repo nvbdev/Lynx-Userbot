@@ -330,9 +330,9 @@ async def ungmoot(un_gmute):
 CMD_HELP.update({
     "globaltools":
     "✘ Pʟᴜɢɪɴ : Global Tools\
-\n\n⚡𝘾𝙈𝘿⚡: `.gban` <Username/ID/Reply> <Reason>\
+\n\n⚡𝘾𝙈𝘿⚡: `.gban` <Username/Reply> <Reason>\
 \n↳ : Melakukan Banned Secara Global Ke Semua Group Dimana Anda Sebagai Admin.\
-\n\n⚡𝘾𝙈𝘿⚡: `.ungban` <Username/ID/Reply> <Reason>\
+\n\n⚡𝘾𝙈𝘿⚡: `.ungban` <Username/Reply> <Reason>\
 \n↳ : Membatalkan Banned Secara Global.\
 \n\n⚡𝘾𝙈𝘿⚡: `.listgban`\
 \n↳ : Melihat Daftar Global Banned.\
