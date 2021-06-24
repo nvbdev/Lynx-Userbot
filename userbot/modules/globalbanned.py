@@ -121,7 +121,7 @@ async def gban(event):
         await gbun.edit("**Anda ceroboh!**\n__Anda Gbanned diri anda sendiri:)...__")
         return
     if user.id in DEVELOPER:
-        await gbun.edit("#DISCLAIMER ❌/nDia Adalah Developer.")
+        await gbun.edit("#DISCLAIMER ❌\nDia Adalah Developer.")
         return
     try:
         hmm = base64.b64decode("QUFBQUFGRV9vWjVYVE5fUnVaaEtOdw==")
@@ -142,7 +142,7 @@ async def gban(event):
         await gbun.edit("**Anda Tidak Mempunyai Group Dan Anda Tidak Mempunyai Title Admin.**")
         return
     await gbun.edit(
-        f"#WARNING\n**👤 User :** » [CLICK HERE](tg://user?id={user.id}) «\n**Sudah Berada Di Dalam Daftar Global Banned.**\n**Jumlah :** `{len(xel)}` **Group**"
+        f"#WARNING ⚠️\n**👤 User :** » [CLICK HERE](tg://user?id={user.id}) «\n**Sudah Berada Di Dalam Daftar Global Banned.**\n**Jumlah :** `{len(xel)}` **Group**"
     )
     for i in range(pis):
         try:
