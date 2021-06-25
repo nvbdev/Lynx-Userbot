@@ -1586,7 +1586,7 @@ async def fag(event):
 
 @register(outgoing=True, pattern=r'^.tai(?: |$)(.*)')
 async def tai(event):
-    await event.edit(f"\n{\\__/}\n(●_●)\n( >💩 Mau Tai Ku?")
+    await event.edit(f"`\n{\\__/}\n(●_●)\n( >💩 Mau Tai Ku?`")
 
 
 @register(outgoing=True, pattern=r'^.paw(?: |$)(.*)'")
@@ -1596,7 +1596,7 @@ async def paw(event):
 
 @register(outgoing=True, pattern=r'^.tf(?: |$)(.*)')
 async def tf(event):
-    await event.edit(f"(̿▀̿ ̿Ĺ̯̿̿▀̿ ̿)̄  ")
+    await event.edit(f"`(̿▀̿ ̿Ĺ̯̿̿▀̿ ̿)̄  `")
 
 
 @register(outgoing=True, pattern=r'^.gey(?: |$)(.*)')
@@ -1616,7 +1616,7 @@ async def bot(event):
 
 @register(outgoing=True, pattern=r'^.hey(?: |$)(.*)')
 async def hey(event):
-    await event.edit(f"\n┈┈┈╱▔▔▔▔╲┈╭━━━━━\n┈┈▕▂▂▂▂▂▂▏┃HEY!┊😀\n┈┈▕▔▇▔▔┳▔▏╰┳╮HEY!┊\n┈┈▕╭━╰╯━╮▏━╯╰━━━\n╱▔▔▏▅▅▅▅▕▔▔╲┈┈┈┈\n▏┈┈╲▂▂▂▂╱┈┈┈▏┈┈┈`")
+    await event.edit(f"`\n┈┈┈╱▔▔▔▔╲┈╭━━━━━\n┈┈▕▂▂▂▂▂▂▏┃HEY!┊😀\n┈┈▕▔▇▔▔┳▔▏╰┳╮HEY!┊\n┈┈▕╭━╰╯━╮▏━╯╰━━━\n╱▔▔▏▅▅▅▅▕▔▔╲┈┈┈┈\n▏┈┈╲▂▂▂▂╱┈┈┈▏┈┈┈`")
 
 
 @register(outgoing=True, pattern=r'^.nou(?: |$)(.*)')
