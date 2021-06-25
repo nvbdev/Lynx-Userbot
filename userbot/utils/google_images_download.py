@@ -911,8 +911,8 @@ class googleimagesdownload:
                 size /= 1024.0
             return size
 
-
     # keywords from file
+
     @staticmethod
     def keywords_from_file(file_name):
         search_keyword = []
@@ -1017,8 +1017,7 @@ class googleimagesdownload:
                 except OSError as e:
                     download_status = "fail"
                     download_message = (
-                        "OSError on an image...trying next one..." + " Error: " + str(e)
-                    )
+                        "OSError on an image...trying next one..." + " Error: " + str(e))
 
                 download_status = "success"
                 download_message = (
@@ -1040,14 +1039,16 @@ class googleimagesdownload:
         except HTTPError as e:  # If there is any HTTPError
             download_status = "fail"
             download_message = (
-                "HTTPError on an image...trying next one..." + " Error: " + str(e)
-            )
+                "HTTPError on an image...trying next one..." +
+                " Error: " +
+                str(e))
 
         except URLError as e:
             download_status = "fail"
             download_message = (
-                "URLError on an image...trying next one..." + " Error: " + str(e)
-            )
+                "URLError on an image...trying next one..." +
+                " Error: " +
+                str(e))
 
         except ssl.CertificateError as e:
             download_status = "fail"
@@ -1060,10 +1061,10 @@ class googleimagesdownload:
         except OSError as e:  # If there is any IOError
             download_status = "fail"
             download_message = (
-                "IOError on an image...trying next one..." + " Error: " + str(e)
-            )
+                "IOError on an image...trying next one..." +
+                " Error: " +
+                str(e))
         return download_status, download_message
-
 
     # Download Images
 
@@ -1302,8 +1303,8 @@ class googleimagesdownload:
 
         return download_status, download_message, return_image_name, absolute_path
 
-
     # Finding 'Next Image' from the given raw page
+
     @staticmethod
     def _get_next_item(s):
         start_line = s.find("rg_meta notranslate")
@@ -1558,7 +1559,8 @@ class googleimagesdownload:
         total_errors = 0
         for pky in prefix_keywords:  # 1.for every prefix keywords
             for sky in suffix_keywords:  # 2.for every suffix keywords
-                for i, _ in enumerate(search_keyword):  # 3.for every main keyword
+                for i, _ in enumerate(
+                        search_keyword):  # 3.for every main keyword
                     iteration = (
                         "\n"
                         + "Item no.: "
