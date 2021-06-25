@@ -3,13 +3,13 @@
 #
 # Licensed under the Raphielscape Public License, Version 1.d (the "License");
 # you may not use this file except in compliance with the License.
-# Lord Userbot
+# 
 
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 from userbot import bot, CMD_HELP
 from userbot.events import register
 
-# Alvin Gans
+
 
 
 @register(outgoing=True, pattern="^.tiktok(?: |$)(.*)")
@@ -32,7 +32,7 @@ async def _(event):
             """ - don't spam notif - """
             await bot.send_read_acknowledge(conv.chat_id)
         except YouBlockedUserError:
-            await event.edit("**Kesalahan:** `Yang Mulia, Mohon Buka Blokir` @ttsavebot `Dan Coba Lagi !`")
+            await event.edit(f"#Kesalahan ❌\n`Mohon Buka Blokir` @ttsavebot `Lalu Tekan /start Dan Coba Lagi !`")
             return
         await bot.send_file(event.chat_id, video)
         await event.client.delete_messages(conv.chat_id,
@@ -42,7 +42,8 @@ async def _(event):
 
 CMD_HELP.update(
     {
-        "tiktok": "⚡𝘾𝙈𝘿⚡: `.tiktok <Link>`"
+        "tiktok": "✘ Pʟᴜɢɪɴ : Tiktok"
+        "\n\n⚡𝘾𝙈𝘿⚡: `.tiktok <Link>`"
         "\n↳ : Download Video Tiktok Tanpa Watermark"
     }
 )
