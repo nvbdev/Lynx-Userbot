@@ -10,15 +10,15 @@ from userbot import bot, CMD_HELP
 from userbot.events import register
 
 
-@register(outgoing=True, pattern="^.tiktok(?: |$)(.*)")
+@register(outgoing=True, pattern=r"^\.tiktok(?: |$)(.*)")
 async def _(event):
     if event.fwd_from:
         return
     d_link = event.pattern_match.group(1)
     if ".com" not in d_link:
-        await event.edit("`Mohon Maaf Yang Mulia, Saya Membutuhkan Link Video Tiktok Untuk Mendownload Nya` **(._.)**")
+        await event.edit("`Mohon Maaf, Saya Membutuhkan Link Video Tiktok Untuk Mendownload Nya` 🤬")
     else:
-        await event.edit("```Video Sedang Diproses.....```")
+        await event.edit("```Video Sedang Diproses...```")
     chat = "@ttsavebot"
     async with bot.conversation(chat) as conv:
         try:
