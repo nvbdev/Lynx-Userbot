@@ -5,7 +5,7 @@
 """ Userbot module containing userid, chatid and log commands"""
 
 from asyncio import sleep
-from userbot import BOTLOG, BOTLOG_CHATID, CMD_HELP, bot, ALIVE_NAME
+from userbot import ALIVE_NAME, BOTLOG, BOTLOG_CHATID, CMD_HELP, bot
 from datetime import datetime
 from telethon import functions
 from emoji import emojize
@@ -42,7 +42,7 @@ async def _(event):
 
 @register(outgoing=True, pattern="^.link(?: |$)(.*)")
 async def permalink(mention):
-    """ For .link command, generates a link to the user's PM with a custom text. """
+    """For .link command, generates a link to the user's PM with a custom text."""
     user, custom = await get_user_from_event(mention)
     if not user:
         return
@@ -86,7 +86,7 @@ async def _(event):
 
 @register(outgoing=True, pattern=r"^.logit(?: |$)([\s\S]*)")
 async def log(log_text):
-    """ For .log command, forwards a message or the command argument to the bot logs group """
+    """For .log command, forwards a message or the command argument to the bot logs group."""
     if BOTLOG:
         if log_text.reply_to_msg_id:
             reply_msg = await log_text.get_reply_message()
@@ -107,28 +107,28 @@ async def log(log_text):
 
 @register(outgoing=True, pattern="^.exit$")
 async def exit(leave):
-    """ Basically it's .kickme command """
-    await leave.edit(f"`Yang Mulia {ALIVE_NAME} Telah Meninggalkan Group...`")
+    """Basically it's .kickme command"""
+    await leave.edit(f"#Succeeded ✅\n`{ALIVE_NAME} Has left the group...`")
     await leave.client.kick_participant(leave.chat_id, 'me')
 
 
 @register(outgoing=True, pattern="^.unmutechat$")
 async def unmute_chat(unm_e):
-    """ For .unmutechat command, unmute a muted chat. """
+    """For .unmutechat command, unmute a muted chat."""
     try:
         from userbot.modules.sql_helper.keep_read_sql import unkread
     except AttributeError:
         await unm_e.edit('`Running on Non-SQL Mode!`')
         return
     unkread(str(unm_e.chat_id))
-    await unm_e.edit("```Berhasil Dibuka, Obrolan Tidak Lagi Dibisukan Yang Mulia.```")
+    await unm_e.edit("#Successful 🔓\n`Obrolan Tidak Lagi Dibisukan.`")
     await sleep(2)
     await unm_e.delete()
 
 
 @register(outgoing=True, pattern="^.mutechat$")
 async def mute_chat(mute_e):
-    """ For .mutechat command, mute any chat. """
+    """For .mutechat command, mute any chat."""
     try:
         from userbot.modules.sql_helper.keep_read_sql import kread
     except AttributeError:
@@ -136,7 +136,7 @@ async def mute_chat(mute_e):
         return
     await mute_e.edit(str(mute_e.chat_id))
     kread(str(mute_e.chat_id))
-    await mute_e.edit("`Ssshssh Yang Mulia Telah Membisukan Obrolan !`")
+    await mute_e.edit("#Successful 🔐\n`Obrolan Sedang Dibisukan.`")
     await sleep(2)
     await mute_e.delete()
     if BOTLOG:
@@ -147,7 +147,7 @@ async def mute_chat(mute_e):
 
 @register(incoming=True, disable_errors=True)
 async def keep_read(message):
-    """ The mute logic. """
+    """The mute logic."""
     try:
         from userbot.modules.sql_helper.keep_read_sql import is_kread
     except AttributeError:
@@ -165,7 +165,7 @@ regexNinja = False
 
 @register(outgoing=True, pattern="^s/")
 async def sedNinja(event):
-    """Untuk Modul Regex-Ninja, Perintah Hapus Otomatis Yang Dimulai Dengans/"""
+    """Untuk Modul Regex-Ninja, Perintah Hapus Otomatis Yang Dimulai Dengan s/"""
     if regexNinja:
         await sleep(.5)
         await event.delete()
@@ -173,7 +173,7 @@ async def sedNinja(event):
 
 @register(outgoing=True, pattern="^.regexninja (on|off)$")
 async def sedNinjaToggle(event):
-    """ Aktifkan Atau Nonaktifkan Modul Regex Ninja. """
+    """Aktifkan Atau Nonaktifkan Modul Regex Ninja."""
     global regexNinja
     if event.pattern_match.group(1) == "on":
         regexNinja = True
@@ -435,14 +435,15 @@ async def _(event):
 
 CMD_HELP.update({
     "chat":
-    "⚡𝘾𝙈𝘿⚡: `.getid`\
+    "✘ Pʟᴜɢɪɴ : Chat\
+\n\n⚡𝘾𝙈𝘿⚡: `.getid`\
 \n↳ : Dapatkan ID dari media Telegram mana pun, atau pengguna mana pun\
 \n\n⚡𝘾𝙈𝘿⚡: `.getbot`\
 \n↳ : Dapatkan Bot dalam obrolan apa pun.\
 \n\n⚡𝘾𝙈𝘿⚡: `.logit`\
 \n↳ : Meneruskan pesan yang telah Anda balas di grup log bot Anda.\
 \n\n⚡𝘾𝙈𝘿⚡: `.exit`\
-\n↳ : Keluar dari grup.\
+\n↳ : Keluar dari Group.\
 \n\n⚡𝘾𝙈𝘿⚡: `.unmutechat`\
 \n↳ : Membuka obrolan yang dibisukan.\
 \n\n⚡𝘾𝙈𝘿⚡: `.mutechat`\
