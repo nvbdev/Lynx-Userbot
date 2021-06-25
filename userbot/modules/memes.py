@@ -1584,7 +1584,6 @@ async def fag(event):
     await event.edit(f"`\n█████████\n█▄█████▄█\n█▼▼▼▼▼\n█       STFU FAGGOT'S\n█▲▲▲▲▲\n█████████\n ██   ██`")
 
 
-
 @register(outgoing=True, pattern=r'^.paw(?: |$)(.*)'")
 async def paw(event):
     await event.edit(f"`(=ↀωↀ=)`")
