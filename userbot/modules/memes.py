@@ -388,14 +388,14 @@ RUNS_STR = [
     "Berlari ke Thanos..",
     "Berlari jauh, jauh dari bumi..",
     "Berlari lebih cepat dari Bolt karena aku pengguna bot !!",
-    "Berlari ke Mia Khalifa..",
+    "Berlari ke ph.",
     "Grup ini terlalu berbahaya untuk ditangani, aku harus lari.",
-    "`Berlari Dari Orang Yang Bau Sawi 😬`",
+    "`Berlari Dari Orang Atheis.. Lariii Kawann`",
     "Aku sangat lelah untuk berlari dan mengejarmu 💔",
     "Aku pergi dulu",
     "Saya hanya berjalan pergi, karena saya terlalu gemuk untuk lari.",
     "Saya Cape!",
-    "Larii Disini Bau Sawii 😭",
+    "Larii Disini Bau Bawang.",
     "Saya lari karena saya sangat gabut.",
     "Lari... \nkarena diet bukanlah pilihan.",
     "Berlari Cepat Dari Orang Gila",
@@ -403,7 +403,7 @@ RUNS_STR = [
     "Siapapun dapat berlari seratus meter, itu hitungan empat puluh dua ribu dua ratus berikutnya.",
     "Mengapa semua orang ini mengikuti saya?",
     "Apakah anak-anak masih mengejarku?",
-    "Berlari Sekencang Super Dede.. Apakah Sopan Begitu?",
+    "Larii... Ada Yang Belum Mandi",
 ]
 
 CHASE_STR = [
@@ -1532,36 +1532,24 @@ async def typewriter(typew):
         await sleep(sleep_time)
 
 
-@register(outgoing=True, pattern=r"^\.leave$")
-async def leave(e):
-    await e.edit(f"#Succeeded ✅\n`{ALIVE_NAME} Has left the group...`")
+@register(outgoing=True, pattern=r'^.leave(?: |$)(.*)')
+async def leave(event):
+    await event.edit(f"#Succeeded ✅\n`{ALIVE_NAME} Has left the group...`")
 
 
-@register(outgoing=True, pattern=r"^\.fail$")
-async def fail(e):
-    await e.edit("`\n▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄ `"
-                 "`\n████▌▄▌▄▐▐▌█████ `"
-                 "`\n████▌▄▌▄▐▐▌▀████ `"
-                 "`\n▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ `")
+@register(outgoing=True, pattern=r'^.fail(?: |$)(.*)')
+async def fail(event):
+    await event.edit(f"`\n▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄ \n████▌▄▌▄▐▐▌█████ \n████▌▄▌▄▐▐▌▀████ \n▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ `")
 
 
-@register(outgoing=True, pattern=r"^\.lol$")
-async def lol(e):
-    await e.edit("`\n╱┏┓╱╱╱╭━━━╮┏┓╱╱╱╱ `"
-                 "`\n╱┃┃╱╱╱┃╭━╮┃┃┃╱╱╱╱ `"
-                 "`\n╱┃┗━━┓┃╰━╯┃┃┗━━┓╱ `"
-                 "`\n╱┗━━━┛╰━━━╯┗━━━┛╱ `")
+@register(outgoing=True, pattern=r'^.lol(?: |$)(.*)')
+async def lol(event):
+    await event.edit(f"`\n╱┏┓╱╱╱╭━━━╮┏┓╱╱╱╱ \n╱┃┃╱╱╱┃╭━╮┃┃┃╱╱╱╱ \n╱┃┗━━┓┃╰━╯┃┃┗━━┓╱ \n╱┗━━━┛╰━━━╯┗━━━┛╱ `")
 
 
-@register(outgoing=True, pattern=r"^\.rock$")
-async def rock(e):
-    await e.edit("`\n┈╭╮┈┈┈┈┈┈┈┈┈┈┈┈ `"
-                 "`\n┈┃┃┈╭╮┈┏╮╭╮╭╮┃╭ `"
-                 "`\n┈┃┃┈┃┃┈┣┫┃┃┃┈┣┫ `"
-                 "`\n┈┃┣┳┫┃┈┃╰╰╯╰╯┃╰ `"
-                 "`\n╭┻┻┻┫┃┈┈╭╮┃┃━┳━ `"
-                 "`\n┃╱╭━╯┃┈┈┃┃┃┃┈┃┈ `"
-                 "`\n╰╮╱╱╱┃┈┈╰╯╰╯┈┃┈ `")
+@register(outgoing=True, pattern=r'^.rock(?: |$)(.*)')
+async def rock(event):
+    await event.edit(f"`\n┈╭╮┈┈┈┈┈┈┈┈┈┈┈┈\n┈┃┃┈╭╮┈┏╮╭╮╭╮┃╭ \n┈┃┃┈┃┃┈┣┫┃┃┃┈┣┫ \n┈┃┣┳┫┃┈┃╰╰╯╰╯┃╰ \n╭┻┻┻┫┃┈┈╭╮┃┃━┳━ \n┃╱╭━╯┃┈┈┃┃┃┃┈┃┈ \n╰╮╱╱╱┃┈┈╰╯╰╯┈┃┈ `")
 
 
 @register(outgoing=True, pattern=r"^\.lool$")
@@ -1641,7 +1629,7 @@ async def tf(e):
 async def gey(e):
     await e.edit("`\n┈┈┈╭━━━━━╮┈┈┈┈┈\n┈┈┈┃┊┊┊┊┊┃┈┈┈┈┈`"
                  "`\n┈┈┈┃┊┊╭━╮┻╮┈┈┈┈\n┈┈┈╱╲┊┃▋┃▋┃┈┈┈┈\n┈┈╭┻┊┊╰━┻━╮┈┈┈┈`"
-                 "`\n┈┈╰┳┊╭━━━┳╯┈┈┈┈\n┈┈┈┃┊┃╰━━┫┈Lu Bau Hehe`"
+                 "`\n┈┈╰┳┊╭━━━┳╯┈┈┈┈\n┈┈┈┃┊┃╰━━┫┈Lu Bau Peju Hehe`"
                  "\n┈┈┈┈┈┈┏━┓┈┈┈┈┈┈")
 
 
