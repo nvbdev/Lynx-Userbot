@@ -1584,10 +1584,6 @@ async def fag(event):
     await event.edit(f"`\n█████████\n█▄█████▄█\n█▼▼▼▼▼\n█       STFU FAGGOT'S\n█▲▲▲▲▲\n█████████\n ██   ██`")
 
 
-@register(outgoing=True, pattern=r'^.tai(?: |$)(.*)')
-async def tai(event):
-    await event.edit(f"`\n{\\__/}\n(●_●)\n( >💩 Mau Tai Ku?`")
-
 
 @register(outgoing=True, pattern=r'^.paw(?: |$)(.*)'")
 async def paw(event):
@@ -1795,8 +1791,8 @@ CMD_HELP.update({
     "\nUsage: Biar saya Google itu untuk Anda dengan cepat!"
     "\n\n>`.decide` [Alternatif: (.yes, .no, .maybe)]"
     "\nUsage: Membuat keputusan dengan cepat."
-    "\n\n> `.nou` `.bot` `.rock` `.gey` `.tf` `.paw` `.tai` `.nih`"
-    "\n> `.fag` `.gtfo`; `.stfu` `.lol` `.lool` `.fail` `.leave`"
-    "\n> `.iwi` `.sayhi` `.koc` `.gas` `.earth` `.love` `.rain`"
-    "\n> `.penis` `.emo` `.fuck` `.skull`  `.monyet`\nUsage: Coba aja"
+    "\n\n**Random Memes :** > `.nou` | `.bot` | `.rock` | `.gey` | `.tf` | `.paw` | `.nih`"
+    "\n| `.fag` | `.gtfo` | `.stfu` | `.lol` | `.lool` | `.fail` | `.leave`"
+    "\n| `.iwi` | `.sayhi` | `.koc` | `.gas` | `.earth` `.love` | `.rain`"
+    "\n| `.penis` | `.emo` | `.fuck` | `.skull` | `.monyet`\nUsage: Coba aja"
 })
