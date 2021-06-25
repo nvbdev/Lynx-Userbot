@@ -13,7 +13,7 @@ from asyncio import sleep
 from collections import deque
 from random import choice, getrandbits, randint
 
-from userbot import bot, CMD_HELP
+from userbot import ALIVE_NAME, bot, CMD_HELP
 from userbot.events import register
 from userbot.modules.admin import get_user_from_event
 
@@ -878,7 +878,7 @@ weebyfont = [
 
 @register(outgoing=True, pattern=r"^\.(\w+)say (.*)")
 async def univsaye(cowmsg):
-    """ For .cowsay module, userbot wrapper for cow which says things. """
+    """For .cowsay module, userbot wrapper for cow which says things."""
     arg = cowmsg.pattern_match.group(1).lower()
     text = cowmsg.pattern_match.group(2)
 
@@ -922,7 +922,7 @@ async def coin(event):
 
 @register(pattern=r"^\.slap(?: |$)(.*)", outgoing=True)
 async def who(event):
-    """ slaps a user, or get slapped if not a reply. """
+    """slaps a user, or get slapped if not a reply."""
     replied_user = await get_user_from_event(event)
     if replied_user:
         replied_user = replied_user[0]
@@ -940,7 +940,7 @@ async def who(event):
 
 
 async def slap(replied_user, event):
-    """ Construct a funny slap sentence !! """
+    """Construct a funny slap sentence !!"""
     user_id = replied_user.id
     first_name = replied_user.first_name
     username = replied_user.username
@@ -1028,25 +1028,25 @@ async def decide(event):
 
 @register(outgoing=True, pattern=r"^\.fp$")
 async def facepalm(e):
-    """ Facepalm  🤦‍♂ """
+    """Facepalm  🤦‍♂"""
     await e.edit("🤦‍♂")
 
 
 @register(outgoing=True, pattern=r"^\.cry$")
 async def cry(e):
-    """ y u du dis, i cry everytime !! """
+    """y u du dis, i cry everytime !!"""
     await e.edit(choice(CRI))
 
 
 @register(outgoing=True, pattern=r"^\.insult$")
 async def insult(e):
-    """ I make you cry !! """
+    """I make you cry !!"""
     await e.edit(choice(INSULT_STRINGS))
 
 
 @register(outgoing=True, pattern=r"^\.cp(?: |$)(.*)")
 async def copypasta(cp_e):
-    """ Copypasta the famous meme """
+    """Copypasta the famous meme."""
     textx = await cp_e.get_reply_message()
     message = cp_e.pattern_match.group(1)
 
@@ -1079,7 +1079,7 @@ async def copypasta(cp_e):
 
 @register(outgoing=True, pattern=r"^\.vapor(?: |$)(.*)")
 async def vapor(vpr):
-    """ Vaporize everything! """
+    """Vaporize everything!"""
     reply_text = list()
     textx = await vpr.get_reply_message()
     message = vpr.pattern_match.group(1)
@@ -1103,7 +1103,7 @@ async def vapor(vpr):
 
 @register(outgoing=True, pattern=r"^\.str(?: |$)(.*)")
 async def stretch(stret):
-    """ Stretch it."""
+    """Stretch it."""
     textx = await stret.get_reply_message()
     message = stret.text
     message = stret.pattern_match.group(1)
@@ -1122,7 +1122,7 @@ async def stretch(stret):
 
 @register(outgoing=True, pattern=r"^\.zal(?: |$)(.*)")
 async def zal(zgfy):
-    """ Invoke the feeling of chaos. """
+    """Invoke the feeling of chaos."""
     reply_text = list()
     textx = await zgfy.get_reply_message()
     message = zgfy.pattern_match.group(1)
@@ -1160,13 +1160,13 @@ async def zal(zgfy):
 
 @register(outgoing=True, pattern=r"^\.hi$")
 async def hoi(hello):
-    """ Greet everyone! """
+    """Greet everyone!"""
     await hello.edit(choice(HELLOSTR))
 
 
 @register(outgoing=True, pattern=r"^\.owo(?: |$)(.*)")
 async def faces(owo):
-    """ UwU """
+    """UwU"""
     textx = await owo.get_reply_message()
     message = owo.pattern_match.group(1)
     if message:
@@ -1188,7 +1188,7 @@ async def faces(owo):
 
 @register(outgoing=True, pattern=r"^\.react$")
 async def react_meme(react):
-    """ Make your userbot react to everything. """
+    """Make your userbot react to everything."""
     await react.edit(choice(FACEREACTS))
 
 
@@ -1200,34 +1200,26 @@ async def shrugger(shg):
 
 @register(outgoing=True, pattern=r"^\.chase$")
 async def police(chase):
-    """ Lari bro lari, aku akan segera menangkapmu !! """
+    """Lari bro lari, aku akan segera menangkapmu !!"""
     await chase.edit(choice(CHASE_STR))
 
 
 @register(outgoing=True, pattern=r"^\.run$")
 async def runner_lol(run):
-    """ Lari, lari, LARIII! """
+    """Lari, lari, LARIII!"""
     await run.edit(choice(RUNS_STR))
 
 
 @register(outgoing=True, pattern=r"^\.metoo$")
 async def metoo(hahayes):
-    """ Haha yes """
+    """Haha yes"""
     await hahayes.edit(choice(METOOSTR))
 
 
 @register(outgoing=True, pattern=r"^\.oem$")
 async def oem(e):
     t = "Oem"
-    for j in range(16):
-        t = t[:-1] + "em"
-        await e.edit(t)
-
-
-@register(outgoing=True, pattern=r"^\.Oem$")
-async def Oem(e):
-    t = "Oem"
-    for j in range(16):
+    for _ in range(16):
         t = t[:-1] + "em"
         await e.edit(t)
 
@@ -1246,7 +1238,7 @@ async def iqless(e):
 async def moon(event):
     deq = deque(list("🌗🌘🌑🌒🌓🌔🌕🌖"))
     try:
-        for x in range(32):
+        for _ in range(32):
             await sleep(0.1)
             await event.edit("".join(deq))
             deq.rotate(1)
@@ -1258,7 +1250,7 @@ async def moon(event):
 async def moon(event):
     deq = deque(list("🌼🌻🌺🌹🌸🌷"))
     try:
-        for x in range(35):
+        for _ in range(35):
             await sleep(0.1)
             await event.edit("".join(deq))
             deq.rotate(1)
@@ -1270,7 +1262,7 @@ async def moon(event):
 async def moon(event):
     deq = deque(list("🎑🌄🌅🌇🌆🌃🌌"))
     try:
-        for x in range(100):
+        for _ in range(100):
             await sleep(0.1)
             await event.edit("".join(deq))
             deq.rotate(1)
@@ -1282,7 +1274,7 @@ async def moon(event):
 async def moon(event):
     deq = deque(list("🍉🍓🍇🍎🍍🍐🍌"))
     try:
-        for x in range(35):
+        for _ in range(35):
             await sleep(0.1)
             await event.edit("".join(deq))
             deq.rotate(1)
@@ -1294,7 +1286,7 @@ async def moon(event):
 async def clock(event):
     deq = deque(list("🕙🕘🕗🕖🕕🕔🕓🕒🕑🕐🕛"))
     try:
-        for x in range(32):
+        for _ in range(32):
             await sleep(0.1)
             await event.edit("".join(deq))
             deq.rotate(1)
@@ -1306,7 +1298,7 @@ async def clock(event):
 async def rain(event):
     deq = deque(list("☀️🌤⛅️🌥☁️🌧⛈"))
     try:
-        for x in range(32):
+        for _ in range(32):
             await sleep(0.1)
             await event.edit("".join(deq))
             deq.rotate(1)
@@ -1318,7 +1310,7 @@ async def rain(event):
 async def love(event):
     deq = deque(list("❤️🧡💛💚💙💜🖤💕💞💓💗💖💘💝"))
     try:
-        for x in range(32):
+        for _ in range(32):
             await sleep(0.1)
             await event.edit("".join(deq))
             deq.rotate(1)
@@ -1330,7 +1322,7 @@ async def love(event):
 async def earth(event):
     deq = deque(list("🌏🌍🌎🌎🌍🌏🌍🌎"))
     try:
-        for x in range(32):
+        for _ in range(32):
             await sleep(0.1)
             await event.edit("".join(deq))
             deq.rotate(1)
@@ -1342,7 +1334,7 @@ async def earth(event):
 async def earth(event):
     deq = deque(list("🖤💜💙💚💛🧡❤️🤍"))
     try:
-        for x in range(32):
+        for _ in range(32):
             await sleep(0.1)
             await event.edit("".join(deq))
             deq.rotate(1)
@@ -1354,7 +1346,7 @@ async def earth(event):
 async def earth(event):
     deq = deque(list("🙈🙉🙈🙉🙈🙉🙈🙉"))
     try:
-        for x in range(32):
+        for _ in range(32):
             await sleep(0.1)
             await event.edit("".join(deq))
             deq.rotate(1)
@@ -1366,7 +1358,7 @@ async def earth(event):
 async def earth(event):
     deq = deque(list("🙂😁😄😃😂🤣😭🐵🙊🙉🙈"))
     try:
-        for x in range(32):
+        for _ in range(32):
             await sleep(0.1)
             await event.edit("".join(deq))
             deq.rotate(1)
@@ -1376,7 +1368,7 @@ async def earth(event):
 
 @register(outgoing=True, pattern=r"^\.mock(?: |$)(.*)")
 async def spongemocktext(mock):
-    """ Do it and find the real fun. """
+    """Do it and find the real fun."""
     reply_text = list()
     textx = await mock.get_reply_message()
     message = mock.pattern_match.group(1)
@@ -1404,7 +1396,7 @@ async def weebify(e):
         get = await e.get_reply_message()
         args = get.text
     if not args:
-        await e.edit("`Apa Yang Anda Lakukan Lord ツ`")
+        await e.edit("`Apa Yang Anda Lakukan ?`")
         return
     string = '  '.join(args).lower()
     for normiecharacter in string:
@@ -1416,7 +1408,7 @@ async def weebify(e):
 
 @register(outgoing=True, pattern=r"^\.clap(?: |$)(.*)")
 async def claptext(memereview):
-    """ Praise people! """
+    """Praise people!"""
     textx = await memereview.get_reply_message()
     message = memereview.pattern_match.group(1)
     if message:
@@ -1424,7 +1416,7 @@ async def claptext(memereview):
     elif textx:
         message = textx.text
     else:
-        return await memereview.edit("`Lord, Mohon Balas Ke Pesan Orang Yang Ingin Anda Puji ツ`")
+        return await memereview.edit("`Mohon Balas Ke Pesan Orang Yang Ingin Anda Puji.`")
     reply_text = "👏 "
     reply_text += message.replace(" ", " 👏 ")
     reply_text += " 👏"
@@ -1433,7 +1425,7 @@ async def claptext(memereview):
 
 @register(outgoing=True, pattern=r"^\.teksbiru$")
 async def bluetext(bt_e):
-    """ Believe me, you will find this useful. """
+    """Believe me, you will find this useful."""
     if await bt_e.get_reply_message() and bt_e.is_group:
         await bt_e.edit(
             "/TEKSBIRU /APAKAH /ANDA.\n"
@@ -1483,7 +1475,7 @@ async def sayhi(e):
 
 @register(pattern=r".scam(?: |$)(.*)", outgoing=True)
 async def scam(event):
-    """ Just a small command to fake chat actions for fun !! """
+    """Just a small command to fake chat actions for fun !!"""
     options = [
         'mengetik', 'kontak', 'game', 'lokasi', 'suara', 'bulat', 'video',
         'foto', 'dokumen', 'batal'
@@ -1504,7 +1496,7 @@ async def scam(event):
         scam_action = str(args[0]).lower()
         scam_time = int(args[1])
     else:
-        await event.edit("`Tidak Valid`")
+        await event.edit("`Tidak Valid ❌`")
         return
     try:
         if (scam_time > 300):
@@ -1517,7 +1509,7 @@ async def scam(event):
 
 @register(pattern=r".type(?: |$)(.*)", outgoing=True)
 async def typewriter(typew):
-    """ Just a small command to make your keyboard become a typewriter! """
+    """Just a small command to make your keyboard become a typewriter!"""
     textx = await typew.get_reply_message()
     message = typew.pattern_match.group(1)
     if message:
@@ -1542,74 +1534,67 @@ async def typewriter(typew):
 
 @register(outgoing=True, pattern=r"^\.leave$")
 async def leave(e):
-    if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
-        await e.edit("`Lord Telah Meninggalkan Grup ツ`")
+    await e.edit(f"#Succeeded ✅\n`{ALIVE_NAME} Has left the group...`")
 
 
 @register(outgoing=True, pattern=r"^\.fail$")
 async def fail(e):
-    if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
-        await e.edit("`\n▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄ `"
-                     "`\n████▌▄▌▄▐▐▌█████ `"
-                     "`\n████▌▄▌▄▐▐▌▀████ `"
-                     "`\n▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ `")
+    await e.edit("`\n▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄ `"
+                 "`\n████▌▄▌▄▐▐▌█████ `"
+                 "`\n████▌▄▌▄▐▐▌▀████ `"
+                 "`\n▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ `")
 
 
 @register(outgoing=True, pattern=r"^\.lol$")
 async def lol(e):
-    if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
-        await e.edit("`\n╱┏┓╱╱╱╭━━━╮┏┓╱╱╱╱ `"
-                     "`\n╱┃┃╱╱╱┃╭━╮┃┃┃╱╱╱╱ `"
-                     "`\n╱┃┗━━┓┃╰━╯┃┃┗━━┓╱ `"
-                     "`\n╱┗━━━┛╰━━━╯┗━━━┛╱ `")
+    await e.edit("`\n╱┏┓╱╱╱╭━━━╮┏┓╱╱╱╱ `"
+                 "`\n╱┃┃╱╱╱┃╭━╮┃┃┃╱╱╱╱ `"
+                 "`\n╱┃┗━━┓┃╰━╯┃┃┗━━┓╱ `"
+                 "`\n╱┗━━━┛╰━━━╯┗━━━┛╱ `")
 
 
 @register(outgoing=True, pattern=r"^\.rock$")
-async def lol(e):
-    if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
-        await e.edit("`\n┈╭╮┈┈┈┈┈┈┈┈┈┈┈┈ `"
-                     "`\n┈┃┃┈╭╮┈┏╮╭╮╭╮┃╭ `"
-                     "`\n┈┃┃┈┃┃┈┣┫┃┃┃┈┣┫ `"
-                     "`\n┈┃┣┳┫┃┈┃╰╰╯╰╯┃╰ `"
-                     "`\n╭┻┻┻┫┃┈┈╭╮┃┃━┳━ `"
-                     "`\n┃╱╭━╯┃┈┈┃┃┃┃┈┃┈ `"
-                     "`\n╰╮╱╱╱┃┈┈╰╯╰╯┈┃┈ `")
+async def rock(e):
+    await e.edit("`\n┈╭╮┈┈┈┈┈┈┈┈┈┈┈┈ `"
+                 "`\n┈┃┃┈╭╮┈┏╮╭╮╭╮┃╭ `"
+                 "`\n┈┃┃┈┃┃┈┣┫┃┃┃┈┣┫ `"
+                 "`\n┈┃┣┳┫┃┈┃╰╰╯╰╯┃╰ `"
+                 "`\n╭┻┻┻┫┃┈┈╭╮┃┃━┳━ `"
+                 "`\n┃╱╭━╯┃┈┈┃┃┃┃┈┃┈ `"
+                 "`\n╰╮╱╱╱┃┈┈╰╯╰╯┈┃┈ `")
 
 
 @register(outgoing=True, pattern=r"^\.lool$")
 async def lool(e):
-    if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
-        await e.edit("`\n╭╭━━━╮╮┈┈┈┈┈┈┈┈┈┈\n┈┃╭━━╯┈┈┈┈▕╲▂▂╱▏┈\n┈┃┃╱▔▔▔▔▔▔▔▏╱▋▋╮┈`"
-                     "`\n┈┃╰▏┃╱╭╮┃╱╱▏╱╱▆┃┈\n┈╰━▏┗━╰╯┗━╱╱╱╰┻┫┈\n┈┈┈▏┏┳━━━━▏┏┳━━╯┈`"
-                     "`\n┈┈┈▏┃┃┈┈┈┈▏┃┃┈┈┈┈ `")
+    await e.edit("`\n╭╭━━━╮╮┈┈┈┈┈┈┈┈┈┈\n┈┃╭━━╯┈┈┈┈▕╲▂▂╱▏┈\n┈┃┃╱▔▔▔▔▔▔▔▏╱▋▋╮┈`"
+                 "`\n┈┃╰▏┃╱╭╮┃╱╱▏╱╱▆┃┈\n┈╰━▏┗━╰╯┗━╱╱╱╰┻┫┈\n┈┈┈▏┏┳━━━━▏┏┳━━╯┈`"
+                 "`\n┈┈┈▏┃┃┈┈┈┈▏┃┃┈┈┈┈ `")
 
 
 @register(outgoing=True, pattern=r"^\.stfu$")
 async def stfu(e):
-    if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
-        await e.edit("`\n██████████████████████████████`"
-                     "`\n██▀▀▀▀████▀▀▀▀████▀▀▀▀▀███▀▀██▀▀█`"
-                     "`\n█──────██──────██───────██──██──█`"
-                     "`\n█──██▄▄████──████──███▄▄██──██──█`"
-                     "`\n█▄────▀████──████────█████──██──█`"
-                     "`\n█▀▀██──████──████──███████──██──█`"
-                     "`\n█──────████──████──███████──────█`"
-                     "`\n██▄▄▄▄█████▄▄████▄▄████████▄▄▄▄██`"
-                     "`\n█████████████████████████████████`")
+    await e.edit("`\n██████████████████████████████`"
+                 "`\n██▀▀▀▀████▀▀▀▀████▀▀▀▀▀███▀▀██▀▀█`"
+                 "`\n█──────██──────██───────██──██──█`"
+                 "`\n█──██▄▄████──████──███▄▄██──██──█`"
+                 "`\n█▄────▀████──████────█████──██──█`"
+                 "`\n█▀▀██──████──████──███████──██──█`"
+                 "`\n█──────████──████──███████──────█`"
+                 "`\n██▄▄▄▄█████▄▄████▄▄████████▄▄▄▄██`"
+                 "`\n█████████████████████████████████`")
 
 
 @register(outgoing=True, pattern=r"^\.gtfo$")
 async def gtfo(e):
-    if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
-        await e.edit("`\n███████████████████████████████ `"
-                     "`\n█▀▀▀▀▀▀▀█▀▀▀▀▀▀█▀▀▀▀▀▀▀█▀▀▀▀▀▀█ `"
-                     "`\n█───────█──────█───────█──────█ `"
-                     "`\n█──███──███──███──███▄▄█──██──█ `"
-                     "`\n█──███▄▄███──███─────███──██──█ `"
-                     "`\n█──██───███──███──██████──██──█ `"
-                     "`\n█──▀▀▀──███──███──██████──────█ `"
-                     "`\n█▄▄▄▄▄▄▄███▄▄███▄▄██████▄▄▄▄▄▄█ `"
-                     "`\n███████████████████████████████ `")
+    await e.edit("`\n███████████████████████████████ `"
+                 "`\n█▀▀▀▀▀▀▀█▀▀▀▀▀▀█▀▀▀▀▀▀▀█▀▀▀▀▀▀█ `"
+                 "`\n█───────█──────█───────█──────█ `"
+                 "`\n█──███──███──███──███▄▄█──██──█ `"
+                 "`\n█──███▄▄███──███─────███──██──█ `"
+                 "`\n█──██───███──███──██████──██──█ `"
+                 "`\n█──▀▀▀──███──███──██████──────█ `"
+                 "`\n█▄▄▄▄▄▄▄███▄▄███▄▄██████▄▄▄▄▄▄█ `"
+                 "`\n███████████████████████████████ `")
 
 
 @register(outgoing=True, pattern=r"^\.nih$")
@@ -1625,82 +1610,73 @@ async def nih(e):
 
 
 @register(outgoing=True, pattern=r"^\.fag$")
-async def gtfo(e):
-    if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
-        await e.edit("`\n█████████`"
-                     "`\n█▄█████▄█`"
-                     "`\n█▼▼▼▼▼`"
-                     "`\n█       STFU FAGGOT'S`"
-                     "`\n█▲▲▲▲▲`"
-                     "`\n█████████`"
-                     "`\n ██   ██`")
+async def fag(e):
+    await e.edit("`\n█████████`"
+                 "`\n█▄█████▄█`"
+                 "`\n█▼▼▼▼▼`"
+                 "`\n█       STFU FAGGOT'S`"
+                 "`\n█▲▲▲▲▲`"
+                 "`\n█████████`"
+                 "`\n ██   ██`")
 
 
 @register(outgoing=True, pattern=r"^\.tai$")
 async def taco(e):
-    if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
-        await e.edit("\n{\\__/}"
-                     "\n(●_●)"
-                     "\n( >💩 Mau Tai Ku?")
+    await e.edit("\n{\\__/}"
+                 "\n(●_●)"
+                 "\n( >💩 Mau Tai Ku?")
 
 
 @register(outgoing=True, pattern=r"^\.paw$")
 async def paw(e):
-    if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
-        await e.edit("`(=ↀωↀ=)")
+    await e.edit("`(=ↀωↀ=)")
 
 
 @register(outgoing=True, pattern=r"^\.tf$")
 async def tf(e):
-    if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
-        await e.edit("(̿▀̿ ̿Ĺ̯̿̿▀̿ ̿)̄  ")
+    await e.edit("(̿▀̿ ̿Ĺ̯̿̿▀̿ ̿)̄  ")
 
 
 @register(outgoing=True, pattern=r"^\.gey$")
 async def gey(e):
-    if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
-        await e.edit("`\n┈┈┈╭━━━━━╮┈┈┈┈┈\n┈┈┈┃┊┊┊┊┊┃┈┈┈┈┈`"
-                     "`\n┈┈┈┃┊┊╭━╮┻╮┈┈┈┈\n┈┈┈╱╲┊┃▋┃▋┃┈┈┈┈\n┈┈╭┻┊┊╰━┻━╮┈┈┈┈`"
-                     "`\n┈┈╰┳┊╭━━━┳╯┈┈┈┈\n┈┈┈┃┊┃╰━━┫┈Lu Bau Hehe`"
-                     "\n┈┈┈┈┈┈┏━┓┈┈┈┈┈┈")
+    await e.edit("`\n┈┈┈╭━━━━━╮┈┈┈┈┈\n┈┈┈┃┊┊┊┊┊┃┈┈┈┈┈`"
+                 "`\n┈┈┈┃┊┊╭━╮┻╮┈┈┈┈\n┈┈┈╱╲┊┃▋┃▋┃┈┈┈┈\n┈┈╭┻┊┊╰━┻━╮┈┈┈┈`"
+                 "`\n┈┈╰┳┊╭━━━┳╯┈┈┈┈\n┈┈┈┃┊┃╰━━┫┈Lu Bau Hehe`"
+                 "\n┈┈┈┈┈┈┏━┓┈┈┈┈┈┈")
 
 
 @register(outgoing=True, pattern=r"^\.gay$")
-async def gey(e):
-    if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
-        await e.edit("`\n┈┈┈╭━━━━━╮┈┈┈┈┈\n┈┈┈┃┊┊┊┊┊┃┈┈┈┈┈`"
-                     "`\n┈┈┈┃┊┊╭━╮┻╮┈┈┈┈\n┈┈┈╱╲┊┃▋┃▋┃┈┈┈┈\n┈┈╭┻┊┊╰━┻━╮┈┈┈┈`"
-                     "`\n┈┈╰┳┊╭━━━┳╯┈┈┈┈\n┈┈┈┃┊┃╰━━┫┈ANDA GAY`"
-                     "\n┈┈┈┈┈┈┏━┓┈┈┈┈┈┈")
+async def gay(e):
+    await e.edit("`\n┈┈┈╭━━━━━╮┈┈┈┈┈\n┈┈┈┃┊┊┊┊┊┃┈┈┈┈┈`"
+                 "`\n┈┈┈┃┊┊╭━╮┻╮┈┈┈┈\n┈┈┈╱╲┊┃▋┃▋┃┈┈┈┈\n┈┈╭┻┊┊╰━┻━╮┈┈┈┈`"
+                 "`\n┈┈╰┳┊╭━━━┳╯┈┈┈┈\n┈┈┈┃┊┃╰━━┫┈ANDA GAY`"
+                 "\n┈┈┈┈┈┈┏━┓┈┈┈┈┈┈")
 
 
 @register(outgoing=True, pattern=r"^\.bot$")
 async def bot(e):
-    if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
-        await e.edit("` \n   ╲╲╭━━━━╮ \n╭╮┃▆┈┈▆┃╭╮ \n┃╰┫▽▽▽┣╯┃ \n╰━┫△△△┣━╯`"
-                     "`\n╲╲┃┈┈┈┈┃  \n╲╲┃┈┏┓┈┃ `")
+    await e.edit("` \n   ╲╲╭━━━━╮ \n╭╮┃▆┈┈▆┃╭╮ \n┃╰┫▽▽▽┣╯┃ \n╰━┫△△△┣━╯`"
+                 "`\n╲╲┃┈┈┈┈┃  \n╲╲┃┈┏┓┈┃ `")
 
 
 @register(outgoing=True, pattern=r"^\.hey$")
 async def hey(e):
-    if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
-        await e.edit("\n┈┈┈╱▔▔▔▔╲┈╭━━━━━\n┈┈▕▂▂▂▂▂▂▏┃HEY!┊😀`"
-                     "`\n┈┈▕▔▇▔▔┳▔▏╰┳╮HEY!┊\n┈┈▕╭━╰╯━╮▏━╯╰━━━\n╱▔▔▏▅▅▅▅▕▔▔╲┈┈┈┈`"
-                     "`\n▏┈┈╲▂▂▂▂╱┈┈┈▏┈┈┈`")
+    await e.edit("\n┈┈┈╱▔▔▔▔╲┈╭━━━━━\n┈┈▕▂▂▂▂▂▂▏┃HEY!┊😀`"
+                 "`\n┈┈▕▔▇▔▔┳▔▏╰┳╮HEY!┊\n┈┈▕╭━╰╯━╮▏━╯╰━━━\n╱▔▔▏▅▅▅▅▕▔▔╲┈┈┈┈`"
+                 "`\n▏┈┈╲▂▂▂▂╱┈┈┈▏┈┈┈`")
 
 
 @register(outgoing=True, pattern=r"^\.nou$")
 async def nou(e):
-    if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
-        await e.edit("`\n┈╭╮╭╮\n┈┃┃┃┃\n╭┻┗┻┗╮`"
-                     "`\n┃┈▋┈▋┃\n┃┈╭▋━╮━╮\n┃┈┈╭╰╯╰╯╮`"
-                     "`\n┫┈┈  NoU\n┃┈╰╰━━━━╯`"
-                     "`\n┗━━┻━┛`")
+    await e.edit("`\n┈╭╮╭╮\n┈┃┃┃┃\n╭┻┗┻┗╮`"
+                 "`\n┃┈▋┈▋┃\n┃┈╭▋━╮━╮\n┃┈┈╭╰╯╰╯╮`"
+                 "`\n┫┈┈  NoU\n┃┈╰╰━━━━╯`"
+                 "`\n┗━━┻━┛`")
 
 
 @register(outgoing=True, pattern=r"^\.iwi(?: |$)(.*)")
 async def faces(siwis):
-    """ IwI """
+    """IwI"""
     textx = await siwis.get_reply_message()
     message = siwis.pattern_match.group(1)
     if message:
@@ -1708,7 +1684,7 @@ async def faces(siwis):
     elif textx:
         message = textx.text
     else:
-        await siwis.edit("` Anda Harus Memberikan Teks Ke IwI  `")
+        await siwis.edit("`Anda Harus Memberikan Teks Ke IwI`")
         return
 
     reply_text = sub(r"(a|i|u|e|o)", "i", message)
@@ -1749,8 +1725,9 @@ async def koc(e):
         await e.edit("8✊===D💦💦💦💦💦💦💦💦")
         await e.edit("8===✊D💦💦💦💦💦💦💦💦💦")
         await e.edit("8==✊=D💦💦💦💦💦💦💦💦💦💦")
-        await e.edit("8=✊==D Lah Kok Habis?")
-        await e.edit("😭😭😭😭")
+        await e.edit("8=✊==D Pohh pohh pohh , Lah Kok Angin?")
+        await sleep(0.5)
+        await e.reply("😨")
 
 
 @register(outgoing=True, pattern="^.gas$")
@@ -1811,8 +1788,8 @@ async def emoji_tengkorak(e):
 
 
 CMD_HELP.update({
-    "memes":
-    ">`.cowsay`"
+    "memes": "✘ Pʟᴜɢɪɴ : Memes"
+    "\n\n>`.cowsay`"
     "\nUsage: sapi yang mengatakan sesuatu."
     "\n\n> .cp"
     "\nUsage: Copy paste meme terkenal"
@@ -1824,7 +1801,7 @@ CMD_HELP.update({
     "\nUsage: Kamu mundur !!"
     "\n\n>`.zal`"
     "\nUsage: Munculkan perasaan kacau."
-    "\n\n>`.Oem`"
+    "\n\n>`.oem`"
     "\nPenggunaan: Oeeeem"
     "\n\n>`.fp`"
     "\nUsage: Telapak Tangan:P"
@@ -1867,10 +1844,9 @@ CMD_HELP.update({
     "\n\n>`.lfy` <query>"
     "\nUsage: Biar saya Google itu untuk Anda dengan cepat!"
     "\n\n>`.decide` [Alternatif: (.yes, .no, .maybe)]"
-    "\nUsage: Buat keputusan cepat."
+    "\nUsage: Membuat keputusan dengan cepat."
     "\n\n> `.nou` `.bot` `.rock` `.gey` `.tf` `.paw` `.tai` `.nih`"
     "\n> `.fag` `.gtfo`; `.stfu` `.lol` `.lool` `.fail` `.leave`"
     "\n> `.iwi` `.sayhi` `.koc` `.gas` `.earth` `.love` `.rain`"
-    "\n> `.penis` `.emo` `.fuck` `.skull`  `.monyet`\nUsage: Cobain aja"
-    "\n\n\n**Semoga Harimu Menyenangkan**\n➥ `Axel`"
+    "\n> `.penis` `.emo` `.fuck` `.skull`  `.monyet`\nUsage: Coba aja"
 })
