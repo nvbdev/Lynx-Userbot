@@ -610,9 +610,8 @@ class googleimagesdownload:
         return tabs
 
     # Format the object in readable format
-    @staticmethod
-    def format_object(obj):
-        data = obj[1]
+    def format_object(self, object):
+        data = object[1]
         main = data[3]
         info = data[9]
         return {
