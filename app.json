@@ -5,9 +5,9 @@
   "keywords": [
     "telegram",
     "userbot",
-    "plugin",
+    "lynx-userbot",
     "modular",
-    "productivity"
+    "python"
   ],
   "repository": "https://github.com/KENZO-404/Lynx-Userbot",
   "telegram": "https://t.me/SyndicateTwenty4",
@@ -82,6 +82,10 @@
     },
     "OPEN_WEATHER_MAP_APPID": {
       "description": "Get your own APPID (API key)from https://api.openweathermap.org/data/2.5/weather",
+      "required": false
+    },
+    "CUSTOM_PMPERMIT_TEXT": {
+      "description": "fill in for your own pmpermit message (as you like)",
       "required": false
     },
     "PM_AUTO_BAN": {
