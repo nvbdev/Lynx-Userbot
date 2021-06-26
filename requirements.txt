@@ -106,4 +106,3 @@ Faker==8.1.2
 js2py
 aiofile
 validators
-pytest
