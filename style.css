@@ -149,14 +149,14 @@ footer p {
         width: 200px;
         float: right;
     }
-    .hero h1{
+    .hero h3{
         font-size: 3em;
     }
     .hero p{
         width: 60%;
     }
     footer ul {
-        max-width: 900px;
+        max-width: 720px;
         margin: 0 auto;
         padding: 1em 0;
     }
