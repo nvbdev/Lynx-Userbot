@@ -5,8 +5,8 @@
   }
  
   body {
-      background-color: #eff1f2;
-      font-family: sans-serif;
+      background-color: #302e27;
+      font-family: Helvetica;
   }
  
 .content {
@@ -20,7 +20,7 @@
 }
 .footer {
     grid-area: footer;
-    background: white;
+    background: black;
 }
 .container {
     font-size: 1.5em;
@@ -69,19 +69,19 @@ nav li a:hover {
 }
  
 .hero img {
-    width: 200px;
+    width: 240px;
 }
  
-.hero h1 {
+.hero h3 {
     font-size: 2em;
     font-weight: 300;
     color: #373046;
 }
  
 .hero p {
-    font-weight: 300;
+    font-weight: 270;
     line-height: 1.3em;
-    color: #98aBad;
+    color: #272b2e;
 }
  
 .action-btn {
@@ -97,7 +97,7 @@ nav li a:hover {
 }
  
 footer ul {
-max-width: 640px;
+max-width: 720px;
 margin: 2em auto;
 padding: 0;
 text-align: center;
@@ -113,7 +113,7 @@ footer ul li {
  
 footer ul li a{
     text-decoration: none;
-    color: #252729;
+    color: #ffffff;
 }
  
 footer ul li img {
@@ -121,7 +121,8 @@ footer ul li img {
 }
  
 footer p {
-    font-size: 0.8em;
+    font-size: 0.7em;
+    color: #ffffff:
 }
  
 @media (min-width: 1040px){
