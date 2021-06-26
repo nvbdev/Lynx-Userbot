@@ -73,9 +73,9 @@ nav li a:hover {
 }
  
 .hero h3 {
-    font-size: 2em;
+    font-size: 1em;
     font-weight: 300;
-    color: #ffcc00;
+    color: black;
 }
  
 .hero p {
@@ -150,7 +150,7 @@ footer p {
         float: right;
     }
     .hero h3{
-        font-size: 3em;
+        font-size: 1em;
     }
     .hero p{
         width: 60%;
