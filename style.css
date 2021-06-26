@@ -20,7 +20,7 @@
 }
 .footer {
     grid-area: footer;
-    background: black;
+    background: white;
 }
 .container {
     font-size: 1.5em;
@@ -75,7 +75,7 @@ nav li a:hover {
 .hero h3 {
     font-size: 2em;
     font-weight: 300;
-    color: #373046;
+    color: #f1f2ed;
 }
  
 .hero p {
@@ -97,7 +97,7 @@ nav li a:hover {
 }
  
 footer ul {
-max-width: 720px;
+max-width: 520px;
 margin: 2em auto;
 padding: 0;
 text-align: center;
@@ -117,12 +117,11 @@ footer ul li a{
 }
  
 footer ul li img {
-    width: 30%;
+    width: 27%;
 }
  
 footer p {
     font-size: 0.7em;
-    color: #ffffff:
 }
  
 @media (min-width: 1040px){
