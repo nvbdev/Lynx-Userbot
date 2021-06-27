@@ -9,17 +9,23 @@
 import asyncio
 import base64
 from datetime import datetime
-
 from telethon.errors import BadRequestError
 from telethon.tl.functions.channels import EditBannedRequest
 from telethon.tl.functions.messages import ImportChatInviteRequest
-from telethon.tl.types import Channel, ChatBannedRights, MessageEntityMentionName
-
+from telethon.tl.types import (
+    Channel,
+    ChatBannedRights,
+    MessageEntityMentionName,
+)
 import userbot.modules.sql_helper.globalban_sql as gban_sql
-from userbot import ALIVE_NAME, BOTLOG, BOTLOG_CHATID, DEVELOPER
-from userbot.events import register
 from userbot.utils import edit_delete, edit_or_reply
-
+from userbot.events import register
+from userbot import (
+    ALIVE_NAME,
+    BOTLOG,
+    BOTLOG_CHATID,
+    DEVELOPER,
+)
 
 # ================================================
 BANNED_RIGHTS = ChatBannedRights(
@@ -33,7 +39,6 @@ BANNED_RIGHTS = ChatBannedRights(
     send_inline=True,
     embed_links=True,
 )
-
 UNBAN_RIGHTS = ChatBannedRights(
     until_date=None,
     send_messages=None,
