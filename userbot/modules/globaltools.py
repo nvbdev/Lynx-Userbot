@@ -5,9 +5,14 @@
 # Based On Plugins from Dark Cobra
 
 from telethon.events import ChatAction
-from userbot import ALIVE_NAME, CMD_HELP, BOTLOG, BOTLOG_CHATID, bot
 from userbot.events import register
-
+from userbot import (
+    ALIVE_NAME,
+    CMD_HELP,
+    BOTLOG,
+    BOTLOG_CHATID,
+    bot,
+)
 from telethon.tl.functions.contacts import BlockRequest, UnblockRequest
 from telethon.tl.types import (
     ChatBannedRights,
