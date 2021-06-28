@@ -5,15 +5,14 @@
 #
 
 from asyncio import sleep
-
 from telethon.errors import rpcbaseerrors
-
 from userbot import CMD_HELP
 from userbot.events import register
 
 
 @register(outgoing=True, pattern=r"^\.purge$")
 async def fastpurger(purg):
+    """For .purge command, purge all messages starting from the reply."""
     chat = await purg.get_input_chat()
     msgs = []
     itermsg = purg.client.iter_messages(chat, min_id=purg.reply_to_msg_id)
@@ -28,18 +27,18 @@ async def fastpurger(purg):
                 await purg.client.delete_messages(chat, msgs)
                 msgs = []
     else:
-        return await purg.edit("`Mohon Balas Ke Pesan Lord ⛧ `")
+        return await purg.edit("`Mohon Reply Ke Pesan...`")
 
     if msgs:
         await purg.client.delete_messages(chat, msgs)
     done = await purg.client.send_message(
-        purg.chat_id, f"`Berhasil Menghapus Pesan Lord`\
-        \nJumlah Pesan Yang Dihapus {str(count)} Pesan")
+        purg.chat_id, f"`Berhasil Menghapus Pesan`\
+        \nJumlah Pesan Yang Dihapus : {str(count)} Pesan")
     """
     if BOTLOG:
         await purg.client.send_message(
             BOTLOG_CHATID,
-            "Berhasil Menghapus Pesan Lord " + str(count) + " Pesan Berhasil  Dibersihkan.")
+            "Berhasil Menghapus Pesan, " + str(count) + " Pesan Berhasil  Dibersihkan.")
     """
     await sleep(2)
     await done.delete()
@@ -47,6 +46,7 @@ async def fastpurger(purg):
 
 @register(outgoing=True, pattern=r"^\.purgeme")
 async def purgeme(delme):
+    """For .purgeme, delete x count of your latest message."""
     message = delme.text
     count = int(message[9:])
     i = 1
@@ -59,13 +59,13 @@ async def purgeme(delme):
 
     smsg = await delme.client.send_message(
         delme.chat_id,
-        "`Berhasil Menghapus Pesan Lord,` " + str(count) + " `Pesan Telah Dihapus ⛧`",
+        "`Berhasil Menghapus Pesan,`\n **Jumlah :** " + str(count) + " Pesan.",
     )
     """
     if BOTLOG:
         await delme.client.send_message(
             BOTLOG_CHATID,
-            "`Lord Telah Menghapus Pesan,` " + str(count) + " Pesan Telah Dihapus ⛧`")
+            "`Anda Telah Menghapus Pesan,`\n **Jumlah :** " + str(count) + " Pesan.")
     """
     await sleep(2)
     i = 1
@@ -74,6 +74,7 @@ async def purgeme(delme):
 
 @register(outgoing=True, pattern=r"^\.del$")
 async def delete_it(delme):
+    """For .del command, delete the replied message."""
     msg_src = await delme.get_reply_message()
     if delme.reply_to_msg_id:
         try:
@@ -82,19 +83,20 @@ async def delete_it(delme):
             """
             if BOTLOG:
                 await delme.client.send_message(
-                    BOTLOG_CHATID, "`Lord Berhasil Menghapus Pesan ⛧`")
+                    BOTLOG_CHATID, "`✔️ Berhasil Menghapus Pesan.`")
             """
         except rpcbaseerrors.BadRequestError:
             await delme.edit("`Tidak Bisa Menghapus Pesan`")
             """
             if BOTLOG:
                 await delme.client.send_message(
-                    BOTLOG_CHATID, "`Tidak Bisa Menghapus Pesan Lord`")
+                    BOTLOG_CHATID, "`Tidak Bisa Menghapus Pesan.`")
             """
 
 
 @register(outgoing=True, pattern=r"^\.edit")
 async def editer(edit):
+    """For .editme command, edit your last message."""
     message = edit.text
     chat = await edit.get_input_chat()
     self_id = await edit.client.get_peer_id("me")
@@ -115,6 +117,7 @@ async def editer(edit):
 
 @register(outgoing=True, pattern=r"^\.sd")
 async def selfdestruct(destroy):
+    """For .sd command, make seflf-destructable messages."""
     message = destroy.text
     counter = int(message[4:6])
     text = str(destroy.text[6:])
@@ -125,12 +128,13 @@ async def selfdestruct(destroy):
     """
     if BOTLOG:
         await destroy.client.send_message(BOTLOG_CHATID,
-                                          "`⛧ SD Berhasil Dilakukan ⛧`")
+                                          "`SD Berhasil Dilakukan `")
     """
 
 
 @register(outgoing=True, pattern=r"^\.whisp(?: |$)(.*)")
 async def _(event):
+    """Untuk .whisp command, mengirim pesan rahasia di group."""
     if event.fwd_from:
         return
     wwwspr = event.pattern_match.group(1)
