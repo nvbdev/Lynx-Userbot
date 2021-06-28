@@ -97,10 +97,10 @@ async def permitpm(event):
                         event.chat_id, from_user="me", search=UNAPPROVED_MSG, file=WARN_PIC
                     ):
                         await message.delete()
-                    await event.client.send_message(file, f"{UNAPPROVED_MSG}")
+                    await event.client.send_message(WARN_PIC, UNAPPROVED_MSG)
                 LASTMSG.update({event.chat_id: event.text})
             else:
-                await event.client.send_message(file, f"{UNAPPROVED_MSG}")
+                await event.client.send_message(WARN_PIC, UNAPPROVED_MSG)
                 LASTMSG.update({event.chat_id: event.text})
 
             if notifsoff:
