@@ -26,9 +26,9 @@ from userbot import (
 
 PM_PERMIT_PIC = os.environ.get(
     "PM_PERMIT_PIC",
-    None) or "https://telegra.ph/file/03ed3a9b0df8b8f6941c2.jpg"
+    None) or "https://telegra.ph/file/78db3f8bc07d3c4a42c4f.mp4"
 if PM_PERMIT_PIC is None:
-    WARN_PIC = "https://telegra.ph/file/03ed3a9b0df8b8f6941c2.jpg"
+    WARN_PIC = "https://telegra.ph/file/78db3f8bc07d3c4a42c4f.mp4"
 else:
     WARN_PIC = str(PM_PERMIT_PIC)
 
@@ -49,15 +49,14 @@ DEF_UNAPPROVED_MSG = (
     "▰▱▰▱▰▱▰▱▰▱▰▱▰▱▰▱▰▱\n"
     "┣[○› `PESAN OTOMATIS`\n"
     f"┣[○› `BY` © @LynxUserbot\n"
-    "▰▱▰▱▰▱▰▱▰▱▰▱▰▱▰▱▰▱\n"
-    f"⚠️ **Peringatan :** {prevmsg}")
+    "▰▱▰▱▰▱▰▱▰▱▰▱▰▱▰▱▰▱")
 
-# =================================================================
+# ================================================================
 
 
 @register(incoming=True, disable_edited=True, disable_errors=True)
 async def permitpm(event):
-    """Prohibits people from PMing you without approval. \
+    """Prohibits people from PMing you without approval.\
         Will block retarded nibbas automatically."""
     if not PM_AUTO_BAN:
         return
