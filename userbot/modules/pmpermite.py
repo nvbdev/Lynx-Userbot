@@ -99,7 +99,7 @@ async def permitpm(event):
                     await event.reply(f" {WARN_PIC} \n\n {UNAPPROVED_MSG} ")
                 LASTMSG.update({event.chat_id: event.text})
             else:
-                await event.reply(f"{WARN_PIC}\n\n{UNAPPROVED_MSG}")
+                await event.reply(f" {WARN_PIC} \n\n {UNAPPROVED_MSG} ")
                 LASTMSG.update({event.chat_id: event.text})
 
             if notifsoff:
