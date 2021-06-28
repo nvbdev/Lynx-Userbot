@@ -97,16 +97,14 @@ async def permitpm(event):
                         event.chat_id, from_user="me", search=UNAPPROVED_MSG, file=WARN_PIC
                     ):
                         await message.delete()
-                    await event.reply(
-                        file=file,
-                        caption=search
+                    await event.reply(file=file, caption=search
                     )
+                LASTMSG.update({event.chat_id: event.text})
             else:
-                await event.reply(
-                    file=file,
-                    caption=search
+                await event.reply(file=file, caption=search
                 )
-            LASTMSG.update({event.chat_id: event.text})
+                LASTMSG.update({event.chat_id: event.text})
+
             if notifsoff:
                 await event.client.send_read_acknowledge(event.chat_id)
             if event.chat_id not in COUNT_PM:
@@ -117,7 +115,8 @@ async def permitpm(event):
             if COUNT_PM[event.chat_id] > 5:
                 await event.respond(
                     "`Anda Telah Di Blokir Karna Melakukan Spam Pesan`\n"
-                    "`Ke Room Chat Saya 😼`"
+                    "`Ke Room Chat Saya`\n"
+                    "`Bye...`"
                 )
 
                 try:
@@ -219,9 +218,9 @@ async def notifon(non_event):
     await non_event.edit("#NOTIF ON ☑️\n`Notifikasi Dari Pesan Pribadi Telah Diaktifkan.`")
 
 
-@register(outgoing=True, pattern=r"^\.(?:setuju|ok)\s?(.)?")
+@register(outgoing=True, pattern=r"^\.approve(?:$| )(.*)")
 async def approvepm(apprvpm):
-    """For .ok command, give someone the permissions to PM you."""
+    """For .approve command, give someone the permissions to PM you."""
     try:
         from userbot.modules.sql_helper.globals import gvarstatus
         from userbot.modules.sql_helper.pm_permit_sql import approve
@@ -230,13 +229,26 @@ async def approvepm(apprvpm):
 
     if apprvpm.reply_to_msg_id:
         reply = await apprvpm.get_reply_message()
-        replied_user = await apprvpm.client.get_entity(reply.from_id)
+        replied_user = await apprvpm.client.get_entity(reply.sender_id)
         aname = replied_user.id
         name0 = str(replied_user.first_name)
         uid = replied_user.id
-
+    elif apprvpm.pattern_match.group(1):
+        inputArgs = apprvpm.pattern_match.group(1)
+        if inputArgs.isdigit():
+            inputArgs = int(inputArgs)
+        try:
+            user = await apprvpm.client.get_entity(inputArgs)
+        except BaseException:
+            return await apprvpm.edit("`Invalid username/ID.`")
+        if not isinstance(user, User):
+            return await apprvpm.edit("`You're not referring to a user.`")
+        uid = user.id
+        name0 = str(user.first_name)
     else:
         aname = await apprvpm.client.get_entity(apprvpm.chat_id)
+        if not isinstance(aname, User):
+            return await apprvpm.edit("`You're not referring to a user.`")
         name0 = str(aname.first_name)
         uid = apprvpm.chat_id
 
@@ -255,20 +267,18 @@ async def approvepm(apprvpm):
     try:
         approve(uid)
     except IntegrityError:
-        return await apprvpm.edit("⚡")
+        return await apprvpm.edit("`User may already be approved.`")
 
-    await apprvpm.edit(f"[{name0}](tg://user?id={uid}) `𝙿𝚎𝚜𝚊𝚗 𝙰𝚗𝚍𝚊 𝚂𝚞𝚍𝚊𝚑 𝙳𝚒𝚝𝚎𝚛𝚒𝚖𝚊` ☑️")
-    await apprvpm.delete(getmsg)
-    await message.delete()
+    await apprvpm.edit(f"[{name0}](tg://user?id={uid}) `approved to PM!`")
 
     if BOTLOG:
         await apprvpm.client.send_message(
             BOTLOG_CHATID,
-            "#DITERIMA\n" + "User: " + f"[{name0}](tg://user?id={uid})"
+            "#APPROVED\n" + "👤 User : " + f"[{name0}](tg://user?id={uid})",
         )
 
 
-@register(outgoing=True, pattern=r"^\.(?:tolak|nopm)\s?(.)?")
+@register(outgoing=True, pattern=r"^\.disapprove(?:$| )(.*)")
 async def disapprovepm(disapprvpm):
     try:
         from userbot.modules.sql_helper.pm_permit_sql import dissprove
@@ -277,24 +287,38 @@ async def disapprovepm(disapprvpm):
 
     if disapprvpm.reply_to_msg_id:
         reply = await disapprvpm.get_reply_message()
-        replied_user = await disapprvpm.client.get_entity(reply.from_id)
+        replied_user = await disapprvpm.client.get_entity(reply.sender_id)
         aname = replied_user.id
         name0 = str(replied_user.first_name)
         dissprove(aname)
+        uid = replied_user.id
+    elif disapprvpm.pattern_match.group(1):
+        inputArgs = disapprvpm.pattern_match.group(1)
+        if inputArgs.isdigit():
+            inputArgs = int(inputArgs)
+        try:
+            user = await disapprvpm.client.get_entity(inputArgs)
+        except BaseException:
+            return await disapprvpm.edit("`Invalid username/ID.`")
+        if not isinstance(user, User):
+            return await disapprvpm.edit("`This can be done only with users.`")
+        uid = user.id
+        dissprove(uid)
+        name0 = str(user.first_name)
     else:
         dissprove(disapprvpm.chat_id)
         aname = await disapprvpm.client.get_entity(disapprvpm.chat_id)
+        if not isinstance(aname, User):
+            return await disapprvpm.edit("`You're not reffering to a User`")
         name0 = str(aname.first_name)
+        uid = disapprvpm.chat_id
 
-    await disapprvpm.edit(
-        f"`Maaf` [{name0}](tg://user?id={disapprvpm.chat_id}) `Pesan Anda Telah Ditolak, Mohon Jangan Melakukan Spam Ke Room Chat!`"
-    )
+    await disapprvpm.edit(f"[{name0}](tg://user?id={uid}) `disaproved to PM!`")
 
     if BOTLOG:
         await disapprvpm.client.send_message(
             BOTLOG_CHATID,
-            f"[{name0}](tg://user?id={disapprvpm.chat_id})"
-            " `Berhasil Ditolak` !",
+            "#DISAPPROVED\n" + "👤 User : " + f"[{name0}](tg://user?id={uid})",
         )
 
 
@@ -303,16 +327,18 @@ async def blockpm(block):
     """For .block command, block people from PMing you!"""
     if block.reply_to_msg_id:
         reply = await block.get_reply_message()
-        replied_user = await block.client.get_entity(reply.from_id)
+        replied_user = await block.client.get_entity(reply.sender_id)
         aname = replied_user.id
         name0 = str(replied_user.first_name)
-        await block.client(BlockRequest(aname))
-        await block.edit("`Anda Telah Diblokir Oleh Saya !`")
+        await block.client(BlockRequest(replied_user.id))
+        await block.edit("`You've been blocked!`")
         uid = replied_user.id
     else:
         await block.client(BlockRequest(block.chat_id))
         aname = await block.client.get_entity(block.chat_id)
-        await block.edit("`Anda Telah Diblokir Oleh Saya !`")
+        if not isinstance(aname, User):
+            return await block.edit("`You're not referring to a User`")
+        await block.edit("`You've been blocked!`")
         name0 = str(aname.first_name)
         uid = block.chat_id
 
@@ -326,7 +352,7 @@ async def blockpm(block):
     if BOTLOG:
         await block.client.send_message(
             BOTLOG_CHATID,
-            "#BLOKIR\n" + "User : " + f"[{name0}](tg://user?id={uid})",
+            "#BLOCKED\n" + "👤 User : " + f"[{name0}](tg://user?id={uid})",
         )
 
 
@@ -335,16 +361,21 @@ async def unblockpm(unblock):
     """For .unblock command, let people PMing you again!"""
     if unblock.reply_to_msg_id:
         reply = await unblock.get_reply_message()
-        replied_user = await unblock.client.get_entity(reply.from_id)
+        replied_user = await unblock.client.get_entity(reply.sender_id)
         name0 = str(replied_user.first_name)
         await unblock.client(UnblockRequest(replied_user.id))
-        await unblock.edit("`Anda Sudah Tidak Diblokir Lagi.`")
-
-    if BOTLOG:
-        await unblock.client.send_message(
-            BOTLOG_CHATID,
-            f"[{name0}](tg://user?id={replied_user.id})" "Anda Tidak Lagi Diblokir.",
-        )
+        await unblock.edit("`You have been unblocked.`")
+        uid = replied_user.id
+        if BOTLOG:
+            await unblock.client.send_message(
+                BOTLOG_CHATID,
+                f"#UNBLOCKED\n" + "👤 User : " + f"[{name0}](tg://user?id={uid})",
+            )
+    elif unblock.is_group and not unblock.reply_to_msg_id:
+        await unblock.edit("`Please reply to user you want to unblock`")
+        return
+    else:
+        await unblock.edit("`User already unblocked`")
 
 
 @register(outgoing=True, pattern=r"^.(set|get|reset) pm_msg(?: |$)(\w*)")
@@ -408,9 +439,9 @@ async def add_pmsg(cust_msg):
 CMD_HELP.update(
     {
         "pmpermit": "✘ Pʟᴜɢɪɴ : Private Message Permite"
-        "\n\n⚡𝘾𝙈𝘿⚡: `.setuju | .ok`"
+        "\n\n⚡𝘾𝙈𝘿⚡: `.approve`"
         "\n↳ : Menerima Pesan Seseorang Dengan Cara Balas Pesannya Atau Tag dan Juga Untuk Dilakukan Di PM."
-        "\n\n⚡𝘾𝙈𝘿⚡: `.tolak | .nopm`"
+        "\n\n⚡𝘾𝙈𝘿⚡: `.disapprove`"
         "\n↳ : Menolak Pesan Seseorang Dengan Cara Balas Pesannya Atau Tag dan Juga Untuk Dilakukan Di PM."
         "\n\n⚡𝘾𝙈𝘿⚡: `.block`"
         "\n↳ : Memblokir Orang Di PM."
