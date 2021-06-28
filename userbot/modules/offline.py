@@ -5,12 +5,15 @@ from random import choice, randint
 from telethon.events import StopPropagation
 from telethon.tl.functions.account import UpdateProfileRequest
 
-from userbot import (
+from userbot import (  # pylint:disable=E0602
     AFKREASON,
     BOTLOG,
     BOTLOG_CHATID,
     CMD_HELP,
+    COUNT_MSG,
     ALIVE_NAME,
+    ISAFK,
+    USERS,
     PM_AUTO_BAN,
     PM_AUTO_BAN,
     bot,
