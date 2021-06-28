@@ -24,8 +24,9 @@ from userbot import (
 )
 
 
-PM_PERMIT_PIC = os.environ.get("PM_PERMIT_PIC",
-                               None) or "https://telegra.ph/file/03ed3a9b0df8b8f6941c2.jpg"
+PM_PERMIT_PIC = os.environ.get(
+    "PM_PERMIT_PIC",
+    None) or "https://telegra.ph/file/03ed3a9b0df8b8f6941c2.jpg"
 if PM_PERMIT_PIC is None:
     WARN_PIC = "https://telegra.ph/file/03ed3a9b0df8b8f6941c2.jpg"
 else:
