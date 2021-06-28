@@ -10,7 +10,7 @@ from sqlalchemy.exc import IntegrityError
 from telethon.tl.functions.contacts import BlockRequest, UnblockRequest
 from telethon.tl.functions.messages import ReportSpamRequest
 from telethon.tl.types import User
-
+from userbot.events import register
 from userbot import (
     BOTLOG,
     BOTLOG_CHATID,
@@ -19,16 +19,15 @@ from userbot import (
     LASTMSG,
     LOGS,
     PM_AUTO_BAN,
-    ALIVE_NAME,
-    CUSTOM_PMPERMIT_TEXT
+    CUSTOM_PMPERMIT_TEXT,
+    DEFAULTUSER,
 )
-from userbot.events import register
 
 
 PM_PERMIT_PIC = os.environ.get("PM_PERMIT_PIC",
-                               None) or "resource/logo/LynxUserbot-Button.jpg"
+                               None) or "https://telegra.ph/file/03ed3a9b0df8b8f6941c2.jpg"
 if PM_PERMIT_PIC is None:
-    WARN_PIC = "resource/logo/LynxUserbot-Button.jpg"
+    WARN_PIC = "https://telegra.ph/file/03ed3a9b0df8b8f6941c2.jpg"
 else:
     WARN_PIC = str(PM_PERMIT_PIC)
 
@@ -37,7 +36,6 @@ LASTMSG = {}
 
 # ========================= CONSTANTS ============================
 
-DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else uname().node
 CUSTOM_MIDDLE_PMP = str(
     CUSTOM_PMPERMIT_TEXT) if CUSTOM_PMPERMIT_TEXT else f"│Karena Saya Akan Otomatis Memblokir\n│Anda, Tunggu Sampai {DEFAULTUSER}\n│Menerima Pesan Anda, Terimakasih.\n"
 DEF_UNAPPROVED_MSG = (
@@ -50,7 +48,8 @@ DEF_UNAPPROVED_MSG = (
     "▰▱▰▱▰▱▰▱▰▱▰▱▰▱▰▱▰▱\n"
     "┣[○› `PESAN OTOMATIS`\n"
     f"┣[○› `BY` © @LynxUserbot\n"
-    "▰▱▰▱▰▱▰▱▰▱▰▱▰▱▰▱▰▱")
+    "▰▱▰▱▰▱▰▱▰▱▰▱▰▱▰▱▰▱"
+    f"⚠️ **Peringatan :** {COUNT_PM}")
 
 # =================================================================
 
@@ -189,7 +188,7 @@ async def auto_accept(event):
                     await event.client.send_message(
                         BOTLOG_CHATID,
                         "#AUTO-APPROVED\n"
-                        + "User : "
+                        + "👤 User : "
                         + f"[{chat.first_name}](tg://user?id={chat.id})",
                     )
 
