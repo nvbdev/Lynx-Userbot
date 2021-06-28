@@ -49,8 +49,8 @@ DEF_UNAPPROVED_MSG = (
     "▰▱▰▱▰▱▰▱▰▱▰▱▰▱▰▱▰▱\n"
     "┣[○› `PESAN OTOMATIS`\n"
     f"┣[○› `BY` © @LynxUserbot\n"
-    "▰▱▰▱▰▱▰▱▰▱▰▱▰▱▰▱▰▱"
-    f"⚠️ **Peringatan :** {COUNT_PM}")
+    "▰▱▰▱▰▱▰▱▰▱▰▱▰▱▰▱▰▱\n"
+    f"⚠️ **Peringatan :** {}")
 
 # =================================================================
 
@@ -97,10 +97,10 @@ async def permitpm(event):
                         event.chat_id, from_user="me", search=UNAPPROVED_MSG, file=WARN_PIC
                     ):
                         await message.delete()
-                    await event.reply(f"{WARN_PIC}\n\n{UNAPPROVED_MSG}")
+                    await event.client.send_message(file, f"{UNAPPROVED_MSG}")
                 LASTMSG.update({event.chat_id: event.text})
             else:
-                await event.reply(f"{WARN_PIC}\n\n{UNAPPROVED_MSG}")
+                await event.client.send_message(file, f"{UNAPPROVED_MSG}")
                 LASTMSG.update({event.chat_id: event.text})
 
             if notifsoff:
