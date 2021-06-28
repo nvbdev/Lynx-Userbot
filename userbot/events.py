@@ -30,7 +30,6 @@ def register(**args):
     insecure = args.get("insecure", False)
     trigger_on_inline = args.get('trigger_on_inline', False)
 
-
     if pattern is not None and not pattern.startswith("(?i)"):
         args["pattern"] = "(?i)" + pattern
 
