@@ -56,7 +56,6 @@ wikipedia>=1.4.0
 coffeehouse>=2.1.0
 gitpython
 git+https://github.com/TomyPrs/deezloader
-git+https://github.com/johnwmillr/LyricsGenius.git
 git+https://github.com/Ncode2014/search-engine-parser
 lyricsgenius
 PyDrive2
