@@ -11,10 +11,7 @@ from userbot import (
     BOTLOG_CHATID,
     CMD_HELP,
     ALIVE_NAME,
-    COUNT_MSG,
-    ISAFK,
     PM_AUTO_BAN,
-    USERS,
     PM_AUTO_BAN,
     bot,
 )
@@ -27,6 +24,7 @@ AFKSTR = [
     f"**{ALIVE_NAME} Sedang ⚡𝙊𝙁𝙁𝙇𝙄𝙉𝙀⚡\n Tunggulah Sampai Online**",
     f"**Maaf {ALIVE_NAME} Sedang OFF!**",
 ]
+
 
 def func():
     global USER_AFK
