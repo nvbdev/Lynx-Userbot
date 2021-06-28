@@ -5,7 +5,7 @@ from random import choice, randint
 from telethon.events import StopPropagation
 from telethon.tl.functions.account import UpdateProfileRequest
 
-from userbot import (  # noqa pylint: disable=unused-import isort:skip
+from userbot import (
     AFKREASON,
     BOTLOG,
     BOTLOG_CHATID,
@@ -28,14 +28,29 @@ AFKSTR = [
     f"**Maaf {ALIVE_NAME} Sedang OFF!**",
 ]
 
+def func():
+    global USER_AFK
+    USER_AFK = {}
 
-global USER_AFK  # pylint:disable=E0602
-global afk_time  # pylint:disable=E0602
-global afk_start
-global afk_end
-USER_AFK = {}
-afk_time = None
-afk_start = {}
+
+def func():
+    global afk_start
+    afk_start = {}
+
+
+def func():
+    global afk_time
+    afk_time = None
+
+
+def func():
+    global afk_end
+    afk_end = None
+
+
+def func():
+    global ISAFK
+    ISAFK = False
 
 # =================================================================
 
