@@ -30,7 +30,7 @@ PM_PERMIT_PIC = os.environ.get("PM_PERMIT_PIC",
 if PM_PERMIT_PIC is None:
     WARN_PIC = "resource/logo/LynxUserbot-Button.jpg"
 else:
-    WARN_PIC = PM_PERMIT_PIC
+    WARN_PIC = str(PM_PERMIT_PIC)
 
 COUNT_PM = {}
 LASTMSG = {}
@@ -97,10 +97,10 @@ async def permitpm(event):
                         event.chat_id, from_user="me", search=UNAPPROVED_MSG, file=WARN_PIC
                     ):
                         await message.delete()
-                    await event.client.send_file(file='resource/logo/LynxUserbot-Button.jpg', caption=f"{UNAPPROVED_MSG}")
+                    await event.reply(f"{WARN_PIC}\n\n{UNAPPROVED_MSG}")
                 LASTMSG.update({event.chat_id: event.text})
             else:
-                await event.client.send_file(file='resource/logo/LynxUserbot-Button.jpg', caption=f"{UNAPPROVED_MSG}")
+                await event.reply(f"{WARN_PIC}\n\n{UNAPPROVED_MSG}")
                 LASTMSG.update({event.chat_id: event.text})
 
             if notifsoff:
