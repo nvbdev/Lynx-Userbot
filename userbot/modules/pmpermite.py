@@ -50,7 +50,7 @@ DEF_UNAPPROVED_MSG = (
     "┣[○› `PESAN OTOMATIS`\n"
     f"┣[○› `BY` © @LynxUserbot\n"
     "▰▱▰▱▰▱▰▱▰▱▰▱▰▱▰▱▰▱\n"
-    f"⚠️ **Peringatan :** {}")
+    f"⚠️ **Peringatan :** {prevmsg}")
 
 # =================================================================
 
