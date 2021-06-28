@@ -208,8 +208,12 @@ LASTFM_PASS = md5(LASTFM_PASSWORD_PLAIN)
 lastfm = None
 if LASTFM_API and LASTFM_SECRET and LASTFM_USERNAME and LASTFM_PASS:
     try:
-        lastfm = LastFMNetwork(api_key=LASTFM_API, api_secret=LASTFM_SECRET, username=LASTFM_USERNAME, password_hash=LASTFM_PASS)
-    except Exception as lastfm:
+        lastfm = LastFMNetwork(
+            api_key=LASTFM_API,
+            api_secret=LASTFM_SECRET,
+            username=LASTFM_USERNAME,
+            password_hash=LASTFM_PASS)
+    except Exception:
         pass
 
 # Google Drive Module
