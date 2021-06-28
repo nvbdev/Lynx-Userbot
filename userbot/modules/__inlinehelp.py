@@ -17,7 +17,7 @@
 # Thanks @Spechide.
 
 import logging
-from userbot import BOT_USERNAME
+from userbot import BOT_USERNAME, BOT_TOKEN
 from userbot.events import register
 from telethon.errors.rpcerrorlist import BotInlineDisabledError
 
