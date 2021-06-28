@@ -213,7 +213,7 @@ if LASTFM_API and LASTFM_SECRET and LASTFM_USERNAME and LASTFM_PASS:
             api_secret=LASTFM_SECRET,
             username=LASTFM_USERNAME,
             password_hash=LASTFM_PASS)
-    except Exception:
+    except Exception as lastfm: # pylint: disable=C0321
         pass
 
 # Google Drive Module
