@@ -64,9 +64,9 @@ async def add_note(event):
             \n\nThe following message is saved as the note's reply data for the chat, please do NOT delete it !!"
             )
             msg_o = await event.client.forward_messages(entity=BOTLOG_CHATID,
-                                                       messages=msg,
-                                                       from_peer=event.chat_id,
-                                                       silent=True)
+                                                        messages=msg,
+                                                        from_peer=event.chat_id,
+                                                        silent=True)
             msg_id = msg_o.id
         else:
             await event.edit(
