@@ -125,7 +125,7 @@ async def apk(e):
             " out of ", "/").replace(" stars", "", 1).replace(" stars", "⭐ ").replace("five", "5")
         app_details += "\n<code>Features :</code> <a href='" + \
             app_link + "'>View in Play Store</a>"
-        app_details += "\n\n===> @heyw𝖔rld <==="
+        app_details += f"\n\nRequest Search By : {ALIVE_NAME}\nCopyright © 2021 Lynx-Userbot"
         await e.edit(app_details, link_preview=True, parse_mode='HTML')
     except IndexError:
         await e.edit("Pencarian tidak ditemukan. Mohon masukkan **Nama app yang valid**")
@@ -143,7 +143,7 @@ async def _(event):
         for i in a:
             await event.reply(i.original.action.message)
     else:
-        await event.edit("Mohon Maaf Yang Mulia, Anda harus memerlukan izin Admin untuk melakukan perintah ini.")
+        await event.edit("Mohon Maaf, Anda harus memerlukan izin Admin untuk melakukan perintah ini.")
         await asyncio.sleep(3)
         await event.delete()
 
@@ -459,11 +459,11 @@ async def _(event):
     if event.fwd_from:
         return
     if not event.reply_to_msg_id:
-        await event.edit("```Mohon Balas Ke Link.```")
+        await event.edit("```Mohon Reply Ke Link.```")
         return
     reply_message = await event.get_reply_message()
     if not reply_message.text:
-        await event.edit("```Mohon Balas Ke Link.```")
+        await event.edit("```Mohon Reply Ke Link.```")
         return
     chat = "@CheckRestrictionsBot"
     reply_message.sender
@@ -543,7 +543,7 @@ async def _(event):
     await event.delete()
     await bot.send_message(
         event.chat_id,
-        "`Ssssttt, Anda Telah Berhasil Yang Mulia.`",
+        "`Sssshhh, Anda Telah Berhasil...`",
         reply_to=reply_message
     )
 
@@ -694,13 +694,13 @@ async def _(event):
     if release_date is None:
         release_date = release_year
 
-    output_ = f"**Movie:**\n`{title}`\n**Release Date:**\n`{release_date}`"
+    output_ = f"**Movie :**\n`{title}`\n**Release Date :**\n`{release_date}`"
     if imdb_score:
-        output_ = output_ + f"\n**IMDB: **{imdb_score}"
+        output_ = output_ + f"\n**IMDB : **{imdb_score}"
     if tmdb_score:
-        output_ = output_ + f"\n**TMDB: **{tmdb_score}"
+        output_ = output_ + f"\n**TMDB : **{tmdb_score}"
 
-    output_ = output_ + "\n\n**Available on:**\n"
+    output_ = output_ + "\n\n**Available on :**\n"
     for provider, link in stream_providers.items():
         if 'sonyliv' in link:
             link = link.replace(" ", "%20")
@@ -723,7 +723,7 @@ async def weebify(event):
         get = await event.get_reply_message()
         args = get.text
     if not args:
-        await event.edit("`Mohon Maaf, Teks Apa Yang Harus Saya Weebify Kan ?`")
+        await event.edit("`Mohon Maaf, Text Apa Yang Harus Saya Weebify Kan ?`")
         return
     string = ' '.join(args).lower()
     for normiecharacter in string:
@@ -770,7 +770,7 @@ async def thicc(bolded):
         get = await bolded.get_reply_message()
         args = get.text
     if not args:
-        await bolded.edit("`Mohon Maaf, Teks Apa Yang Harus Saya Bold Kan?`")
+        await bolded.edit("`Mohon Maaf, Text Apa Yang Harus Saya Bold Kan?`")
         return
     string = ''.join(args).lower()
     for normiecharacter in string:
@@ -817,7 +817,7 @@ async def mediv(medievalx):
         get = await medievalx.get_reply_message()
         args = get.text
     if not args:
-        await medievalx.edit("`Mohon Maaf, Teks Apa Yang Harus Saya Medibold Kan ?`")
+        await medievalx.edit("`Mohon Maaf, Text Apa Yang Harus Saya Medibold Kan ?`")
         return
     string = ''.join(args).lower()
     for normiecharacter in string:
@@ -864,7 +864,7 @@ async def doublex(doublestrucktx):
         get = await doublestrucktx.get_reply_message()
         args = get.text
     if not args:
-        await doublestrucktx.edit("`Mohon Maaf, Teks Apa Yang Harus Saya Double Struck Kan?`")
+        await doublestrucktx.edit("`Mohon Maaf, Text Apa Yang Harus Saya Double Struck Kan?`")
         return
     string = ''.join(args).lower()
     for normiecharacter in string:
@@ -911,7 +911,7 @@ async def cursive2(cursivebolded):
         get = await cursivebolded.get_reply_message()
         args = get.text
     if not args:
-        await cursivebolded.edit("`Mohon Maaf, Teks Apa Yang Harus Saya Cursive Bold Kan ?`")
+        await cursivebolded.edit("`Mohon Maaf, Text Apa Yang Harus Saya Cursive Bold Kan ?`")
         return
     string = ''.join(args).lower()
     for normiecharacter in string:
@@ -1026,12 +1026,13 @@ async def _(event):
     await bot(functions.photos.DeletePhotosRequest(await event.client.get_profile_photos("me", limit=n)))
     await bot(functions.account.UpdateProfileRequest(about=bio))
     await bot(functions.account.UpdateProfileRequest(first_name=name))
-    await event.edit(f"`👑 Yang Mulia {ALIVE_NAME} Telah Mengembalikan Akun-Nya.`")
+    await event.edit(f"`{ALIVE_NAME} Telah Mengembalikan Akun-Nya.`")
 
 CMD_HELP.update({
     "lynxmisc":
-    "⚡𝘾𝙈𝘿⚡: `.app`\
-\n↳ : ketik `.app namaapp` Dan Dapatkan Detail Informasi App.\
+    "✘ Pʟᴜɢɪɴ : Lynx Misc\
+\n\n⚡𝘾𝙈𝘿⚡: `.app` <Name App>\
+\n↳ : Dapatkan Detail Informasi App dari Playstore.\
 \n\n⚡𝘾𝙈𝘿⚡: `.undlt`\
 \n↳ : urungkan pesan yang dihapus tetapi Anda harus menjadi admin.\
 \n\n⚡𝘾𝙈𝘿⚡: `.calc`\
@@ -1040,17 +1041,17 @@ CMD_HELP.update({
 \n↳ : gunakan di grup .remove d atau y atau m atau w atau o atau q atau r.\n(d=AkunTerhapus y=userstatsempty m=userstatsmonth w=userstatsweek o=userstatsoffline q=userstatsonline r=userstatsrecently).\
 \n\n⚡𝘾𝙈𝘿⚡: `.xcd`\
 \n↳ : Ketik xcd <query>.ps:Aku Sangat Bosan:v\
-\n\n⚡𝘾𝙈𝘿⚡: `.grab` <count>\
-\n↳ : Balas Ke Pesan Pengguna Ketik `.grab` Atau `.grab <count>` Untuk Mengambil Foto Profil.\
+\n\n⚡𝘾𝙈𝘿⚡: `.grab` <Count>\
+\n↳ : Balas Ke Pesan Pengguna Ketik `.grab` Atau `.grab <Count>` Untuk Mengambil Foto Profil.\
 \n\n⚡𝘾𝙈𝘿⚡: `.rnupload` filename.extenstion\
 \n↳ : Balas Ke Sticker Dan Ketik .rnupload xyz.jpg\
 \n\n⚡𝘾𝙈𝘿⚡: `.bunglon` @username Dan '.rbunglon' Untuk Mengembalikan\
 \n↳ : Clone Akun Orang Tapi Username Tidak Di Clone\
 \n\n⚡𝘾𝙈𝘿⚡: `.res`\
 \n↳ : Ketik Username Akun,Channel,Group Atau Bot Bersama .res Dan Check Batasan\
-\n\n⚡𝘾𝙈𝘿⚡: `.watch` <movie/tv>\
+\n\n⚡𝘾𝙈𝘿⚡: `.watch` <Movie/TV>\
 \n↳ : Mengetahui Detail Tentang Film.\
-\n\n⚡𝘾𝙈𝘿⚡: `.weeb` <text>\
+\n\n⚡𝘾𝙈𝘿⚡: `.weeb` <Text>\
 \n↳ : Teks Weebify.\
 \n\n⚡𝘾𝙈𝘿⚡: Ketik (`.bold <Teks>`,`.cur <Teks>`,`.curbold <Teks>`,`.medi <Teks>`,`.medbold <Teks>`,`.doublestruck <Teks>`)\
 \n↳ : Buat Teks <Bold,Cursive,Cursivebold,Medival,Medivalbold,Gayishbold>\
