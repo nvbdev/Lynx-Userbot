@@ -370,7 +370,7 @@ async def update_restart_msg(chat_id, msg_id):
            f"👤 | **User :** {DEFAULTUSER}"
         ),
         media=types.InputMediaUploadedPhoto(
-            file=client.upload_file('resource/logo/LynxUserbot-Button.jpg')
+            file=bot.upload_file('resource/logo/LynxUserbot-Button.jpg')
         ),
     ))
     await bot.edit_message(chat_id, msg_id, result)
