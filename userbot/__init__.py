@@ -366,12 +366,17 @@ async def update_restart_msg(chat_id, msg_id):
     uname = platform.uname()
     cpufreq = psutil.cpu_freq()
     message = (
-           f"**⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡ is Back up and Running...** 🐈\n\n"
-           f"💻 | `OS       :` __Debian GNU/{uname.system} 10 {uname.machine}__\n"
-           f"💻 | `CPU      :` __Intel Xeon E5-2670 @{cpufreq.current:.2f}Ghz__\n"
-           f"⚙️ | `Telethon :` __{version.__version__}__\n"
-           f"🐍 | `Python   :` __{python_version()}__\n"
-           f"👨‍💻 | `User     :` __{DEFAULTUSER}__"
+           f"**╭─━━━━━━━━━━━━━━━━━━━━━─╮**\n"
+           f"**│ㅤㅤㅤ[⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡](t.me/LynxUserbot)**\n"
+           f"**│ ㅤis Back up and Running... 🐈**\n"
+           f"**╭─━━━━━━━━━━━━━━━━━━━━━─╯**\n"
+           f"**│** `OS       :` __Debian GNU/{uname.system} 10 {uname.machine}__\n"
+           f"**│** `Kernel   :` __{uname.release}__\n"
+           f"**│** `CPU      :` __Intel Xeon E5-2670 @ {cpufreq.current:.2f}Ghz__\n"
+           f"**│** `Telethon :` __{version.__version__}__\n"
+           f"**│** `Python   :` __{python_version()}__\n"
+           f"**│** `User     :` __{DEFAULTUSER}__\n"
+           f"**╰━━━━━━━━━━━━━━━━━━━━━━─╯**"
         )
     await bot.edit_message(chat_id, msg_id, message)
     return True
