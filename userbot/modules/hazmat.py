@@ -1,16 +1,20 @@
+# Copyright © 2021 Lynx-Userbot (LLC Company)
+#
+# Licensed under the Raphielscape Public License, Version 1.d (the "License");
+# you may not use this file except in compliance with the License.
+# Ported to Lynx-Userbot by @KENZO-404
 # Based Code by @adekmaulana
 # Improve by @aidilaryanto
-#
-#
+
 import os
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 from userbot.events import register
 from userbot import bot, TEMP_DOWNLOAD_DIRECTORY, CMD_HELP
 
 
-@register(outgoing=True, pattern=r"^.hz(:? |$)(.*)?")
+@register(outgoing=True, pattern=r"^\.hz(:? |$)(.*)?")
 async def _(hazmat):
-    await hazmat.edit("`Lynx Ingin Mengaktifkan Perintah Hazmat 😼`")
+    await hazmat.edit("`Lynx Sedang Mengaktifkan Hazmat...`")
     level = hazmat.pattern_match.group(2)
     if hazmat.fwd_from:
         return
@@ -43,7 +47,7 @@ async def _(hazmat):
             await hazmat.reply("`Mohon Maaf, Tolong Buka Blokir` @hazmat_suit_bot `Lalu Coba Lagi`")
             return
         if response.text.startswith("I can't"):
-            await hazmat.edit("`Mohon Maaf, GIF Tidak Bisa...`")
+            await hazmat.edit("`Mohon Maaf, Untuk GIF Tidak Bisa di Hazmat.`")
             await hazmat.client.delete_messages(
                 conv.chat_id, [msg.id, response.id, r.id, msg_reply.id]
             )
@@ -71,7 +75,9 @@ async def _(hazmat):
 
 CMD_HELP.update(
     {
-        "hazmat": "⚡𝘾𝙈𝘿⚡: >`.hz` atau >`.hz [flip, x2, rotate (level), background (nomer), black]`"
-        "\n↳ : Balas ke gambar/sticker untuk menyesuaikan."
+        "hazmat": "✘ Pʟᴜɢɪɴ : Hazmat"
+        "\n\n⚡𝘾𝙈𝘿⚡: `.hz` or `.hz [flip | x2 | rotate (level) | background (number) | black]`"
+        "\n↳ : Reply ke Image/Sticker Untuk Menyesuaikan."
+        "\n\n**Example** : `.hz rotate 3` <Reply to Sticker/Image>"
     }
 )
