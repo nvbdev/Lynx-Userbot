@@ -368,7 +368,8 @@ async def update_restart_msg(chat_id, msg_id):
            f"💻 | **System :** Ubuntu 20.10\n"
            f"👤 | **User :** {DEFAULTUSER}"
         )
-    await bot.send_file(chat_id, msg_id, file=lynxlogo, caption=message)
+    lynxlogo = "resource/logo/LynxUserbot-Button.jpg"
+    await bot.edit_message(chat_id, msg_id, file=lynxlogo, caption=message)
     return True
 
 
