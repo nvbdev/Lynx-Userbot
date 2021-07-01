@@ -14,7 +14,8 @@ import random
 
 from datetime import datetime
 from time import sleep
-from platform import python_version
+import platform
+from platform import python_version, uname
 from telethon import TelegramClient, version
 from sys import version_info
 from logging import basicConfig, getLogger, INFO, DEBUG
@@ -361,12 +362,13 @@ with bot:
 
 async def update_restart_msg(chat_id, msg_id):
     DEFAULTUSER = ALIVE_NAME or "Set `ALIVE_NAME` ConfigVar!"
+    uname = platform.uname()
     message = (
            f"**⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡ is Back up and Running...** 🐈\n\n"
-           f"💻 | **System     :** Ubuntu 20.10\n"
-           f"⚙️ | **Telethon :** {version.__version__}\n"
-           f"🐍 | **Python :** {python_version()}\n"
-           f"👤 | **User :** {DEFAULTUSER}"
+           f"💻 | **System    :** {uname.system}\n"
+           f"⚙️ | **Telethon  :** {version.__version__}\n"
+           f"🐍 | **Python    :** {python_version()}\n"
+           f"👤 | **User      :** {DEFAULTUSER}"
         )
     await bot.edit_message(chat_id, msg_id, message)
     return True
