@@ -373,12 +373,6 @@ async def update_restart_msg(chat_id, msg_id):
         try:
             logo = ALIVE_LOGO
             await bot.send_file(chat_id, msg_id, logo, caption=output)
-            await event.delete()
-        except MediaEmptyError:
-            await event.edit(
-                output + "\n\n *`The provided logo is invalid."
-                "\nMake sure the link is directed to the logo picture`"
-            )
     else:
         await bot.edit_message(output)
         return True
