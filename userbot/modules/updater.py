@@ -209,7 +209,7 @@ async def upstream(event):
     if conf == "" and force_update is False:
         await print_changelogs(event, ac_br, changelog)
         await event.delete()
-        return await event.respond('**Command :**\n[`.update -pull` | `.update -push`]\n\n`To Update` **Lynx-Userbot.**')
+        return await event.respond('**Command :**\n[ `.update -pull` ] **» Update Now**\n[ `.update -push` ] **» Update Deploy**\n\n`To Update` **Lynx-Userbot.**')
 
     if force_update:
         await event.edit(
