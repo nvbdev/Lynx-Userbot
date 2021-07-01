@@ -376,7 +376,8 @@ async def update_restart_msg(chat_id, msg_id):
            f"**│** `Telethon :` __{version.__version__}__\n"
            f"**│** `Python   :` __{python_version()}__\n"
            f"**│** `User     :` __{DEFAULTUSER}__\n"
-           f"**╰━━━━━━━━━━━━━━━━━━━━━━─╯**"
+           f"**╰━━━━━━━━━━━━━━━━━━━━━━─╯**\n"
+           f" Copyright © 𝟤𝟢𝟤𝟣 Lynx-Userbot\n License : Raphielscape Public License v1.d"
         )
     await bot.edit_message(chat_id, msg_id, message)
     return True
