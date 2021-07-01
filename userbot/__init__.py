@@ -361,16 +361,27 @@ with bot:
 
 async def update_restart_msg(chat_id, msg_id):
     DEFAULTUSER = ALIVE_NAME or "Set `ALIVE_NAME` ConfigVar!"
-    message = (
-           f"{ALIVE_LOGO}\n"
+    logo = ALIVE_LOGO
+    output = (
            f"**⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡ is Back up and Running...** 🐈\n\n"
            f"⚙️ | **Telethon :** {version.__version__}\n"
            f"🐍 | **Python :** {python_version()}\n"
            f"💻 | **System :** Ubuntu 20.10\n"
            f"👤 | **User :** {DEFAULTUSER}"
         )
-    await bot.edit_message(chat_id, msg_id, message)
-    return True
+    if ALIVE_LOGO:
+        try:
+            logo = ALIVE_LOGO
+            await bot.send_file(chat_id, msg_id, logo, caption=output)
+            await event.delete()
+        except MediaEmptyError:
+            await event.edit(
+                output + "\n\n *`The provided logo is invalid."
+                "\nMake sure the link is directed to the logo picture`"
+            )
+    else:
+        await bot.edit_message(output)
+        return True
 
 
 try:
