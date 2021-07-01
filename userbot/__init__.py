@@ -359,25 +359,27 @@ with bot:
         quit(1)
 
 
-async def update_restart_msg(chat_id, msg_id):
+async def update_restart_msg(chat_id, msg_id) as bot:
     DEFAULTUSER = ALIVE_NAME or "Set `ALIVE_NAME` ConfigVar!"
-    message = (
-        f"**⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡ is Back up and Running...** 🐈\n\n"
-        f"⚙️ | **Telethon :** {version.__version__}\n"
-        f"🐍 | **Python :** {python_version()}\n"
-        f"💻 | **System :** Ubuntu 20.10\n"
-        f"👤 | **User :** {DEFAULTUSER}"
-    )
-    media = types.InputMediaUploadedPhoto(
-        file=client.upload_file('resource/logo/LynxUserbot-Button.jpg')
-    await bot.edit_message(chat_id, msg_id, media, message)
+    result = bot(functions.messages.EditMessageRequest(
+        message=(
+           f"**⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡ is Back up and Running...** 🐈\n\n"
+           f"⚙️ | **Telethon :** {version.__version__}\n"
+           f"🐍 | **Python :** {python_version()}\n"
+           f"💻 | **System :** Ubuntu 20.10\n"
+           f"👤 | **User :** {DEFAULTUSER}"
+        ),
+        media=types.InputMediaUploadedPhoto(
+            file=client.upload_file('resource/logo/LynxUserbot-Button.jpg')
+    ))
+    await bot.edit_message(chat_id, msg_id, result)
     return True
 
 
 try:
     from userbot.modules.sql_helper.globals import delgvar, gvarstatus
 
-    chat_id, msg_id=gvarstatus("restartstatus").split("\n")
+    chat_id, msg_id = gvarstatus("restartstatus").split("\n")
     try:
         with bot:
             bot.loop.run_until_complete(
@@ -391,41 +393,41 @@ except AttributeError:
 
 
 # Global Variables
-COUNT_MSG=0
-USERS={}
-COUNT_PM={}
-ENABLE_KILLME=True
-LASTMSG={}
-CMD_HELP={}
-ISAFK=False
-AFKREASON=None
-ZALG_LIST={}
+COUNT_MSG = 0
+USERS = {}
+COUNT_PM = {}
+ENABLE_KILLME = True
+LASTMSG = {}
+CMD_HELP = {}
+ISAFK = False
+AFKREASON = None
+ZALG_LIST = {}
 
 # Import Userbot - Ported by KENZO
 
 # ================= CONSTANT =================
-DEFAULTUSER=str(ALIVE_NAME) if ALIVE_NAME else uname().node
+DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else uname().node
 # ============================================
 
 
 def paginate_help(page_number, loaded_modules, prefix):
-    number_of_rows=4
-    number_of_cols=2
-    helpable_modules=[p for p in loaded_modules if not p.startswith("_")]
-    helpable_modules=sorted(helpable_modules)
-    modules=[
+    number_of_rows = 4
+    number_of_cols = 2
+    helpable_modules = [p for p in loaded_modules if not p.startswith("_")]
+    helpable_modules = sorted(helpable_modules)
+    modules = [
         custom.Button.inline("{} {} 」◑".format("◐「", x),
                              data="ub_modul_{}".format(x))
         for x in helpable_modules
     ]
-    pairs=list(zip(modules[::number_of_cols],
+    pairs = list(zip(modules[::number_of_cols],
                      modules[1::number_of_cols]))
     if len(modules) % number_of_cols == 1:
         pairs.append((modules[-1],))
-    max_num_pages=ceil(len(pairs) / number_of_rows)
-    modulo_page=page_number % max_num_pages
+    max_num_pages = ceil(len(pairs) / number_of_rows)
+    modulo_page = page_number % max_num_pages
     if len(pairs) > number_of_rows:
-        pairs=pairs[
+        pairs = pairs[
             modulo_page * number_of_rows: number_of_rows * (modulo_page + 1)
         ] + [
             (
@@ -445,24 +447,24 @@ def paginate_help(page_number, loaded_modules, prefix):
 
 with bot:
     try:
-        tgbot=TelegramClient(
+        tgbot = TelegramClient(
             "TG_BOT_TOKEN",
             api_id=API_KEY,
             api_hash=API_HASH).start(
             bot_token=BOT_TOKEN)
 
-        dugmeler=CMD_HELP
-        me=bot.get_me()
-        uid=me.id
+        dugmeler = CMD_HELP
+        me = bot.get_me()
+        uid = me.id
 
-        aliplogo="https://telegra.ph/file/b6580efa28fdc144749d5.jpg"
-        lynxlogo="resource/logo/LynxUserbot-Button.jpg"
-        plugins=CMD_HELP
+        aliplogo = "https://telegra.ph/file/b6580efa28fdc144749d5.jpg"
+        lynxlogo = "resource/logo/LynxUserbot-Button.jpg"
+        plugins = CMD_HELP
 
-        @ tgbot.on(events.NewMessage(pattern=r"/start"))
+        @tgbot.on(events.NewMessage(pattern=r"/start"))
         async def handler(event):
             if event.message.from_id != uid:
-                u=await event.client.get_entity(event.chat_id)
+                u = await event.client.get_entity(event.chat_id)
                 await event.reply(
                     f"Hai 👋 [{get_display_name(u)}](tg://user?id={u.id}) Selamat Datang di ⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡\nJika Kalian Datang Kesini dan Ingin Mengetahui Lynx-Robot Lebih Lanjut,\nSilahkan Pilih **Menu Bantuan** Dibawah Ini.\n",
                     buttons=[
@@ -476,26 +478,23 @@ with bot:
                     ]
                 )
 
-        @ tgbot.on(events.NewMessage(pattern=r"/deploy"))
+        @tgbot.on(events.NewMessage(pattern=r"/deploy"))
         async def handler(event):
             if event.message.from_id != uid:
                 await event.reply(
                     f"⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡ Deploy to Heroku, Click Here 👇🏻",
                     buttons=[
-                        [
-    Button.url(
-        "⚒️ 𝗗𝗘𝗣𝗟𝗢𝗬 ⚒️",
-         "https://heroku.com/deploy?template=https://github.com/KENZO-404/Lynx-Userbot/tree/Lynx-Userbot")],
+                        [Button.url("⚒️ 𝗗𝗘𝗣𝗟𝗢𝗬 ⚒️", "https://heroku.com/deploy?template=https://github.com/KENZO-404/Lynx-Userbot/tree/Lynx-Userbot")],
                         [Button.url("👥 𝗚𝗥𝗢𝗨𝗣 👥", "t.me/GroupTidakDiketahui")],
                     ],
                 )
 
-        @ tgbot.on(events.NewMessage(pattern=r"/repo"))
+        @tgbot.on(events.NewMessage(pattern=r"/repo"))
         async def handler(event):
             if event.message.from_id != uid:
-                u=await event.client.get_entity(event.chat_id)
+                u = await event.client.get_entity(event.chat_id)
                 await event.message.get_sender()
-                text=(
+                text = (
                     f"Haii 😼 [{get_display_name(u)}](tg://user?id={u.id}) My Name is 𝗟𝘆𝗻𝘅 🐈\n"
                     f"Lynx Used For Fun On Telegram✨,\n"
                     f"and For Maintaining Your Group 🛠️.\n"
@@ -512,25 +511,25 @@ with bot:
                                       ]
                                       )
 
-        @ tgbot.on(events.NewMessage(pattern=r"/ping"))
+        @tgbot.on(events.NewMessage(pattern=r"/ping"))
         async def handler(event):
             if event.message.from_id != uid:
-                start=datetime.now()
-                end=datetime.now()
-                ms=(end - start).microseconds / 1000
+                start = datetime.now()
+                end = datetime.now()
+                ms = (end - start).microseconds / 1000
                 await tgbot.send_message(
                     event.chat_id,
                     f"**PONG !!**\n `{ms}ms`",
                 )
 
-        @ tgbot.on(events.InlineQuery)  # pylint:disable=E0602
+        @tgbot.on(events.InlineQuery)  # pylint:disable=E0602
         async def inline_handler(event):
-            builder=event.builder
-            result=None
-            query=event.text
+            builder = event.builder
+            result = None
+            query = event.text
             if event.query.user_id == uid and query.startswith("@LynxRobot"):
-                buttons=paginate_help(0, dugmeler, "helpme")
-                result=builder.photo(
+                buttons = paginate_help(0, dugmeler, "helpme")
+                result = builder.photo(
                     file=lynxlogo,
                     link_preview=False,
                     text=f"\n**Bᴏᴛ ᴏꜰ {DEFAULTUSER}**\n\n◎› **Bᴏᴛ ᴠᴇʀ :** `v.{BOT_VER}`\n◎› **Pʟᴜɢɪɴꜱ :** `{len(plugins)}`\n\n**Cᴏᴘʏʀɪɢʜᴛ © 𝟤𝟢𝟤𝟣 Lʏɴx-Uꜱᴇʀʙᴏᴛ**".format(
@@ -539,13 +538,13 @@ with bot:
                     buttons=buttons,
                 )
             elif query.startswith("tb_btn"):
-                result=builder.article(
+                result = builder.article(
                     "Bantuan Dari ⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡ ",
                     text="Daftar Plugins",
                     buttons=[],
                     link_preview=False)
             else:
-                result=builder.article(
+                result = builder.article(
                     " ╔╡⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡╞╗ ",
                     text="""**Anda Bisa Membuat ⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡ Anda Sendiri\nDengan Cara :**__Tekan Dibawah Ini__ 👇""",
                     buttons=[
@@ -560,24 +559,24 @@ with bot:
                 )
             await event.answer([result] if result else None)
 
-        @ tgbot.on(
+        @tgbot.on(
             events.callbackquery.CallbackQuery(  # pylint:disable=E0602
                 data=re.compile(rb"helpme_next\((.+?)\)")
             )
         )
         async def on_plug_in_callback_query_handler(event):
             if event.query.user_id == uid:  # pylint:disable=E0602
-                current_page_number=int(
+                current_page_number = int(
                     event.data_match.group(1).decode("UTF-8"))
-                buttons=paginate_help(
+                buttons = paginate_help(
                     current_page_number + 1, dugmeler, "helpme")
                 # https://t.me/TelethonChat/115200
                 await event.edit(buttons=buttons)
             else:
-                reply_pop_up_alert=f"🚫!WARNING!🚫 Jangan Menggunakan Milik {DEFAULTUSER}."
+                reply_pop_up_alert = f"🚫!WARNING!🚫 Jangan Menggunakan Milik {DEFAULTUSER}."
                 await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
 
-        @ tgbot.on(
+        @tgbot.on(
             events.callbackquery.CallbackQuery(  # pylint:disable=E0602
                 data=re.compile(rb"helpme_close\((.+?)\)")
             )
@@ -595,36 +594,36 @@ with bot:
                 )
                 await event.delete()
 
-        @ tgbot.on(
+        @tgbot.on(
             events.callbackquery.CallbackQuery(  # pylint:disable=E0602
                 data=re.compile(rb"helpme_prev\((.+?)\)")
             )
         )
         async def on_plug_in_callback_query_handler(event):
             if event.query.user_id == uid:  # pylint:disable=E0602
-                current_page_number=int(
+                current_page_number = int(
                     event.data_match.group(1).decode("UTF-8"))
-                buttons=paginate_help(
+                buttons = paginate_help(
                     current_page_number - 1, dugmeler, "helpme"  # pylint:disable=E0602
                 )
                 # https://t.me/TelethonChat/115200
                 await event.edit(buttons=buttons)
             else:
-                reply_pop_up_alert=f"🚫!WARNING!🚫 Jangan Menggunakan Milik {DEFAULTUSER}."
+                reply_pop_up_alert = f"🚫!WARNING!🚫 Jangan Menggunakan Milik {DEFAULTUSER}."
                 await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
 
-        @ tgbot.on(
+        @tgbot.on(
             events.callbackquery.CallbackQuery(  # pylint:disable=E0602
                 data=re.compile(b"ub_modul_(.*)")
             )
         )
         async def on_plug_in_callback_query_handler(event):
             if event.query.user_id == uid:  # pylint:disable=E0602
-                modul_name=event.data_match.group(1).decode("UTF-8")
+                modul_name = event.data_match.group(1).decode("UTF-8")
 
-                cmdhel=str(CMD_HELP[modul_name])
+                cmdhel = str(CMD_HELP[modul_name])
                 if len(cmdhel) > 150:
-                    help_string=(
+                    help_string = (
                         str(CMD_HELP[modul_name]).replace(
                             '`', '')[:150] + "..."
                         + "\n\nBaca Text Berikutnya Ketik .help "
@@ -632,9 +631,9 @@ with bot:
                         + " "
                     )
                 else:
-                    help_string=str(CMD_HELP[modul_name]).replace('`', '')
+                    help_string = str(CMD_HELP[modul_name]).replace('`', '')
 
-                reply_pop_up_alert=(
+                reply_pop_up_alert = (
                     help_string
                     if help_string is not None
                     else "{} Tidak Ada Document Yang Tertulis Untuk Plugin".format(
@@ -642,7 +641,7 @@ with bot:
                     )
                 )
             else:
-                reply_pop_up_alert=f"🚫!WARNING!🚫 Jangan Menggunakan Milik {DEFAULTUSER}."
+                reply_pop_up_alert = f"🚫!WARNING!🚫 Jangan Menggunakan Milik {DEFAULTUSER}."
 
             await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
 
