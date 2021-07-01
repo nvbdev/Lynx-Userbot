@@ -73,11 +73,7 @@ async def _(hazmat):
     return os.remove(downloaded_file_name)
 
 
-CMD_HELP.update(
-    {
-        "hazmat": "✘ Pʟᴜɢɪɴ : Hazmat"
-        "\n\n⚡𝘾𝙈𝘿⚡: `.hz` or `.hz [flip | x2 | rotate (level) | background (number) | black]`"
-        "\n↳ : Reply ke Image/Sticker Untuk Menyesuaikan."
-        "\n\n**Example** : `.hz rotate 3` <Reply to Sticker/Image>"
-    }
-)
+CMD_HELP.update({"hazmat": "✘ Pʟᴜɢɪɴ : Hazmat"
+                 "\n\n⚡𝘾𝙈𝘿⚡: `.hz` or `.hz [flip | x2 | rotate (level) | background (number) | black]`"
+                 "\n↳ : Reply ke Image/Sticker Untuk Menyesuaikan."
+                 "\n\n**Example** : `.hz rotate 3` <Reply to Sticker/Image>"})
