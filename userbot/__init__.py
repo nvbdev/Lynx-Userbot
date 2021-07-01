@@ -361,21 +361,15 @@ with bot:
 
 async def update_restart_msg(chat_id, msg_id):
     DEFAULTUSER = ALIVE_NAME or "Set `ALIVE_NAME` ConfigVar!"
-    logo = ALIVE_LOGO
-    output = (
+    message = (
            f"**⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡ is Back up and Running...** 🐈\n\n"
+           f"💻 | **System     :** Ubuntu 20.10\n"
            f"⚙️ | **Telethon :** {version.__version__}\n"
            f"🐍 | **Python :** {python_version()}\n"
-           f"💻 | **System :** Ubuntu 20.10\n"
            f"👤 | **User :** {DEFAULTUSER}"
         )
-    if ALIVE_LOGO:
-        try:
-            logo = ALIVE_LOGO
-            await bot.send_file(chat_id, msg_id, logo, caption=output)
-    else:
-        await bot.edit_message(output)
-        return True
+    await bot.edit_message(chat_id, msg_id, message)
+    return True
 
 
 try:
