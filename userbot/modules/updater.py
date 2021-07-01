@@ -1,6 +1,6 @@
 # Copyright (C) 2019 The Raphielscape Company LLC.
 #
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
+# Licensed under the Raphielscape Public License, Version 1.d (the "License");
 # you may not use this file except in compliance with the License.
 # credits to @AvinashReddy3108
 #
@@ -11,7 +11,6 @@ This module updates the userbot based on upstream revision
 import asyncio
 import sys
 from os import environ, execle, remove
-
 from git import Repo
 from git.exc import GitCommandError, InvalidGitRepositoryError, NoSuchPathError
 
@@ -38,7 +37,7 @@ async def gen_chlog(repo, diff):
 
 async def print_changelogs(event, ac_br, changelog):
     changelog_str = (
-        f"**New UPDATE available for [{ac_br}]:\n\nCHANGELOG:**\n`{changelog}`"
+        f"**New UPDATE available for [{ac_br}]:\n\n💻 CHANGELOG :**\n`{changelog}`"
     )
     if len(changelog_str) > 4096:
         await event.edit("`Changelog is too big, view the file to see it.`")
@@ -114,7 +113,7 @@ async def push(event, repo, ups_rem, ac_br, txt):
             await asyncio.sleep(5)
             return await event.delete()
         else:
-            await event.edit("`Successfully deployed!\n" "Restarting, please wait...`")
+            await event.edit("#Successfully ✅ Deployed!\n" "`Restarting, please wait...`")
     else:
         await event.edit("`Please set up HEROKU_API_KEY variable...`")
     return
@@ -126,7 +125,7 @@ async def pull(event, repo, ups_rem, ac_br):
     except GitCommandError:
         repo.git.reset("--hard", "FETCH_HEAD")
     await event.edit(
-        "`Successfully Updated!\n" "Bot is restarting... Wait for a second!`"
+        "#Successfully ✅ Updated!\n" "`Bot is restarting... Wait for a second!`"
     )
 
     try:
@@ -151,7 +150,7 @@ async def upstream(event):
     force_update = False
     try:
         txt = "`Oops.. Updater cannot continue due to "
-        txt += "some problems occured`\n\n**LOGTRACE:**\n"
+        txt += "some problems occured`\n\n**LOGTRACE :**\n"
         repo = Repo()
     except NoSuchPathError as error:
         await event.edit(f"{txt}\n`directory {error} is not found`")
@@ -178,7 +177,7 @@ async def upstream(event):
     ac_br = repo.active_branch.name
     if ac_br != UPSTREAM_REPO_BRANCH:
         await event.edit(
-            "**[UPDATER]:**\n"
+            "**[UPDATER] :**\n"
             f"`Looks like you are using your own custom branch ({ac_br}). "
             "in that case, Updater is unable to identify "
             "which branch is to be merged. "
@@ -202,7 +201,7 @@ async def upstream(event):
 
     if changelog == "" and force_update is False:
         await event.edit(
-            "\n`Your USERBOT is`  **up-to-date**  `with`  "
+            "#Latest ✅\n`Your bot is`  **up-to-date**  `with`  "
             f"**{UPSTREAM_REPO_BRANCH}**\n"
         )
         return repo.__del__()
@@ -210,7 +209,7 @@ async def upstream(event):
     if conf == "" and force_update is False:
         await print_changelogs(event, ac_br, changelog)
         await event.delete()
-        return await event.respond('`".update -pull or .update -push"\n\nTo Update Lynx-Userbot.`')
+        return await event.respond('**Command :**\n[`.update -pull` | `.update -push`]\n\n`To Update` **Lynx-Userbot.**')
 
     if force_update:
         await event.edit(
