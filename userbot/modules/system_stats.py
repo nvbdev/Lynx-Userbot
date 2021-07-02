@@ -19,20 +19,20 @@ import platform
 import sys
 from datetime import datetime
 import psutil
+from userbot.events import register
 from userbot import (
     ALIVE_LOGO,
     ALIVE_NAME,
     BOT_VER,
     CMD_HELP,
+    DEFAULTUSER,
     UPSTREAM_REPO_BRANCH,
     INSTAGRAM_ALIVE,
     bot
 )
-from userbot.events import register
 
 
 # ================= CONSTANT =================
-DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else uname().node
 repo = Repo()
 # ============================================
 
@@ -347,17 +347,17 @@ async def amireallyaliveuser(username):
     message = username.text
     output = ".dealiveu [new user without brackets] nor can it be empty"
     if not (message == ".dealiveu" or message[7:8] != " "):
-        newuser = message[8:]
+        username = message[8:]
         global DEFAULTUSER
-        DEFAULTUSER = newuser
-        output = "Successfully changed user to " + newuser + "!"
+        DEFAULTUSER = username
+        return DEFAULTUSER * DEFAULTUSER
+        output = "Successfully changed user to " + username + "!"
     await username.edit("`" f"{output}" "`")
 
 
 @register(outgoing=True, pattern=r"^\.resetalive$")
 async def amireallyalivereset(ureset):
     """For .resetalive command, reset the username in the .alive command."""
-    global DEFAULTUSER
     DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else uname().node
     await ureset.edit("`" "Successfully reset user for alive!" "`")
 
