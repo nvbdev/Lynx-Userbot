@@ -18,32 +18,32 @@ from userbot.utils import progress
 @register(outgoing=True, pattern=r"^\.ssvideo(?: |$)(.*)")
 async def ssvideo(event):
     if not event.reply_to_msg_id:
-        await event.edit("`Reply to any media..`")
+        await event.edit("`Reply to any media...`")
         return
     reply_message = await event.get_reply_message()
     if not reply_message.media:
-        await event.edit("`reply to a video..`")
+        await event.edit("`Reply to a video..`")
         return
     try:
         frame = int(event.pattern_match.group(1))
         if frame > 10:
-            return await event.edit("`hey..dont put that much`")
+            return await event.edit("`Hey..dont put that much`")
     except BaseException:
-        return await event.edit("`Please input number of frame!`")
+        return await event.edit("`Please input number of frame!`\n**Example :** `.ssvideo` 30fps")
     if reply_message.photo:
         return await event.edit("`Hey..this is an image!`")
     if (
         DocumentAttributeFilename(file_name="AnimatedSticker.tgs")
         in reply_message.media.document.attributes
     ):
-        return await event.edit("`Unsupported files..`")
+        return await event.edit("`Unsupported Files..`")
     elif (
         DocumentAttributeFilename(file_name="sticker.webp")
         in reply_message.media.document.attributes
     ):
-        return await event.edit("`Unsupported files..`")
+        return await event.edit("`Unsupported Files...`")
     c_time = time.time()
-    await event.edit("`Downloading media..`")
+    await event.edit("`Downloading Media...`\nPlease wait.")
     ss = await bot.download_media(
         reply_message,
         "anu.mp4",
@@ -70,5 +70,8 @@ async def ssvideo(event):
 
 
 CMD_HELP.update(
-    {"ssvideo": "`>.ssvideo <frame>`" "\nUsage: to ss video frame per frame"}
+    {"ssvideo": "✘ Pʟᴜɢɪɴ : Screenshot Video"
+     "\n\n⚡𝘾𝙈𝘿⚡: `.ssvideo` <Frame>"
+     "\n↳ : To Screenshot Video Frame Perframe"
+    }
 )
