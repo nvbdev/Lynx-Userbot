@@ -89,9 +89,8 @@ async def _(event):
         reply_to=reply_to_id,
     )
     await event.delete()
-    subprocess.call("rm -rf *.mp3",
-    shell=False)
-    subprocess.check_output("rm -rf *.mp3",
+    os.system('/bin/echo rm -rf *.mp3')
+    subprocess.check_output('/bin/echo rm -rf *.mp3',
     shell=True)
 
 
