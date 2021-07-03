@@ -11,6 +11,7 @@ import textwrap
 from PIL import Image, ImageDraw, ImageFont
 from telethon.tl.types import InputMessagesFilterDocument
 from userbot.events import register
+from userbot import CMD_HELP
 
 
 @register(outgoing=True, pattern="^.cs(?: |$)(.*)")
@@ -86,3 +87,10 @@ async def get_font_file(client, channel_id):
     font_file_message = random.choice(font_file_message_s)
     # download and return the file path
     return await client.download_media(font_file_message)
+
+
+CMD_HELP.update({
+      "csticker": "✘ Pʟᴜɢɪɴ : Create Sticker"
+      "\n\n⚡𝘾𝙈𝘿⚡: `.cs` <Text>"
+      "\n↳ : Create Sticker [Random RGB]"
+})
