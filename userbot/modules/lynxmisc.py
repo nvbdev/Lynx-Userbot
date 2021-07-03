@@ -528,7 +528,7 @@ async def _(event):
     await bot(functions.account.UpdateProfileRequest(
         about=user_bio
     ))
-    pfile = await bot.upload_file(profile_pic)  # pylint:disable=E060
+    pfile = await bot.upload_file(profile_pic)  # pylint:disable=E0602
     await bot(functions.photos.UploadProfilePhotoRequest(  # pylint:disable=E0602
         pfile
     ))
