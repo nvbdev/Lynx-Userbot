@@ -15,7 +15,6 @@ from userbot import (  # pylint:disable=E0602
     ISAFK,
     USERS,
     PM_AUTO_BAN,
-    PM_AUTO_BAN,
     bot,
 )
 from userbot.events import register
