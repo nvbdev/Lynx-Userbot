@@ -236,15 +236,20 @@ async def pipcheck(pip):
 @register(outgoing=True, pattern=r"^\.(?:lynx|xon)\s?(.)?")
 async def ireallyalive(event):
     """For .lynx command, check if the bot is running."""
+    uname = platform.uname()
+    cpufreq = psutil.cpu_freq()
     logo = ALIVE_LOGO
     output = (
-        f"`Robot` is running on `{repo.active_branch.name}`\n"
+        f"`Robot` **is running on** `{repo.active_branch.name}`\n"
         "`====================================`\n"
-        f"🐍 `Python         :` v. {python_version()}\n"
-        f"⚙️ `Telethon       :` v. {version.__version__}\n"
-        f"💻 `System         :` Ubuntu 20.10\n"
-        f"👤 `User           :` {DEFAULTUSER}\n"
+        f"💻 `OS          :` Debian GNU/{uname.system} 10 {uname.machine}\n"
+        f"💻 `Kernel      :` {uname.release}\n"
+        f"💻 `CPU         :` Intel Xeon E5-2670 @ {cpufreq.current:.2f}Ghz\n"
+        f"🐍 `Python      :` v. {python_version()}\n"
+        f"⚙️ `Telethon    :` v. {version.__version__}\n"
+        f"👨‍💻 `User        :` {DEFAULTUSER}\n"
         "`====================================`\n"
+        f" Copyright © 𝟤𝟢𝟤𝟣 Lynx-Userbot\n License : Raphielscape Public License v1.d"
     )
     if ALIVE_LOGO:
         try:
@@ -371,12 +376,12 @@ CMD_HELP.update({
     "\n\n⚡𝘾𝙈𝘿⚡: `.spc`"
     "\n↳ : Show system specification.",
     "alive": "✘ Pʟᴜɢɪɴ : Alive"
-    "\n\n⚡𝘾𝙈𝘿⚡: `.lynx` or `.xon` or `.alive`"
+    "\n\n⚡𝘾𝙈𝘿⚡: `.lynx` or `.xon` | `.alive` or `.on`"
     "\n↳ : To see whether your bot is working or not."
     "\n\n⚡𝘾𝙈𝘿⚡: `.dealiveu` <New Username>"
     "\n↳ : Changes the 'user' in alive to the text you want."
     "\n\n⚡𝘾𝙈𝘿⚡: `.restalive`"
-    "\n↳ : Resets the user to default.",
+    "\n↳ : Resets the User to Default.",
     "botversion": "✘ Pʟᴜɢɪɴ : Robot Version"
     "\n\n⚡𝘾𝙈𝘿⚡: `.botver`"
     "\n↳ : Shows the userbot version."
