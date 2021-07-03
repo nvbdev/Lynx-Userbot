@@ -29,7 +29,7 @@ KANGING_STR = [
 ]
 
 
-@register(outgoing=True, pattern=r"^\.(?:tikel|kang)\s?(.)?")
+@register(outgoing=True, pattern=r"^\.(?:curry|kang)\s?(.)?")
 async def kang(args):
     user = await bot.get_me()
     if not user.username:
@@ -69,9 +69,9 @@ async def kang(args):
             is_anim = True
             photo = 1
         else:
-            return await args.edit("`File Tidak Didukung Yang Mulia!`")
+            return await args.edit("`Mohon Maaf...\nFile Tidak Didukung!`")
     else:
-        return await args.edit("`Mohon Maaf Yang Mulia, Saya Gagal Mengambil Sticker Ini!`")
+        return await args.edit("`Mohon Maaf, Saya Gagal Mengambil Sticker Ini!`")
 
     if photo:
         splat = args.text.split()
@@ -280,16 +280,16 @@ async def get_pack_info(event):
 
     rep_msg = await event.get_reply_message()
     if not rep_msg.document:
-        return await event.edit("`Balas ke sticker untuk melihat detail pack`")
+        return await event.edit("`Reply ke Sticker Untuk Melihat Detail Pack`")
 
     try:
         stickerset_attr = rep_msg.document.attributes[1]
-        await event.edit("`Fetching details of the sticker pack, please wait..`")
+        await event.edit("`Fetching Details of The Sticker Pack,\nPlease Wait..`")
     except BaseException:
-        return await event.edit("`Ini bukan sticker, Mohon balas ke sticker.`")
+        return await event.edit("`Ini Bukan Sticker, Mohon Reply ke Sticker.`")
 
     if not isinstance(stickerset_attr, DocumentAttributeSticker):
-        return await event.edit("`Ini bukan sticker, Mohon balas ke sticker.`")
+        return await event.edit("`Ini Bukan Sticker, Mohon Reply ke Sticker.`")
 
     get_stickerset = await bot(
         GetStickerSetRequest(
@@ -305,12 +305,12 @@ async def get_pack_info(event):
             pack_emojis.append(document_sticker.emoticon)
 
     OUTPUT = (
-        f"**Sticker Title:** `{get_stickerset.set.title}\n`"
-        f"**Nama Pendek Sticker:** `{get_stickerset.set.short_name}`\n"
-        f"**Official:** `{get_stickerset.set.official}`\n"
-        f"**Arsip:** `{get_stickerset.set.archived}`\n"
-        f"**Sticker Dalam Pack:** `{len(get_stickerset.packs)}`\n"
-        f"**Emoji Dalam Pack:**\n{' '.join(pack_emojis)}"
+        f"**Sticker Title :** `{get_stickerset.set.title}\n`"
+        f"**Sticker Short Name :** `{get_stickerset.set.short_name}`\n"
+        f"**Official :** `{get_stickerset.set.official}`\n"
+        f"**Archived :** `{get_stickerset.set.archived}`\n"
+        f"**Stickers in Pack :** `{len(get_stickerset.packs)}`\n"
+        f"**Emojis in Pack :** {' '.join(pack_emojis)}"
     )
 
     await event.edit(OUTPUT)
@@ -347,13 +347,13 @@ async def sticker_to_png(sticker):
 
 
 CMD_HELP.update({"stickers": "✘ Pʟᴜɢɪɴ : Stickers"
-                 "\n\n⚡𝘾𝙈𝘿⚡: `.kang | .tikel [emoji('s)]?`"
-                 "\n↳ : Balas .tikel Ke Sticker Atau Gambar Untuk Menambahkan Ke Pack Mu "
+                 "\n\n⚡𝘾𝙈𝘿⚡: `.kang` or `.curry [Emoji('s)]?`"
+                 "\n↳ : Balas .tikel Ke Sticker Atau Gambar Untuk Menambahkan Ke Pack-Mu"
                  "\nBisa Memilih Emoji Sesuai Pilihanmu."
-                 "\n\n⚡𝘾𝙈𝘿⚡: `.kang | .tikel  (emoji['s]]?` [nomer]?"
-                 "\n↳ : Ambil Sticker/Gambar Ke Pack Baru Mu"
-                 "Dan Bisa Pilih Emoji Sticker Mu."
+                 "\n\n⚡𝘾𝙈𝘿⚡: `.kang` or `.curry  (Emoji['s]]?` [Number]?"
+                 "\n↳ : Ambil Sticker/Gambar Ke Pack Baru-Mu"
+                 "Dan Bisa Pilih Emoji Sticker-Mu. (Deffault Emoji: 🐈)"
                  "\n\n⚡𝘾𝙈𝘿⚡: `.stkrinfo`"
                  "\n↳ : Dapatkan Informasi Pack Sticker."
                  "\n\n⚡𝘾𝙈𝘿⚡: `.getsticker`"
-                 "\n↳ : Balas Ke Sticker Untuk Mendapatkan File 'PNG' Sticker."})
+                 "\n↳ : Reply Ke Sticker Untuk Mendapatkan File 'PNG' Sticker."})
