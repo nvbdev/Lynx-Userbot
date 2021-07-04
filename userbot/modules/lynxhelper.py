@@ -7,7 +7,7 @@ from userbot.events import register
 async def usit(e):
     await e.edit(
         f"**Hai {DEFAULTUSER} 🐈 Jika Anda Tidak Tau Perintah Untuk Memerintah Ku,\nKetik:** `.help` Atau Bisa Minta Bantuan Ke\n"
-        "\n📬**Developer :**
+        "\n📬**Developer :**"
         "\n[Telegram](t.me/TeamSecret_Kz)"
         "\n[Dev Repo](https://github.com/KENZO-404)"
         "\n[Instagram](instagram.com/si_axeell)")
