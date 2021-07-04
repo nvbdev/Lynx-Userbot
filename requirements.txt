@@ -37,7 +37,7 @@ Pillow>=8.1.0
 fontTools
 psycopg2
 psycopg2-binary
-pybase64>=0.4.0
+pybase64
 pylast
 pySmartDL
 python-barcode
