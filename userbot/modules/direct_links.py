@@ -306,7 +306,6 @@ async def uptobox(request, url: str) -> str:
         index = -1
     FILE_CODE = link.split("/")[index]
     origin = "https://uptobox.com/api/link"
-    """ Retrieve file informations """
     uri = f"{origin}/info?fileCodes={FILE_CODE}"
     await request.edit("`Retrieving file informations...`")
     async with aiohttp.ClientSession() as session:
@@ -316,13 +315,12 @@ async def uptobox(request, url: str) -> str:
             if "error" in data:
                 await request.edit(
                     "`[ERROR]`\n"
-                    f"`statusCode`: **{data.get('error').get('code')}**\n"
-                    f"`reason`: **{data.get('error').get('message')}**"
+                    f"`StatusCode`: **{data.get('error').get('code')}**\n"
+                    f"`Reason`: **{data.get('error').get('message')}**"
                 )
                 return
             file_name = data.get("file_name")
             file_size = naturalsize(data.get("file_size"))
-    """ Get waiting token and direct download link """
     uri = f"{origin}?token={USR_TOKEN}&file_code={FILE_CODE}"
     async with aiohttp.ClientSession() as session:
         async with session.get(uri) as response:
