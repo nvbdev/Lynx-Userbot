@@ -13,7 +13,7 @@ from userbot.events import register
 
 @register(incoming=True, disable_edited=True, disable_errors=True)
 async def filter_incoming_handler(handler):
-    """ Checks if the incoming message contains handler of a filter """
+    """Checks if the incoming message contains handler of a filter"""
     try:
         if not (await handler.get_sender()).bot:
             try:
@@ -41,7 +41,7 @@ async def filter_incoming_handler(handler):
 
 @register(outgoing=True, pattern=r"^.filter (.*)")
 async def add_new_filter(new_handler):
-    """ For .filter command, allows adding new filters in a chat """
+    """For .filter command, allows adding new filters in a chat"""
     try:
         from userbot.modules.sql_helper.filter_sql import add_filter
     except AttributeError:
@@ -60,7 +60,7 @@ async def add_new_filter(new_handler):
         if BOTLOG_CHATID:
             await new_handler.client.send_message(
                 BOTLOG_CHATID, f"#FILTER\nID OBROLAN: {new_handler.chat_id}\nTRIGGER: {keyword}"
-                "\n\n`Pesan Berikut Disimpan Sebagai Data Balasan Filter Untuk Obrolan, Mohon Jangan Menghapusnya Lord`"
+                "\n\n`Pesan Berikut Disimpan Sebagai Data Balasan Filter Untuk Obrolan, Mohon Jangan Menghapusnya.`"
             )
             msg_o = await new_handler.client.forward_messages(
                 entity=BOTLOG_CHATID,
@@ -84,7 +84,7 @@ async def add_new_filter(new_handler):
 
 @register(outgoing=True, pattern=r"^.stop (.*)")
 async def remove_a_filter(r_handler):
-    """ For .stop command, allows you to remove a filter from a chat. """
+    """For .stop command, allows you to remove a filter from a chat."""
     try:
         from userbot.modules.sql_helper.filter_sql import remove_filter
     except AttributeError:
@@ -99,8 +99,8 @@ async def remove_a_filter(r_handler):
 
 @register(outgoing=True, pattern="^.bersihkanbotfilter (.*)")
 async def kick_marie_filter(event):
-    """ For .bersihkanbotfilter command, allows you to kick all \
-        Marie(or her clones) filters from a chat. """
+    """For .bersihkanbotfilter command, allows you to kick all \
+       Marie(or her clones) filters from a chat."""
     bot_type = event.pattern_match.group(1).lower()
     if bot_type not in ["marie", "rose"]:
         return await event.edit("`Bot Itu Belum Didukung!`")
@@ -124,7 +124,7 @@ async def kick_marie_filter(event):
 
 @register(outgoing=True, pattern="^.filters$")
 async def filters_active(event):
-    """ For .filters command, lists all of the active filters in a chat. """
+    """For .filters command, lists all of the active filters in a chat."""
     try:
         from userbot.modules.sql_helper.filter_sql import get_filters
     except AttributeError:
@@ -133,7 +133,7 @@ async def filters_active(event):
     filters = get_filters(event.chat_id)
     for filt in filters:
         if transact == "`Tidak Ada Filter Apapun Disini.`":
-            transact = "**❃ Daftar Filter Lord Yang Aktif Disini:**\n"
+            transact = "**❃ Daftar Filter Yang Aktif Disini :**\n\n"
             transact += " ➥ `{}`\n".format(filt.keyword)
         else:
             transact += " ➥ `{}`\n".format(filt.keyword)
@@ -142,15 +142,15 @@ async def filters_active(event):
 
 
 CMD_HELP.update({
-    "filter":
-    "`.filters`\
-    \nUsage: Melihat filter lord userbot yang aktif di obrolan.\
-    \n\n`.filter` <keyword> <balasan> atau balas ke pesan ketik .filter <keyword>\
-    \nUsage: Membuat filter di obrolan.\
-    \nBot Akan Membalas Jika Ada Yang Menyebut 'keyword' yang dibuat.\
-    \nBisa dipake ke media/sticker/vn/file.\
-    \n\n`.stop` <keyword>\
-    \nUsage: Untuk Nonaktifkan Filter.\
-    \n\n`.bersihkanbotfilter` <marie/rose>\
-    \nUsage: Menghapus semua filter yang ada di bot grup (Saat ini bot yang didukung: Marie, Rose.) dalam obrolan."
+    "filter": "✘ Pʟᴜɢɪɴ : Filter\
+    \n\n⚡𝘾𝙈𝘿⚡: `.filters`\
+    \n↳ : Melihat Filter Userbot Yang Aktif di Obrolan.\
+    \n\n⚡𝘾𝙈𝘿⚡: `.filter` <Keyword> <Reply> atau Reply ke Pesan, Ketik: .filter <Keyword>\
+    \n↳ : Membuat Filter Di Obrolan.\
+    \nBot Akan Membalas Jika Ada Yang Menyebut 'Keyword' Yang Dibuat.\
+    \nBisa Dipakai ke Media/Sticker/VN/File.\
+    \n\n⚡𝘾𝙈𝘿⚡: `.stop` <Keyword>\
+    \n↳ : Untuk Nonaktifkan Filter.\
+    \n\n⚡𝘾𝙈𝘿⚡: `.bersihkanbotfilter` <Marie/Rose>\
+    \n↳ : Menghapus Semua Filter Yang Ada di Bot Group (Support: Marie, Rose.) Dalam Obrolan."
 })
