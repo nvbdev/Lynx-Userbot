@@ -31,6 +31,8 @@ from telethon.sync import custom, events
 from telethon.sessions import StringSession
 from telethon import Button, functions, types
 from telethon.utils import get_display_name
+from telethon.tl.types import InputBotInlineResult
+
 
 load_dotenv("config.env")
 
@@ -529,12 +531,12 @@ with bot:
                     f"**PONG !!**\n `{ms}ms`",
                 )
 
-        @tgbot.on(events.InlineQuery)  # pylint:disable=E0602
-        async def inline_handler(event):
+        @callback("opener")
+        async def opener(event):
             builder = event.builder
             result = None
             query = event.text
-            if event.query.user_id == uid and query.startswith("@LynxRobot"):
+            if event.query.user_id == uid:
                 buttons = paginate_help(0, dugmeler, "helpme")
                 result = builder.photo(
                     file=lynxlogo,
@@ -565,6 +567,47 @@ with bot:
                     link_preview=True,
                 )
             await event.answer([result] if result else None)
+
+
+        @tgbot.on(events.InlineQuery)  # pylint:disable=E0602
+        async def inline_handler(event):
+            builder = event.builder
+            result = None
+            query = event.text
+            if event.query.user_id == uid and query.startswith("@LynxRobot"):
+                buttons = [
+                            custom.Button.inline("Open Main Menu",
+                                                 data="opener")
+                ]
+                result = builder.photo(
+                    file=lynxlogo,
+                    link_preview=False,
+                    text=f"\n**Bᴏᴛ ᴏꜰ {DEFAULTUSER}**\n\n◎› **Bᴏᴛ ᴠᴇʀ :** `v.{BOT_VER}`\n◎› **Pʟᴜɢɪɴꜱ :** `{len(plugins)}`\n\n**Cᴏᴘʏʀɪɢʜᴛ © 𝟤𝟢𝟤𝟣 Lʏɴx-Uꜱᴇʀʙᴏᴛ**"
+                    ),
+                    buttons=buttons,
+                )
+            elif query.startswith("tb_btn"):
+                result = builder.article(
+                    "Bantuan Dari ⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡ ",
+                    text="Daftar Plugins",
+                    buttons=[],
+                    link_preview=False)
+            else:
+                result = builder.article(
+                    " ╔╡⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡╞╗ ",
+                    text="""**Anda Bisa Membuat ⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡ Anda Sendiri\nDengan Cara :**__Tekan Dibawah Ini__ 👇""",
+                    buttons=[
+                        [
+                            custom.Button.url(
+                                "⚡𝗟𝘆𝗻𝘅⚡",
+                                "https://kenzo-404.github.io/Lynx-Userbot"),
+                            custom.Button.url(
+                                "Dᴇᴠᴇʟᴏᴘᴇʀ",
+                                "t.me/FederationSuperGroup/17")]],
+                    link_preview=True,
+                )
+            await event.answer([result] if result else None)
+
 
         @tgbot.on(
             events.callbackquery.CallbackQuery(  # pylint:disable=E0602
@@ -597,6 +640,7 @@ with bot:
                     buttons=[
                         [Button.url("⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡", "t.me/LynxUserbot")],
                         [Button.url("[⊙] 𝗠𝘆 𝗜𝗻𝘀𝘁𝗮𝗴𝗿𝗮𝗺", f"{INSTAGRAM_ALIVE}")],
+                        [custom.Button.inline("Open Menu Again", data="opener")],
                     ]
                 )
                 await event.delete()
