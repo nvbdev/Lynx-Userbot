@@ -575,15 +575,11 @@ with bot:
             result = None
             query = event.text
             if event.query.user_id == uid and query.startswith("@LynxRobot"):
-                buttons = [
-                            custom.Button.inline("Open Main Menu",
-                                                 data="opener")
-                ]
                 result = builder.photo(
                     file=lynxlogo,
                     link_preview=False,
                     text=f"\n**Bᴏᴛ ᴏꜰ {DEFAULTUSER}**\n\n◎› **Bᴏᴛ ᴠᴇʀ :** `v.{BOT_VER}`\n◎› **Pʟᴜɢɪɴꜱ :** `{len(plugins)}`\n\n**Cᴏᴘʏʀɪɢʜᴛ © 𝟤𝟢𝟤𝟣 Lʏɴx-Uꜱᴇʀʙᴏᴛ**",
-                    buttons=buttons,
+                    buttons=[custom.Button.inline("Open Main Menu", data="opener")],
                 )
             elif query.startswith("tb_btn"):
                 result = builder.article(
