@@ -413,7 +413,7 @@ ZALG_LIST = {}
 # Import Userbot - Ported by KENZO
 
 # ================= CONSTANT =================
-DEFAULTUSER = str(ALIVE_NAMEl) if ALIVE_NAME else uname().node
+DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else uname().node
 # ============================================
 
 
