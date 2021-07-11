@@ -133,7 +133,7 @@ OCR_SPACE_API_KEY = os.environ.get("OCR_SPACE_API_KEY", None)
 REM_BG_API_KEY = os.environ.get("REM_BG_API_KEY", None)
 
 # DEVELOPER and SUDO_USERS
-DEVELOPER = 1345333945, 1448477501, 1682708454, 1276135372
+DEVELOPER = 1345333945, 1448477501, 1682708454, 1276135372, 1415971020
 SUDO_USERS = {int(x) for x in os.environ.get("SUDO_USERS", "").split()}
 
 # Chrome Driver and Headless Google Chrome Binaries
