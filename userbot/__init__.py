@@ -446,7 +446,7 @@ def paginate_help(page_number, loaded_modules, prefix):
                 ),
                 custom.Button.inline(
                     "Nᴇxᴛ╰⋗", data="{}_next({})".format(prefix, modulo_page)
-                )
+                ),
             )
         ]
     return pairs
@@ -528,21 +528,6 @@ with bot:
                     event.chat_id,
                     f"**PONG !!**\n `{ms}ms`",
                 )
-
-
-_main_menu_help = [
-                     [
-                          custom.Button.inline(
-                              "⋖╯Pʀᴇᴠ", data="{}_prev({})".format(prefix, modulo_page)
-                          ),
-                          custom.Button.inline(
-                              "ᴄʟᴏꜱᴇ", data="{}_close({})".format(prefix, modulo_page)
-                          ),
-                          custom.Button.inline(
-                              "Nᴇxᴛ╰⋗", data="{}_next({})".format(prefix, modulo_page)
-                          )
-                      ]
-                  ]
 
 
         @tgbot.on(events.InlineQuery)  # pylint:disable=E0602
