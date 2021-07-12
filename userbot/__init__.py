@@ -531,17 +531,11 @@ with bot:
 
 
 _main_menu_help = [
-        [
-              custom.Button.inline(
-                  "⋖╯Pʀᴇᴠ", data="{}_prev({})".format(prefix, modulo_page)
-              ),
-              custom.Button.inline(
-                  "ᴄʟᴏꜱᴇ", data="{}_close({})".format(prefix, modulo_page)
-              ),
-              custom.Button.inline(
-                  "Nᴇxᴛ╰⋗", data="{}_next({})".format(prefix, modulo_page)
-              )
-        ],
+    [
+             custom.Button.inline("⋖╯Pʀᴇᴠ", data="{}_prev({})".format(prefix, modulo_page)),
+             custom.Button.inline("ᴄʟᴏꜱᴇ", data="{}_close({})".format(prefix, modulo_page)),
+             custom.Button.inline("Nᴇxᴛ╰⋗", data="{}_next({})".format(prefix, modulo_page))
+    ],
 ]
 
 
