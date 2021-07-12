@@ -591,7 +591,8 @@ with bot:
             )
         )
         async def on_plug_in_callback_query_handler(event):
-            await event.delete()
+            if event.query.user_id == uid:
+                await event.delete()
 
 
         @tgbot.on(
