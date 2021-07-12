@@ -532,7 +532,6 @@ with bot:
                     f"**PONG !!**\n `{ms}ms`",
                 )
 
-
         @tgbot.on(events.InlineQuery)  # pylint:disable=E0602
         async def inline_handler(event):
             builder = event.builder
@@ -570,7 +569,6 @@ with bot:
                 )
             await event.answer([result] if result else None)
 
-
         @tgbot.on(
             events.callbackquery.CallbackQuery(  # pylint:disable=E0602
                 data=re.compile(rb"opener")
@@ -585,7 +583,6 @@ with bot:
                 link_preview=False,
             )
 
-
         @tgbot.on(
             events.callbackquery.CallbackQuery(  # pylint:disable=E0602
                 data=re.compile(rb"close")
@@ -593,10 +590,12 @@ with bot:
         )
         async def on_plug_in_callback_query_handler(event):
             if event.query.user_id == uid:
-                await event.edit(event.chat_id, file=lynxlogo, f"🕹 **Menu Has Closed.**")
+                await event.edit(f"🕹 **<--- • Menu Has Closed • --->** 🕹", file=lynxlogo)
                 await asyncio.sleep(3)
-                await event.delete(event.chat_id)
-
+                await event.delete()
+            else:
+                reply_pop_up_alert = f"🚫!WARNING!🚫\nJangan Menggunakan Milik {DEFAULTUSER}."
+                await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
 
         @tgbot.on(
             events.callbackquery.CallbackQuery(  # pylint:disable=E0602
