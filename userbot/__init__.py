@@ -571,13 +571,14 @@ with bot:
         @callback("opener")
         async def opener(event):
             helpable_modules = [p for p in loaded_modules if not p.startswith("_")]
+            helpable_modules = sorted(helpable_modules)
             for p in loaded_modules:
-                for x in p:
-                helpable_modules.append(x)
+                helpable_modules.append(p)
             await event.edit(
                 file=lynxlogo,
                 text=f"\n**Bᴏᴛ ᴏꜰ {DEFAULTUSER}**\n\n◎› **Bᴏᴛ ᴠᴇʀ :** `v.{BOT_VER}`\n◎› **Pʟᴜɢɪɴꜱ :** `{len(plugins)}`\n\n**Cᴏᴘʏʀɪɢʜᴛ © 𝟤𝟢𝟤𝟣 Lʏɴx-Uꜱᴇʀʙᴏᴛ**".format(
-                        len(dugmeler), len(helpable_modules),
+                    len(dugmeler),
+                    len(helpable_modules),
                 ),
                 buttons=[
                     [
