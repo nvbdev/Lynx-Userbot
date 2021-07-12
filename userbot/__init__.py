@@ -11,6 +11,7 @@ import time
 import re
 import io
 import random
+import asyncio
 
 from datetime import datetime
 from time import sleep
@@ -592,6 +593,8 @@ with bot:
         )
         async def on_plug_in_callback_query_handler(event):
             if event.query.user_id == uid:
+                await event.edit("🕹 **Menu Has Closed.**")
+                await asyncio.sleep(5)
                 await event.delete()
 
 
