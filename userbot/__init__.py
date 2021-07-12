@@ -593,9 +593,9 @@ with bot:
         )
         async def on_plug_in_callback_query_handler(event):
             if event.query.user_id == uid:
-                await event.edit("🕹 **Menu Has Closed.**")
+                await event.edit(event.chat_id, file=lynxlogo, caption="🕹 **Menu Has Closed.**")
                 await asyncio.sleep(5)
-                await event.delete()
+                await event.delete(event.chat_id)
 
 
         @tgbot.on(
