@@ -398,7 +398,6 @@ try:
 except AttributeError:
     pass
 
-
 # Global Variables
 COUNT_MSG = 0
 USERS = {}
@@ -468,6 +467,18 @@ with bot:
         lynxlogo = "resource/logo/LynxUserbot-Button.jpg"
         plugins = CMD_HELP
 
+# --------Replace-Inline--------------
+
+_main_help_menu = [
+   [
+     custom.Button.inline("⋖╯Pʀᴇᴠ", data="{}_prev({})".format(prefix, modulo_page)),
+     custom.Button.inline("ᴄʟᴏꜱᴇ", data="{}_close({})".format(prefix, modulo_page)),
+     custom.Button.inline("Nᴇxᴛ╰⋗", data="{}_next({})".format(prefix, modulo_page))
+   ],
+]
+
+#---------Replace-Inline--------------
+
         @tgbot.on(events.NewMessage(pattern=r"/start"))
         async def handler(event):
             if event.message.from_id != uid:
@@ -528,15 +539,6 @@ with bot:
                     event.chat_id,
                     f"**PONG !!**\n `{ms}ms`",
                 )
-
-
-_main_help_menu = [
-        [
-            custom.Button.inline("⋖╯Pʀᴇᴠ", data="{}_prev({})".format(prefix, modulo_page)),
-            custom.Button.inline("ᴄʟᴏꜱᴇ", data="{}_close({})".format(prefix, modulo_page)),
-            custom.Button.inline("Nᴇxᴛ╰⋗", data="{}_next({})".format(prefix, modulo_page))
-        ],
-]
 
 
         @tgbot.on(events.InlineQuery)  # pylint:disable=E0602
