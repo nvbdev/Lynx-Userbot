@@ -583,7 +583,7 @@ with bot:
                 buttons=buttons,
                 link_preview=False,
             )
-            await event.delete()
+
 
         @tgbot.on(
             events.callbackquery.CallbackQuery(  # pylint:disable=E0602
