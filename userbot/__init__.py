@@ -11,7 +11,6 @@ import time
 import re
 import io
 import random
-import asyncio
 
 from datetime import datetime
 from time import sleep
@@ -591,8 +590,6 @@ with bot:
         async def on_plug_in_callback_query_handler(event):
             if event.query.user_id == uid:
                 await event.edit(f"🕹 **<--- • Menu Has Closed • --->** 🕹", file=lynxlogo)
-                await asyncio.sleep(3)
-                await event.delete()
             else:
                 reply_pop_up_alert = f"🚫!WARNING!🚫\nJangan Menggunakan Milik {DEFAULTUSER}."
                 await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
