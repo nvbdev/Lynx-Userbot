@@ -443,7 +443,7 @@ def paginate_help(page_number, loaded_modules, prefix):
                     "⋖╯Pʀᴇᴠ", data="{}_prev({})".format(prefix, modulo_page)
                 ),
                 custom.Button.inline(
-                    "ᴄʟᴏꜱᴇ", data="{}_close({})".format(prefix, modulo_page)
+                    "ʙᴀᴄᴋ", data="{}_back({})".format(prefix, modulo_page)
                 ),
                 custom.Button.inline(
                     "Nᴇxᴛ╰⋗", data="{}_next({})".format(prefix, modulo_page)
@@ -587,6 +587,15 @@ with bot:
 
         @tgbot.on(
             events.callbackquery.CallbackQuery(  # pylint:disable=E0602
+                data=re.compile(rb"close")
+            )
+        )
+        async def on_plug_in_callback_query_handler(event):
+            await event.delete()
+
+
+        @tgbot.on(
+            events.callbackquery.CallbackQuery(  # pylint:disable=E0602
                 data=re.compile(rb"helpme_next\((.+?)\)")
             )
         )
@@ -604,7 +613,7 @@ with bot:
 
         @tgbot.on(
             events.callbackquery.CallbackQuery(  # pylint:disable=E0602
-                data=re.compile(rb"helpme_close\((.+?)\)")
+                data=re.compile(rb"helpme_back\((.+?)\)")
             )
         )
         async def on_plug_in_callback_query_handler(event):
@@ -619,10 +628,10 @@ with bot:
                                        "t.me/LynxUserbot"),
                             Button.url("[⊙] 𝗠𝘆 𝗜𝗻𝘀𝘁𝗮𝗴𝗿𝗮𝗺",
                                        f"{INSTAGRAM_ALIVE}")],
-                        [Button.inline("Open Menu Again", data="opener")],
+                        [Button.inline("ᴄʟᴏꜱᴇ", data="close")],
+                        [Button.inline("ᴏᴘᴇɴ ᴍᴇɴᴜ ᴀɢᴀɪɴ", data="opener")],
                     ]
                 )
-                await event.delete()
 
         @tgbot.on(
             events.callbackquery.CallbackQuery(  # pylint:disable=E0602
