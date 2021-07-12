@@ -467,17 +467,6 @@ with bot:
         lynxlogo = "resource/logo/LynxUserbot-Button.jpg"
         plugins = CMD_HELP
 
-# --------Replace-Inline--------------
-
-_main_help_menu = [
-   [
-     custom.Button.inline("⋖╯Pʀᴇᴠ", data="{}_prev({})".format(prefix, modulo_page)),
-     custom.Button.inline("ᴄʟᴏꜱᴇ", data="{}_close({})".format(prefix, modulo_page)),
-     custom.Button.inline("Nᴇxᴛ╰⋗", data="{}_next({})".format(prefix, modulo_page))
-   ],
-]
-
-#---------Replace-Inline--------------
 
         @tgbot.on(events.NewMessage(pattern=r"/start"))
         async def handler(event):
@@ -590,7 +579,13 @@ _main_help_menu = [
                 text=f"\n**Bᴏᴛ ᴏꜰ {DEFAULTUSER}**\n\n◎› **Bᴏᴛ ᴠᴇʀ :** `v.{BOT_VER}`\n◎› **Pʟᴜɢɪɴꜱ :** `{len(plugins)}`\n\n**Cᴏᴘʏʀɪɢʜᴛ © 𝟤𝟢𝟤𝟣 Lʏɴx-Uꜱᴇʀʙᴏᴛ**".format(
                         len(dugmeler), len(helpable_modules),
                 ),
-                buttons=_main_help_menu,
+                buttons=[
+                    [
+                        custom.Button.inline("⋖╯Pʀᴇᴠ", data="{}_prev({})".format(prefix, modulo_page)),
+                        custom.Button.inline("ᴄʟᴏꜱᴇ", data="{}_close({})".format(prefix, modulo_page)),
+                        custom.Button.inline("Nᴇxᴛ╰⋗", data="{}_next({})".format(prefix, modulo_page))
+                    ],
+                ],
                 link_preview=False,
             )
 
