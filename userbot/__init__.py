@@ -530,6 +530,21 @@ with bot:
                 )
 
 
+_main_menu_help = [
+                     [
+                          custom.Button.inline(
+                              "⋖╯Pʀᴇᴠ", data="{}_prev({})".format(prefix, modulo_page)
+                          ),
+                          custom.Button.inline(
+                              "ᴄʟᴏꜱᴇ", data="{}_close({})".format(prefix, modulo_page)
+                          ),
+                          custom.Button.inline(
+                              "Nᴇxᴛ╰⋗", data="{}_next({})".format(prefix, modulo_page)
+                          )
+                      ]
+                  ]
+
+
         @tgbot.on(events.InlineQuery)  # pylint:disable=E0602
         async def inline_handler(event):
             builder = event.builder
@@ -570,19 +585,18 @@ with bot:
 
         @callback("opener")
         async def opener(event):
-            builder = event.builder
-            result = None
-            if event.query.user_id == uid:
-                buttons = paginate_help(0, dugmeler, "helpme")
-                result = builder.photo(
-                    file=lynxlogo,
-                    link_preview=False,
-                    text=f"\n**Bᴏᴛ ᴏꜰ {DEFAULTUSER}**\n\n◎› **Bᴏᴛ ᴠᴇʀ :** `v.{BOT_VER}`\n◎› **Pʟᴜɢɪɴꜱ :** `{len(plugins)}`\n\n**Cᴏᴘʏʀɪɢʜᴛ © 𝟤𝟢𝟤𝟣 Lʏɴx-Uꜱᴇʀʙᴏᴛ**".format(
-                        len(dugmeler),
-                    ),
-                    buttons=buttons,
-                )
-            await event.answer([result] if result else None)
+            helpable_modules = [p for p in loaded_modules if not p.startswith("_")]
+            for p in loaded_modules:
+                helpable_modules.append(p)
+            await event.edit(
+                file=lynxlogo,
+                text=f"\n**Bᴏᴛ ᴏꜰ {DEFAULTUSER}**\n\n◎› **Bᴏᴛ ᴠᴇʀ :** `v.{BOT_VER}`\n◎› **Pʟᴜɢɪɴꜱ :** `{len(plugins)}`\n\n**Cᴏᴘʏʀɪɢʜᴛ © 𝟤𝟢𝟤𝟣 Lʏɴx-Uꜱᴇʀʙᴏᴛ**".format(
+                        len(dugmeler), len(helpable_modules),
+                ),
+                buttons=_main_menu_help,
+                link_preview=False,
+            )
+
 
         @tgbot.on(
             events.callbackquery.CallbackQuery(  # pylint:disable=E0602
