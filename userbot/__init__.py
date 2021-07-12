@@ -532,9 +532,9 @@ with bot:
 
 _main_menu_help = [
     [
-             custom.Button.inline("⋖╯Pʀᴇᴠ", data="{}_prev({})".format(prefix, modulo_page)),
-             custom.Button.inline("ᴄʟᴏꜱᴇ", data="{}_close({})".format(prefix, modulo_page)),
-             custom.Button.inline("Nᴇxᴛ╰⋗", data="{}_next({})".format(prefix, modulo_page))
+        custom.Button.inline("⋖╯Pʀᴇᴠ", data="{}_prev({})".format(prefix, modulo_page)),
+        custom.Button.inline("ᴄʟᴏꜱᴇ", data="{}_close({})".format(prefix, modulo_page)),
+        custom.Button.inline("Nᴇxᴛ╰⋗", data="{}_next({})".format(prefix, modulo_page))
     ],
 ]
 
@@ -581,7 +581,8 @@ _main_menu_help = [
         async def opener(event):
             helpable_modules = [p for p in loaded_modules if not p.startswith("_")]
             for p in loaded_modules:
-                helpable_modules.append(p)
+                for x in p:
+                helpable_modules.append(x)
             await event.edit(
                 file=lynxlogo,
                 text=f"\n**Bᴏᴛ ᴏꜰ {DEFAULTUSER}**\n\n◎› **Bᴏᴛ ᴠᴇʀ :** `v.{BOT_VER}`\n◎› **Pʟᴜɢɪɴꜱ :** `{len(plugins)}`\n\n**Cᴏᴘʏʀɪɢʜᴛ © 𝟤𝟢𝟤𝟣 Lʏɴx-Uꜱᴇʀʙᴏᴛ**".format(
