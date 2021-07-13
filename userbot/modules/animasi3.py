@@ -112,7 +112,7 @@ async def artlynx(event):
 
 
 @register(outgoing=True, pattern="^\.3D$")
-async def artlynx(event):
+async def asciilynx(event):
     await event.edit(ASCIILYNX)
 
 
