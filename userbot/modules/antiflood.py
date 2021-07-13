@@ -9,7 +9,7 @@
 import asyncio
 from telethon.tl.functions.channels import EditBannedRequest
 from telethon.tl.types import ChatBannedRights
-from userbot.utils.checker import is_admin
+from userbot.utils.tools import is_admin
 from userbot.modules.sql_helper import antiflood_sql as sql
 from userbot.events import register
 from userbot import bot, CMD_HELP
@@ -27,11 +27,11 @@ ANTI_FLOOD_WARN_MODE = ChatBannedRights(
 
 
 
-@register(incoming=True, groups_only=True)
+@register(incoming=True, disable_edited=True, disable_errors=True, groups_only=True)
 async def _(event):
     if not CHAT_FLOOD:
         return
-    admin_c = await is_admin(event.client, event.chat_id, event.message.from_id)
+    admin_c = await is_admin(event.chat_id, event.message.from_id)
     if not admin_c:
         return
     if str(event.chat_id) not in CHAT_FLOOD:
@@ -50,7 +50,8 @@ async def _(event):
             entity=event.chat_id,
             message=f"""**Automatic AntiFlooder**
 @admin \n[👤USER](tg://user?id={}) is Flooding This Chat.
-`{}`""".format(event.message.from_id, str(e)), reply_to=event.message.id
+`{}`""".format(event.message.from_id, str(e)),
+            reply_to=event.message.id
         )
         await asyncio.sleep(4)
         await no_admin_privilege_message.edit(
