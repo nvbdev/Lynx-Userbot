@@ -7,7 +7,7 @@ LOGS = logging.getLogger(__name__)
 
 
 # Admin checker by uniborg
-async def is_admins(chat_id, user_id):
+async def is_admin(chat_id, user_id):
     if not str(chat_id).startswith("-100"):
         return False
     try:
