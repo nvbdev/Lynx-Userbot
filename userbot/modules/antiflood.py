@@ -12,7 +12,7 @@ from telethon.tl.types import ChatBannedRights
 from userbot.utils.tools import is_admin
 import userbot.modules.sql_helper.antiflood_sql as sql
 from userbot.events import register
-from userbot import CMD_HELP, uid
+from userbot import CMD_HELP
 from userbot.utils import edit_or_reply
 
 
@@ -30,7 +30,7 @@ ANTI_FLOOD_WARN_MODE = ChatBannedRights(
 async def _(event):
     if not CHAT_FLOOD:
         return
-    admin_c = await is_admin(event.client, event.chat_id, event.client.uid)
+    admin_c = await is_admin(event.client, event.chat_id)
     if not admin_c:
         return
     if str(event.chat_id) not in CHAT_FLOOD:
