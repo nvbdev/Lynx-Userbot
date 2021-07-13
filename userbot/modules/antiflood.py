@@ -9,7 +9,7 @@
 import asyncio
 from telethon.tl.functions.channels import EditBannedRequest
 from telethon.tl.types import ChatBannedRights
-from userbot.utils.tools import is_admin
+from userbot.utils.checker import is_admin
 from userbot.modules.sql_helper import antiflood_sql as sql
 from userbot.events import register
 from userbot import bot, CMD_HELP
@@ -25,33 +25,35 @@ ANTI_FLOOD_WARN_MODE = ChatBannedRights(
     send_messages=True
 )
 
+me = bot.get_me()
+uid = me.id
 
 
 @register(incoming=True, disable_edited=True, disable_errors=True, groups_only=True)
 async def _(event):
     if not CHAT_FLOOD:
         return
-    admin_c = await is_admin(event.chat_id, event.message.from_id)
+    admin_c = await is_admin(event.client, event.chat_id, event.client.uid)
     if not admin_c:
         return
-    if not str(event.chat_id) in CHAT_FLOOD:
+    if str(event.chat_id) not in CHAT_FLOOD:
         return
-    should_ban = sql.update_flood(event.chat_id, event.message.from_id)
+    should_ban = sql.update_flood(event.chat_id, event.message.sender_id)
     if not should_ban:
         return
     try:
         await event.client(
             EditBannedRequest(
-                event.chat_id, event.message.from_id, ANTI_FLOOD_WARN_MODE
+                event.chat_id, event.message.sender_id, ANTI_FLOOD_WARN_MODE
             )
         )
     except Exception as e:
         no_admin_privilege_message = await event.client.send_message(
             entity=event.chat_id,
             message=f"""**Automatic AntiFlooder**
-@admin \n[👤USER](tg://user?id={}) is Flooding This Chat.
-`{}`""".format(event.message.from_id, str(e)),
-            reply_to=event.message.id
+@admin \n[👤USER](tg://user?id={event.message.sender_id}) is Flooding This Chat.
+`{str(e)}`""",
+            reply_to=event.message.id,
         )
         await asyncio.sleep(4)
         await no_admin_privilege_message.edit(
@@ -61,8 +63,8 @@ async def _(event):
         await event.client.send_message(
             entity=event.chat_id,
             message=f"""**Automatic AntiFlooder**
-[👤USER](tg://user?id={}) has been automatically restricted
-because he reached the defined flood limit.""".format(event.message.from_id),
+[👤USER](tg://user?id={event.message.sender_id}) has been automatically restricted
+because he reached the defined flood limit.""",
             reply_to=event.message.id,
         )
 
@@ -70,8 +72,6 @@ because he reached the defined flood limit.""".format(event.message.from_id),
 @register(outgoing=True, pattern="^\.setflood(?: |$)(.*)", groups_only=True, require_admin=True)
 async def _(event):
     "To Setup Antiflood in a Group to Prevent SPAM"
-    if event.fwd_from:
-        return
     input_str = event.pattern_match.group(1)
     event = await edit_or_reply(event, "`Updating Flood Settings!`")
     await asyncio.sleep(2)
