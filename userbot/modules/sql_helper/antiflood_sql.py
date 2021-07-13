@@ -53,7 +53,7 @@ def set_flood(chat_id, amount):
 
 
 def update_flood(chat_id: str, user_id) -> bool:
-    if not str(chat_id) in ANTIFLOOD_SQL_.CHAT_FLOOD:
+    if str(chat_id) not in ANTIFLOOD_SQL_.CHAT_FLOOD:
         return
     curr_user_id, count, limit = ANTIFLOOD_SQL_.CHAT_FLOOD.get(str(chat_id), DEF_OBJ)
     if limit == 0:  # no antiflood
