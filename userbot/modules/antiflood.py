@@ -13,6 +13,7 @@ from userbot.utils.tools import is_admin
 import userbot.modules.sql_helper.antiflood_sql as sql
 from userbot.events import register
 from userbot import CMD_HELP, uid
+from userbot.utils import edit_or_reply
 
 
 CHAT_FLOOD = sql.__load_flood_settings()
