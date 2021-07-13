@@ -17,6 +17,7 @@
 from .chrome import chrome, options
 from .google_images_download import googleimagesdownload
 from .progress import progress
+from .checker import is_admins
 from .tools import (
     humanbytes,
     time_formatter,
@@ -28,6 +29,5 @@ from .tools import (
     edit_or_reply,
     edit_delete,
     is_admin,
-    is_admins,
     check_media
 )
