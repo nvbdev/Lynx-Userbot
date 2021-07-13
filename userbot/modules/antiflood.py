@@ -29,7 +29,7 @@ me = bot.get_me()
 uid = me.id
 
 
-@register(incoming=True, disable_edited=True, disable_errors=True, groups_only=True)
+@register(incoming=True, disable_edited=True, disable_errors=True)
 async def _(event):
     if not CHAT_FLOOD:
         return
@@ -69,7 +69,7 @@ because he reached the defined flood limit.""",
         )
 
 
-@register(outgoing=True, pattern="^\.setflood(?: |$)(.*)", groups_only=True, require_admin=True)
+@register(outgoing=True, pattern="^\.setflood(?: |$)(.*)", groups_only=True)
 async def _(event):
     "To Setup Antiflood in a Group to Prevent SPAM"
     input_str = event.pattern_match.group(1)
