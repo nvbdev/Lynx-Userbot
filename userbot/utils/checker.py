@@ -1,9 +1,7 @@
 from telethon.tl.functions.channels import GetParticipantRequest
 from telethon.tl.types import ChannelParticipantAdmin, ChannelParticipantCreator
 
-from userbot import logging
-
-LOGS = logging.getLogger(__name__)
+from userbot import LOGS
 
 
 # Admin checker by uniborg
