@@ -1,6 +1,6 @@
 # Copyright (C) 2019 The Raphielscape Company LLC.
 #
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
+# Licensed under the Raphielscape Public License, Version 1.d (the "License");
 # you may not use this file except in compliance with the License.
 #
 """ Userbot start point """
@@ -28,6 +28,6 @@ for module_name in ALL_MODULES:
 
 
 LOGS.info(
-    f"⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡ ⚙️ v. {BOT_VER} [TELAH DIAKTIFKAN!]")
+    f"⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡ 🤖 v.{BOT_VER}\n[TELAH DIAKTIFKAN!]")
 
 bot.run_until_disconnected()
