@@ -31,8 +31,10 @@ uid = me.id
 
 
 @register(incoming=True, groups_only=True)
+@bot.on
 async def _(event):
     if event.message.from_id != uid:
+        u = await event.client.get_entity(event.chat_id)
         return
     if not CHAT_FLOOD:
         return
@@ -41,21 +43,21 @@ async def _(event):
         return
     if str(event.chat_id) not in CHAT_FLOOD:
         return
-    should_ban = sql.update_flood(event.chat_id, event.message.sender_id)
+    should_ban = sql.update_flood(event.chat_id, event.message.from_id)
     if not should_ban:
         return
     try:
         await event.client(
             EditBannedRequest(
-                event.chat_id, event.message.sender_id, ANTI_FLOOD_WARN_MODE
+                event.chat_id, event.message.from_id, ANTI_FLOOD_WARN_MODE
             )
         )
     except Exception as e:
         no_admin_privilege_message = await event.client.send_message(
             entity=event.chat_id,
             message=f"""**Automatic AntiFlooder**
-@admin \n[👤USER](tg://user?id={event.message.sender_id}) is Flooding This Chat.
-`{str(e)}`""",
+                    @admin \n[👤USER](tg://user?id={u.id}) is Flooding This Chat.
+                    `{str(e)}`""",
             reply_to=event.message.id,
         )
         await asyncio.sleep(4)
@@ -66,8 +68,8 @@ async def _(event):
         await event.client.send_message(
             entity=event.chat_id,
             message=f"""**Automatic AntiFlooder**
-[👤USER](tg://user?id={event.message.sender_id}) has been automatically restricted
-because he reached the defined flood limit.""",
+                    [👤USER](tg://user?id={u.id}) has been automatically restricted
+                    because he reached the defined flood limit.""",
             reply_to=event.message.id,
         )
 
@@ -89,5 +91,5 @@ async def _(event):
 CMD_HELP.update({"antiflood": "✘ Pʟᴜɢɪɴ : Anti Flood"
                  "\n\n⚡𝘾𝙈𝘿⚡: `.setflood <Count>`"
                  "\n↳ : It Warns The User if He Spams The Chat and if You Are an Admin with Proper Rights Then it Mutes Him in That Group."
-                 "\n**Example:** `.setflood 5`"
+                 "\n\n**Example:** `.setflood 5`"
                  "\n\n**Note:** To Stop Antiflood, Setflood with High Value Like 999999."})
