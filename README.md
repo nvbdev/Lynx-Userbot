@@ -27,7 +27,7 @@
 </p>
 <p align="center">
 <a href="https://pypi.org/project/Telethon/"><img src="https://img.shields.io/pypi/v/telethon?color=important&label=telethon&logo=python&logoColor=brightgreen&style=for-the-badge" /></a>
-<img alt="PYTHON" src="https://img.shields.io/badge/PYTHON-v3.9.5-white?style=for-the-badge&logo=appveyor"/>
+<img alt="PYTHON" src="https://img.shields.io/badge/PYTHON-v3.9.6-white?style=for-the-badge&logo=appveyor"/>
 </p>
 
 <h2 align="center">
