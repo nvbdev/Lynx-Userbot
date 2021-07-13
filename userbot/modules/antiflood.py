@@ -9,7 +9,7 @@
 import asyncio
 from telethon.tl.functions.channels import EditBannedRequest
 from telethon.tl.types import ChatBannedRights
-from userbot.utils.tools import is_admin
+from userbot.utils.tools import is_admins
 import userbot.modules.sql_helper.antiflood_sql as sql
 from userbot.events import register
 from userbot import CMD_HELP
