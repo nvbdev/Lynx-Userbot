@@ -13,7 +13,7 @@ from userbot.utils.checker import is_admins
 import userbot.modules.sql_helper.antiflood_sql as sql
 from userbot.events import register
 from userbot import CMD_HELP
-from userbot.utils import edit_or_reply
+from userbot.utils import bot, edit_or_reply
 
 
 CHAT_FLOOD = sql.__load_flood_settings()
@@ -30,7 +30,7 @@ ANTI_FLOOD_WARN_MODE = ChatBannedRights(
 async def _(event):
     if not CHAT_FLOOD:
         return
-    admin_c = await is_admins(event.client, event.chat_id)
+    admin_c = await is_admins(event.client, event.chat_id, event.client.uid)
     if not admin_c:
         return
     if str(event.chat_id) not in CHAT_FLOOD:
