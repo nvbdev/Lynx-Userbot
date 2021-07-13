@@ -26,16 +26,9 @@ ANTI_FLOOD_WARN_MODE = ChatBannedRights(
 )
 
 
-me = bot.get_me()
-uid = me.id
-
 
 @register(incoming=True, groups_only=True)
-@bot.on
 async def _(event):
-    if event.message.from_id != uid:
-        u = await event.client.get_entity(event.chat_id)
-        return
     if not CHAT_FLOOD:
         return
     admin_c = await is_admins(event.client, event.chat_id, event.message.from_id)
@@ -56,7 +49,7 @@ async def _(event):
         no_admin_privilege_message = await event.client.send_message(
             entity=event.chat_id,
             message=f"""**Automatic AntiFlooder**
-                    @admin \n[👤USER](tg://user?id={u.id}) is Flooding This Chat.
+                    @admin \n[👤USER](tg://user?id={}) is Flooding This Chat.
                     `{str(e)}`""",
             reply_to=event.message.id,
         )
@@ -68,13 +61,13 @@ async def _(event):
         await event.client.send_message(
             entity=event.chat_id,
             message=f"""**Automatic AntiFlooder**
-                    [👤USER](tg://user?id={u.id}) has been automatically restricted
+                    [👤USER](tg://user?id={}) has been automatically restricted
                     because he reached the defined flood limit.""",
             reply_to=event.message.id,
         )
 
 
-@register(outgoing=True, pattern="^\.setflood(?: |$)(.*)", groups_only=True)
+@register(outgoing=True, pattern="^\.setflood(?: |$)(.*)", groups_only=True, require_admin=True)
 async def _(event):
     "To Setup Antiflood in a Group to Prevent SPAM"
     input_str = event.pattern_match.group(1)
