@@ -12,8 +12,8 @@ from telethon.tl.types import ChatBannedRights
 from userbot.utils.checker import is_admins
 import userbot.modules.sql_helper.antiflood_sql as sql
 from userbot.events import register
-from userbot import CMD_HELP
-from userbot.utils import bot, edit_or_reply
+from userbot import bot, CMD_HELP
+from userbot.utils import edit_or_reply
 
 
 CHAT_FLOOD = sql.__load_flood_settings()
