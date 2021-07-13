@@ -26,11 +26,17 @@ ANTI_FLOOD_WARN_MODE = ChatBannedRights(
 )
 
 
+me = bot.get_me()
+uid = me.id
+
+
 @register(incoming=True, groups_only=True)
 async def _(event):
+    if event.message.from_id != uid:
+        return
     if not CHAT_FLOOD:
         return
-    admin_c = await is_admins(event.client, event.chat_id, event.client.uid)
+    admin_c = await is_admins(event.client, event.chat_id, event.message.from_id)
     if not admin_c:
         return
     if str(event.chat_id) not in CHAT_FLOOD:
@@ -48,7 +54,7 @@ async def _(event):
         no_admin_privilege_message = await event.client.send_message(
             entity=event.chat_id,
             message=f"""**Automatic AntiFlooder**
-@admin \n👤User: [ClickHere](tg://user?id={event.message.sender_id}) is Flooding This Chat.
+@admin \n[👤USER](tg://user?id={event.message.sender_id}) is Flooding This Chat.
 `{str(e)}`""",
             reply_to=event.message.id,
         )
@@ -60,7 +66,7 @@ async def _(event):
         await event.client.send_message(
             entity=event.chat_id,
             message=f"""**Automatic AntiFlooder**
-[User](tg://user?id={event.message.sender_id}) has been automatically restricted
+[👤USER](tg://user?id={event.message.sender_id}) has been automatically restricted
 because he reached the defined flood limit.""",
             reply_to=event.message.id,
         )
