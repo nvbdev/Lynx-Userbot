@@ -50,8 +50,7 @@ async def _(event):
             entity=event.chat_id,
             message=f"""**Automatic AntiFlooder**
                     @admin \n[👤USER](tg://user?id={}) is Flooding This Chat.
-                    `{str(e)}`""",
-            reply_to=event.message.id,
+                    `{}`""".format(event.message.from_id, str(e)), reply_to=event.message.id
         )
         await asyncio.sleep(4)
         await no_admin_privilege_message.edit(
@@ -62,14 +61,16 @@ async def _(event):
             entity=event.chat_id,
             message=f"""**Automatic AntiFlooder**
                     [👤USER](tg://user?id={}) has been automatically restricted
-                    because he reached the defined flood limit.""",
-            reply_to=event.message.id,
+                    because he reached the defined flood limit.""".format(event.message.from_id),
+            reply_to=event.message.id
         )
 
 
 @register(outgoing=True, pattern="^\.setflood(?: |$)(.*)", groups_only=True, require_admin=True)
 async def _(event):
     "To Setup Antiflood in a Group to Prevent SPAM"
+    if event.fwd_from:
+        return
     input_str = event.pattern_match.group(1)
     event = await edit_or_reply(event, "`Updating Flood Settings!`")
     await asyncio.sleep(2)
