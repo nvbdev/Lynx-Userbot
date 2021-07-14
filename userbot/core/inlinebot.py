@@ -135,7 +135,7 @@ with bot:
                     f"Lynx Used For Fun On Telegram✨,\n"
                     f"and For Maintaining Your Group 🛠️.\n"
                     f"I was **Created by :** @SyndicateTwenty4 For Various Userbots on Github.\n")
-                await tgbot.send_file(event.chat_id, file=lynxlogo,
+                await lynxbot.send_file(event.chat_id, file=lynxlogo,
                                       caption=text,
                                       buttons=[
                                           [
@@ -221,7 +221,7 @@ with bot:
                 reply_pop_up_alert = f"🚫!WARNING!🚫\nJangan Menggunakan Milik {DEFAULTUSER}."
                 await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
 
-        @tgbot.on(
+        @lynxbot.on(
             events.callbackquery.CallbackQuery(  # pylint:disable=E0602
                 data=re.compile(rb"helpme_next\((.+?)\)")
             )
