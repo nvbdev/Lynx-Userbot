@@ -1,7 +1,3 @@
-trigger:
-  branches:
-    include: [Lynx-Userbot]
-
 resources:
   repositories:
     - repository: asottile
@@ -13,5 +9,5 @@ resources:
 jobs:
 - template: job--python-tox.yml@asottile
   parameters:
-    toxenvs: [py37, py38, py39]
+    toxenvs: [py39]
     os: linux
