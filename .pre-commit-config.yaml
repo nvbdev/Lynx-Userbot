@@ -1,4 +1,8 @@
 repos:
+    - repo: https://github.com/pre-commit-ci/pre-commit-ci-config
+      rev: v1.4.0
+      hooks:
+        - id: check-pre-commit-ci-config
     - repo: https://github.com/pre-commit/pre-commit-hooks
       rev: v2.3.0
       hooks:
@@ -16,14 +20,3 @@ repos:
                  "--remove-all-unused-imports",
                  "--remove-unused-variables",
                  "--ignore-init-module-imports"]
-    - repo: local
-      hooks:
-        - id: prepare-commit-msg
-          name: Checkout
-          always_run: true
-          stages: [prepare-commit-msg]
-    - repo: local
-      hooks:
-        - id: commit-msg
-          always_run: true
-          stages: [commit-msg]
