@@ -27,3 +27,7 @@ pip-selfcheck.json
 # ignore log file
 
 *-lynxproject.log
+
+# cache
+/.mypy_cache
+/.pytest_cache
