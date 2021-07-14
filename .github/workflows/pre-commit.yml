@@ -2,7 +2,7 @@ parameters:
   python: '3.9'
 
 jobs:
-- job: precommit
+- job: pre-commit
   pool:
     vmImage: ubuntu-latest
   variables:
