@@ -27,5 +27,3 @@ pip-selfcheck.json
 # ignore log file
 
 *-lynxproject.log
-
-.tox
