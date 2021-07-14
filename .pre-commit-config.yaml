@@ -5,13 +5,9 @@ repos:
         - id: check-ast
         - id: check-merge-conflict
         - id: end-of-file-fixer
-        - id: mixed-line-ending
         - id: trailing-whitespace
         - id: requirements-txt-fixer
-        - id: detect-aws-credentials
         - id: detect-private-key
-        - id: check-added-large-files
-        - id: end-of-file-fixer
     - repo: https://github.com/myint/autoflake
       rev: v1.4
       hooks:
