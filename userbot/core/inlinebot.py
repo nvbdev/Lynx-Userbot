@@ -28,7 +28,8 @@ from userbot import (
     BOT_USERNAME,
     BOTLOG,
     BOTLOG_CHATID,
-    CMD_HELP,
+    BOT_VER,
+    CMD_HELP
 )
 
 # Start
