@@ -22,7 +22,7 @@ from userbot import (
     bot,
     getLogger,
     API_HASH,
-    API_ID,
+    API_KEY,
     DEFAULTUSER,
     BOT_TOKEN,
     BOT_USERNAME,
