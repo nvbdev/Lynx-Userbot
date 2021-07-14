@@ -17,6 +17,8 @@
 # Thanks @Spechide.
 
 import logging
+
+from userbot.core import inlinebot
 from userbot import BOT_USERNAME, BOT_TOKEN
 from userbot.events import register
 from telethon.errors.rpcerrorlist import BotInlineDisabledError
@@ -29,11 +31,11 @@ logging.basicConfig(
 
 @register(outgoing=True, pattern=r"^\.helpme")
 async def yardim(event):
-    tgbotusername = BOT_USERNAME
-    if tgbotusername and BOT_TOKEN:
+    lynxbotusername = BOT_USERNAME
+    if lynxbotusername and BOT_TOKEN:
         try:
             results = await event.client.inline_query(
-                tgbotusername,
+                lynxbotusername,
                 "@LynxRobot"
             )
         except BotInlineDisabledError:
