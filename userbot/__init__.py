@@ -452,8 +452,9 @@ def paginate_help(page_number, loaded_modules, prefix):
     return pairs
 
 # -----------------------------------------Reg--------------------------------------- >
+lynx = bot
 
-with bot:
+with lynx:
     try:
         lynx.tgbot = tgbot = TelegramClient(
             "TG_BOT_TOKEN",
