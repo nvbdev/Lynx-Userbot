@@ -16,7 +16,7 @@ echo "
          ███████╗░██║░░░██║░╚███║██╔╝╚██╗
          ╚══════╝░╚═╝░░░╚═╝░░╚══╝╚═╝░░╚═╝
 
-            Thanks for Support @LynxUserbot
+       Thank you very much for using @LynxUserbot
 "
 
 python3 -m userbot
