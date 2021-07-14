@@ -1,0 +1,17 @@
+trigger:
+  branches:
+    include: [Lynx-Userbot]
+
+resources:
+  repositories:
+    - repository: asottile
+      type: github
+      endpoint: github
+      name: asottile/azure-pipeline-templates
+      ref: refs/tags/v2.1.0
+
+jobs:
+- template: job--python-tox.yml@asottile
+  parameters:
+    toxenvs: [py37, py38, py39]
+    os: linux
