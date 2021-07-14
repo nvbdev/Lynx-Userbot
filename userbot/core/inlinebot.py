@@ -8,24 +8,17 @@
 import time
 import random
 
-from logging import basicConfig, getLogger, INFO, DEBUG
 from time import sleep
-from telethon import TelegramClient
 from datetime import datetime
 from math import ceil
 from requests import get
 from telethon.sync import custom, events
-from telethon.sessions import StringSession
 from telethon import Button, functions, types
 from telethon.utils import get_display_name
 
 from userbot import (
     bot,
-    API_HASH,
-    API_KEY,
     DEFAULTUSER,
-    BOT_TOKEN,
-    BOT_USERNAME,
     BOTLOG,
     BOTLOG_CHATID,
     BOT_VER,
@@ -78,28 +71,16 @@ def paginate_help(page_number, loaded_modules, prefix):
         ]
     return pairs
 
-
-# ----------------------------------------------------------------------------- >
-
-
-with bot:
-    try:
-        lynxbot = TelegramClient(
-            "TG_BOT_TOKEN",
-            api_id=API_KEY,
-            api_hash=API_HASH).start(
-            bot_token=BOT_TOKEN)
 # ----------------------------------------------------- >
         dugmeler = CMD_HELP
         me = bot.get_me()
         uid = me.id
-# -------------------------------- >
         aliplogo = "https://telegra.ph/file/b6580efa28fdc144749d5.jpg"
         lynxlogo = "resource/logo/LynxUserbot-Button.jpg"
         plugins = CMD_HELP
-# ----------- >
+# --------------------------- >
 
-        @lynxbot.on(events.NewMessage(pattern=r"/start"))
+        @lynx.tgbot.on(events.NewMessage(pattern=r"/start"))
         async def handler(event):
             if event.message.from_id != uid:
                 u = await event.client.get_entity(event.chat_id)
@@ -116,7 +97,7 @@ with bot:
                     ]
                 )
 
-        @lynxbot.on(events.NewMessage(pattern=r"/deploy"))
+        @lynx.tgbot.on(events.NewMessage(pattern=r"/deploy"))
         async def handler(event):
             if event.message.from_id != uid:
                 await event.reply(
@@ -127,7 +108,7 @@ with bot:
                     ],
                 )
 
-        @lynxbot.on(events.NewMessage(pattern=r"/repo"))
+        @lynx.tgbot.on(events.NewMessage(pattern=r"/repo"))
         async def handler(event):
             if event.message.from_id != uid:
                 u = await event.client.get_entity(event.chat_id)
@@ -137,7 +118,7 @@ with bot:
                     f"Lynx Used For Fun On Telegram✨,\n"
                     f"and For Maintaining Your Group 🛠️.\n"
                     f"I was **Created by :** @SyndicateTwenty4 For Various Userbots on Github.\n")
-                await lynxbot.send_file(event.chat_id, file=lynxlogo,
+                await lynx.tgbot.send_file(event.chat_id, file=lynxlogo,
                                       caption=text,
                                       buttons=[
                                           [
@@ -149,18 +130,18 @@ with bot:
                                       ]
                                       )
 
-        @lynxbot.on(events.NewMessage(pattern=r"/ping"))
+        @lynx.tgbot.on(events.NewMessage(pattern=r"/ping"))
         async def handler(event):
             if event.message.from_id != uid:
                 start = datetime.now()
                 end = datetime.now()
                 ms = (end - start).microseconds / 1000
-                await lynxbot.send_message(
+                await lynx.tgbot.send_message(
                     event.chat_id,
                     f"**PONG !!**\n `{ms}ms`",
                 )
 
-        @lynxbot.on(events.InlineQuery)  # pylint:disable=E0602
+        @lynx.tgbot.on(events.InlineQuery)  # pylint:disable=E0602
         async def inline_handler(event):
             builder = event.builder
             result = None
@@ -197,7 +178,7 @@ with bot:
                 )
             await event.answer([result] if result else None)
 
-        @lynxbot.on(
+        @lynx.tgbot.on(
             events.callbackquery.CallbackQuery(  # pylint:disable=E0602
                 data=re.compile(rb"opener")
             )
@@ -211,7 +192,7 @@ with bot:
                 link_preview=False,
             )
 
-        @lynxbot.on(
+        @lynx.tgbot.on(
             events.callbackquery.CallbackQuery(  # pylint:disable=E0602
                 data=re.compile(rb"close")
             )
@@ -223,7 +204,7 @@ with bot:
                 reply_pop_up_alert = f"🚫!WARNING!🚫\nJangan Menggunakan Milik {DEFAULTUSER}."
                 await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
 
-        @lynxbot.on(
+        @lynx.tgbot.on(
             events.callbackquery.CallbackQuery(  # pylint:disable=E0602
                 data=re.compile(rb"helpme_next\((.+?)\)")
             )
@@ -240,7 +221,7 @@ with bot:
                 reply_pop_up_alert = f"🚫!WARNING!🚫\nJangan Menggunakan Milik {DEFAULTUSER}."
                 await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
 
-        @lynxbot.on(
+        @lynx.tgbot.on(
             events.callbackquery.CallbackQuery(  # pylint:disable=E0602
                 data=re.compile(rb"helpme_back\((.+?)\)")
             )
@@ -262,7 +243,7 @@ with bot:
                     ]
                 )
 
-        @lynxbot.on(
+        @lynx.tgbot.on(
             events.callbackquery.CallbackQuery(  # pylint:disable=E0602
                 data=re.compile(rb"helpme_prev\((.+?)\)")
             )
@@ -280,7 +261,7 @@ with bot:
                 reply_pop_up_alert = f"🚫!WARNING!🚫\nJangan Menggunakan Milik {DEFAULTUSER}."
                 await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
 
-        @lynxbot.on(
+        @lynx.tgbot.on(
             events.callbackquery.CallbackQuery(  # pylint:disable=E0602
                 data=re.compile(b"ub_modul_(.*)")
             )
