@@ -72,12 +72,12 @@ def paginate_help(page_number, loaded_modules, prefix):
     return pairs
 
 # ----------------------------------------------------- >
-        dugmeler = CMD_HELP
-        me = bot.get_me()
-        uid = me.id
-        aliplogo = "https://telegra.ph/file/b6580efa28fdc144749d5.jpg"
-        lynxlogo = "resource/logo/LynxUserbot-Button.jpg"
-        plugins = CMD_HELP
+dugmeler = CMD_HELP
+me = bot.get_me()
+uid = me.id
+aliplogo = "https://telegra.ph/file/b6580efa28fdc144749d5.jpg"
+lynxlogo = "resource/logo/LynxUserbot-Button.jpg"
+plugins = CMD_HELP
 # --------------------------- >
 
         @lynx.tgbot.on(events.NewMessage(pattern=r"/start"))
