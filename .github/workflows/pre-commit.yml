@@ -2,9 +2,9 @@ parameters:
   python: '3.9'
 
 jobs:
-- job: pre-commit
+- job: precommit
   pool:
-    vmImage: ubuntu-latest
+    vmImage: ubuntu-18.04
   variables:
     PRE_COMMIT_HOME: $(Pipeline.Workspace)/pre-commit-cache
 
