@@ -8,6 +8,7 @@
 import time
 import random
 
+from logging import basicConfig, getLogger, INFO, DEBUG
 from time import sleep
 from telethon import TelegramClient
 from datetime import datetime
@@ -29,13 +30,26 @@ from userbot import (
     BOTLOG,
     BOTLOG_CHATID,
     BOT_VER,
-    CMD_HELP
+    CMD_HELP,
+    CONSOLE_LOGGER_VERBOSE,
+    CMD_LIST,
+    INT_PLUG,
+    LOAD_PLUG
 )
 
 # Start
 StartTime = time.time()
 
 
+if CONSOLE_LOGGER_VERBOSE:
+    basicConfig(
+        format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+        level=DEBUG,
+    )
+else:
+    basicConfig(
+        format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+        level=INFO)
 LOGS = getLogger(__name__)
 # ------------------------ InlineBot ------------------------------- #
 
