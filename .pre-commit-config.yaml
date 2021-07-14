@@ -1,8 +1,8 @@
 repos:
     - repo: https://github.com/pre-commit/pre-commit-hooks
-      rev: v4.0.1
+      rev: v2.3.0
       hooks:
-        - id: check-ast
+        - id: check-yaml
         - id: check-merge-conflict
         - id: end-of-file-fixer
         - id: trailing-whitespace
@@ -16,8 +16,14 @@ repos:
                  "--remove-all-unused-imports",
                  "--remove-unused-variables",
                  "--ignore-init-module-imports"]
-    - repo: https://github.com/asottile/pyupgrade
-      rev: v2.19.4
+    - repo: local
       hooks:
-        - id: pyupgrade
-          args: ["--py39-plus"]
+        - id: prepare-commit-msg
+          name: Checkout
+          always_run: true
+          stages: [prepare-commit-msg]
+    - repo: local
+      hooks:
+        - id: commit-msg
+          always_run: true
+          stages: [commit-msg]
