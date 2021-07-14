@@ -21,7 +21,6 @@ from telethon.utils import get_display_name
 
 from userbot import (
     bot,
-    getLogger,
     API_HASH,
     API_KEY,
     DEFAULTUSER,
@@ -31,7 +30,6 @@ from userbot import (
     BOTLOG_CHATID,
     BOT_VER,
     CMD_HELP,
-    CONSOLE_LOGGER_VERBOSE,
     CMD_LIST,
     INT_PLUG,
     LOAD_PLUG
@@ -40,17 +38,6 @@ from userbot import (
 # Start
 StartTime = time.time()
 
-
-if CONSOLE_LOGGER_VERBOSE:
-    basicConfig(
-        format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
-        level=DEBUG,
-    )
-else:
-    basicConfig(
-        format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
-        level=INFO)
-LOGS = getLogger(__name__)
 # ------------------------ InlineBot ------------------------------- #
 
 
@@ -324,18 +311,3 @@ with bot:
                 reply_pop_up_alert = f"🚫!WARNING!🚫\nJangan Menggunakan Milik {DEFAULTUSER}."
 
             await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
-
-    except BaseException:
-        LOGS.info(
-            "Mode Inline Bot Mu Nonaktif. "
-            "Untuk Mengaktifkannya, Silahkan Pergi Ke @BotFather Lalu, Settings Bot > Pilih Mode Inline > Turn On."
-        )
-
-    try:
-        bot.loop.run_until_complete(check_botlog_chatid())
-    except BaseException:
-        LOGS.info(
-            "BOTLOG_CHATID environment variable isn't a "
-            "valid entity. Check your environment variables/config.env file."
-        )
-        quit(1)
