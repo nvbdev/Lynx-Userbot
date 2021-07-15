@@ -82,7 +82,7 @@ async def killdabot(event):
 async def reedme(e):
     await e.edit(
         "Here's Something for You to Read :\n"
-        "\n[⚡Lynx-Userbot⚡ Repo](https://github.com/KENZO-404/Lynx-Userbot/blob/Lynx-Userbot/README.md)"
+        "\n[⚡Lynx-Userbot⚡ Repo](https://zee.gl/lynx404)"
         "\n[Setup Guide - Basic](https://telegra.ph/How-to-host-a-Telegram-Userbot-11-02)"
         "\n[Special - Note](https://telegra.ph/Special-Note-11-02)")
 
@@ -107,9 +107,9 @@ async def repo_is_here(wannasee):
     await wannasee.edit(
         "╭─━━━━━━━━━━━━━─╮\n"
         "                  ʀᴇᴘᴏ\n"
-        "    [⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡](https://kenzo-404.github.io/Lynx-Userbot)\n"
+        "    [⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡](https://zee.gl/lynx404)\n"
         "╭─━━━━━━━━━━━━━─╯\n"
-        "│⊙ **Dᴇᴠᴇʟᴏᴘᴇʀ :** [ᴀxᴇʟ](https://github.com/KENZO-404)\n"
+        "│⊙ **Dᴇᴠᴇʟᴏᴘᴇʀ :** [👤DEV](https://zee.gl/KENZO404)\n"
         "╰━━━━━━━━━━━━━━━╯\n"
         "  𝗟𝗶𝗰𝗲𝗻𝘀𝗲 : [Raphielscape Public License 1.d](https://github.com/KENZO-404/Lynx-Userbot/blob/Lynx-Userbot/LICENSE)\n"
         "  **Cᴏᴘʏʀɪɢʜᴛ © 𝟤𝟢𝟤𝟣** @LynxUserbot"
