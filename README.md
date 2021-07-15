@@ -13,7 +13,7 @@
 
 <p align="center">
 <a href="https://github.com/KENZO-404/Lynx-Userbot/commits/Lynx-Userbot"><img src="https://img.shields.io/github/last-commit/KENZO-404/Lynx-Userbot?color=ff69b4&logo=github&logoColor=ff69b4&style=for-the-badge" /></a>
-<a href="https://github.com/KENZO-404/Lynx-Userbot/actions/workflows/main.yml"><img src="https://img.shields.io/github/workflow/status/KENZO-404/Lynx-Userbot/pylint/Lynx-Userbot?style=for-the-badge&logo=github-actions&logoColor=aqua" alt="CI" /></a>
+<a href="https://github.com/KENZO-404/Lynx-Userbot/actions/workflows/python-app.yml"><img src="https://img.shields.io/github/workflow/status/KENZO-404/Lynx-Userbot/FailChecker/Lynx-Userbot?style=for-the-badge&logo=github-actions&logoColor=aqua" alt="CI" /></a>
 </p>
 <p align="center">
 <a href="https://pypi.org/project/Telethon/"><img src="https://img.shields.io/pypi/v/telethon?color=important&label=telethon&logo=python&logoColor=brightgreen&style=for-the-badge" /></a>
@@ -38,6 +38,7 @@
 [![PR Closed](https://img.shields.io/github/issues-pr-closed/KENZO-404/Lynx-Userbot?&style=plastic&logo=github)](https://github.com/KENZO-404/Lynx-Userbot/pulls?q=is:closed)
 [![pre-commit.ci status](https://results.pre-commit.ci/badge/github/pre-commit/pre-commit/master.svg)](https://results.pre-commit.ci/latest/github/KENZO-404/Lynx-Userbot/Lynx-Userbot)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=yellow)](https://github.com/KENZO-404/Lynx-Userbot)
+[![Build Status](https://github.com/KENZO-404/Lynx-Userbot/workflows/pre-commit/badge.svg)](https://github.com/KENZO-404/Lynx-Userbot/actions)
 <p align="center">
 </p>
 
