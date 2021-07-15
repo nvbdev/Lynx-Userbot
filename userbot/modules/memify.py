@@ -4,7 +4,7 @@ import textwrap
 
 from PIL import Image, ImageDraw, ImageFont
 
-from userbot import CMD_HELP, TEMP_DOWNLOAD_DIRECTORY, bot, lynx
+from userbot import CMD_HELP, TEMP_DOWNLOAD_DIRECTORY, bot
 from userbot.events import register
 
 THUMB_IMAGE_PATH = "./thumb_image.jpg"
@@ -24,8 +24,8 @@ async def mim(event):
         await event.edit("```Mohon Balas Ke Gambar/Sticker/Gif```")
         return
     reply_message.sender
-    await lynx.download_file(reply_message.media)
-    if reply_message.sender.lynx:
+    await event.download_file(reply_message.media)
+    if reply_message.sender:
         await event.edit("```Balas ke pesan pengguna yang sebenarnya.```")
         return
     else:
@@ -40,7 +40,7 @@ async def mim(event):
             to_download_directory = TEMP_DOWNLOAD_DIRECTORY
             downloaded_file_name = os.path.join(
                 to_download_directory, file_name)
-            downloaded_file_name = await lynx.download_media(
+            downloaded_file_name = await bot.download_media(
                 reply_message,
                 downloaded_file_name,
             )
@@ -180,7 +180,7 @@ async def mim(event):
         await event.edit("```Mohon Balas Ke Gambar/Sticker/Gif```")
         return
     reply_message.sender
-    await lynx.download_file(reply_message.media)
+    await bot.download_file(reply_message.media)
     if reply_message.sender.bot:
         await event.edit("```Balas Ke Pesan Pengguna Yang Sebenarnya.```")
         return
