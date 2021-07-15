@@ -6,7 +6,7 @@
 
 from asyncio import sleep
 from telethon.errors import rpcbaseerrors
-from userbot import bot, CMD_HELP
+from userbot import CMD_HELP
 from userbot.events import register
 
 
@@ -137,11 +137,11 @@ async def _(event):
     """Untuk .whisp command, mengirim pesan rahasia di group."""
     if event.fwd_from:
         return
-    wwwspr = event.pattern_match.group(1)
-    botusername = "@whisperBot"
+    whsplynx = event.pattern_match.group(1)
+    botusername = "@nnbbot"
     if event.reply_to_msg_id:
         await event.get_reply_message()
-    tap = await bot.inline_query(botusername, wwwspr)
+    tap = await bot.inline_query(botusername, whsplynx)
     await tap[0].click(event.chat_id)
     await event.delete()
 
