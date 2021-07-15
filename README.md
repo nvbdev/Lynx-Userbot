@@ -8,17 +8,7 @@
   </p>
 
 <p align="center">
-<a href="https://www.codefactor.io/repository/github/kenzo-404/lynx-userbot"><img src="https://www.codefactor.io/repository/github/kenzo-404/lynx-userbot/badge" alt="CodeFactor" /></a>
-<a href="https://www.codacy.com/gh/KENZO-404/Lynx-Userbot/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=KENZO-404/Lynx-Userbot&amp;utm_campaign=Badge_Grade"><img src="https://app.codacy.com/project/badge/Grade/a92b6d96ed1e4f2fa0a4d03e28894921"/></a>
-</p>
-
-<p align="center">
- <a href="https://img.shields.io/github/repo-size/KENZO-404/Lynx-Userbot?&style=plastic&logo=github"
-[![GitHub issues](https://img.shields.io/github/issues/KENZO-404/Lynx-Userbot?&style=plastic&logo=github)](https://github.com/KENZO-404/Lynx-Userbot/issues)
-[![GitHub commit activity](https://img.shields.io/github/commit-activity/m/KENZO-404/Lynx-Userbot?&style=plastic&logo=github)](https://github.com/KENZO-404/Lynx-Userbot/graphs/commit-activity)
-[![GitHub contributors](https://img.shields.io/github/contributors/KENZO-404/Lynx-Userbot?&style=plastic&logo=github)](https://GitHub.com/KENZO-404/Lynx-Userbot/graphs/contributors/)
-[![PR Open](https://img.shields.io/github/issues-pr/KENZO-404/Lynx-Userbot?&style=plastic&logo=github)](https://github.com/KENZO-404/Lynx-Userbot/pulls)
-[![PR Closed](https://img.shields.io/github/issues-pr-closed/KENZO-404/Lynx-Userbot?&style=plastic&logo=github)](https://github.com/KENZO-404/Lynx-Userbot/pulls?q=is:closed)
+<a href="https://www.codefactor.io/repository/github/kenzo-404/lynx-userbot"><img src="https://www.codefactor.io/repository/github/kenzo-404/lynx-userbot/badge?style=for-the-badge" alt="CodeFactor" /></a>
 </p>
 
 <p align="center">
@@ -39,6 +29,16 @@
 </p>
 <p align="center">
 <a href="https://github.com/KENZO-404/Lynx-Userbot/blob/Lynx-Userbot/LICENSE"><img src="https://img.shields.io/badge/LICENSE_UNDER-Raphielscape_Public_License_v1.d-yellow?style=for-the-badge&logo=github&logoColor=yellow" alt="generate_api"></a>
+</p>
+
+[![GitHub issues](https://img.shields.io/github/issues/KENZO-404/Lynx-Userbot?&style=plastic&logo=github)](https://github.com/KENZO-404/Lynx-Userbot/issues)
+[![GitHub commit activity](https://img.shields.io/github/commit-activity/m/KENZO-404/Lynx-Userbot?&style=plastic&logo=github)](https://github.com/KENZO-404/Lynx-Userbot/graphs/commit-activity)
+[![GitHub contributors](https://img.shields.io/github/contributors/KENZO-404/Lynx-Userbot?&style=plastic&logo=github)](https://GitHub.com/KENZO-404/Lynx-Userbot/graphs/contributors/)
+[![PR Open](https://img.shields.io/github/issues-pr/KENZO-404/Lynx-Userbot?&style=plastic&logo=github)](https://github.com/KENZO-404/Lynx-Userbot/pulls)
+[![PR Closed](https://img.shields.io/github/issues-pr-closed/KENZO-404/Lynx-Userbot?&style=plastic&logo=github)](https://github.com/KENZO-404/Lynx-Userbot/pulls?q=is:closed)
+[![pre-commit.ci status](https://results.pre-commit.ci/badge/github/pre-commit/pre-commit/master.svg)](https://results.pre-commit.ci/latest/github/KENZO-404/Lynx-Userbot/Lynx-Userbot)
+[![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=yellow)](https://github.com/KENZO-404/Lynx-Userbot)
+<p align="center">
 </p>
 
 <h4 align="center"> 🚫 DISCLAIMER 🚫 </p>
