@@ -1,4 +1,3 @@
-
 # Copyright (C) 2020 MoveAngel and MinaProject
 #
 # Licensed under the Raphielscape Public License, Version 1.d (the "License");
@@ -202,7 +201,7 @@ async def add_text_img(image_path, text):
     img_info = img.info
     image_width, image_height = img.size
     font = ImageFont.truetype(
-        font="resources/MutantAcademyStyle.ttf",
+        font="userbot/utils/styles/MutantAcademyStyle.ttf",
         size=int(image_height * font_size) // 100,
     )
     draw = ImageDraw.Draw(img)
