@@ -152,6 +152,10 @@ and you ended up in a Finale Battle with Telegram and at the end
 *   [༺αиυвιѕ༻](https://github.com/Dark-Princ3) - X-tra-Telegram
 *   [Sahyam2019](https://github.com/sahyam2019/oub-remix) - oub-remix
 *   [TeamUserge](https://github.com/UsergeTeam/Userge) - Userge
+*   [TeamUltroid](https://github.com/TeamUltroid/Ultroid) -
+Ultroid
+*   [sandy1709](https://github.com/sandy1709/catuserbot) -
+catuserbot
 *   [BianSepang](https://github.com/BianSepang/WeebProject) - WeebProject
 *   And Another Contribute Userbot Indo🇲🇨
 
