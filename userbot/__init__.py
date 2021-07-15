@@ -516,7 +516,7 @@ with lynx:
                                           [
                                               custom.Button.url(
                                                   text="🇮🇩 𝗥𝗲𝗽𝗼𝘀𝗶𝘁𝗼𝗿𝘆 🇮🇩",
-                                                  url="https://kenzo-404.github.io/Lynx-Userbot/"
+                                                  url="https://zee.gl/lynx404"
                                               )
                                           ]
                                       ]
@@ -562,7 +562,7 @@ with lynx:
                         [
                             custom.Button.url(
                                 "⚡𝗟𝘆𝗻𝘅⚡",
-                                "https://kenzo-404.github.io/Lynx-Userbot"),
+                                "https://zee.gl/lynx404"),
                             custom.Button.url(
                                 "Dᴇᴠᴇʟᴏᴘᴇʀ",
                                 "t.me/FederationSuperGroup/17")]],
