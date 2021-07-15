@@ -147,7 +147,7 @@ async def _(event):
 
 
 CMD_HELP.update({"messages": "✘ Pʟᴜɢɪɴ : Messages in Group (Pesan)"
-                 "\n\n⚡𝘾𝙈𝘿⚡: >`.whisp` <Text/Pesan> & <Username>"
+                 "\n\n⚡𝘾𝙈𝘿⚡: >`.whisp` <Text/Pesan> & <Username/ID>"
                  "\n↳ : Untuk Mengirim Pesan Rahasia Di Group."
                  "\n\n⚡𝘾𝙈𝘿⚡: >`.purge`"
                  "\n↳ : Membersihkan Semua Pesan Mulai Dari Pesan Yang Dibalas."
