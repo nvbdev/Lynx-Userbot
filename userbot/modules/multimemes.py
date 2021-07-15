@@ -432,12 +432,12 @@ async def deepfry(img: Image) -> Image:
 
 CMD_HELP.update(
     {
-        "deepfry": ""✘ Pʟᴜɢɪɴ : Deepfry"
+        "deepfry": "✘ Pʟᴜɢɪɴ : Deepfry"
         "\n\n⚡𝘾𝙈𝘿⚡: `.df` or `.df` [level(1-8)]"
         "\n↳ : deepfry image/sticker from the reply."
         "\n\n Use @image_deepfrybot"
         "\n⚡𝘾𝙈𝘿⚡: `.deepfry`"
-       "\n↳ : Deepfry image"
+        "\n↳ : Deepfry image"
     }
 )
 
