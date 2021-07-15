@@ -45,25 +45,25 @@ async def fastpurger(purg):
 
 
 @register(outgoing=True, pattern=r"^\.purgeme")
-async def purgeme(delme):
+async def purgeme(purs):
     """For .purgeme, delete x count of your latest message."""
-    message = delme.text
+    message = purs.text
     count = int(message[9:])
     i = 1
 
-    async for message in delme.client.iter_messages(delme.chat_id, from_user="me"):
+    async for message in purs.client.iter_messages(purs.chat_id, from_user="me"):
         if i > count + 1:
             break
         i += 1
         await message.delete()
 
-    smsg = await delme.client.send_message(
-        delme.chat_id,
+    smsg = await purs.client.send_message(
+        purs.chat_id,
         "`Berhasil Menghapus Pesan,`\n **Jumlah :** " + str(count) + " Pesan.",
     )
     """
     if BOTLOG:
-        await delme.client.send_message(
+        await purs.client.send_message(
             BOTLOG_CHATID,
             "`Anda Telah Menghapus Pesan,`\n **Jumlah :** " + str(count) + " Pesan.")
     """
