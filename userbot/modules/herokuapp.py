@@ -8,7 +8,9 @@
 import heroku3
 import aiohttp
 import math
+import sys
 
+from os import environ, execle, remove
 from userbot import (
     HEROKU_APP_NAME,
     HEROKU_API_KEY,
@@ -122,6 +124,18 @@ async def set_var(var):
             )
         await var.edit("`Sedang Menambahkan Config Vars...`")
     heroku_var[variable] = value
+
+    try:
+        from userbot.modules.sql_helper.globals import addgvar, delgvar
+
+        delgvar("restartstatus")
+        addgvar("restartstatus", f"{var.chat_id}\n{var.id}")
+    except AttributeError:
+        pass
+
+    # Spin a new instance of bot
+    args = [sys.executable, "-m", "userbot"]
+    execle(sys.executable, *args, environ)
 
 
 """
