@@ -17,7 +17,6 @@ from time import sleep
 import platform
 import psutil
 from platform import python_version, uname
-from userbot.utils import george, zeus
 from telethon import TelegramClient, version
 from sys import version_info
 from logging import basicConfig, getLogger, INFO, DEBUG
@@ -32,6 +31,7 @@ from telethon.sync import custom, events
 from telethon.sessions import StringSession
 from telethon import Button, functions, types
 from telethon.utils import get_display_name
+from userbot.utils import george, zeus
 
 load_dotenv("config.env")
 
