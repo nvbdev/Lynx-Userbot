@@ -9,7 +9,7 @@ from userbot import CMD_HELP, bot
 from userbot import TEMP_DOWNLOAD_DIRECTORY
 
 
-@register(outgoing=True, pattern="^.webupload ?(.+?|) (?:--)(anonfiles|transfer|filebin|anonymousfiles|megaupload|bayfiles)")
+@register(outgoing=True, pattern=r"^\.webupload ?(.+?|) (?:--)(anonfiles|transfer|filebin|anonymousfiles|megaupload|bayfiles)")
 async def _(event):
     if event.fwd_from:
         return
@@ -42,8 +42,9 @@ async def _(event):
     stdout, stderr = await process.communicate()
     await event.edit(f"{stdout.decode()}")
 
+
 CMD_HELP.update({
-    "webupload":
-        "\n`.webupload --`(`anonfiles`|`transfer`|`filebin`|`anonymousfiles`|`megaupload`|`bayfiles`)\
-         \nUsage: reply `.webupload --anonfiles` or `.webupload --filebin` and the file will be uploaded to that website. "
+    "webupload": "✘ Pʟᴜɢɪɴ : Web Upload\
+    \n\n⚡𝘾𝙈𝘿⚡: `.webupload --`(`anonfiles`|`transfer`|`filebin`|`anonymousfiles`|`megaupload`|`bayfiles`)\
+    \n\n**Example:** reply `.webupload --anonfiles` or `.webupload --filebin` and the file will be uploaded to that website."
 })
