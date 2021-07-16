@@ -202,8 +202,22 @@ INSTAGRAM_ALIVE = os.environ.get(
 INLINE_PICTURE = os.environ.get(
     "INLINE_PICTURE") or "resource/logo/LynxUserbot-Button.jpg"
 
+L_PIC = str(INLINE_PICTURE)
+if L_PIC:
+    lynxlogo = L_PIC
+else:
+    lynxlogo = "resource/logo/LynxUserbot-Button.jpg"
+
+
 INLINE_LOGO = os.environ.get(
     "INLINE_LOGO") or "https://telegra.ph/file/b6580efa28fdc144749d5.jpg"
+
+IN_PIC = str(INLINE_LOGO)
+if IN_PIC:
+    aliplogo = IN_PIC
+else:
+    aliplogo = "https://telegra.ph/file/b6580efa28fdc144749d5.jpg"
+
 
 # Last.fm Module
 BIO_PREFIX = os.environ.get("BIO_PREFIX", None)
@@ -406,8 +420,8 @@ try:
 except AttributeError:
     pass
 
+# ------------------------------ Global Variables --------------------------------- #
 
-# Global Variables
 COUNT_MSG = 0
 USERS = {}
 COUNT_PM = {}
@@ -418,11 +432,8 @@ ISAFK = False
 AFKREASON = None
 ZALG_LIST = {}
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else uname().node
-L_PIC = str(INLINE_PICTURE) if lynxlogo = INLINE_PICTURE else uname().node
-IN_PIC = str(INLINE_LOGO) if aliplogo = INLINE_LOGO else uname().node
 
 # -------------------------------- InlineBot ------------------------------------- #
-
 
 def paginate_help(page_number, loaded_modules, prefix):
     number_of_rows = 5
@@ -462,7 +473,6 @@ def paginate_help(page_number, loaded_modules, prefix):
 
 # -----------------------------------------Reg--------------------------------------- >
 
-
 with lynx:
     try:
         lynx.tgbot = tgbot = TelegramClient(
@@ -471,18 +481,31 @@ with lynx:
             api_hash=API_HASH).start(
             bot_token=BOT_TOKEN)
 
-# -------------------------------------------------------- >
+# -------------------------Flex------------------------------- >
         dugmeler = CMD_HELP
         me = bot.get_me()
         uid = me.id
 
-# --------------------------- >
+# ------------Replc--------------- >
 
         plugins = CMD_HELP
 
+# --------------------------------- InlinePic -------------------------------------- #
+
+        L_PIC = str(INLINE_PICTURE)
+        if L_PIC:
+            lynxlogo = L_PIC
+        else:
+            lynxlogo = "resource/logo/LynxUserbot-Button.jpg"
+
+
+        IN_PIC = str(INLINE_LOGO)
+        if IN_PIC:
+            aliplogo = IN_PIC
+        else:
+            aliplogo = "https://telegra.ph/file/b6580efa28fdc144749d5.jpg"
 
 # ======================================== Inline Handler ======================================== #
-
 
         @lynx.tgbot.on(events.NewMessage(pattern=r"/start"))
         async def handler(event):
