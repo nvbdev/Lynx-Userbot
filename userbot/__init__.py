@@ -432,7 +432,7 @@ AFKREASON = None
 ZALG_LIST = {}
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else uname().node
 
-from userbot.utils import george, zeus
+from userbot.utils import zeus
 
 # -------------------------------- InlineBot ------------------------------------- #
 
@@ -472,7 +472,7 @@ def paginate_help(page_number, loaded_modules, prefix):
     return pairs
 
 # -----------------------------------------Reg--------------------------------------- >
-
+from userbot.utils import george
 with lynx:
     try:
         lynx.tgbot = tgbot = TelegramClient(
