@@ -418,8 +418,8 @@ ISAFK = False
 AFKREASON = None
 ZALG_LIST = {}
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else uname().node
-L_PIC = str(INLINE_PICTURE) if lynxlogo = INLINE_PICTURE else "resource/logo/LynxUserbot-Button.jpg"
-IN_PIC = str(INLINE_LOGO) if aliplogo = INLINE_LOGO else "https://telegra.ph/file/b6580efa28fdc144749d5.jpg"
+L_PIC = str(INLINE_PICTURE) if lynxlogo = INLINE_PICTURE else uname().node
+IN_PIC = str(INLINE_LOGO) if aliplogo = INLINE_LOGO else else uname().node
 
 # -------------------------------- InlineBot ------------------------------------- #
 
