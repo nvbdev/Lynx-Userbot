@@ -256,10 +256,8 @@ async def approvepm(apprvpm):
     getmsg = gvarstatus("unapproved_msg")
     if getmsg is not None:
         UNAPPROVED_MSG = getmsg
-        WARN_PIC = getmsg
     else:
         UNAPPROVED_MSG = DEF_UNAPPROVED_MSG
-        UNAPPROVED_MSG = PM_PERMIT_PIC
 
     async for message in apprvpm.client.iter_messages(
         apprvpm.chat_id, from_user="me", search=UNAPPROVED_MSG
