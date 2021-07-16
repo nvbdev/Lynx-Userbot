@@ -167,8 +167,10 @@ async def auto_accept(event):
         get_message = gvarstatus("unapproved_msg")
         if get_message is not None:
             UNAPPROVED_MSG = get_message
+            WARN_PIC = getmsg
         else:
             UNAPPROVED_MSG = DEF_UNAPPROVED_MSG
+            UNAPPROVED_MSG = PM_PERMIT_PC
         chat = await event.get_chat()
         if isinstance(chat, User):
             if is_approved(event.chat_id) or chat.bot:
@@ -254,8 +256,10 @@ async def approvepm(apprvpm):
     getmsg = gvarstatus("unapproved_msg")
     if getmsg is not None:
         UNAPPROVED_MSG = getmsg
+        WARN_PIC = getmsg
     else:
         UNAPPROVED_MSG = DEF_UNAPPROVED_MSG
+        UNAPPROVED_MSG = PM_PERMIT_PIC
 
     async for message in apprvpm.client.iter_messages(
         apprvpm.chat_id, from_user="me", search=UNAPPROVED_MSG
@@ -376,7 +380,7 @@ async def unblockpm(unblock):
         await unblock.edit("`User already unblocked`")
 
 
-@register(outgoing=True, pattern=r"^.(set|get|reset) pm_msg(?: |$)(\w*)")
+@register(outgoing=True, pattern=r"^\.(set|get|reset) pm_msg(?: |$)(\w*)")
 async def add_pmsg(cust_msg):
     """Set your own Unapproved message"""
     if not PM_AUTO_BAN:
