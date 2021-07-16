@@ -198,6 +198,13 @@ ALIVE_LOGO = os.environ.get(
 INSTAGRAM_ALIVE = os.environ.get(
     "INSTAGRAM_ALIVE") or "instagram.com/si_axeell"
 
+# Inline Picture
+INLINE_PICTURE = os.environ.get(
+    "INLINE_PICTURE") or "resource/logo/LynxUserbot-Button.jpg"
+
+INLINE_LOGO = os.environ.get(
+    "INLINE_LOGO") or "https://telegra.ph/file/b6580efa28fdc144749d5.jpg"
+
 # Last.fm Module
 BIO_PREFIX = os.environ.get("BIO_PREFIX", None)
 DEFAULT_BIO = os.environ.get("DEFAULT_BIO", None)
@@ -411,7 +418,8 @@ ISAFK = False
 AFKREASON = None
 ZALG_LIST = {}
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else uname().node
-
+L_PIC = str(INLINE_PICTURE) if lynxlogo = INLINE_PICTURE else "resource/logo/LynxUserbot-Button.jpg"
+IN_PIC = str(INLINE_LOGO) if aliplogo = INLINE_LOGO else "https://telegra.ph/file/b6580efa28fdc144749d5.jpg"
 
 # -------------------------------- InlineBot ------------------------------------- #
 
@@ -468,10 +476,13 @@ with lynx:
         me = bot.get_me()
         uid = me.id
 
-        aliplogo = "https://telegra.ph/file/b6580efa28fdc144749d5.jpg"
-        lynxlogo = "resource/logo/LynxUserbot-Button.jpg"
+# --------------------------- >
+
         plugins = CMD_HELP
-# ---------------------------- >
+
+
+# ======================================== Inline Handler ======================================== #
+
 
         @lynx.tgbot.on(events.NewMessage(pattern=r"/start"))
         async def handler(event):
