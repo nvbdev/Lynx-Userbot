@@ -577,7 +577,7 @@ with lynx:
                 buttons = paginate_help(0, dugmeler, "helpme")
                 result = builder.photo(
                     file=lynxlogo,
-                    link_preview=False,
+                    link_preview=True,
                     text=f"\n**Bᴏᴛ ᴏꜰ {DEFAULTUSER}**\n\n◎› **Bᴏᴛ ᴠᴇʀ :** `v.{BOT_VER}`\n◎› **Pʟᴜɢɪɴꜱ :** `{len(plugins)}`\n\n**Cᴏᴘʏʀɪɢʜᴛ © 𝟤𝟢𝟤𝟣 Lʏɴx-Uꜱᴇʀʙᴏᴛ**".format(
                         len(dugmeler),
                     ),
@@ -616,7 +616,7 @@ with lynx:
             await event.edit(
                 file=lynxlogo,
                 buttons=buttons,
-                link_preview=False,
+                link_preview=True,
             )
 
         @lynx.tgbot.on(
