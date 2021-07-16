@@ -609,7 +609,7 @@ with lynx:
                              "https://zee.gl/DeployToHeroku")]],
                     link_preview=True,
                 )
-            await event.answer([result] if result else None, )
+            await event.answer([result] if result else None)
 
         @lynx.tgbot.on(
             events.callbackquery.CallbackQuery(  # pylint:disable=E0602
