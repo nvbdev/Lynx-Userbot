@@ -668,7 +668,7 @@ with lynx:
                                        "t.me/LynxUserbot"),
                             Button.url("[⊙] 𝗠𝘆 𝗜𝗻𝘀𝘁𝗮𝗴𝗿𝗮𝗺",
                                        f"{INSTAGRAM_ALIVE}")],
-                        [Button.inline("ᴄʟᴏꜱᴇ", data="close")],
+                        [custom.Button.inline("ᴄʟᴏꜱᴇ", data="close")],
                         [Button.inline("ᴏᴘᴇɴ ᴍᴇɴᴜ ᴀɢᴀɪɴ", data="opener")],
                     ]
                 )
