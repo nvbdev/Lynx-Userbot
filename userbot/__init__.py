@@ -581,6 +581,7 @@ with lynx:
                     text=f"\n**Bᴏᴛ ᴏꜰ {DEFAULTUSER}**\n\n◎› **Bᴏᴛ ᴠᴇʀ :** `v.{BOT_VER}`\n◎› **Pʟᴜɢɪɴꜱ :** `{len(plugins)}`\n\n**Cᴏᴘʏʀɪɢʜᴛ © 𝟤𝟢𝟤𝟣 Lʏɴx-Uꜱᴇʀʙᴏᴛ**".format(
                         len(dugmeler),
                     ),
+                    media=True,
                     buttons=buttons,
                 )
             elif query.startswith("tb_btn"):
@@ -592,6 +593,7 @@ with lynx:
             else:
                 result = builder.article(
                     " ╔╡⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡╞╗ ",
+                    file=lynxlogo,
                     text="""**Anda Bisa Membuat ⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡ Anda Sendiri\nDengan Cara :**__Tekan Dibawah Ini__ 👇""",
                     buttons=[
                         [
@@ -603,7 +605,7 @@ with lynx:
                                 "t.me/FederationSuperGroup/17")]],
                     link_preview=True,
                 )
-            await event.answer([result] if result else None)
+            await event.answer([result] if result else None, gallery=True)
 
         @lynx.tgbot.on(
             events.callbackquery.CallbackQuery(  # pylint:disable=E0602
