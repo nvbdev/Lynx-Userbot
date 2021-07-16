@@ -476,6 +476,9 @@ from userbot.utils import george as lynx
 
 with lynx:
     try:
+        from userbot.utils import george as lynx
+    except AttributeError:
+        return None
         lynx.tgbot = tgbot = TelegramClient(
             "TG_BOT_TOKEN",
             api_id=API_KEY,
