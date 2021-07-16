@@ -419,7 +419,7 @@ AFKREASON = None
 ZALG_LIST = {}
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else uname().node
 L_PIC = str(INLINE_PICTURE) if lynxlogo = INLINE_PICTURE else uname().node
-IN_PIC = str(INLINE_LOGO) if aliplogo = INLINE_LOGO else else uname().node
+IN_PIC = str(INLINE_LOGO) if aliplogo = INLINE_LOGO else uname().node
 
 # -------------------------------- InlineBot ------------------------------------- #
 
