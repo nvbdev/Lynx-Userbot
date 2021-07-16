@@ -1,11 +1,9 @@
 # --------------------------
-def george():
-    global lynx
-    lynx = bot
-    return lynx
+    global george
+    george = bot
+    return george
 
 # --------------------------
-def zeus():
-    global unpage
-    unpage = page_number
-    return unpage
+    global zeus
+    zeus = page_number
+    return zeus
