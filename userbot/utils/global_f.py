@@ -1,4 +1,4 @@
-from userbot import bot
+from userbot import bot, paginate_help
 
 # --------------------------
 george = bot
