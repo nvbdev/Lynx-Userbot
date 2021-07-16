@@ -3,6 +3,7 @@
 # Licensed under the Raphielscape Public License, Version 1.c (the "License");
 # you may not use this file except in compliance with the License.
 #
+""" A module for helping ban group join spammers. """
 
 from asyncio import sleep
 
@@ -35,7 +36,7 @@ async def ANTI_SPAMBOTS(welcm):
             if welcm.user_added:
                 ignore = False
                 try:
-                    adder = welcm.action_message.from_id
+                    adder = welcm.action_message.sender_id
                 except AttributeError:
                     return
 
@@ -54,7 +55,7 @@ async def ANTI_SPAMBOTS(welcm):
                 if users_list:
                     users = welcm.action_message.action.users
                 else:
-                    users = [welcm.action_message.from_id]
+                    users = [welcm.action_message.sender_id]
 
             await sleep(5)
             spambot = False
@@ -80,17 +81,16 @@ async def ANTI_SPAMBOTS(welcm):
                     check_user = await welcm.client.get_entity(user_id)
 
                     # DEBUGGING. LEAVING IT HERE FOR SOME TIME ###
-                    print(
-                        f"User Joined: {check_user.first_name} [ID: {check_user.id}]")
+                    print(f"User Joined: {check_user.first_name} [ID: {check_user.id}]")
                     print(f"Chat: {welcm.chat.title}")
                     print(f"Time: {join_time}")
-                    print(
-                        f"Message Sent: {message.text}\n\n[Time: {message_date}]")
+                    print(f"Message Sent: {message.text}\n\n[Time: {message_date}]")
                     ##############################################
 
                     try:
-                        # https://t.me/combotnews/283
-                        cas_url = f"https://api.cas.chat/check?user_id={check_user.id}"
+                        cas_url = (
+                            f"https://combot.org/api/cas/check?user_id={check_user.id}"
+                        )
                         r = get(cas_url, timeout=3)
                         data = r.json()
                     except BaseException:
@@ -196,8 +196,9 @@ async def ANTI_SPAMBOTS(welcm):
 
 CMD_HELP.update(
     {
-        "anti_spambot": "If enabled in config.env or env var,"
-        "\nthis module will ban(or inform the admins of the group about) the"
-        "\nspammer(s) if they match the userbot's anti-spam algorithm."
+        "anti_spambot": "✘ Pʟᴜɢɪɴ : Anti Spammer(s)"
+        "\n\nIf Enabled in config.env or env var,"
+        "\nthis module will BAN(or inform the Admins of The Group about) the"
+        "\nSpammer(s) if they match The Userbot's Anti-Spam Algorithm."
     }
 )
