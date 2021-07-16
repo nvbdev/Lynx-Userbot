@@ -31,7 +31,6 @@ from telethon.sync import custom, events
 from telethon.sessions import StringSession
 from telethon import Button, functions, types
 from telethon.utils import get_display_name
-from userbot.utils import george, zeus
 
 load_dotenv("config.env")
 
@@ -432,6 +431,8 @@ ISAFK = False
 AFKREASON = None
 ZALG_LIST = {}
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else uname().node
+
+from userbot.utils import george, zeus
 
 # -------------------------------- InlineBot ------------------------------------- #
 
