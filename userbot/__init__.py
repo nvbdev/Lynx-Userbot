@@ -17,7 +17,7 @@ from time import sleep
 import platform
 import psutil
 from platform import python_version, uname
-from userbot.utils import george, unpage
+from userbot.utils import george, zeus
 from telethon import TelegramClient, version
 from sys import version_info
 from logging import basicConfig, getLogger, INFO, DEBUG
