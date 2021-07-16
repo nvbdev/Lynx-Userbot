@@ -31,3 +31,8 @@ from .tools import (
     is_admin,
     check_media
 )
+
+def george():
+    global lynx
+    lynx = bot
+    return lynx
