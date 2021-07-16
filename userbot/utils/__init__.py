@@ -16,7 +16,6 @@
 
 from .chrome import chrome, options
 from .google_images_download import googleimagesdownload
-from .global_f import george, zeus
 from .progress import progress
 from .checker import is_admin
 from .tools import (
