@@ -604,9 +604,9 @@ with lynx:
                             custom.Button.url(
                                 "Dᴇᴠᴇʟᴏᴘᴇʀ",
                                 "t.me/FederationSuperGroup/17")],
-                         [custom.Button.url(
-                              "⚒️ 𝗗𝗘𝗣𝗟𝗢𝗬 ⚒️",
-                              "https://zee.gl/DeployToHeroku")]],
+                        [custom.Button.url(
+                             "⚒️ 𝗗𝗘𝗣𝗟𝗢𝗬 ⚒️",
+                             "https://zee.gl/DeployToHeroku")]],
                     link_preview=True,
                 )
             await event.answer([result] if result else None, )
