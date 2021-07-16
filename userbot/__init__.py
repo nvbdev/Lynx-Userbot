@@ -17,6 +17,7 @@ from time import sleep
 import platform
 import psutil
 from platform import python_version, uname
+from userbot.utils import george, unpage
 from telethon import TelegramClient, version
 from sys import version_info
 from logging import basicConfig, getLogger, INFO, DEBUG
@@ -31,7 +32,6 @@ from telethon.sync import custom, events
 from telethon.sessions import StringSession
 from telethon import Button, functions, types
 from telethon.utils import get_display_name
-from userbot.utils import george
 
 load_dotenv("config.env")
 
@@ -438,7 +438,6 @@ DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else uname().node
 def paginate_help(page_number, loaded_modules, prefix):
     number_of_rows = 5
     number_of_cols = 2
-    global unpage
     unpage = page_number
     helpable_modules = [p for p in loaded_modules if not p.startswith("_")]
     helpable_modules = sorted(helpable_modules)
