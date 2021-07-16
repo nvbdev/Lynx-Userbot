@@ -1,9 +1,8 @@
 # --------------------------
-    global george
-    george = bot
-    return george
+global george
+george = bot
 
 # --------------------------
-    global zeus
-    zeus = page_number
-    return zeus
+global zeus
+zeus = page_number
+
