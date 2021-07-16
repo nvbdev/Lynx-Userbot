@@ -31,6 +31,7 @@ from telethon.sync import custom, events
 from telethon.sessions import StringSession
 from telethon import Button, functions, types
 from telethon.utils import get_display_name
+from userbot.utils import george
 
 load_dotenv("config.env")
 
@@ -452,7 +453,7 @@ def paginate_help(page_number, loaded_modules, prefix):
     return pairs
 
 # -----------------------------------------Reg--------------------------------------- >
-lynx = bot
+
 
 with lynx:
     try:
