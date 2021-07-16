@@ -13,4 +13,4 @@ COPY ./sample_config.env ./config.env* /home/Lynx-Userbot/
 WORKDIR /home/Lynx-Userbot/
 
 # Finishim
-CMD ["python3","-m","userbot"]
+CMD ["bash","./resource/startup/startup.sh"]
