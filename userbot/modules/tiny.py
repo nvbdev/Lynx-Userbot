@@ -2,8 +2,6 @@
 # Based Plugins
 # Fixed By ManusiaRakitann/Koala
 # Dont Remove
-
-
 # Alvin Ganteng
 
 from PIL import Image
@@ -15,13 +13,13 @@ from userbot import CMD_HELP, bot
 # Ngapain Kesini Ajg Hus
 
 
-@register(outgoing=True, pattern="^.tiny(?: |$)(.*)", disable_errors=True)
+@register(outgoing=True, pattern=r"^\.tiny(?: |$)(.*)", disable_errors=True)
 async def _(event):
     reply = await event.get_reply_message()
     if not (reply and (reply.media)):
         await event.edit("`Mohon Balas Ke Sticker`")
         return
-    xx = await event.edit("`Memproses Tiny....`")
+    xx = await event.edit("`Proccesing....`")
     ik = await bot.download_media(reply)
     im1 = Image.open("userbot/utils/styles/Lynx-Userbot.png")
     if ik.endswith(".tgs"):
@@ -87,9 +85,8 @@ async def _(event):
     os.remove(file)
     os.remove(ik)
 
-# Port By Alvin Ganteng/liualvinas
-# Lord - Userbot
 
 CMD_HELP.update({
-    "tiny": "⚡𝘾𝙈𝘿⚡: `.tiny`\
+    "tiny": "✘ Pʟᴜɢɪɴ : Tiny\
+    \n\n⚡𝘾𝙈𝘿⚡: `.tiny`\
     \n↳ : Untuk Memperkecil Sticker."})
