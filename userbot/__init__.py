@@ -532,7 +532,7 @@ with lynx:
                 await event.reply(
                     f"⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡ Deploy to Heroku, Click Here 👇🏻",
                     buttons=[
-                        [Button.url("⚒️ 𝗗𝗘𝗣𝗟𝗢𝗬 ⚒️", "https://heroku.com/deploy?template=https://github.com/KENZO-404/Lynx-Userbot/tree/Lynx-Userbot")],
+                        [Button.url("⚒️ 𝗗𝗘𝗣𝗟𝗢𝗬 ⚒️", "https://zee.gl/DeployToHeroku")],
                         [Button.url("👥 𝗚𝗥𝗢𝗨𝗣 👥", "t.me/GroupTidakDiketahui")],
                     ],
                 )
@@ -603,7 +603,10 @@ with lynx:
                                 "https://zee.gl/lynx404"),
                             custom.Button.url(
                                 "Dᴇᴠᴇʟᴏᴘᴇʀ",
-                                "t.me/FederationSuperGroup/17")]],
+                                "t.me/FederationSuperGroup/17")],
+                         [custom.Button.url(
+                              "⚒️ 𝗗𝗘𝗣𝗟𝗢𝗬 ⚒️",
+                              "https://zee.gl/DeployToHeroku")]],
                     link_preview=True,
                 )
             await event.answer([result] if result else None, )
