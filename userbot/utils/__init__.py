@@ -31,15 +31,3 @@ from .tools import (
     is_admin,
     check_media
 )
-
-# --------------------------
-def george():
-    global lynx
-    lynx = bot
-    return lynx
-
-# --------------------------
-def zeus():
-    global unpage
-    unpage = page_number
-    return unpage
