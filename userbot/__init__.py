@@ -58,7 +58,7 @@ else:
     basicConfig(
         format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
         level=INFO)
-LOGS = getLogger(__name__) or getLogger("userbot")
+LOGS = getLogger(__name__)
 
 if version_info[0] < 3 or version_info[1] < 8:
     LOGS.info("You MUST have a python version of at least 3.8."
@@ -321,7 +321,11 @@ for binary, path in binaries.items():
     downloader.start()
     os.chmod(path, 0o755)
 
+# Logs
+from .core.logger import logging
+LOGS = logging.getLogger("userbot")
 
+# PM LOGGER_GROUP
 from userbot.modules.sql_helper.globals import gvarstatus
 if PM_LOGGER_GROUP_ID == 0:
     if gvarstatus("PM_LOGGER_GROUP_ID") is None:
