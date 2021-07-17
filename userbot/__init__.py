@@ -154,14 +154,6 @@ PM_LOGGER_GROUP_ID = int(
     or 0
 )
 
-if PM_LOGGER_GROUP_ID == 0:
-    if gvarstatus("PM_LOGGER_GROUP_ID") is None:
-        PM_LOGGER_GROUP_ID = -100
-    else:
-        PM_LOGGER_GROUP_ID = int(gvarstatus("PM_LOGGER_GROUP_ID"))
-elif str(PM_LOGGER_GROUP_ID)[0] != "-":
-    PM_LOGGER_GROUP_ID = int("-" + str(PM_LOGGER_GROUP_ID))
-
 # OpenWeatherMap API Key
 OPEN_WEATHER_MAP_APPID = os.environ.get("OPEN_WEATHER_MAP_APPID", None)
 WEATHER_DEFCITY = os.environ.get("WEATHER_DEFCITY", None)
@@ -328,6 +320,16 @@ for binary, path in binaries.items():
     downloader = SmartDL(binary, path, progress_bar=False)
     downloader.start()
     os.chmod(path, 0o755)
+
+
+from userbot.modules.sql_helper.globals import gvarstatus
+if PM_LOGGER_GROUP_ID == 0:
+    if gvarstatus("PM_LOGGER_GROUP_ID") is None:
+        PM_LOGGER_GROUP_ID = -100
+    else:
+        PM_LOGGER_GROUP_ID = int(gvarstatus("PM_LOGGER_GROUP_ID"))
+elif str(PM_LOGGER_GROUP_ID)[0] != "-":
+    PM_LOGGER_GROUP_ID = int("-" + str(PM_LOGGER_GROUP_ID))
 
 
 def shutdown_bot(signum, frame):
