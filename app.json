@@ -165,7 +165,11 @@
       "description": "Contoh : instagram.com/si_axeell , Silahkan diisi Dengan Username ig Kalian.",
       "value": "instagram.com/username_ig",
       "required": false
-   },
+    },
+    "SPAMWATCH_API"
+      "description": "Pergi ke @SpamWatchBot di Telegram untuk mendapatkan SPAMWATCH_API.",
+      "required": false
+    },
     "LYDIA_API_KEY": {
       "description": "This Module Needs CoffeeHouse API to work. so Join https://telegram.dog/IntellivoidDev and send #activateapi and follow instructions.",
       "required": false
