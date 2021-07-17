@@ -85,7 +85,7 @@ if ANTISPAMBOT_BAN:
                     await event.client.edit_permissions(
                         event.chat_id, user.id, view_messages=False
                     )
-                    catbanned = True
+                    lynxbanned = True
                 except Exception as e:
                     LOGS.info(e)
         if not lynxbanned:
@@ -106,7 +106,7 @@ if ANTISPAMBOT_BAN:
                     await event.client.edit_permissions(
                         event.chat_id, user.id, view_messages=False
                     )
-                    catbanned = True
+                    lynxbanned = True
                 except Exception as e:
                     LOGS.info(e)
         if BOTLOG and lynxbanned:
