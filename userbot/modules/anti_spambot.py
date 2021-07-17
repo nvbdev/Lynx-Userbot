@@ -39,7 +39,7 @@ if ANTISPAMBOT_BAN:
         if not event.user_joined and not event.user_added:
             return
         user = await event.get_user()
-        lynxadmin = await is_admin(event.client, event.chat_id, event.client.uid)
+        lynxadmin = await is_admin(event.client, event.chat_id)
         if not lynxadmin:
             return
         lynxbanned = None
@@ -50,7 +50,7 @@ if ANTISPAMBOT_BAN:
                 adder = event.action_message.sender_id
             except AttributeError:
                 return
-        async for admin in event.client.iter_participants(
+        async for admin in bot.iter_participants(
             event.chat_id, filter=ChannelParticipantsAdmins
         ):
             if admin.id == adder:
@@ -134,7 +134,7 @@ async def caschecker(event):
     try:
         cas_count, members_count = (0,) * 2
         banned_users = ""
-        async for user in event.client.iter_participants(info.id):
+        async for user in bot.iter_participants(info.id):
             if banchecker(user.id):
                 cas_count += 1
                 if not user.deleted:
@@ -173,7 +173,7 @@ async def caschecker(event):
     try:
         cas_count, members_count = (0,) * 2
         banned_users = ""
-        async for user in event.client.iter_participants(info.id):
+        async for user in bot.iter_participants(info.id):
             if spamchecker(user.id):
                 cas_count += 1
                 if not user.deleted:
