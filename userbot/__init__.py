@@ -358,14 +358,14 @@ def migration_workaround():
 # 'bot' variable
 if STRING_SESSION:
     # pylint: disable=invalid-name
-    bot = TelegramClient(StringSession(str(STRING_SESSION))
+    session = StringSession(str(STRING_SESSION))
 else:
     # pylint: disable=invalid-name
-    bot = "userbot"
+    session = "userbot"
 try:
     # pylint: disable=invalid-name
     bot = TelegramClient(
-      session=bot,
+      session=session,
       api_id=API_KEY,
       api_hash=API_HASH,
       connection=ConnectionTcpAbridged,
