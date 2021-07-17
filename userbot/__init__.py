@@ -11,6 +11,7 @@ import time
 import re
 import io
 import random
+import spamwatch as spam_watch
 
 from datetime import datetime
 from time import sleep
@@ -159,6 +160,19 @@ UB_BLACK_LIST_CHAT = os.environ.get("UB_BLACK_LIST_CHAT", None)
 # Anti Spambot Config
 ANTI_SPAMBOT = sb(os.environ.get("ANTI_SPAMBOT", "False"))
 ANTI_SPAMBOT_SHOUT = sb(os.environ.get("ANTI_SPAMBOT_SHOUT", "False"))
+
+# Antispambot BAN
+ANTISPAMBOT_BAN = os.environ.get("ANTISPAMBOT_BAN", False)
+
+# Dapatkan Spamwatch API ke @SpamWatchBot di Telegram
+SPAMWATCH_API = os.environ.get("SPAMWATCH_API", None)
+
+if SPAMWATCH_API:
+    ur_token = SPAMWATCH_API
+    spamwatch = spam_watch.Client(ur_token)
+else:
+    spamwatch = None
+
 
 # Youtube API key
 YOUTUBE_API_KEY = os.environ.get("YOUTUBE_API_KEY", None)
