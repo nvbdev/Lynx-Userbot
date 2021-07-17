@@ -12,6 +12,7 @@ import re
 import io
 import random
 import spamwatch as spam_watch
+import heroku3
 
 from datetime import datetime
 from time import sleep
@@ -57,7 +58,7 @@ else:
     basicConfig(
         format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
         level=INFO)
-LOGS = getLogger(__name__)
+LOGS = getLogger(__name__) or getLogger("userbot")
 
 if version_info[0] < 3 or version_info[1] < 8:
     LOGS.info("You MUST have a python version of at least 3.8."
@@ -147,7 +148,19 @@ GOOGLE_CHROME_BIN = os.environ.get(
 # set to True if you want to log PMs to your PM_LOGGR_BOT_API_ID
 NC_LOG_P_M_S = bool(os.environ.get("NC_LOG_P_M_S", False))
 # send .get_id in any channel to forward all your NEW PMs to this group
-PM_LOGGR_BOT_API_ID = int(os.environ.get("PM_LOGGR_BOT_API_ID", "-100"))
+PM_LOGGER_GROUP_ID = int(
+    os.environ.get("PM_LOGGER_GROUP_ID")
+    or os.environ.get("PM_LOGGR_BOT_API_ID")
+    or 0
+)
+
+if PM_LOGGER_GROUP_ID == 0:
+    if gvarstatus("PM_LOGGER_GROUP_ID") is None:
+        PM_LOGGER_GROUP_ID = -100
+    else:
+        PM_LOGGER_GROUP_ID = int(gvarstatus("PM_LOGGER_GROUP_ID"))
+elif str(PM_LOGGER_GROUP_ID)[0] != "-":
+    PM_LOGGER_GROUP_ID = int("-" + str(PM_LOGGER_GROUP_ID))
 
 # OpenWeatherMap API Key
 OPEN_WEATHER_MAP_APPID = os.environ.get("OPEN_WEATHER_MAP_APPID", None)
