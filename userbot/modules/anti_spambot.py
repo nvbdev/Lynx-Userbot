@@ -40,7 +40,7 @@ if ANTISPAMBOT_BAN:
         if not event.user_joined and not event.user_added:
             return
         user = await event.client.get_entity(event.chat_id)
-        lynxadmin = await is_admin(event.client, event.chat_id)
+        lynxadmin = await is_admin(event.client, event.chat_id, event.client.uid)
         if not lynxadmin:
             return
         lynxbanned = None
@@ -52,7 +52,7 @@ if ANTISPAMBOT_BAN:
             except AttributeError:
                 return
         async for admin in event.client.iter_participants(
-            event.client, event.chat_id, filter=ChannelParticipantsAdmins
+            event.chat_id, filter=ChannelParticipantsAdmins
         ):
             if admin.id == adder:
                 ignore = True
