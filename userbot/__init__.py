@@ -636,31 +636,7 @@ with lynx:
                     ),
                     buttons=buttons,
                 )
-            elif query.startswith("tb_btn"):
-                result = builder.article(
-                    "Bantuan Dari ⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡ ",
-                    text="Daftar Plugins",
-                    buttons=[],
-                    link_preview=False)
-            else:
-                result = builder.article(
-                    " ╔╡⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡╞╗ ",
-                    file=lynxlogo,
-                    text="""**Anda Bisa Membuat ⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡ Anda Sendiri\nDengan Cara :**__Tekan Dibawah Ini__ 👇""",
-                    buttons=[
-                        [
-                            custom.Button.url(
-                                "⚡𝗟𝘆𝗻𝘅⚡",
-                                "https://zee.gl/lynx404"),
-                            custom.Button.url(
-                                "Dᴇᴠᴇʟᴏᴘᴇʀ",
-                                "t.me/FederationSuperGroup/17")],
-                        [custom.Button.url(
-                             "⚒️ 𝗗𝗘𝗣𝗟𝗢𝗬 ⚒️",
-                             "https://zee.gl/DeployToHeroku")]],
-                    link_preview=True,
-                )
-           elif event.query.user_id == uid and query.startswith("@LynxAliveRobot"):
+            elif query.startswith("@LynxAliveRobot"):
                result = builder.photo(
                    file=alivvlogo,
                    link_preview=False,
