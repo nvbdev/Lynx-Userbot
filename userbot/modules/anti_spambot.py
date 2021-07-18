@@ -12,6 +12,7 @@ from requests import get
 from telethon.errors import ChatAdminRequiredError
 from telethon.events import ChatAction
 from telethon.tl.types import ChannelParticipantsAdmins
+from telethon.utils import get_display_name
 
 from userbot.modules.sql_helper.globalban_sql import get_gbanuser, is_gbanned
 from userbot.utils import edit_or_reply
@@ -38,7 +39,7 @@ if ANTISPAMBOT_BAN:
     async def anti_spambot(event):  # sourcery no-metrics
         if not event.user_joined and not event.user_added:
             return
-        user = await event.get_user()
+        user = await event.client.get_entity(event.chat_id)
         lynxadmin = await is_admin(event.client, event.chat_id, event.user_id)
         if not lynxadmin:
             return
@@ -50,7 +51,7 @@ if ANTISPAMBOT_BAN:
                 adder = event.action_message.sender_id
             except AttributeError:
                 return
-        async for admin in bot.iter_participants(
+        async for admin in event.client.iter_participants(
             event.chat_id, filter=ChannelParticipantsAdmins
         ):
             if admin.id == adder:
@@ -62,11 +63,11 @@ if ANTISPAMBOT_BAN:
             lynxgban = get_gbanuser(user.id)
             if lynxgban.reason:
                 hmm = await event.reply(
-                    f"[{user.first_name}](tg://user?id={user.id}) was gbanned by you for the reason `{lynxgban.reason}`"
+                    f"[{get_display_name(user)}](tg://user?id={user.id}) was gbanned by you for the reason `{lynxgban.reason}`"
                 )
             else:
                 hmm = await event.reply(
-                    f"[{user.first_name}](tg://user?id={user.id}) was gbanned by you"
+                    f"[{get_display_name(user)}](tg://user?id={user.id}) was gbanned by you"
                 )
             try:
                 await event.client.edit_permissions(
@@ -79,7 +80,7 @@ if ANTISPAMBOT_BAN:
             ban = spamwatch.get_ban(user.id)
             if ban:
                 hmm = await event.reply(
-                    f"[{user.first_name}](tg://user?id={user.id}) was banned by spamwatch for the reason `{ban.reason}`"
+                    f"[{get_display_name(user)}](tg://user?id={user.id}) was banned by spamwatch for the reason `{ban.reason}`"
                 )
                 try:
                     await event.client.edit_permissions(
@@ -100,7 +101,7 @@ if ANTISPAMBOT_BAN:
                     f"[Banned by Combot Anti Spam](https://cas.chat/query?u={user.id})"
                 )
                 hmm = await event.reply(
-                    f"[{user.first_name}](tg://user?id={user.id}) was banned by Combat anti-spam service(CAS) for the reason check {reason}"
+                    f"[{get_display_name(user)}](tg://user?id={user.id}) was banned by Combat anti-spam service(CAS) for the reason check {reason}"
                 )
                 try:
                     await event.client.edit_permissions(
@@ -113,7 +114,7 @@ if ANTISPAMBOT_BAN:
             await event.client.send_message(
                 BOTLOG_CHATID,
                 "#ANTISPAMBOT\n"
-                f"**User :** [{user.first_name}](tg://user?id={user.id})\n"
+                f"**User :** [{get_display_name(user)}](tg://user?id={user.id})\n"
                 f"**Chat :** {event.chat.title} (`{event.chat_id}`)\n"
                 f"**Reason :** {hmm.text}",
             )
@@ -134,7 +135,7 @@ async def caschecker(event):
     try:
         cas_count, members_count = (0,) * 2
         banned_users = ""
-        async for user in bot.iter_participants(info.id):
+        async for user in event.client.iter_participants(info.id):
             if banchecker(user.id):
                 cas_count += 1
                 if not user.deleted:
@@ -173,7 +174,7 @@ async def caschecker(event):
     try:
         cas_count, members_count = (0,) * 2
         banned_users = ""
-        async for user in bot.iter_participants(info.id):
+        async for user in event.client.iter_participants(info.id):
             if spamchecker(user.id):
                 cas_count += 1
                 if not user.deleted:
