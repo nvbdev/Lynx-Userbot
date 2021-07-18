@@ -123,11 +123,11 @@ if ANTISPAMBOT_BAN:
 @register(outgoing=True, groups_only=True, pattern=r"^\.cascheck$")
 async def caschecker(event):
     "Searches for cas(combot antispam service) banned users in group and shows you the list"
+    text = ""
     lynxevent = await edit_or_reply(
         event,
         "`checking any cas(combot antispam service) banned users here, this may take several minutes too......`",
     )
-    text = ""
     try:
         info = await event.client.get_entity(event.chat_id)
     except (TypeError, ValueError) as err:
