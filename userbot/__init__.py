@@ -608,6 +608,38 @@ with lynx:
                                       ]
                                       )
 
+
+        @lynx.tgbot.on(events.NewMessage(pattern=r"/alive"))
+        async def handler(event):
+            query = event.text
+            uname = platform.uname()
+            cpufreq = psutil.cpu_freq()
+            if event.query.user_id == uid and query.startswith("/alive"):
+                text = (
+                    f"`Robot` **is running on** `{repo.active_branch.name}`\n"
+                    "`====================================`\n"
+                    f"💻 `OS          :` Debian GNU/{uname.system} 10 {uname.machine}\n"
+                    f"💻 `Kernel      :` {uname.release}\n"
+                    f"💻 `CPU         :` Intel Xeon E5-2670 @ {cpufreq.current:.2f}Ghz\n"
+                    f"🐍 `Python      :` v. {python_version()}\n"
+                    f"⚙️ `Telethon    :` v. {version.__version__}\n"
+                    f"👨‍💻 `User        :` {DEFAULTUSER}\n"
+                    "`====================================`\n"
+                    f" Copyright © 𝟤𝟢𝟤𝟣 Lynx-Userbot\n License : Raphielscape Public License v1.d")
+            await lynx.tgbot.send_file(event.chat_id, file=lynxlogo,
+                                       caption=text,
+                                       buttons=[
+                                           [
+                                               Button.url("⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡",
+                                                           "t.me/LynxUserbot"),
+                                               Button.url("[⊙] 𝗠𝘆 𝗜𝗻𝘀𝘁𝗮𝗴𝗿𝗮𝗺",
+                                                           f"{INSTAGRAM_ALIVE}")],
+                                           [Button.inline("ᴏᴘᴇɴ ᴍᴇɴᴜ ᴀɢᴀɪɴ", data="opener")],
+                                       ]
+                                       )
+
+
+
         @lynx.tgbot.on(events.NewMessage(pattern=r"/ping"))
         async def handler(event):
             if event.message.from_id != uid:
@@ -639,10 +671,10 @@ with lynx:
             elif query.startswith("@LynxAliveRobot"):
                 buttons = [
                     [
-                           Button.url("⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡",
-                                       "t.me/LynxUserbot"),
-                           Button.url("[⊙] 𝗠𝘆 𝗜𝗻𝘀𝘁𝗮𝗴𝗿𝗮𝗺",
-                                       f"{INSTAGRAM_ALIVE}")],
+                          Button.url("⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡",
+                                     "t.me/LynxUserbot"),
+                          Button.url("[⊙] 𝗠𝘆 𝗜𝗻𝘀𝘁𝗮𝗴𝗿𝗮𝗺",
+                                     f"{INSTAGRAM_ALIVE}")],
                     [Button.inline("ᴏᴘᴇɴ ᴍᴇɴᴜ ᴀɢᴀɪɴ", data="opener")],
                 ]
                 result = builder.photo(
