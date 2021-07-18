@@ -650,7 +650,7 @@ with lynx:
                    link_preview=False,
                    text=f"`Robot` **is running on** `{repo.active_branch.name}`\n`====================================`\n💻 `OS          :` Debian GNU/{uname.system} 10 {uname.machine}\n💻 `Kernel      :` {uname.release}\n💻 `CPU         :` Intel Xeon E5-2670 @ {cpufreq.current:.2f}Ghz\nPython      :` v. {python_version()}\nTelethon    :` v. {version.__version__}\nUser        :` {DEFAULTUSER}\n`====================================`\n Copyright © 𝟤𝟢𝟤𝟣 Lynx-Userbot\n License : Raphielscape Public License v1.d"
                    ),
-                   buttons=buttons,
+                   buttons=buttons
               )
             else:
                 result = builder.article(
