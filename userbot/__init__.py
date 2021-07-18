@@ -611,29 +611,26 @@ with lynx:
 
         @lynx.tgbot.on(events.NewMessage(pattern=r"/alive"))
         async def handler(event):
-            uname = platform.uname()
-            cpufreq = psutil.cpu_freq()
             if event.message.from_id != uid:
                 text = (
-                    f"`Robot` **is running on** `{repo.active_branch.name}`\n"
+                    f"`Robot` **is running on** `Lynx-Userbot`\n"
                     "`====================================`\n"
-                    f"💻 `OS          :` Debian GNU/{uname.system} 10 {uname.machine}\n"
-                    f"💻 `Kernel      :` {uname.release}\n"
-                    f"💻 `CPU         :` Intel Xeon E5-2670 @ {cpufreq.current:.2f}Ghz\n"
-                    f"🐍 `Python      :` v. {python_version()}\n"
-                    f"⚙️ `Telethon    :` v. {version.__version__}\n"
-                    f"👨‍💻 `User        :` {DEFAULTUSER}\n"
+                    f"💻 `OS          :` Debian GNU/Linux 10 x86_64\n"
+                    f"💻 `Kernel      :` 4.4.0-1093-aws\n"
+                    f"💻 `CPU         :` Intel Xeon E5-2670 @ 2494.01Ghz\n"
+                    f"🐍 `Python      :` v. 3.9.6\n"
+                    f"⚙️ `Telethon    :` v. 1.23.0\n"
+                    f"👨‍💻 `My Owner    :` ＫΞＮＺＯ\n"
                     "`====================================`\n"
                     f" Copyright © 𝟤𝟢𝟤𝟣 Lynx-Userbot\n License : Raphielscape Public License v1.d")
             await lynx.tgbot.send_file(event.chat_id, file=lynxlogo,
                                        caption=text,
                                        buttons=[
                                            [
-                                               Button.url("⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡",
-                                                           "t.me/LynxUserbot"),
-                                               Button.url("[⊙] 𝗠𝘆 𝗜𝗻𝘀𝘁𝗮𝗴𝗿𝗮𝗺",
-                                                           f"{INSTAGRAM_ALIVE}")],
-                                           [Button.inline("ᴏᴘᴇɴ ᴍᴇɴᴜ ᴀɢᴀɪɴ", data="opener")],
+                                               Button.url("🧪𝗥𝗘𝗣𝗢",
+                                                          "https://zee.gl/lynx404"),
+                                               Button.url("𝗥𝗣𝗟 𝘃𝟭.𝗱🎖️",
+                                                          "https://github.com/KENZO-404/Lynx-Userbot/blob/Lynx-Userbot/LICENSE")],
                                        ]
                                        )
 
