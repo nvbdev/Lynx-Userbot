@@ -644,8 +644,7 @@ with lynx:
                            Button.url("[⊙] 𝗠𝘆 𝗜𝗻𝘀𝘁𝗮𝗴𝗿𝗮𝗺",
                                        f"{INSTAGRAM_ALIVE}")],
                    [Button.inline("ᴏᴘᴇɴ ᴍᴇɴᴜ ᴀɢᴀɪɴ", data="opener")],
-                   ]
-               )
+               ]
                result = builder.photo(
                    file=alivvlogo,
                    link_preview=False,
