@@ -39,8 +39,9 @@ if ANTISPAMBOT_BAN:
     async def anti_spambot(event):  # sourcery no-metrics
         if not event.user_joined and not event.user_added:
             return
-        user = await event.client.get_entity(event.user_id)
-        lynxadmin = await is_admin(event.client, event.chat_id, event.user_id)
+        user = await event.client.get_entity(event.chat_id)
+        uid = me.id
+        lynxadmin = await is_admin(event.client, event.chat_id, event.uid)
         if not lynxadmin:
             return
         lynxbanned = None
