@@ -39,11 +39,8 @@ if ANTISPAMBOT_BAN:
     async def anti_spambot(event):  # sourcery no-metrics
         if not event.user_joined and not event.user_added:
             return
-        try:
-           user = await event.client.get_entity(event.chat_id)
-        except (TypeError, ValueError) as err:
-           return await event.edit(str(err))
-        lynxadmin = await is_admin(event.client, event.chat_id)
+        user = await event.client.get_entity(event.chat_id)
+        lynxadmin = await is_admin(event.chat_id)
         if not lynxadmin:
             return
         lynxbanned = None
@@ -142,21 +139,21 @@ async def caschecker(event):
             if banchecker(user.id):
                 cas_count += 1
                 if not user.deleted:
-                    banned_users += f"{user.first_name}-`{user.id}`\n"
+                    banned_users += f"{get_display_name(user)}-`{user.id}`\n"
                 else:
                     banned_users += f"Deleted Account `{user.id}`\n"
             members_count += 1
-        text = "**Warning!** Found `{}` of `{}` users are CAS Banned:\n".format(
+        text = "**⚠️ WARNING ⚠️**\nFound `{}` of `{}` Users are CAS Banned:\n".format(
             cas_count, members_count
         )
         text += banned_users
         if not cas_count:
             text = "No CAS Banned users found!"
     except ChatAdminRequiredError as carerr:
-        await lynxevent.edit("`CAS check failed: Admin privileges are required`")
+        await lynxevent.edit("`CAS Check Failed: Admin Privileges are Required`")
         return
     except BaseException as be:
-        await lynxevent.edit("`CAS check failed`")
+        await lynxevent.edit("`CAS Check Failed.`")
         return
     await lynxevent.edit(text)
 
@@ -181,21 +178,21 @@ async def caschecker(event):
             if spamchecker(user.id):
                 cas_count += 1
                 if not user.deleted:
-                    banned_users += f"{user.first_name}-`{user.id}`\n"
+                    banned_users += f"{get_display_name(user)}-`{user.id}`\n"
                 else:
                     banned_users += f"Deleted Account `{user.id}`\n"
             members_count += 1
-        text = "**Warning! **Found `{}` of `{}` users are spamwatch Banned:\n".format(
+        text = "**⚠️ WARNING ⚠️**\nFound `{}` of `{}` users are SpamWatch Banned:\n".format(
             cas_count, members_count
         )
         text += banned_users
         if not cas_count:
             text = "No spamwatch Banned users found!"
     except ChatAdminRequiredError as carerr:
-        await lynxevent.edit("`spamwatch check failed: Admin privileges are required`")
+        await lynxevent.edit("`SpamWatch check Failed: Admin Privileges are Required.`")
         return
     except BaseException as be:
-        await lynxevent.edit("`spamwatch check failed`")
+        await lynxevent.edit("`SpamWatch Check Failed.`")
         return
     await lynxevent.edit(text)
 
