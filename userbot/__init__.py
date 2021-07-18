@@ -12,7 +12,6 @@ import re
 import io
 import random
 import spamwatch as spam_watch
-import heroku3
 
 from datetime import datetime
 from time import sleep
