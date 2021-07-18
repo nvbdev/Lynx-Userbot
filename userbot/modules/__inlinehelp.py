@@ -48,3 +48,26 @@ async def yardim(event):
     else:
         return await event.edit("`The bot doesn't work! Please set the Bot Token and Username correctly.`"
                                 "\n`The module has been stopped.`")
+    
+    
+    
+@register(outgoing=True, pattern=r"^\.alynx")
+async def yardim(event):
+    lynxbotusername = BOT_USERNAME
+    if lynxbotusername and BOT_TOKEN:
+        try:
+            results = await event.client.inline_query(
+                lynxbotusername,
+                "@LynxAliveRobot"
+            )
+        except BotInlineDisabledError:
+            return await event.edit("`Bot can't be used in inline mode.\nMake sure to turn on inline mode!`")
+        await results[0].click(
+            event.chat_id,
+            reply_to=event.reply_to_msg_id,
+            hide_via=True
+        )
+        await event.delete()
+    else:
+        return await event.edit("`The bot doesn't work! Please set the Bot Token and Username correctly.`"
+                                "\n`The module has been stopped.`")
