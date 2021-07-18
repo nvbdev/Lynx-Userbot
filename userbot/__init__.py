@@ -611,7 +611,6 @@ with lynx:
 
         @lynx.tgbot.on(events.NewMessage(pattern=r"/alive"))
         async def handler(event):
-            query = event.text
             uname = platform.uname()
             cpufreq = psutil.cpu_freq()
             if event.message.from_id != uid:
