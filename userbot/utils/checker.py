@@ -11,7 +11,7 @@ async def is_admin(bot, chat_id, userid):
     if not str(chat_id).startswith("-100"):
         return False
     try:
-        req_jo = await bot(GetParticipantRequest(channel=chat_id, userid))
+        req_jo = await bot(GetParticipantRequest(channel=chat_id, entity=userid))
         chat_participant = req_jo.participant
         if isinstance(
             chat_participant, (ChannelParticipantCreator, ChannelParticipantAdmin)
