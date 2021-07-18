@@ -614,7 +614,7 @@ with lynx:
             query = event.text
             uname = platform.uname()
             cpufreq = psutil.cpu_freq()
-            if event.query.user_id == uid and query.startswith("/alive"):
+            if event.message.from_id != uid:
                 text = (
                     f"`Robot` **is running on** `{repo.active_branch.name}`\n"
                     "`====================================`\n"
