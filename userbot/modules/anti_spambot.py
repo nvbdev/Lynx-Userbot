@@ -39,7 +39,7 @@ if ANTISPAMBOT_BAN:
     async def anti_spambot(event):  # sourcery no-metrics
         if not event.user_joined and not event.user_added:
             return
-        user = await event.client.get_entity()
+        user = await bot.get_entity(event.chat_id)
         lynxadmin = await is_admin(event.client, event.chat_id, event.client.uid)
         if not lynxadmin:
             return
@@ -51,7 +51,7 @@ if ANTISPAMBOT_BAN:
                 adder = event.action_message.sender_id
             except AttributeError:
                 return
-        async for admin in event.client.iter_participants(
+        async for admin in bot.iter_participants(
             event.chat_id, filter=ChannelParticipantsAdmins
         ):
             if admin.id == adder:
@@ -70,7 +70,7 @@ if ANTISPAMBOT_BAN:
                     f"[{get_display_name(user)}](tg://user?id={user.id}) was gbanned by you"
                 )
             try:
-                await event.client.edit_permissions(
+                await bot.edit_permissions(
                     event.chat_id, user.id, view_messages=False
                 )
                 lynxbanned = True
@@ -83,7 +83,7 @@ if ANTISPAMBOT_BAN:
                     f"[{get_display_name(user)}](tg://user?id={user.id}) was banned by spamwatch for the reason `{ban.reason}`"
                 )
                 try:
-                    await event.client.edit_permissions(
+                    await bot.edit_permissions(
                         event.chat_id, user.id, view_messages=False
                     )
                     lynxbanned = True
@@ -104,7 +104,7 @@ if ANTISPAMBOT_BAN:
                     f"[{get_display_name(user)}](tg://user?id={user.id}) was banned by Combat anti-spam service(CAS) for the reason check {reason}"
                 )
                 try:
-                    await event.client.edit_permissions(
+                    await bot.edit_permissions(
                         event.chat_id, user.id, view_messages=False
                     )
                     lynxbanned = True
