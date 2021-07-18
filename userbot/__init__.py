@@ -515,7 +515,7 @@ def paginate_help(page_number, loaded_modules, prefix):
     return pairs
 
 # -----------------------------------------Reg--------------------------------------- >
-
+from git import Repo
 
 with lynx:
     try:
@@ -548,6 +548,13 @@ with lynx:
             aliplogo = IN_PIC
         else:
             aliplogo = "https://telegra.ph/file/b6580efa28fdc144749d5.jpg"
+
+
+        AL_PIC = str(ALIVE_LOGO)
+        if AL_PIC:
+            alivvlogo = AL_PIC
+        else:
+            alivvlogo = ALIVE_LOGO
 
 # ======================================== Inline Handler ======================================== #
 
@@ -617,6 +624,8 @@ with lynx:
             builder = event.builder
             result = None
             query = event.text
+            uname = platform.uname()
+            cpufreq = psutil.cpu_freq()
             if event.query.user_id == uid and query.startswith("@LynxRobot"):
                 buttons = paginate_help(0, dugmeler, "helpme")
                 result = builder.photo(
@@ -651,6 +660,21 @@ with lynx:
                              "https://zee.gl/DeployToHeroku")]],
                     link_preview=True,
                 )
+           if event.query.user_id == uid and query.startswith("@LynxAliveRobot"):
+               result = builder.photo(
+                   file=alivvlogo,
+                   link_preview=False,
+                   text=f"`Robot` **is running on** `{repo.active_branch.name}`\n`====================================`\n💻 `OS          :` Debian GNU/{uname.system} 10 {uname.machine}\n💻 `Kernel      :` {uname.release}\n💻 `CPU         :` Intel Xeon E5-2670 @ {cpufreq.current:.2f}Ghz\nPython      :` v. {python_version()}\nTelethon    :` v. {version.__version__}\nUser        :` {DEFAULTUSER}\n`====================================`\n Copyright © 𝟤𝟢𝟤𝟣 Lynx-Userbot\n License : Raphielscape Public License v1.d"
+                   ),
+                   buttons=[
+                       [
+                            Button.url("⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡",
+                                       "t.me/LynxUserbot"),
+                            Button.url("[⊙] 𝗠𝘆 𝗜𝗻𝘀𝘁𝗮𝗴𝗿𝗮𝗺",
+                                       f"{INSTAGRAM_ALIVE}")],
+                       [Button.inline("ᴏᴘᴇɴ ᴍᴇɴᴜ ᴀɢᴀɪɴ", data="opener")],
+                   ]
+              )
             await event.answer([result] if result else None)
 
         @lynx.tgbot.on(
