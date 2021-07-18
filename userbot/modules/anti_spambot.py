@@ -120,7 +120,7 @@ if ANTISPAMBOT_BAN:
             )
 
 
-@register(outgoing=True, pattern=r"^\.cascheck$")
+@register(outgoing=True, groups_only=True, pattern=r"^\.cascheck$")
 async def caschecker(event):
     "Searches for cas(combot antispam service) banned users in group and shows you the list"
     lynxevent = await edit_or_reply(
@@ -158,7 +158,7 @@ async def caschecker(event):
     await lynxevent.edit(text)
 
 
-@register(outgoing=True, pattern=r"^\.spamcheck$")
+@register(outgoing=True, groups_only=True, pattern=r"^\.spamcheck$")
 async def caschecker(event):
     "Searches for spamwatch federation banned users in group and shows you the list"
     text = ""
