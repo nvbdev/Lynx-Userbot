@@ -675,7 +675,7 @@ with lynx:
         async def handler(event):
             if event.user_joined:
                 u = await event.client.get_entity(event.chat_id)
-                await event.reply(f"```Welcome to the group!```\n👤**User:** [{get_display_name(u)}](tg://user?id={u.id})")
+                await event.reply(f"```Welcome to the [{get_display_name(u)}](tg://user?id={u.id})```")
 
         @lynx.tgbot.on(events.NewMessage(pattern=r"/ping"))
         async def handler(event):
@@ -776,7 +776,7 @@ with lynx:
             current_page_number = int(unpage)
             buttons = paginate_help(current_page_number, plugins, "helpme")
             text = f"\n**Bᴏᴛ ᴏꜰ {DEFAULTUSER}**\n\n◎› **Bᴏᴛ ᴠᴇʀ :** `v.{BOT_VER}`\n◎› **Pʟᴜɢɪɴꜱ :** `{len(plugins)}`\n\n**Cᴏᴘʏʀɪɢʜᴛ © 𝟤𝟢𝟤𝟣 Lʏɴx-Uꜱᴇʀʙᴏᴛ**"
-            await event.client.edit_message(text,
+            await event.edit(text,
                 file=lynxlogo,
                 buttons=buttons,
                 link_preview=False,
@@ -795,7 +795,7 @@ with lynx:
                 buttons = [
                     (custom.Button.inline("ᴏᴘᴇɴ ᴍᴇɴᴜ", data="opener"),),
                 ]
-                await event.client.edit_message(f"🕹 **<--- • Menu Has Closed • --->** 🕹", file=lynxlogo, buttons=buttons)
+                await event.edit(f"🕹 **<--- • Menu Has Closed • --->** 🕹", file=lynxlogo, buttons=buttons)
             else:
                 reply_pop_up_alert = f"🚫!WARNING!🚫\nJangan Menggunakan Milik {DEFAULTUSER}."
                 await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
@@ -807,7 +807,7 @@ with lynx:
         )
         async def on_plug_in_callback_query_handler(event):
             if event.query.user_id == uid:  # Lynx-Settings
-                await event.client.edit_message(
+                await event.edit(
                     file=lynxlogo,
                     link_preview=False,
                     buttons=[
@@ -830,7 +830,7 @@ with lynx:
         )
         async def on_plug_in_callback_query_handler(event):
             _result = alive_inline()
-            await event.client.edit_message(_result[0], buttons=_result[1],
+            await event.edit(_result[0], buttons=_result[1],
                 link_preview=False,
                 file=alivvlogo,
             )
@@ -863,7 +863,7 @@ with lynx:
         async def on_plug_in_callback_query_handler(event):
             if event.query.user_id == uid:  # Lynx-Openeer
                 # https://t.me/TelethonChat/115200
-                await event.client.edit_message(
+                await event.edit(
                     file=lynxlogo,
                     link_preview=True,
                     buttons=[
