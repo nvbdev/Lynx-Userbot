@@ -15,8 +15,8 @@ async def _(event):
     if event.fwd_from:
         return
     d_link = event.pattern_match.group(1)
-    if ".com" not in d_link:
-        await event.edit("`Mohon Maaf, Saya Membutuhkan Link Video Tiktok Untuk Mendownload Nya` 🤬")
+    if "vm." and ".com" not in d_link:
+        await event.edit("`Mohon Maaf, Link Tidak Support. Silahkan Cari Link Lain.`\n**Contoh:** `vm.tiktok.com`")
     else:
         await event.edit("```Video Sedang Diproses...```")
     chat = "@ttsavebot"
