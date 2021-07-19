@@ -599,7 +599,7 @@ with lynx:
         @lynx.tgbot.on(events.NewMessage(pattern=r"/start"))
         async def handler(event):
             if event.message.from_id != uid:
-                u = await event.client.get_entity(event.user_id)
+                u = await event.client.get_entity(event.chat_id)
                 await event.reply(
                     f"Hai 👋 [{get_display_name(u)}](tg://user?id={u.id}) Selamat Datang di ⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡\nJika Kalian Datang Kesini dan Ingin Mengetahui Lynx-Robot Lebih Lanjut,\nSilahkan Pilih **Menu Bantuan** Dibawah Ini.\n",
                     buttons=[
@@ -627,7 +627,7 @@ with lynx:
         @lynx.tgbot.on(events.NewMessage(pattern=r"/repo"))
         async def handler(event):
             if event.message.from_id != uid:
-                u = await event.client.get_entity(event.user_id)
+                u = await event.client.get_entity(event.chat_id)
                 await event.message.get_sender()
                 text = (
                     f"Haii 😼 [{get_display_name(u)}](tg://user?id={u.id}) My Name is 𝗟𝘆𝗻𝘅 🐈\n"
@@ -649,7 +649,7 @@ with lynx:
         @lynx.tgbot.on(events.NewMessage(pattern=r"/alive"))
         async def handler(event):
             if event.message.from_id != uid:
-                axel = await event.client.get_entity(event.user_id)
+                axel = await event.client.get_entity(event.chat_id)
                 await event.message.get_sender()
                 repo = Repo()
                 uname = platform.uname()
