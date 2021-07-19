@@ -316,11 +316,16 @@ for binary, path in binaries.items():
     os.chmod(path, 0o755)
 
 # Logs
-from .core.logger import logging
+try:
+    from .core.logger import logging
 LOGS = logging.getLogger("userbot")
 
 # PM LOGGER GROUP
+
 if PM_LOGGER_GROUP_ID == 0:
+    try:
+        from userbot.modules.sql_helper.globals import gvarstatus
+
     if gvarstatus("PM_LOGGER_GROUP_ID") is None:
         PM_LOGGER_GROUP_ID = -100
     else:
@@ -551,7 +556,10 @@ with lynx:
         lynx.tgbot = tgbot = TelegramClient(
             "TG_BOT_TOKEN",
             api_id=API_KEY,
-            api_hash=API_HASH).start(
+            api_hash=API_HASH,
+            connection=ConnectionTcpAbridged,
+            auto_reconnect=True,
+            connection_retries=None).start(
             bot_token=BOT_TOKEN)
 
 # -------------------------Flex------------------------------- >
