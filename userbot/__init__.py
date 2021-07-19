@@ -776,8 +776,12 @@ with lynx:
         async def on_plug_in_callback_query_handler(event):
             if event.query.user_id == uid:  # Lynx-Alive
                 _result = alive_inline()
-                buttons = _result[1]
-                await event.edit(file=alivvlogo, _result[0], buttons=buttons)
+                await event.edit(
+                    file=alivvlogo,
+                    link_preview=False,
+                    _result[0],
+                    buttons=_result[1]
+                )
 
 
 
