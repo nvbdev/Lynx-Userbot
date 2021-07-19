@@ -772,9 +772,9 @@ with lynx:
             )
         )
         async def on_plug_in_callback_query_handler(event):
+            buttons = paginate_help(0, dugmeler, "helpme")
+            text = f"\n**Bᴏᴛ ᴏꜰ {DEFAULTUSER}**\n\n◎› **Bᴏᴛ ᴠᴇʀ :** `v.{BOT_VER}`\n◎› **Pʟᴜɢɪɴꜱ :** `{len(plugins)}`\n\n **Copyright © 𝟤𝟢𝟤𝟣 Lynx-Userbot\n License: Raphielscape Public License v1.d**"
             if event.query.user_id == uid:
-                buttons = paginate_help(0, dugmeler, "helpme")
-                text = f"\n**Bᴏᴛ ᴏꜰ {DEFAULTUSER}**\n\n◎› **Bᴏᴛ ᴠᴇʀ :** `v.{BOT_VER}`\n◎› **Pʟᴜɢɪɴꜱ :** `{len(plugins)}`\n\n **Copyright © 𝟤𝟢𝟤𝟣 Lynx-Userbot\n License: Raphielscape Public License v1.d**"
                 await event.edit(text,
                     file=lynxlogo,
                     buttons=buttons,
@@ -790,10 +790,10 @@ with lynx:
             )
         )
         async def on_plug_in_callback_query_handler(event):
+            current_page_number = int(unpage)
+            buttons = paginate_help(current_page_number, plugins, "helpme")
+            text = f"\n**Bᴏᴛ ᴏꜰ {DEFAULTUSER}**\n\n◎› **Bᴏᴛ ᴠᴇʀ :** `v.{BOT_VER}`\n◎› **Pʟᴜɢɪɴꜱ :** `{len(plugins)}`\n\n **Copyright © 𝟤𝟢𝟤𝟣 Lynx-Userbot\n License: Raphielscape Public License v1.d**"
             if event.query.user_id == uid:
-                current_page_number = int(unpage)
-                buttons = paginate_help(current_page_number, plugins, "helpme")
-                text = f"\n**Bᴏᴛ ᴏꜰ {DEFAULTUSER}**\n\n◎› **Bᴏᴛ ᴠᴇʀ :** `v.{BOT_VER}`\n◎› **Pʟᴜɢɪɴꜱ :** `{len(plugins)}`\n\n **Copyright © 𝟤𝟢𝟤𝟣 Lynx-Userbot\n License: Raphielscape Public License v1.d**"
                 await event.edit(text,
                     file=lynxlogo,
                     buttons=buttons,
