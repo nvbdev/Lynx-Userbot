@@ -475,8 +475,39 @@ AFKREASON = None
 ZALG_LIST = {}
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else uname().node
 
-
+from git import Repo
 # -------------------------------- InlineBot ------------------------------------- #
+
+def alive_inline():
+    uname = platform.uname()
+    cpufreq = psutil.cpu_freq()
+    text = f"`Robot` **is running on** `{repo.active_branch.name}`\n
+            `====================================`\n
+            💻 `OS          :` Debian GNU/{uname.system} 10 {uname.machine}\n
+            💻 `Kernel      :` {uname.release}\n
+            💻 `CPU         :` Intel Xeon E5-2670 @ {cpufreq.current:.2f}Ghz\n
+            🐍 `Python      :` v. {python_version()}\n
+            ⚙️ `Telethon    :` v. {version.__version__}\n
+            👨‍💻 `My Owner    :` {DEFAULTUSER}\n
+            `====================================`\n
+             Copyright © 𝟤𝟢𝟤𝟣 Lynx-Userbot\n License : Raphielscape Public License v1.d"
+    buttons = [
+        (
+            Button.url("🧪𝗥𝗘𝗣𝗢",
+                "https://zee.gl/lynx404",
+            ),
+            Button.url("𝗥𝗣𝗟 𝘃𝟭.𝗱🎖️",
+                "https://github.com/KENZO-404/Lynx-Userbot/blob/Lynx-Userbot/LICENSE",
+            ),
+        ),
+        (
+            Button.inline("ᴏᴘᴇɴ ᴍᴇɴᴜ",
+                data="opener",
+            ),
+        ),
+    ]
+    return text, buttons
+
 
 def paginate_help(page_number, loaded_modules, prefix):
     number_of_rows = 5
@@ -515,7 +546,6 @@ def paginate_help(page_number, loaded_modules, prefix):
     return pairs
 
 # -----------------------------------------Reg--------------------------------------- >
-from git import Repo
 
 with lynx:
     try:
@@ -652,8 +682,6 @@ with lynx:
             builder = event.builder
             result = None
             query = event.text
-            uname = platform.uname()
-            cpufreq = psutil.cpu_freq()
             if event.query.user_id == uid and query.startswith("@LynxRobot"):
                 buttons = paginate_help(0, dugmeler, "helpme")
                 result = builder.photo(
@@ -689,6 +717,16 @@ with lynx:
                     link_preview=True,
                 )
             await event.answer([result] if result else None)
+            if query.startswith("@LynxAliveRobot"):
+                _result = alive_inline()
+                 result = builder.photo(
+                     file=alivvlogo,
+                     text=_result[0],
+                     buttons=_result[1],
+                     link_preview=False,
+                 )
+            await event.answer([result] if result else None)
+
 
         @lynx.tgbot.on(
             events.callbackquery.CallbackQuery(  # pylint:disable=E0602
@@ -712,6 +750,37 @@ with lynx:
         async def on_plug_in_callback_query_handler(event):
             if event.query.user_id == uid:
                 await event.edit(f"🕹 **<--- • Menu Has Closed • --->** 🕹", file=lynxlogo, buttons=Button.clear())
+
+        @lynx.tgbot.on(
+            events.callbackquery.CallbackQuery(  # pylint:disable=E0602
+                data=re.compile(rb"settings")
+            )
+        )
+            if event.query.user_id == uid:  # Lynx-Settings
+                await event.edit(
+                    file=aliplogo,
+                    link_preview=True,
+                    buttons=[
+                        [
+                            Button.inline("🤖 ᴀʟɪᴠᴇ", data="alive")
+                        ],
+                    ]
+                )
+
+        @lynx.tgbot.on(
+            events.callbackquery.CallbackQuery(  # pylint:disable=E0602
+                data=re.compile("alive")
+            )
+        )
+            if event.query.user_id == uid:  # Lynx-Alive
+            _result = alive_inline()
+            await event.edit(file=alivvlogo, _result[0], buttons=_result[1])
+
+
+
+
+
+
 
         @lynx.tgbot.on(
             events.callbackquery.CallbackQuery(  # pylint:disable=E0602
@@ -747,8 +816,9 @@ with lynx:
                                        "t.me/LynxUserbot"),
                             Button.url("[⊙] 𝗠𝘆 𝗜𝗻𝘀𝘁𝗮𝗴𝗿𝗮𝗺",
                                        f"{INSTAGRAM_ALIVE}")],
-                        [custom.Button.inline("ᴄʟᴏꜱᴇ", data="close")],
+                        [Button.inline("⚙️ ꜱᴇᴛᴛɪɴɢꜱ ⚙️", data="settings")],
                         [Button.inline("ᴏᴘᴇɴ ᴍᴇɴᴜ ᴀɢᴀɪɴ", data="opener")],
+                        [custom.Button.inline("ᴄʟᴏꜱᴇ", data="close")],
                     ]
                 )
 
