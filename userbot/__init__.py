@@ -481,16 +481,16 @@ from git import Repo
 def alive_inline():
     uname = platform.uname()
     cpufreq = psutil.cpu_freq()
-    text = f"`Robot` **is running on** `{repo.active_branch.name}`\n
-            `====================================`\n
-            💻 `OS          :` Debian GNU/{uname.system} 10 {uname.machine}\n
-            💻 `Kernel      :` {uname.release}\n
-            💻 `CPU         :` Intel Xeon E5-2670 @ {cpufreq.current:.2f}Ghz\n
-            🐍 `Python      :` v. {python_version()}\n
-            ⚙️ `Telethon    :` v. {version.__version__}\n
-            👨‍💻 `My Owner    :` {DEFAULTUSER}\n
-            `====================================`\n
-             Copyright © 𝟤𝟢𝟤𝟣 Lynx-Userbot\n License : Raphielscape Public License v1.d"
+    text = f"`Robot` **is running on** `{repo.active_branch.name}`\
+            \n`====================================`\
+            \n💻 `OS          :` Debian GNU/{uname.system} 10 {uname.machine}\
+            \n💻 `Kernel      :` {uname.release}\
+            \n💻 `CPU         :` Intel Xeon E5-2670 @ {cpufreq.current:.2f}Ghz\
+            \n🐍 `Python      :` v. {python_version()}\
+            \n⚙️ `Telethon    :` v. {version.__version__}\
+            \n👨‍💻 `My Owner    :` {DEFAULTUSER}\
+            \n`====================================`\
+            \n Copyright © 𝟤𝟢𝟤𝟣 Lynx-Userbot\n License : Raphielscape Public License v1.d"
     buttons = [
         (
             Button.url("🧪𝗥𝗘𝗣𝗢",
