@@ -32,7 +32,7 @@ async def _(event):
         except YouBlockedUserError:
             await event.edit(f"#Kesalahan ❌\n`Mohon Buka Blokir` @ttsavebot `Lalu Tekan /start Dan Coba Lagi !`")
             return
-        await bot.send_file(event.chat_id, video)
+        await bot.send_file(event.chat_id).format(video)
         await event.client.delete_messages(conv.chat_id,
                                            [msg_start.id, r.id, msg.id, details.id, video.id])
         await event.delete()
