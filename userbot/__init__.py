@@ -725,6 +725,30 @@ with lynx:
                     buttons=_result[1],
                     link_preview=False,
                 )
+            elif query.startswith("tb_btn"):
+                result = builder.article(
+                    "Bantuan Dari ⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡ ",
+                    text="Daftar Plugins",
+                    buttons=[],
+                    link_preview=False)
+            else:
+                result = builder.article(
+                    " ╔╡⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡╞╗ ",
+                    file=lynxlogo,
+                    text="""**Anda Bisa Membuat ⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡ Anda Sendiri\nDengan Cara :**__Tekan Dibawah Ini__ 👇""",
+                    buttons=[
+                        [
+                            custom.Button.url(
+                                "⚡𝗟𝘆𝗻𝘅⚡",
+                                "https://zee.gl/lynx404"),
+                            custom.Button.url(
+                                "Dᴇᴠᴇʟᴏᴘᴇʀ",
+                                "t.me/FederationSuperGroup/17")],
+                        [custom.Button.url(
+                             "⚒️ 𝗗𝗘𝗣𝗟𝗢𝗬 ⚒️",
+                             "https://zee.gl/DeployToHeroku")]],
+                    link_preview=True,
+                )
             await event.answer([result] if result else None)
 
 
@@ -752,7 +776,7 @@ with lynx:
                 buttons = [
                     (Button.inline("Open Menu", data="opener"),),
                 ]
-                await event.edit(f"🕹 **<--- • Menu Has Closed • --->** 🕹", buttons=buttons)
+                await event.edit(f"🕹 **<--- • Menu Has Closed • --->** 🕹", file=lynxlogo, buttons=buttons)
 
         @lynx.tgbot.on(
             events.callbackquery.CallbackQuery(  # pylint:disable=E0602
@@ -769,7 +793,7 @@ with lynx:
                             Button.inline("🤖 ᴀʟɪᴠᴇ", data="alive")
                         ],
                         [
-                            custom.Button.inline("ʙᴀᴄᴋ", data="{}_back({})".format(prefix, modulo_page))
+                            custom.Button.inline("ʙᴀᴄᴋ", data="helpme_back\((.+?)\)")
                         ],
                     ]
                 )
