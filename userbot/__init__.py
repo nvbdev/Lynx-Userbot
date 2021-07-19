@@ -674,7 +674,8 @@ with lynx:
         @lynx.tgbot.on(events.ChatAction)
         async def handler(event):
             if event.user_joined:
-                await event.reply(```Welcome to the group!```)
+                u = await event.client.get_entity(event.chat_id)
+                await event.reply(f"```Welcome to the group!```\n👤**User:** [{get_display_name(u)}](tg://user?id={u.id})")
 
         @lynx.tgbot.on(events.NewMessage(pattern=r"/ping"))
         async def handler(event):
