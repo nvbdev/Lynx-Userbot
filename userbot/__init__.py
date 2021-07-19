@@ -749,7 +749,10 @@ with lynx:
         )
         async def on_plug_in_callback_query_handler(event):
             if event.query.user_id == uid:
-                await event.edit(f"🕹 **<--- • Menu Has Closed • --->** 🕹", file=lynxlogo, buttons=Button.clear())
+                buttons = [
+                    (Button.inline("Open Menu", data="opener"),),
+                ]
+                await event.edit(f"🕹 **<--- • Menu Has Closed • --->** 🕹", buttons=buttons)
 
         @lynx.tgbot.on(
             events.callbackquery.CallbackQuery(  # pylint:disable=E0602
@@ -765,6 +768,9 @@ with lynx:
                         [
                             Button.inline("🤖 ᴀʟɪᴠᴇ", data="alive")
                         ],
+                        [
+                            custom.Button.inline("ʙᴀᴄᴋ", data="{}_back({})".format(prefix, modulo_page))
+                        ],
                     ]
                 )
 
@@ -775,14 +781,10 @@ with lynx:
         )
         async def on_plug_in_callback_query_handler(event):
             _result = alive_inline()
-            await event.edit(
-                file=alivvlogo,
-                _result[0],
-                buttons=_result[1],
+            await event.edit(_result[0], buttons=_result[1],
                 link_preview=False,
+                file=alivvlogo,
             )
-
-
 
         @lynx.tgbot.on(
             events.callbackquery.CallbackQuery(  # pylint:disable=E0602
