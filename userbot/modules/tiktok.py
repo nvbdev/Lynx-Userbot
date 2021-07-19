@@ -15,7 +15,7 @@ async def _(event):
     if event.fwd_from:
         return
     d_link = event.pattern_match.group(1)
-    if ".com" not in d_link:
+    if "vm." not in d_link:
         await event.edit("`Mohon Maaf, Saya Membutuhkan Link Video Tiktok Untuk Mendownload Nya` 🤬")
     else:
         await event.edit("```Video Sedang Diproses...```")
@@ -32,7 +32,7 @@ async def _(event):
         except YouBlockedUserError:
             await event.edit(f"#Kesalahan ❌\n`Mohon Buka Blokir` @ttsavebot `Lalu Tekan /start Dan Coba Lagi !`")
             return
-        await bot.send_file(event.chat_id, video).format(video)
+        await bot.send_file(event.chat_id, video)
         await event.client.delete_messages(conv.chat_id,
                                            [msg_start.id, r.id, msg.id, details.id, video.id])
         await event.delete()
