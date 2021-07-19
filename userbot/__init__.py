@@ -316,8 +316,8 @@ for binary, path in binaries.items():
     os.chmod(path, 0o755)
 
 # Logs
-try:
-    from .core.logger import logging
+
+from .core.logger import logging
 LOGS = logging.getLogger("userbot")
 
 # PM LOGGER GROUP
