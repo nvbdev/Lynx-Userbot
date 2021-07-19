@@ -498,15 +498,15 @@ def alive_inline():
             \n Copyright © 𝟤𝟢𝟤𝟣 Lynx-Userbot\n License : Raphielscape Public License v1.d"
     buttons = [
         (
-            Button.url("🧪𝗥𝗘𝗣𝗢",
+            custom.Button.url("🧪𝗥𝗘𝗣𝗢",
                 "https://zee.gl/lynx404",
             ),
-            Button.url("𝗥𝗣𝗟 𝘃𝟭.𝗱🎖️",
+            custom.Button.url("𝗥𝗣𝗟 𝘃𝟭.𝗱🎖️",
                 "https://github.com/KENZO-404/Lynx-Userbot/blob/Lynx-Userbot/LICENSE",
             ),
         ),
         (
-            Button.inline("ᴏᴘᴇɴ ᴍᴇɴᴜ",
+            custom.Button.inline("ᴏᴘᴇɴ ᴍᴇɴᴜ",
                 data="opener",
             ),
         ),
@@ -646,7 +646,6 @@ with lynx:
                                       ]
                                       )
 
-
         @lynx.tgbot.on(events.NewMessage(pattern=r"/alive"))
         async def handler(event):
             if event.message.from_id != uid:
@@ -672,7 +671,10 @@ with lynx:
                                        ]
                                        )
 
-
+        @lynx.tgbot.on(events.ChatAction)
+        async def handler(event):
+            if event.user_joined:
+                await event.reply(```Welcome to the group!```)
 
         @lynx.tgbot.on(events.NewMessage(pattern=r"/ping"))
         async def handler(event):
@@ -692,8 +694,8 @@ with lynx:
             query = event.text
             if event.query.user_id == uid and query.startswith("@LynxRobot"):
                 buttons = paginate_help(0, dugmeler, "helpme")
-                result = builder.photo(
-                    file=lynxlogo,
+                photo_bytesio = lynxlogo
+                result = builder.photo(photo_bytesio,
                     link_preview=False,
                     text=f"\n**Bᴏᴛ ᴏꜰ {DEFAULTUSER}**\n\n◎› **Bᴏᴛ ᴠᴇʀ :** `v.{BOT_VER}`\n◎› **Pʟᴜɢɪɴꜱ :** `{len(plugins)}`\n\n**Cᴏᴘʏʀɪɢʜᴛ © 𝟤𝟢𝟤𝟣 Lʏɴx-Uꜱᴇʀʙᴏᴛ**".format(
                         len(dugmeler),
@@ -773,7 +775,7 @@ with lynx:
             current_page_number = int(unpage)
             buttons = paginate_help(current_page_number, plugins, "helpme")
             text = f"\n**Bᴏᴛ ᴏꜰ {DEFAULTUSER}**\n\n◎› **Bᴏᴛ ᴠᴇʀ :** `v.{BOT_VER}`\n◎› **Pʟᴜɢɪɴꜱ :** `{len(plugins)}`\n\n**Cᴏᴘʏʀɪɢʜᴛ © 𝟤𝟢𝟤𝟣 Lʏɴx-Uꜱᴇʀʙᴏᴛ**"
-            await event.edit(text,
+            await bot.edit_message(text,
                 file=lynxlogo,
                 buttons=buttons,
                 link_preview=False,
@@ -790,9 +792,9 @@ with lynx:
         async def on_plug_in_callback_query_handler(event):
             if event.query.user_id == uid:
                 buttons = [
-                    (Button.inline("ᴏᴘᴇɴ ᴍᴇɴᴜ", data="opener"),),
+                    (custom.Button.inline("ᴏᴘᴇɴ ᴍᴇɴᴜ", data="opener"),),
                 ]
-                await event.edit(f"🕹 **<--- • Menu Has Closed • --->** 🕹", file=lynxlogo, buttons=buttons)
+                await bot.edit_message(f"🕹 **<--- • Menu Has Closed • --->** 🕹", file=lynxlogo, buttons=buttons)
             else:
                 reply_pop_up_alert = f"🚫!WARNING!🚫\nJangan Menggunakan Milik {DEFAULTUSER}."
                 await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
@@ -804,12 +806,12 @@ with lynx:
         )
         async def on_plug_in_callback_query_handler(event):
             if event.query.user_id == uid:  # Lynx-Settings
-                await event.edit(
+                await bot.edit_message(
                     file=lynxlogo,
                     link_preview=False,
                     buttons=[
                         [
-                            Button.inline("🤖 ᴀʟɪᴠᴇ", data="allive")
+                            custom.Button.inline("🤖 ᴀʟɪᴠᴇ", data="allive")
                         ],
                         [
                             custom.Button.inline("ᴏᴘᴇɴ ᴍᴇɴᴜ", data="opener")
@@ -827,7 +829,7 @@ with lynx:
         )
         async def on_plug_in_callback_query_handler(event):
             _result = alive_inline()
-            await event.edit(_result[0], buttons=_result[1],
+            await bot.edit_message(_result[0], buttons=_result[1],
                 link_preview=False,
                 file=alivvlogo,
             )
@@ -860,17 +862,17 @@ with lynx:
         async def on_plug_in_callback_query_handler(event):
             if event.query.user_id == uid:  # Lynx-Openeer
                 # https://t.me/TelethonChat/115200
-                await event.edit(
+                await bot.edit_message(
                     file=lynxlogo,
                     link_preview=True,
                     buttons=[
                         [
-                            Button.url("⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡",
+                            custom.Button.url("⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡",
                                        "t.me/LynxUserbot"),
-                            Button.url("[⊙] 𝗠𝘆 𝗜𝗻𝘀𝘁𝗮𝗴𝗿𝗮𝗺",
+                            custom.Button.url("[⊙] 𝗠𝘆 𝗜𝗻𝘀𝘁𝗮𝗴𝗿𝗮𝗺",
                                        f"{INSTAGRAM_ALIVE}")],
-                        [Button.inline("⚙️ ꜱᴇᴛᴛɪɴɢꜱ ⚙️", data="settings")],
-                        [Button.inline("ᴏᴘᴇɴ ᴍᴇɴᴜ ᴀɢᴀɪɴ", data="opener")],
+                        [custom.Button.inline("⚙️ ꜱᴇᴛᴛɪɴɢꜱ ⚙️", data="settings")],
+                        [custom.Button.inline("ᴏᴘᴇɴ ᴍᴇɴᴜ ᴀɢᴀɪɴ", data="opener")],
                         [custom.Button.inline("ᴄʟᴏꜱᴇ", data="close")],
                     ]
                 )
