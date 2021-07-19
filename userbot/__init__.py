@@ -724,6 +724,13 @@ with lynx:
                     link_preview=True,
                 )
             await event.answer([result] if result else None)
+
+
+        @lynx.tgbot.on(events.InlineQuery)  # pylint:disable=E0602
+        async def inline_handler(event):
+            builder = event.builder
+            result = None
+            query = event.text
             if event.query.user_id == uid and query.startswith("@LynxAliveRobot"):
                 _result = alive_inline()
                 result = builder.photo(
