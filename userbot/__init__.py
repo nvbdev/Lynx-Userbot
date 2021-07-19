@@ -662,7 +662,7 @@ with lynx:
                     f"💻 `CPU         :` Intel Xeon E5-2670 @ {cpufreq.current:.2f}Ghz\n"
                     f"🐍 `Python      :` v. {python_version()}\n"
                     f"⚙️ `Telethon    :` v. {version.__version__}\n"
-                    f"👨‍💻 `User        :` [{get_display_name(u)}](tg://user?id={u.id})\n"
+                    f"👨‍💻 `User        :` [{get_display_name(axel)}](tg://user?id={axel.id})\n"
                     "`====================================`\n"
                     f" Copyright © 𝟤𝟢𝟤𝟣 Lynx-Userbot\n License: Raphielscape Public License v1.d")
                 await lynx.tgbot.send_file(event.chat_id, file=alivvlogo,
