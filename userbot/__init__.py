@@ -729,7 +729,6 @@ with lynx:
                 )
             await event.answer([result] if result else None)
 
-
         @lynx.tgbot.on(events.InlineQuery)  # pylint:disable=E0602
         async def inline_handler(event):
             builder = event.builder
@@ -741,19 +740,7 @@ with lynx:
                 result = builder.photo(photo_bytesio,
                     link_preview=False,
                     text=_result[0],
-                    buttons=_result[1],
-                )
-            elif query.startswith("tb_btn"):
-                result = builder.article(
-                    "Bantuan Dari ⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡ ",
-                    text="Daftar Plugins",
-                    buttons=[],
-                    link_preview=False)
-            else:
-                result = builder.article(
-                    " ╔╡⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡╞╗ ",
-                    text="""**Anda Bisa Membuat ⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡ Anda Sendiri\nDengan Cara :**__Tekan Dibawah Ini__ 👇""",
-                    buttons=[
+                                        buttons=[
                         [
                             custom.Button.url(
                                 "⚡𝗟𝘆𝗻𝘅⚡",
@@ -766,6 +753,18 @@ with lynx:
                              "https://zee.gl/DeployToHeroku")]],
                     link_preview=True,
                 )
+            elif query.startswith("tb_btn"):
+                result = builder.article(
+                    "Bantuan Dari ⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡ ",
+                    text="Daftar Plugins",
+                    buttons=[],
+                    link_preview=False)
+            else:
+                result = builder.photo(
+                    " ╔╡⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡╞╗ ",
+                    text="""**Anda Bisa Membuat ⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡ Anda Sendiri\nDengan Cara :**__Tekan Dibawah Ini__ 👇""",
+                    buttons=_result[1],
+                )
             await event.answer([result] if result else None)
 
         @lynx.tgbot.on(
@@ -774,15 +773,17 @@ with lynx:
             )
         )
         async def on_plug_in_callback_query_handler(event):
-            buttons = paginate_help(0, dugmeler, "helpme")
-            text = f"\n**Bᴏᴛ ᴏꜰ {DEFAULTUSER}**\n\n◎› **Bᴏᴛ ᴠᴇʀ :** `v.{BOT_VER}`\n◎› **Pʟᴜɢɪɴꜱ :** `{len(plugins)}`\n\n**Cᴏᴘʏʀɪɢʜᴛ © 𝟤𝟢𝟤𝟣 Lʏɴx-Uꜱᴇʀʙᴏᴛ**"
-            await event.edit(text,
-                file=lynxlogo,
-                buttons=buttons,
-                link_preview=False,
-            )
-            reply_pop_up_alert = f"🚫!WARNING!🚫\nJangan Menggunakan Milik {DEFAULTUSER}."
-            await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
+            if event.query.user_id == uid:
+                buttons = paginate_help(0, dugmeler, "helpme")
+                text = f"\n**Bᴏᴛ ᴏꜰ {DEFAULTUSER}**\n\n◎› **Bᴏᴛ ᴠᴇʀ :** `v.{BOT_VER}`\n◎› **Pʟᴜɢɪɴꜱ :** `{len(plugins)}`\n\n**Cᴏᴘʏʀɪɢʜᴛ © 𝟤𝟢𝟤𝟣 Lʏɴx-Uꜱᴇʀʙᴏᴛ**"
+                await event.edit(text,
+                    file=lynxlogo,
+                    buttons=buttons,
+                    link_preview=False,
+                )
+            else:
+                reply_pop_up_alert = f"🚫!WARNING!🚫\nJangan Menggunakan Milik {DEFAULTUSER}."
+                await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
 
         @lynx.tgbot.on(
             events.callbackquery.CallbackQuery(  # pylint:disable=E0602
@@ -790,17 +791,18 @@ with lynx:
             )
         )
         async def on_plug_in_callback_query_handler(event):
-            current_page_number = int(unpage)
-            buttons = paginate_help(current_page_number, plugins, "helpme")
-            text = f"\n**Bᴏᴛ ᴏꜰ {DEFAULTUSER}**\n\n◎› **Bᴏᴛ ᴠᴇʀ :** `v.{BOT_VER}`\n◎› **Pʟᴜɢɪɴꜱ :** `{len(plugins)}`\n\n**Cᴏᴘʏʀɪɢʜᴛ © 𝟤𝟢𝟤𝟣 Lʏɴx-Uꜱᴇʀʙᴏᴛ**"
-            await event.edit(text,
-                file=lynxlogo,
-                buttons=buttons,
-                link_preview=False,
-            )
-            reply_pop_up_alert = f"🚫!WARNING!🚫\nJangan Menggunakan Milik {DEFAULTUSER}."
-            await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
-
+            if event.query.user_id == uid:
+                current_page_number = int(unpage)
+                buttons = paginate_help(current_page_number, plugins, "helpme")
+                text = f"\n**Bᴏᴛ ᴏꜰ {DEFAULTUSER}**\n\n◎› **Bᴏᴛ ᴠᴇʀ :** `v.{BOT_VER}`\n◎› **Pʟᴜɢɪɴꜱ :** `{len(plugins)}`\n\n**Cᴏᴘʏʀɪɢʜᴛ © 𝟤𝟢𝟤𝟣 Lʏɴx-Uꜱᴇʀʙᴏᴛ**"
+                await event.edit(text,
+                    file=lynxlogo,
+                    buttons=buttons,
+                    link_preview=False,
+                )
+            else:
+                reply_pop_up_alert = f"🚫!WARNING!🚫\nJangan Menggunakan Milik {DEFAULTUSER}."
+                await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
 
         @lynx.tgbot.on(
             events.callbackquery.CallbackQuery(  # pylint:disable=E0602
@@ -829,7 +831,7 @@ with lynx:
                     link_preview=False,
                     buttons=[
                         [
-                            custom.Button.inline("🤖 ᴀʟɪᴠᴇ", data="allive")
+                            custom.Button.inline("ᴀʟɪᴠᴇ", data="allive")
                         ],
                         [
                             custom.Button.inline("ᴏᴘᴇɴ ᴍᴇɴᴜ", data="opener")
@@ -846,14 +848,15 @@ with lynx:
             )
         )
         async def on_plug_in_callback_query_handler(event):
-            _result = alive_inline()
-            await event.edit(_result[0], buttons=_result[1],
-                link_preview=False,
-                file=alivvlogo,
-            )
-            reply_pop_up_alert = f"🚫!WARNING!🚫\nJangan Menggunakan Milik {DEFAULTUSER}."
-            await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
-
+            if event.query.user_id == uid:
+                _result = alive_inline()
+                await event.edit(_result[0], buttons=_result[1],
+                    link_preview=False,
+                    file=alivvlogo,
+                )
+            else:
+                reply_pop_up_alert = f"🚫!WARNING!🚫\nJangan Menggunakan Milik {DEFAULTUSER}."
+                await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
 
         @lynx.tgbot.on(
             events.callbackquery.CallbackQuery(  # pylint:disable=E0602
