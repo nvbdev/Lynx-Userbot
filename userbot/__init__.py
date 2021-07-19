@@ -596,7 +596,7 @@ with lynx:
 
 # ======================================== Inline Handler ======================================== #
 
-        @lynx.tgbot.on(events.NewMessage(outgoing=True, pattern=r"/start"))
+        @lynx.tgbot.on(events.NewMessage(pattern=r"/start"))
         async def handler(event):
             if event.message.from_id != uid:
                 u = await event.client.get_entity(event.user_id)
@@ -613,7 +613,7 @@ with lynx:
                     ]
                 )
 
-        @lynx.tgbot.on(events.NewMessage(outgoing=True, pattern=r"/deploy"))
+        @lynx.tgbot.on(events.NewMessage(pattern=r"/deploy"))
         async def handler(event):
             if event.message.from_id != uid:
                 await event.reply(
@@ -624,7 +624,7 @@ with lynx:
                     ],
                 )
 
-        @lynx.tgbot.on(events.NewMessage(outgoing=True, pattern=r"/repo"))
+        @lynx.tgbot.on(events.NewMessage(pattern=r"/repo"))
         async def handler(event):
             if event.message.from_id != uid:
                 u = await event.client.get_entity(event.user_id)
@@ -646,7 +646,7 @@ with lynx:
                                       ]
                                       )
 
-        @lynx.tgbot.on(events.NewMessage(outgoing=True, pattern=r"/alive"))
+        @lynx.tgbot.on(events.NewMessage(pattern=r"/alive"))
         async def handler(event):
             if event.message.from_id != uid:
                 axel = await event.client.get_entity(event.user_id)
@@ -683,7 +683,7 @@ with lynx:
                 c = await event.client.get_entity(event.user_id)
                 await event.reply(f"```Welcome to the``` [{get_display_name(u)}](tg://user?id={u.id})\n👤**User:** [{get_display_name(c)}](tg://user?id={c.id})")
 
-        @lynx.tgbot.on(events.NewMessage(outgoing=True, pattern=r"/ping"))
+        @lynx.tgbot.on(events.NewMessage(pattern=r"/ping"))
         async def handler(event):
             if event.message.from_id != uid:
                 start = datetime.now()
