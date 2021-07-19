@@ -774,15 +774,13 @@ with lynx:
         async def on_plug_in_callback_query_handler(event):
             buttons = paginate_help(0, dugmeler, "helpme")
             text = f"\n**Bᴏᴛ ᴏꜰ {DEFAULTUSER}**\n\n◎› **Bᴏᴛ ᴠᴇʀ :** `v.{BOT_VER}`\n◎› **Pʟᴜɢɪɴꜱ :** `{len(plugins)}`\n\n **Copyright © 𝟤𝟢𝟤𝟣 Lynx-Userbot\n License: Raphielscape Public License v1.d**"
-            if event.query.user_id == uid:
-                await event.edit(text,
-                    file=lynxlogo,
-                    buttons=buttons,
-                    link_preview=False,
-                )
-            else:
-                reply_pop_up_alert = f"🚫!WARNING!🚫\nJangan Menggunakan Milik {DEFAULTUSER}."
-                await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
+            await event.edit(text,
+                file=lynxlogo,
+                buttons=buttons,
+                link_preview=False,
+            )
+            reply_pop_up_alert = f"🚫!WARNING!🚫\nJangan Menggunakan Milik {DEFAULTUSER}."
+            await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
 
         @lynx.tgbot.on(
             events.callbackquery.CallbackQuery(  # pylint:disable=E0602
