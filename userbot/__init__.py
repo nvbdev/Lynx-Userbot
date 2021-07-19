@@ -718,9 +718,8 @@ with lynx:
                 )
             await event.answer([result] if result else None)
             if event.query.user_id == uid and query.startswith("@LynxAliveRobot"):
-                _result = alive_inline("alynx")
-                result = builder.photo(
-                    file=alivvlogo,
+                _result = alive_inline()
+                result = builder.article(
                     link_preview=False,
                     text=_result[0],
                     buttons=_result[1],
@@ -751,7 +750,7 @@ with lynx:
         async def on_plug_in_callback_query_handler(event):
             if event.query.user_id == uid:
                 buttons = [
-                    (Button.inline("Open Menu", data="opener"),),
+                    (Button.inline("ᴏᴘᴇɴ ᴍᴇɴᴜ", data="opener"),),
                 ]
                 await event.edit(f"🕹 **<--- • Menu Has Closed • --->** 🕹", file=lynxlogo, buttons=buttons)
 
@@ -767,24 +766,24 @@ with lynx:
                     link_preview=False,
                     buttons=[
                         [
-                            Button.inline("🤖 ᴀʟɪᴠᴇ", data="alive")
+                            Button.inline("🤖 ᴀʟɪᴠᴇ", data="allive")
                         ],
                         [
-                            custom.Button.inline("ʙᴀᴄᴋ", data="helpme_back\((.+?)\)")
+                            custom.Button.inline("ᴏᴘᴇɴ ᴍᴇɴᴜ", data="opener")
                         ],
                     ]
                 )
 
         @lynx.tgbot.on(
             events.callbackquery.CallbackQuery(  # pylint:disable=E0602
-                data=re.compile(rb"alive")
+                data=re.compile(rb"allive")
             )
         )
         async def on_plug_in_callback_query_handler(event):
-            _result = alive_inline("alynx")
+            _result = alive_inline()
             await event.edit(_result[0], buttons=_result[1],
                 link_preview=False,
-                file=alivvlogo,
+                file=lynxlogo,
             )
 
         @lynx.tgbot.on(
@@ -813,7 +812,7 @@ with lynx:
             if event.query.user_id == uid:  # Lynx-Openeer
                 # https://t.me/TelethonChat/115200
                 await event.edit(
-                    file=aliplogo,
+                    file=lynxlogo,
                     link_preview=True,
                     buttons=[
                         [
