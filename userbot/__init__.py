@@ -319,8 +319,7 @@ for binary, path in binaries.items():
 from .core.logger import logging
 LOGS = logging.getLogger("userbot")
 
-# PM LOGGER_GROUP
-from userbot.modules.sql_helper.globals import gvarstatus
+# PM LOGGER GROUP
 if PM_LOGGER_GROUP_ID == 0:
     if gvarstatus("PM_LOGGER_GROUP_ID") is None:
         PM_LOGGER_GROUP_ID = -100
@@ -329,7 +328,7 @@ if PM_LOGGER_GROUP_ID == 0:
 elif str(PM_LOGGER_GROUP_ID)[0] != "-":
     PM_LOGGER_GROUP_ID = int("-" + str(PM_LOGGER_GROUP_ID))
 
-
+# Signal
 def shutdown_bot(signum, frame):
     LOGS.info("Received SIGTERM.")
     bot.disconnect()
