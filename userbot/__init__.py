@@ -733,8 +733,7 @@ with lynx:
             query = event.text
             if event.query.user_id == uid and query.startswith("@LynxAliveRobot"):
                 _result = alive_inline()
-                result = builder.photo(
-                    file=lynxlogo,
+                result = builder.article(
                     link_preview=False,
                     text=_result[0],
                     buttons=_result[1],
@@ -779,6 +778,9 @@ with lynx:
                 buttons=buttons,
                 link_preview=False,
             )
+            reply_pop_up_alert = f"🚫!WARNING!🚫\nJangan Menggunakan Milik {DEFAULTUSER}."
+            await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
+
 
         @lynx.tgbot.on(
             events.callbackquery.CallbackQuery(  # pylint:disable=E0602
@@ -791,6 +793,9 @@ with lynx:
                     (Button.inline("ᴏᴘᴇɴ ᴍᴇɴᴜ", data="opener"),),
                 ]
                 await event.edit(f"🕹 **<--- • Menu Has Closed • --->** 🕹", file=lynxlogo, buttons=buttons)
+            else:
+                reply_pop_up_alert = f"🚫!WARNING!🚫\nJangan Menggunakan Milik {DEFAULTUSER}."
+                await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
 
         @lynx.tgbot.on(
             events.callbackquery.CallbackQuery(  # pylint:disable=E0602
@@ -811,6 +816,9 @@ with lynx:
                         ],
                     ]
                 )
+            else:
+                reply_pop_up_alert = f"🚫!WARNING!🚫\nJangan Menggunakan Milik {DEFAULTUSER}."
+                await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
 
         @lynx.tgbot.on(
             events.callbackquery.CallbackQuery(  # pylint:disable=E0602
@@ -821,8 +829,11 @@ with lynx:
             _result = alive_inline()
             await event.edit(_result[0], buttons=_result[1],
                 link_preview=False,
-                file=lynxlogo,
+                file=alivvlogo,
             )
+            reply_pop_up_alert = f"🚫!WARNING!🚫\nJangan Menggunakan Milik {DEFAULTUSER}."
+            await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
+
 
         @lynx.tgbot.on(
             events.callbackquery.CallbackQuery(  # pylint:disable=E0602
@@ -863,6 +874,9 @@ with lynx:
                         [custom.Button.inline("ᴄʟᴏꜱᴇ", data="close")],
                     ]
                 )
+            else:
+                reply_pop_up_alert = f"🚫!WARNING!🚫\nJangan Menggunakan Milik {DEFAULTUSER}."
+                await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
 
         @lynx.tgbot.on(
             events.callbackquery.CallbackQuery(  # pylint:disable=E0602
