@@ -695,13 +695,13 @@ with lynx:
             result = None
             query = event.text
             if event.query.user_id == uid and query.startswith("@LynxRobot"):
-                buttons = paginate_help(0, dugmeler, "helpme")
+                buttons = [
+                    (Button.inline("Open Main Menu", data="mainmenu"),),
+                ]
                 photo_bytesio = lynxlogo
                 result = builder.photo(photo_bytesio,
                     link_preview=False,
-                    text=f"\n**Bᴏᴛ ᴏꜰ {DEFAULTUSER}**\n\n◎› **Bᴏᴛ ᴠᴇʀ :** `v.{BOT_VER}`\n◎› **Pʟᴜɢɪɴꜱ :** `{len(plugins)}`\n\n**Cᴏᴘʏʀɪɢʜᴛ © 𝟤𝟢𝟤𝟣 Lʏɴx-Uꜱᴇʀʙᴏᴛ**".format(
-                        len(dugmeler),
-                    ),
+                    text=f"\n**Bᴏᴛ ᴏꜰ {DEFAULTUSER}**\n\n**Copyright © 𝟤𝟢𝟤𝟣 Lynx-Userbot\n License : Raphielscape Public License v1.d**"
                     buttons=buttons,
                 )
             elif query.startswith("tb_btn"):
@@ -737,7 +737,8 @@ with lynx:
             query = event.text
             if event.query.user_id == uid and query.startswith("@LynxAliveRobot"):
                 _result = alive_inline()
-                result = builder.article(
+                photo_bytesio = alivvlogo
+                result = builder.photo(photo_bytesio,
                     link_preview=False,
                     text=_result[0],
                     buttons=_result[1],
@@ -767,6 +768,21 @@ with lynx:
                 )
             await event.answer([result] if result else None)
 
+        @lynx.tgbot.on(
+            events.callbackquery.CallbackQuery(  # pylint:disable=E0602
+                data=re.compile(rb"mainmenu")
+            )
+        )
+        async def on_plug_in_callback_query_handler(event):
+            buttons = paginate_help(0, dugmeler, "helpme")
+            text = f"\n**Bᴏᴛ ᴏꜰ {DEFAULTUSER}**\n\n◎› **Bᴏᴛ ᴠᴇʀ :** `v.{BOT_VER}`\n◎› **Pʟᴜɢɪɴꜱ :** `{len(plugins)}`\n\n**Cᴏᴘʏʀɪɢʜᴛ © 𝟤𝟢𝟤𝟣 Lʏɴx-Uꜱᴇʀʙᴏᴛ**"
+            await event.edit(text,
+                file=lynxlogo,
+                buttons=buttons,
+                link_preview=False,
+            )
+            reply_pop_up_alert = f"🚫!WARNING!🚫\nJangan Menggunakan Milik {DEFAULTUSER}."
+            await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
 
         @lynx.tgbot.on(
             events.callbackquery.CallbackQuery(  # pylint:disable=E0602
