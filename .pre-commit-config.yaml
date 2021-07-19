@@ -9,3 +9,7 @@ repos:
         - id: check-yaml
         - id: check-merge-conflict
         - id: detect-private-key
+    - repo: https://github.com/pre-commit/pre-commit-hooks
+       rev: v4.0.1  # Use the ref
+     hooks:
+        - id: trailing-whitespace
