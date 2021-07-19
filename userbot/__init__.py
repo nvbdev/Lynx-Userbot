@@ -493,7 +493,7 @@ def alive_inline():
             \n💻 `CPU         :` Intel Xeon E5-2670 @ {cpufreq.current:.2f}Ghz\
             \n🐍 `Python      :` v. {python_version()}\
             \n⚙️ `Telethon    :` v. {version.__version__}\
-            \n👨‍💻 `My Owner    :` {DEFAULTUSER}\
+            \n👨‍💻 `User        :` {DEFAULTUSER}\
             \n`====================================`\
             \n Copyright © 𝟤𝟢𝟤𝟣 Lynx-Userbot\n License: Raphielscape Public License v1.d"
     buttons = [
@@ -596,10 +596,10 @@ with lynx:
 
 # ======================================== Inline Handler ======================================== #
 
-        @lynx.tgbot.on(events.NewMessage(pattern=r"/start"))
+        @lynx.tgbot.on(events.NewMessage(outgoing=True, pattern=r"/start"))
         async def handler(event):
             if event.message.from_id != uid:
-                u = await event.client.get_entity(event.chat_id)
+                u = await event.client.get_entity(event.user_id)
                 await event.reply(
                     f"Hai 👋 [{get_display_name(u)}](tg://user?id={u.id}) Selamat Datang di ⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡\nJika Kalian Datang Kesini dan Ingin Mengetahui Lynx-Robot Lebih Lanjut,\nSilahkan Pilih **Menu Bantuan** Dibawah Ini.\n",
                     buttons=[
@@ -613,7 +613,7 @@ with lynx:
                     ]
                 )
 
-        @lynx.tgbot.on(events.NewMessage(pattern=r"/deploy"))
+        @lynx.tgbot.on(events.NewMessage(outgoing=True, pattern=r"/deploy"))
         async def handler(event):
             if event.message.from_id != uid:
                 await event.reply(
@@ -624,10 +624,10 @@ with lynx:
                     ],
                 )
 
-        @lynx.tgbot.on(events.NewMessage(pattern=r"/repo"))
+        @lynx.tgbot.on(events.NewMessage(outgoing=True, pattern=r"/repo"))
         async def handler(event):
             if event.message.from_id != uid:
-                u = await event.client.get_entity(event.chat_id)
+                u = await event.client.get_entity(event.user_id)
                 await event.message.get_sender()
                 text = (
                     f"Haii 😼 [{get_display_name(u)}](tg://user?id={u.id}) My Name is 𝗟𝘆𝗻𝘅 🐈\n"
@@ -646,30 +646,35 @@ with lynx:
                                       ]
                                       )
 
-        @lynx.tgbot.on(events.NewMessage(pattern=r"/alive"))
+        @lynx.tgbot.on(events.NewMessage(outgoing=True, pattern=r"/alive"))
         async def handler(event):
             if event.message.from_id != uid:
+                axel = await event.client.get_entity(event.user_id)
+                await event.message.get_sender()
+                repo = Repo()
+                uname = platform.uname()
+                cpufreq = psutil.cpu_freq()
                 text = (
-                    f"`Robot` **is running on** `Lynx-Userbot`\n"
+                    f"`Robot` **is running on** `{repo.active_branch.name}`\n"
                     "`====================================`\n"
-                    f"💻 `OS          :` Debian GNU/Linux 10 x86_64\n"
-                    f"💻 `Kernel      :` 4.4.0-1093-aws\n"
-                    f"💻 `CPU         :` Intel Xeon E5-2670 @ 2494.01Ghz\n"
-                    f"🐍 `Python      :` v. 3.9.6\n"
-                    f"⚙️ `Telethon    :` v. 1.23.0\n"
-                    f"👨‍💻 `My Owner    :` ＫΞＮＺＯ\n"
+                    f"💻 `OS          :` Debian GNU/{uname.system} 10 {uname.machine}\n"
+                    f"💻 `Kernel      :` {uname.release}\n"
+                    f"💻 `CPU         :` Intel Xeon E5-2670 @ {cpufreq.current:.2f}Ghz\n"
+                    f"🐍 `Python      :` v. {python_version()}\n"
+                    f"⚙️ `Telethon    :` v. {version.__version__}\n"
+                    f"👨‍💻 `User        :` [{get_display_name(u)}](tg://user?id={u.id})\n"
                     "`====================================`\n"
                     f" Copyright © 𝟤𝟢𝟤𝟣 Lynx-Userbot\n License: Raphielscape Public License v1.d")
-            await lynx.tgbot.send_file(event.chat_id, file=lynxlogo,
-                                       caption=text,
-                                       buttons=[
-                                           [
-                                               Button.url("🧪𝗥𝗘𝗣𝗢",
-                                                          "https://zee.gl/lynx404"),
-                                               Button.url("𝗥𝗣𝗟 𝘃𝟭.𝗱🎖️",
-                                                          "https://github.com/KENZO-404/Lynx-Userbot/blob/Lynx-Userbot/LICENSE")],
-                                       ]
-                                       )
+                await lynx.tgbot.send_file(event.chat_id, file=alivvlogo,
+                                           caption=text,
+                                           buttons=[
+                                               [
+                                                   Button.url("🧪𝗥𝗘𝗣𝗢",
+                                                              "https://zee.gl/lynx404"),
+                                                   Button.url("𝗥𝗣𝗟 𝘃𝟭.𝗱🎖️",
+                                                              "https://github.com/KENZO-404/Lynx-Userbot/blob/Lynx-Userbot/LICENSE")],
+                                           ]
+                                           )
 
         @lynx.tgbot.on(events.ChatAction)
         async def handler(event):
@@ -678,7 +683,7 @@ with lynx:
                 c = await event.client.get_entity(event.user_id)
                 await event.reply(f"```Welcome to the``` [{get_display_name(u)}](tg://user?id={u.id})\n👤**User:** [{get_display_name(c)}](tg://user?id={c.id})")
 
-        @lynx.tgbot.on(events.NewMessage(pattern=r"/ping"))
+        @lynx.tgbot.on(events.NewMessage(outgoing=True, pattern=r"/ping"))
         async def handler(event):
             if event.message.from_id != uid:
                 start = datetime.now()
