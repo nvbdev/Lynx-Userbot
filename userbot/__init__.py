@@ -701,7 +701,6 @@ with lynx:
             else:
                 result = builder.article(
                     " ╔╡⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡╞╗ ",
-                    file=lynxlogo,
                     text="""**Anda Bisa Membuat ⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡ Anda Sendiri\nDengan Cara :**__Tekan Dibawah Ini__ 👇""",
                     buttons=[
                         [
@@ -719,7 +718,8 @@ with lynx:
             await event.answer([result] if result else None)
             if event.query.user_id == uid and query.startswith("@LynxAliveRobot"):
                 _result = alive_inline()
-                result = builder.article(
+                result = builder.photo(
+                    file=lynxlogo,
                     link_preview=False,
                     text=_result[0],
                     buttons=_result[1],
