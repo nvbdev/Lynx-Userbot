@@ -495,7 +495,7 @@ def alive_inline():
             \n⚙️ `Telethon    :` v. {version.__version__}\
             \n👨‍💻 `My Owner    :` {DEFAULTUSER}\
             \n`====================================`\
-            \n Copyright © 𝟤𝟢𝟤𝟣 Lynx-Userbot\n License : Raphielscape Public License v1.d"
+            \n Copyright © 𝟤𝟢𝟤𝟣 Lynx-Userbot\n License: Raphielscape Public License v1.d"
     buttons = [
         (
             custom.Button.url("🧪𝗥𝗘𝗣𝗢",
@@ -659,7 +659,7 @@ with lynx:
                     f"⚙️ `Telethon    :` v. 1.23.0\n"
                     f"👨‍💻 `My Owner    :` ＫΞＮＺＯ\n"
                     "`====================================`\n"
-                    f" Copyright © 𝟤𝟢𝟤𝟣 Lynx-Userbot\n License : Raphielscape Public License v1.d")
+                    f" Copyright © 𝟤𝟢𝟤𝟣 Lynx-Userbot\n License: Raphielscape Public License v1.d")
             await lynx.tgbot.send_file(event.chat_id, file=lynxlogo,
                                        caption=text,
                                        buttons=[
@@ -701,7 +701,7 @@ with lynx:
                 photo_bytesio = lynxlogo
                 result = builder.photo(photo_bytesio,
                     link_preview=False,
-                    text=f"\n**Bᴏᴛ ᴏꜰ {DEFAULTUSER}**\n\n**Copyright © 𝟤𝟢𝟤𝟣 Lynx-Userbot\n License : Raphielscape Public License v1.d**",
+                    text=f"\n**Bᴏᴛ ᴏꜰ {DEFAULTUSER}**\n\n **Copyright © 𝟤𝟢𝟤𝟣 Lynx-Userbot\n License: Raphielscape Public License v1.d**",
                     buttons=buttons,
                 )
             elif query.startswith("tb_btn"):
@@ -774,7 +774,7 @@ with lynx:
         async def on_plug_in_callback_query_handler(event):
             if event.query.user_id == uid:
                 buttons = paginate_help(0, dugmeler, "helpme")
-                text = f"\n**Bᴏᴛ ᴏꜰ {DEFAULTUSER}**\n\n◎› **Bᴏᴛ ᴠᴇʀ :** `v.{BOT_VER}`\n◎› **Pʟᴜɢɪɴꜱ :** `{len(plugins)}`\n\n**Cᴏᴘʏʀɪɢʜᴛ © 𝟤𝟢𝟤𝟣 Lʏɴx-Uꜱᴇʀʙᴏᴛ**"
+                text = f"\n**Bᴏᴛ ᴏꜰ {DEFAULTUSER}**\n\n◎› **Bᴏᴛ ᴠᴇʀ :** `v.{BOT_VER}`\n◎› **Pʟᴜɢɪɴꜱ :** `{len(plugins)}`\n\n **Copyright © 𝟤𝟢𝟤𝟣 Lynx-Userbot\n License: Raphielscape Public License v1.d**"
                 await event.edit(text,
                     file=lynxlogo,
                     buttons=buttons,
@@ -793,7 +793,7 @@ with lynx:
             if event.query.user_id == uid:
                 current_page_number = int(unpage)
                 buttons = paginate_help(current_page_number, plugins, "helpme")
-                text = f"\n**Bᴏᴛ ᴏꜰ {DEFAULTUSER}**\n\n◎› **Bᴏᴛ ᴠᴇʀ :** `v.{BOT_VER}`\n◎› **Pʟᴜɢɪɴꜱ :** `{len(plugins)}`\n\n**Cᴏᴘʏʀɪɢʜᴛ © 𝟤𝟢𝟤𝟣 Lʏɴx-Uꜱᴇʀʙᴏᴛ**"
+                text = f"\n**Bᴏᴛ ᴏꜰ {DEFAULTUSER}**\n\n◎› **Bᴏᴛ ᴠᴇʀ :** `v.{BOT_VER}`\n◎› **Pʟᴜɢɪɴꜱ :** `{len(plugins)}`\n\n **Copyright © 𝟤𝟢𝟤𝟣 Lynx-Userbot\n License: Raphielscape Public License v1.d**"
                 await event.edit(text,
                     file=lynxlogo,
                     buttons=buttons,
