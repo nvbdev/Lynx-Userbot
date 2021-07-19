@@ -424,9 +424,12 @@ with bot:
             "valid entity. Check your environment variables/config.env file.")
         quit(1)
 
+from git import Repo
+
 
 async def update_restart_msg(chat_id, msg_id):
     DEFAULTUSER = ALIVE_NAME or "Set `ALIVE_NAME` ConfigVar!"
+    repo = Repo()
     uname = platform.uname()
     cpufreq = psutil.cpu_freq()
     message = (
@@ -437,6 +440,7 @@ async def update_restart_msg(chat_id, msg_id):
            f"**│** `OS       :` __Debian GNU/{uname.system} 10 {uname.machine}__\n"
            f"**│** `Kernel   :` __{uname.release}__\n"
            f"**│** `CPU      :` __Intel Xeon E5-2670 @ {cpufreq.current:.2f}Ghz__\n"
+           f"**│** `Branch   :` __{repo.active_branch.name}__\n"
            f"**│** `Telethon :` __{version.__version__}__\n"
            f"**│** `Python   :` __{python_version()}__\n"
            f"**│** `User     :` __{DEFAULTUSER}__\n"
@@ -476,10 +480,10 @@ AFKREASON = None
 ZALG_LIST = {}
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else uname().node
 
-from git import Repo
 # -------------------------------- InlineBot ------------------------------------- #
 
 def alive_inline():
+    repo = Repo()
     uname = platform.uname()
     cpufreq = psutil.cpu_freq()
     text = f"`Robot` **is running on** `{repo.active_branch.name}`\
