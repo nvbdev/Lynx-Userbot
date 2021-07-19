@@ -701,7 +701,7 @@ with lynx:
                 photo_bytesio = lynxlogo
                 result = builder.photo(photo_bytesio,
                     link_preview=False,
-                    text=f"\n**Bᴏᴛ ᴏꜰ {DEFAULTUSER}**\n\n**Copyright © 𝟤𝟢𝟤𝟣 Lynx-Userbot\n License : Raphielscape Public License v1.d**"
+                    text=f"\n**Bᴏᴛ ᴏꜰ {DEFAULTUSER}**\n\n**Copyright © 𝟤𝟢𝟤𝟣 Lynx-Userbot\n License : Raphielscape Public License v1.d**",
                     buttons=buttons,
                 )
             elif query.startswith("tb_btn"):
