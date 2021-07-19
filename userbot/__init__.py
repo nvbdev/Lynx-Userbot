@@ -719,12 +719,12 @@ with lynx:
             await event.answer([result] if result else None)
             if query.startswith("@LynxAliveRobot"):
                 _result = alive_inline()
-                 result = builder.photo(
-                     file=alivvlogo,
-                     text=_result[0],
-                     buttons=_result[1],
-                     link_preview=False,
-                 )
+                result = builder.photo(
+                    file=alivvlogo,
+                    text=_result[0],
+                    buttons=_result[1],
+                    link_preview=False,
+                )
             await event.answer([result] if result else None)
 
 
@@ -775,10 +775,6 @@ with lynx:
             if event.query.user_id == uid:  # Lynx-Alive
             _result = alive_inline()
             await event.edit(file=alivvlogo, _result[0], buttons=_result[1])
-
-
-
-
 
 
 
