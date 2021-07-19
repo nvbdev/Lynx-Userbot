@@ -780,7 +780,7 @@ with lynx:
                     file=alivvlogo,
                     link_preview=False,
                     _result[0],
-                    buttons=_result[1]
+                    buttons=_result[1],
                 )
 
 
