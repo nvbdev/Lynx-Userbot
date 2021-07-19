@@ -52,7 +52,7 @@ async def yardim(event):
     
     
 @register(outgoing=True, pattern=r"^\.alynx")
-async def yardim(event):
+async def alyynx(event):
     lynxbotusername = BOT_USERNAME
     if lynxbotusername and BOT_TOKEN:
         try:
