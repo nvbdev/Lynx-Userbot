@@ -33,16 +33,43 @@ from userbot import (
 LOGS = logging.getLogger(__name__)
 
 
+async def get_user_from_id(user, event):
+    if isinstance(user, str):
+        user = int(user)
+    try:
+        user_obj = await event.client.get_entity(user)
+    except (TypeError, ValueError) as err:
+        await event.edit(str(err))
+        return None
+    return user_obj
+
+
+async def admin_groups(grp):
+    admgroups = []
+    async for dialog in grp.client.iter_dialogs():
+        entity = dialog.entity
+        if (
+            isinstance(entity, ChannelParticipantsAdmins)
+            and entity.megagroup
+            and (entity.creator or entity.admin_rights)
+        ):
+            admgroups.append(entity.id)
+    return admgroups
+
+
+def mentionuser(name, userid):
+    return f"[{name}](tg://user?id={userid})"
+
+
 if ANTISPAMBOT_BAN:
 
     @bot.on(ChatAction())
     async def anti_spambot(event):  # sourcery no-metrics
         if not event.user_joined and not event.user_added:
             return
-        user = await event.client.get_entity(event.chat_id)
-        uid = user_id
-        lynxadmin = await is_admin(event.client, event.chat_id, event.client.uid)
-        if not lynxadmin:
+        user = await event.client.get_user()
+        admin = await admin_groups(event)
+        if not admin:
             return
         lynxbanned = None
         adder = None
@@ -64,11 +91,11 @@ if ANTISPAMBOT_BAN:
             lynxgban = get_gbanuser(user.id)
             if lynxgban.reason:
                 hmm = await event.reply(
-                    f"[{get_display_name(user)}](tg://user?id={user.id}) was gbanned by you for the reason `{lynxgban.reason}`"
+                    f"👤 [USER](tg://user?id={user.id}) was gbanned by you for the reason: `{lynxgban.reason}`"
                 )
             else:
                 hmm = await event.reply(
-                    f"[{get_display_name(user)}](tg://user?id={user.id}) was gbanned by you"
+                    f"👤 [USER](tg://user?id={user.id}) was gbanned by you"
                 )
             try:
                 await event.client.edit_permissions(
@@ -81,7 +108,7 @@ if ANTISPAMBOT_BAN:
             ban = spamwatch.get_ban(user.id)
             if ban:
                 hmm = await event.reply(
-                    f"[{get_display_name(user)}](tg://user?id={user.id}) was banned by spamwatch for the reason `{ban.reason}`"
+                    f"👤 [USER](tg://user?id={user.id}) was banned by spamwatch for the reason: `{ban.reason}`"
                 )
                 try:
                     await event.client.edit_permissions(
@@ -102,7 +129,7 @@ if ANTISPAMBOT_BAN:
                     f"[Banned by Combot Anti Spam](https://cas.chat/query?u={user.id})"
                 )
                 hmm = await event.reply(
-                    f"[{get_display_name(user)}](tg://user?id={user.id}) was banned by Combat anti-spam service(CAS) for the reason check {reason}"
+                    f"👤 [USER](tg://user?id={user.id}) was banned by Combat anti-spam service(CAS) for the reason check: {reason}"
                 )
                 try:
                     await event.client.edit_permissions(
@@ -115,7 +142,7 @@ if ANTISPAMBOT_BAN:
             await event.client.send_message(
                 BOTLOG_CHATID,
                 "#ANTISPAMBOT\n"
-                f"**User :** [{get_display_name(user)}](tg://user?id={user.id})\n"
+                f"**User :** [CLICK HERE](tg://user?id={user.id})\n"
                 f"**Chat :** {event.chat.title} (`{event.chat_id}`)\n"
                 f"**Reason :** {hmm.text}",
             )
@@ -127,10 +154,10 @@ async def caschecker(event):
     text = ""
     lynxevent = await edit_or_reply(
         event,
-        "`checking any cas(combot antispam service) banned users here, this may take several minutes too......`",
+        "`Checking any CAS(Combit Antispam Service) Banned Users Here, This May Take Several Minutes too......`",
     )
     try:
-        info = await event.client.get_entity(event.chat_id)
+        info = await event.client.get_user()
     except (TypeError, ValueError) as err:
         return await event.edit(str(err))
     try:
@@ -140,9 +167,9 @@ async def caschecker(event):
             if banchecker(user.id):
                 cas_count += 1
                 if not user.deleted:
-                    banned_users += f"{get_display_name(user)}-`{user.id}`\n"
+                    banned_users += f"👤 [USER](tg://user?id={user.id}) - `{user.id}`\n"
                 else:
-                    banned_users += f"Deleted Account `{user.id}`\n"
+                    banned_users += f"Deleted Account - `{user.id}`\n"
             members_count += 1
         text = "**⚠️ WARNING ⚠️**\nFound `{}` of `{}` Users are CAS Banned:\n".format(
             cas_count, members_count
@@ -161,14 +188,14 @@ async def caschecker(event):
 
 @register(outgoing=True, groups_only=True, pattern=r"^\.spamcheck$")
 async def caschecker(event):
-    "Searches for spamwatch federation banned users in group and shows you the list"
+    "Searches for Spamwatch Federation Banned Users in Group and Shows You The List"
     text = ""
     lynxevent = await edit_or_reply(
         event,
-        "`checking any spamwatch banned users here, this may take several minutes too......`",
+        "`Checking any Spamwatch Banned Users Here, This May Take Several Minutes too......`",
     )
     try:
-        info = await event.client.get_entity(event.chat_id)
+        info = await event.client.get_user()
     except (TypeError, ValueError) as err:
         await event.edit(str(err))
         return
@@ -179,9 +206,9 @@ async def caschecker(event):
             if spamchecker(user.id):
                 cas_count += 1
                 if not user.deleted:
-                    banned_users += f"{get_display_name(user)}-`{user.id}`\n"
+                    banned_users += f"👤 [USER](tg://user?id={user.id}) - `{user.id}`\n"
                 else:
-                    banned_users += f"Deleted Account `{user.id}`\n"
+                    banned_users += f"Deleted Account - `{user.id}`\n"
             members_count += 1
         text = "**⚠️ WARNING ⚠️**\nFound `{}` of `{}` users are SpamWatch Banned:\n".format(
             cas_count, members_count
