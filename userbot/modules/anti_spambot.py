@@ -68,7 +68,7 @@ if ANTISPAMBOT_BAN:
         if not event.user_joined and not event.user_added:
             return
         user = await event.client.get_entity(event.chat_id)
-        admin = await admin_groups(event.client)
+        admin = await admin_groups(event)
         if not admin:
             return
         lynxbanned = None
@@ -171,7 +171,7 @@ async def caschecker(event):
                 else:
                     banned_users += f"Deleted Account - `{user.id}`\n"
             members_count += 1
-        text = "**⚠️ WARNING ⚠️**\nFound `{}` of `{}` Users are CAS Banned:\n".format(
+        text = "**⚠️ WARNING ⚠️**\n\nFound `{}` of `{}` Users are CAS Banned:\n".format(
             cas_count, members_count
         )
         text += banned_users
