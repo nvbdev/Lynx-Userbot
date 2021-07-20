@@ -515,7 +515,7 @@ def alive_inline():
 
 
 def paginate_help(page_number, loaded_modules, prefix):
-    number_of_rows = 5
+    number_of_rows = 4
     number_of_cols = 2
     global unpage
     unpage = page_number
@@ -568,6 +568,9 @@ with lynx:
         me = bot.get_me()
         uid = me.id
 
+        repo = Repo()
+        uname = platform.uname()
+        cpufreq = psutil.cpu_freq()
 # ------------Replc--------------- >
 
         plugins = CMD_HELP
@@ -651,9 +654,6 @@ with lynx:
             if event.message.from_id != uid:
                 axel = await event.client.get_entity(event.chat_id)
                 await event.message.get_sender()
-                repo = Repo()
-                uname = platform.uname()
-                cpufreq = psutil.cpu_freq()
                 text = (
                     f"`Robot` **is running on** `{repo.active_branch.name}`\n"
                     "`====================================`\n"
@@ -706,23 +706,23 @@ with lynx:
                 photo_bytesio = lynxlogo
                 result = builder.photo(photo_bytesio,
                     link_preview=False,
-                    text=f"\n**Bᴏᴛ ᴏꜰ {DEFAULTUSER}**\n\n**Copyright © 𝟤𝟢𝟤𝟣 Lynx-Userbot\nLicense: Raphielscape Public License v1.d**",
+                    text=f"**Copyright © 𝟤𝟢𝟤𝟣 Lynx-Userbot\nLicense: Raphielscape Public License v1.d**",
                     buttons=buttons,
                 )
             elif query.startswith("tb_btn"):
                 result = builder.article(
-                    "Bantuan Dari ⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡ ",
+                    "Bantuan Dari ⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡",
                     text="Daftar Plugins",
                     buttons=[],
-                    link_preview=False)
+                    link_preview=True)
             else:
                 result = builder.article(
-                    " ╔╡⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡╞╗ ",
+                    "╔╡⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡╞╗",
                     text="""**Anda Bisa Membuat ⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡ Anda Sendiri\nDengan Cara :**__Tekan Dibawah Ini__ 👇""",
                     buttons=[
                         [
                             custom.Button.url(
-                                "⚡𝗟𝘆𝗻𝘅⚡",
+                                "⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡",
                                 "https://zee.gl/lynx404"),
                             custom.Button.url(
                                 "Dᴇᴠᴇʟᴏᴘᴇʀ",
@@ -749,18 +749,18 @@ with lynx:
                 )
             elif query.startswith("tb_btn"):
                 result = builder.article(
-                    "Bantuan Dari ⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡ ",
+                    "Bantuan Dari ⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡",
                     text="Daftar Plugins",
                     buttons=[],
-                    link_preview=False)
+                    link_preview=True)
             else:
                 result = builder.photo(
-                    " ╔╡⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡╞╗ ",
+                    "╔╡⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡╞╗",
                     text="""**Anda Bisa Membuat ⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡ Anda Sendiri\nDengan Cara :**__Tekan Dibawah Ini__ 👇""",
                     buttons=[
                         [
                             custom.Button.url(
-                                "⚡𝗟𝘆𝗻𝘅⚡",
+                                "⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡",
                                 "https://zee.gl/lynx404"),
                             custom.Button.url(
                                 "Dᴇᴠᴇʟᴏᴘᴇʀ",
@@ -781,14 +781,14 @@ with lynx:
         async def on_plug_in_callback_query_handler(event):
             if event.query.user_id == uid:
                 buttons = paginate_help(0, dugmeler, "helpme")
-                text = f"\n**Bᴏᴛ ᴏꜰ {DEFAULTUSER}**\n\n◎› **Bᴏᴛ ᴠᴇʀ :** `v.{BOT_VER}`\n◎› **Pʟᴜɢɪɴꜱ :** `{len(plugins)}`\n\n**Copyright © 𝟤𝟢𝟤𝟣 Lynx-Userbot\nLicense: Raphielscape Public License v1.d**"
+                text = f"\n**Bᴏᴛ ᴏꜰ {DEFAULTUSER}**\n\n**Branch: ** `{repo.active_branch.name}`\n**Bot:** `v{BOT_VER}`\n**Plugins:** `{len(plugins)}`\n\n\n**Copyright © 𝟤𝟢𝟤𝟣 Lynx-Userbot\nLicense: Raphielscape Public License v1.d**"
                 await event.edit(text,
                     file=lynxlogo,
                     buttons=buttons,
                     link_preview=False,
                 )
             else:
-                reply_pop_up_alert = f"❌ DISCLAIMER ❌\n© Lynx-Userbot"
+                reply_pop_up_alert = f"❌ DISCLAIMER ❌\n © Lynx-Userbot"
                 await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
 
         @lynx.tgbot.on(
@@ -800,14 +800,14 @@ with lynx:
             if event.query.user_id == uid:
                 current_page_number = int(unpage)
                 buttons = paginate_help(current_page_number, plugins, "helpme")
-                text = f"\n**Bᴏᴛ ᴏꜰ {DEFAULTUSER}**\n\n◎› **Bᴏᴛ ᴠᴇʀ :** `v.{BOT_VER}`\n◎› **Pʟᴜɢɪɴꜱ :** `{len(plugins)}`\n\n**Copyright © 𝟤𝟢𝟤𝟣 Lynx-Userbot\nLicense: Raphielscape Public License v1.d**"
+                text = f"\n**Bᴏᴛ ᴏꜰ {DEFAULTUSER}**\n\n**Branch:** {repo.active_branch.name}`\n**Bot:** `v{BOT_VER}`\n**Plugins:** `{len(plugins)}`\n\n\n**Copyright © 𝟤𝟢𝟤𝟣 Lynx-Userbot\nLicense: Raphielscape Public License v1.d**"
                 await event.edit(text,
                     file=lynxlogo,
                     buttons=buttons,
                     link_preview=False,
                 )
             else:
-                reply_pop_up_alert = f"❌ DISCLAIMER ❌\n© Lynx-Userbot"
+                reply_pop_up_alert = f"❌ DISCLAIMER ❌\n © Lynx-Userbot"
                 await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
 
         @lynx.tgbot.on(
@@ -822,7 +822,7 @@ with lynx:
                 ]
                 await event.edit(f"**Copyright © 𝟤𝟢𝟤𝟣 Lynx-Userbot\nLicense: Raphielscape Public License v1.d**", file=lynxlogo, buttons=buttons)
             else:
-                reply_pop_up_alert = f"❌ DISCLAIMER ❌\n© Lynx-Userbot"
+                reply_pop_up_alert = f"❌ DISCLAIMER ❌\n © Lynx-Userbot"
                 await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
 
         @lynx.tgbot.on(
@@ -845,7 +845,7 @@ with lynx:
                     ]
                 )
             else:
-                reply_pop_up_alert = f"❌ DISCLAIMER ❌\n© Lynx-Userbot"
+                reply_pop_up_alert = f"❌ DISCLAIMER ❌\n © Lynx-Userbot"
                 await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
 
         @lynx.tgbot.on(
@@ -861,7 +861,7 @@ with lynx:
                     file=alivvlogo,
                 )
             else:
-                reply_pop_up_alert = f"❌ DISCLAIMER ❌\n© Lynx-Userbot"
+                reply_pop_up_alert = f"❌ DISCLAIMER ❌\n © Lynx-Userbot"
                 await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
 
         @lynx.tgbot.on(
@@ -878,7 +878,7 @@ with lynx:
                 # https://t.me/TelethonChat/115200
                 await event.edit(buttons=buttons)
             else:
-                reply_pop_up_alert = f"❌ DISCLAIMER ❌\n© Lynx-Userbot"
+                reply_pop_up_alert = f"❌ DISCLAIMER ❌\n © Lynx-Userbot"
                 await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
 
         @lynx.tgbot.on(
@@ -903,7 +903,7 @@ with lynx:
                     ]
                 )
             else:
-                reply_pop_up_alert = f"❌ DISCLAIMER ❌\n© Lynx-Userbot"
+                reply_pop_up_alert = f"❌ DISCLAIMER ❌\n © Lynx-Userbot"
                 await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
 
         @lynx.tgbot.on(
@@ -921,7 +921,7 @@ with lynx:
                 # https://t.me/TelethonChat/115200
                 await event.edit(buttons=buttons)
             else:
-                reply_pop_up_alert = f"❌ DISCLAIMER ❌\n© Lynx-Userbot"
+                reply_pop_up_alert = f"❌ DISCLAIMER ❌\n © Lynx-Userbot"
                 await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
 
         @lynx.tgbot.on(
@@ -953,8 +953,7 @@ with lynx:
                     )
                 )
             else:
-                reply_pop_up_alert = f"❌ DISCLAIMER ❌\n© Lynx-Userbot"
-
+                reply_pop_up_alert = f"❌ DISCLAIMER ❌\n © Lynx-Userbot"
             await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
 
     except BaseException:
