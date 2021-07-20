@@ -506,7 +506,7 @@ def alive_inline():
             ),
         ),
         (
-            custom.Button.inline("ᴏᴘᴇɴ ᴍᴇɴᴜ",
+            custom.Button.inline("Open Main Menu",
                 data="opener",
             ),
         ),
@@ -818,7 +818,7 @@ with lynx:
         async def on_plug_in_callback_query_handler(event):
             if event.query.user_id == uid:
                 buttons = [
-                    (custom.Button.inline("ᴏᴘᴇɴ ᴍᴇɴᴜ", data="opener"),),
+                    (custom.Button.inline("Open Menu Again", data="opener"),),
                 ]
                 await event.edit(f"🕹 **<--- • Menu Has Closed • --->** 🕹", file=lynxlogo, buttons=buttons)
             else:
@@ -840,7 +840,7 @@ with lynx:
                             custom.Button.inline("ᴀʟɪᴠᴇ", data="allive")
                         ],
                         [
-                            custom.Button.inline("ᴏᴘᴇɴ ᴍᴇɴᴜ", data="opener")
+                            custom.Button.inline("Close", data="close")
                         ],
                     ]
                 )
@@ -894,13 +894,12 @@ with lynx:
                     link_preview=True,
                     buttons=[
                         [
-                            custom.Button.url("⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡",
+                            custom.Button.url("Lynx-Userbot",
                                        "t.me/LynxUserbot"),
-                            custom.Button.url("[⊙] 𝗠𝘆 𝗜𝗻𝘀𝘁𝗮𝗴𝗿𝗮𝗺",
+                            custom.Button.url("My Instagram",
                                        f"{INSTAGRAM_ALIVE}")],
-                        [custom.Button.inline("⚙️ ꜱᴇᴛᴛɪɴɢꜱ ⚙️", data="settings")],
-                        [custom.Button.inline("ᴏᴘᴇɴ ᴍᴇɴᴜ ᴀɢᴀɪɴ", data="opener")],
-                        [custom.Button.inline("ᴄʟᴏꜱᴇ", data="close")],
+                        [custom.Button.inline("⚙️ Settings ⚙️", data="settings")],
+                        [custom.Button.inline("Close", data="close")],
                     ]
                 )
             else:
