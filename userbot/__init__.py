@@ -174,7 +174,6 @@ if SPAMWATCH_API:
 else:
     spamwatch = None
 
-
 # Youtube API key
 YOUTUBE_API_KEY = os.environ.get("YOUTUBE_API_KEY", None)
 
@@ -222,7 +221,6 @@ if L_PIC:
 else:
     lynxlogo = "resource/logo/LynxUserbot-Button.jpg"
 
-
 INLINE_LOGO = os.environ.get(
     "INLINE_LOGO") or "https://telegra.ph/file/b6580efa28fdc144749d5.jpg"
 
@@ -231,7 +229,6 @@ if IN_PIC:
     aliplogo = IN_PIC
 else:
     aliplogo = "https://telegra.ph/file/b6580efa28fdc144749d5.jpg"
-
 
 # Last.fm Module
 BIO_PREFIX = os.environ.get("BIO_PREFIX", None)
@@ -299,7 +296,6 @@ BOT_USERNAME = os.environ.get("BOT_USERNAME", None)
 # Uptobox
 USR_TOKEN = os.environ.get("USR_TOKEN_UPTOBOX", None)
 
-
 # Setting Up CloudMail.ru and MEGA.nz extractor binaries,
 # and giving them correct perms to work properly.
 if not os.path.exists("bin"):
@@ -336,9 +332,7 @@ def shutdown_bot(signum, frame):
     bot.disconnect()
     sys.exit(143)
 
-
 signal.signal(signal.SIGTERM, shutdown_bot)
-
 
 def migration_workaround():
     try:
@@ -368,7 +362,6 @@ def migration_workaround():
     addgvar("public_ip", new_ip)
     return None
 
-
 # 'bot' variable
 if STRING_SESSION:
     # pylint: disable=invalid-name
@@ -389,7 +382,6 @@ try:
 except Exception as e:
     print(f"STRING_SESSION - {str(e)}")
     sys.exit()
-
 
 async def check_botlog_chatid():
     if not BOTLOG_CHATID and LOGSPAMMER:
@@ -414,7 +406,6 @@ async def check_botlog_chatid():
             "group. Check if you typed the Chat ID correctly.")
         quit(1)
 
-
 with bot:
     try:
         bot.loop.run_until_complete(check_botlog_chatid())
@@ -425,7 +416,6 @@ with bot:
         quit(1)
 
 from git import Repo
-
 
 async def update_restart_msg(chat_id, msg_id):
     DEFAULTUSER = ALIVE_NAME or "Set `ALIVE_NAME` ConfigVar!"
@@ -449,7 +439,6 @@ async def update_restart_msg(chat_id, msg_id):
         )
     await bot.edit_message(chat_id, msg_id, message)
     return True
-
 
 try:
     from userbot.modules.sql_helper.globals import delgvar, gvarstatus
@@ -513,7 +502,6 @@ def alive_inline():
     ]
     return text, buttons
 
-
 def paginate_help(page_number, loaded_modules, prefix):
     number_of_rows = 4
     number_of_cols = 2
@@ -564,6 +552,7 @@ with lynx:
             bot_token=BOT_TOKEN)
 
 # -------------------------Flex------------------------------- >
+
         dugmeler = CMD_HELP
         me = bot.get_me()
         uid = me.id
@@ -571,6 +560,7 @@ with lynx:
         repo = Repo()
         uname = platform.uname()
         cpufreq = psutil.cpu_freq()
+
 # ------------Replc--------------- >
 
         plugins = CMD_HELP
@@ -771,7 +761,6 @@ with lynx:
                     link_preview=True,
                 )
             await event.answer([result] if result else None)
-
 
         @lynx.tgbot.on(
             events.callbackquery.CallbackQuery(  # pylint:disable=E0602
