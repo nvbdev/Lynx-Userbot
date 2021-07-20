@@ -67,7 +67,7 @@ if ANTISPAMBOT_BAN:
     async def anti_spambot(event):  # sourcery no-metrics
         if not event.user_joined and not event.user_added:
             return
-        user = await event.client.get_user(event.chat_id)
+        user = await event.client.get_entity(event.chat_id)
         admin = await admin_groups(event.client)
         if not admin:
             return
@@ -157,7 +157,7 @@ async def caschecker(event):
         "`Checking any CAS(Combit Antispam Service) Banned Users Here, This May Take Several Minutes too......`",
     )
     try:
-        info = await event.client.get_user(event.chat_id)
+        info = await event.client.get_entity(event.chat_id)
     except (TypeError, ValueError) as err:
         return await event.edit(str(err))
     try:
@@ -195,7 +195,7 @@ async def caschecker(event):
         "`Checking any Spamwatch Banned Users Here, This May Take Several Minutes too......`",
     )
     try:
-        info = await event.client.get_user(event.chat_id)
+        info = await event.client.get_entity(event.chat_id)
     except (TypeError, ValueError) as err:
         await event.edit(str(err))
         return
