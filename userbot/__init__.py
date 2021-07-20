@@ -194,7 +194,7 @@ ZIP_DOWNLOAD_DIRECTORY = os.environ.get("ZIP_DOWNLOAD_DIRECTORY", "./zips")
 TERM_ALIAS = os.environ.get("TERM_ALIAS", None)
 
 # Bot Version
-BOT_VER = os.environ.get("BOT_VER", "0.3.0")
+BOT_VER = os.environ.get("BOT_VER", "0.3.1")
 
 # Default .alive Username
 ALIVE_USERNAME = os.environ.get("ALIVE_USERNAME", None)
