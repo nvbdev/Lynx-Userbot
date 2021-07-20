@@ -788,7 +788,7 @@ with lynx:
                     link_preview=False,
                 )
             else:
-                reply_pop_up_alert = f"🚫!WARNING!🚫\nJangan Menggunakan Milik {DEFAULTUSER}."
+                reply_pop_up_alert = f"❌ DISCLAIMER ❌\n© Lynx-Userbot"
                 await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
 
         @lynx.tgbot.on(
@@ -807,7 +807,7 @@ with lynx:
                     link_preview=False,
                 )
             else:
-                reply_pop_up_alert = f"🚫!WARNING!🚫\nJangan Menggunakan Milik {DEFAULTUSER}."
+                reply_pop_up_alert = f"❌ DISCLAIMER ❌\n© Lynx-Userbot"
                 await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
 
         @lynx.tgbot.on(
@@ -820,9 +820,9 @@ with lynx:
                 buttons = [
                     (custom.Button.inline("Open Menu Again", data="opener"),),
                 ]
-                await event.edit(f"🕹 **<--- • Menu Has Closed • --->** 🕹", file=lynxlogo, buttons=buttons)
+                await event.edit(f"**Copyright © 𝟤𝟢𝟤𝟣 Lynx-Userbot\n License: Raphielscape Public License v1.d**", file=lynxlogo, buttons=buttons)
             else:
-                reply_pop_up_alert = f"🚫!WARNING!🚫\nJangan Menggunakan Milik {DEFAULTUSER}."
+                reply_pop_up_alert = f"❌ DISCLAIMER ❌\n© Lynx-Userbot"
                 await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
 
         @lynx.tgbot.on(
@@ -845,7 +845,7 @@ with lynx:
                     ]
                 )
             else:
-                reply_pop_up_alert = f"🚫!WARNING!🚫\nJangan Menggunakan Milik {DEFAULTUSER}."
+                reply_pop_up_alert = f"❌ DISCLAIMER ❌\n© Lynx-Userbot"
                 await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
 
         @lynx.tgbot.on(
@@ -861,7 +861,7 @@ with lynx:
                     file=alivvlogo,
                 )
             else:
-                reply_pop_up_alert = f"🚫!WARNING!🚫\nJangan Menggunakan Milik {DEFAULTUSER}."
+                reply_pop_up_alert = f"❌ DISCLAIMER ❌\n© Lynx-Userbot"
                 await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
 
         @lynx.tgbot.on(
@@ -878,7 +878,7 @@ with lynx:
                 # https://t.me/TelethonChat/115200
                 await event.edit(buttons=buttons)
             else:
-                reply_pop_up_alert = f"🚫!WARNING!🚫\nJangan Menggunakan Milik {DEFAULTUSER}."
+                reply_pop_up_alert = f"❌ DISCLAIMER ❌\n© Lynx-Userbot"
                 await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
 
         @lynx.tgbot.on(
@@ -903,7 +903,7 @@ with lynx:
                     ]
                 )
             else:
-                reply_pop_up_alert = f"🚫!WARNING!🚫\nJangan Menggunakan Milik {DEFAULTUSER}."
+                reply_pop_up_alert = f"❌ DISCLAIMER ❌\n© Lynx-Userbot"
                 await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
 
         @lynx.tgbot.on(
@@ -921,7 +921,7 @@ with lynx:
                 # https://t.me/TelethonChat/115200
                 await event.edit(buttons=buttons)
             else:
-                reply_pop_up_alert = f"🚫!WARNING!🚫\nJangan Menggunakan Milik {DEFAULTUSER}."
+                reply_pop_up_alert = f"❌ DISCLAIMER ❌\n© Lynx-Userbot"
                 await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
 
         @lynx.tgbot.on(
@@ -953,7 +953,7 @@ with lynx:
                     )
                 )
             else:
-                reply_pop_up_alert = f"🚫!WARNING!🚫\nJangan Menggunakan Milik {DEFAULTUSER}."
+                reply_pop_up_alert = f"❌ DISCLAIMER ❌\n© Lynx-Userbot"
 
             await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
 
