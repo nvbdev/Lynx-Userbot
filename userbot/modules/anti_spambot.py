@@ -150,11 +150,11 @@ if ANTISPAMBOT_BAN:
 
 @register(outgoing=True, groups_only=True, pattern=r"^\.cascheck$")
 async def caschecker(event):
-    "Searches for cas(combot antispam service) banned users in group and shows you the list"
+    "Searches For CAS (Combot Antispam Service) Banned Users in Group and Shows You The List."
     text = ""
     lynxevent = await edit_or_reply(
         event,
-        "`Checking any CAS(Combit Antispam Service) Banned Users Here, This May Take Several Minutes too......`",
+        "`Checking any CAS (Combot Antispam Service) Banned Users Here, This May Take Several Minutes too...`",
     )
     try:
         info = await event.client.get_entity(event.chat_id)
@@ -217,7 +217,7 @@ async def caschecker(event):
         if not cas_count:
             text = "No spamwatch Banned users found!"
     except ChatAdminRequiredError as carerr:
-        await lynxevent.edit("`SpamWatch check Failed: Admin Privileges are Required.`")
+        await lynxevent.edit("`SpamWatch Check Failed: Admin Privileges are Required.`")
         return
     except BaseException as be:
         await lynxevent.edit("`SpamWatch Check Failed.`")
