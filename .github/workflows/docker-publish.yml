@@ -4,11 +4,11 @@ on:
   schedule:
     - cron: '25 3 * * *'
   push:
-    branches: [ Lynx-Userbot ]
+    branches: [ Beta ]
     # Publish semver tags as releases.
     tags: [ 'v*.*.*' ]
   pull_request:
-    branches: [ Lynx-Userbot ]
+    branches: [ Beta ]
 
 env:
   # ............
