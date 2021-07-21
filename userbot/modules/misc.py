@@ -87,6 +87,7 @@ async def reedme(e):
         "\n[Special - Note](https://telegra.ph/Special-Note-11-02)")
 
 
+# Copyright (c) Gegham Zakaryan | 2019
 @register(outgoing=True, pattern=r"^\.repeat (.*)")
 async def repeat(rep):
     cnt, txt = rep.pattern_match.group(1).split(" ", 1)
@@ -95,7 +96,7 @@ async def repeat(rep):
 
     replyText = toBeRepeated + "\n"
 
-    for i in range(0, replyCount - 1):
+    for _ in range(0, replyCount - 1):
         replyText += toBeRepeated + "\n"
 
     await rep.edit(replyText)

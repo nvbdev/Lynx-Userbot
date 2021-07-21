@@ -343,15 +343,13 @@ async def imdb(e):
         movie_name = e.pattern_match.group(1)
         remove_space = movie_name.split(" ")
         final_name = "+".join(remove_space)
-        page = get(
-            "https://www.imdb.com/find?ref_=nv_sr_fn&q=" +
-            final_name +
-            "&s=all")
+        page = get("https://www.imdb.com/find?ref_=nv_sr_fn&q=" + final_name + "&s=all")
         soup = BeautifulSoup(page.content, "lxml")
         odds = soup.findAll("tr", "odd")
         mov_title = odds[0].findNext("td").findNext("td").text
-        mov_link = ("http://www.imdb.com/" +
-                    odds[0].findNext("td").findNext("td").a["href"])
+        mov_link = (
+            "http://www.imdb.com/" + odds[0].findNext("td").findNext("td").a["href"]
+        )
         page1 = get(mov_link)
         soup = BeautifulSoup(page1.content, "lxml")
         if soup.find("div", "poster"):
@@ -363,30 +361,29 @@ async def imdb(e):
             mov_details = re.sub(r"\s+", " ", pg)
         else:
             mov_details = ""
-        credits = soup.findAll("div", "credit_summary_item")
-        if len(credits) == 1:
-            director = credits[0].a.text
+        mov_credits = soup.findAll("div", "credit_summary_item")
+        if len(mov_credits) == 1:
+            director = mov_credits[0].a.text
             writer = "Not available"
             stars = "Not available"
-        elif len(credits) > 2:
-            director = credits[0].a.text
-            writer = credits[1].a.text
+        elif len(mov_credits) > 2:
+            director = mov_credits[0].a.text
+            writer = mov_credits[1].a.text
             actors = []
-            for x in credits[2].findAll("a"):
+            for x in mov_credits[2].findAll("a"):
                 actors.append(x.text)
             actors.pop()
             stars = actors[0] + "," + actors[1] + "," + actors[2]
         else:
-            director = credits[0].a.text
+            director = mov_credits[0].a.text
             writer = "Not available"
             actors = []
-            for x in credits[1].findAll("a"):
+            for x in mov_credits[1].findAll("a"):
                 actors.append(x.text)
             actors.pop()
             stars = actors[0] + "," + actors[1] + "," + actors[2]
         if soup.find("div", "inline canwrap"):
-            story_line = soup.find(
-                "div", "inline canwrap").findAll("p")[0].text
+            story_line = soup.find("div", "inline canwrap").findAll("p")[0].text
         else:
             story_line = "Not available"
         info = soup.findAll("div", "txt-block")
