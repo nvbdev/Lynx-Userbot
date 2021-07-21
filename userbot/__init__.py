@@ -510,7 +510,7 @@ def paginate_help(page_number, loaded_modules, prefix):
     helpable_modules = [p for p in loaded_modules if not p.startswith("_")]
     helpable_modules = sorted(helpable_modules)
     modules = [
-        custom.Button.inline("{} {} 」◑".format("◐「", x),
+        custom.Button.inline("{} {} 」".format("「", x),
                              data="ub_modul_{}".format(x))
         for x in helpable_modules
     ]
@@ -789,7 +789,7 @@ with lynx:
             if event.query.user_id == uid:
                 current_page_number = int(unpage)
                 buttons = paginate_help(current_page_number, plugins, "helpme")
-                text = f"\n**Bᴏᴛ ᴏꜰ {DEFAULTUSER}**\n\n**Branch:** {repo.active_branch.name}`\n**Bot:** `v{BOT_VER}`\n**Plugins:** `{len(plugins)}`\n\n\n**Copyright © 𝟤𝟢𝟤𝟣 Lynx-Userbot\nLicense: Raphielscape Public License v1.d**"
+                text = f"\n**Bᴏᴛ ᴏꜰ {DEFAULTUSER}**\n\n**Branch:** `{repo.active_branch.name}`\n**Bot:** `v{BOT_VER}`\n**Plugins:** `{len(plugins)}`\n\n\n**Copyright © 𝟤𝟢𝟤𝟣 Lynx-Userbot\nLicense: Raphielscape Public License v1.d**"
                 await event.edit(text,
                     file=lynxlogo,
                     buttons=buttons,
