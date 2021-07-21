@@ -47,14 +47,14 @@ async def quotess(qotli):
     if qotli.fwd_from:
         return
     if not qotli.reply_to_msg_id:
-        return await qotli.edit("```Mohon Balas Ke Pesan Lord```")
+        return await qotli.edit("```Please reply to message.```")
     reply_message = await qotli.get_reply_message()
     if not reply_message.text:
-        return await qotli.edit("```Mohon Balas Ke Pesan Lord```")
+        return await qotli.edit("```Please reply to message.```")
     chat = "@QuotLyBot"
     if reply_message.sender.bot:
-        return await qotli.edit("```Mohon Balas Ke Pesan Lord```")
-    await qotli.edit("```Sedang Memproses Sticker, Mohon Menunggu ツ```")
+        return await qotli.edit("```Please reply to message.```")
+    await qotli.edit("```Processing stickers, please wait.```")
     try:
         async with bot.conversation(chat) as conv:
             try:
@@ -67,9 +67,9 @@ async def quotess(qotli):
                 """ - don't spam notif - """
                 await bot.send_read_acknowledge(conv.chat_id)
             except YouBlockedUserError:
-                return await qotli.reply("```Harap Jangan Blockir @QuotLyBot Buka Blokir Lalu Coba Lagi```")
+                return await qotli.reply("```Please don't block `@QuotLyBot`\nUnblock or press start then try again.```")
             if response.text.startswith("Hi!"):
-                await qotli.edit("```Mohon Menonaktifkan Pengaturan Privasi Forward Anda```")
+                await qotli.edit("```Please disable ur forward Privacy Settings.```")
             else:
                 await qotli.delete()
                 await bot.forward_messages(qotli.chat_id, response.message)
@@ -81,34 +81,9 @@ async def quotess(qotli):
         await qotli.edit()
 
 
-@register(outgoing=True, pattern="^.xquote(?: |$)(.*)")
-async def quote_search(event):
-    if event.fwd_from:
-        return
-    await event.edit("`Sedang Memproses...`")
-    search_string = event.pattern_match.group(1)
-    input_url = "https://bots.shrimadhavuk.me/Telegram/GoodReadsQuotesBot/?q={}".format(
-        search_string)
-    headers = {"USER-AGENT": "Uniborg"}
-    try:
-        response = requests.get(input_url, headers=headers).json()
-    except BaseException:
-        response = None
-    if response is not None:
-        result = random.choice(response).get(
-            "input_message_content").get("message_text")
-    else:
-        result = None
-    if result:
-        await event.edit(result.replace("<code>", "`").replace("</code>", "`"))
-    else:
-        await event.edit("`Tidak Ada Hasil Yang Ditemukan`")
-
-
 CMD_HELP.update({
     "quotly":
-    "⚡𝘾𝙈𝘿⚡: `.q`\
-\n↳ : Mengubah Pesan Menjadi sticker.\
-\n\n⚡𝘾𝙈𝘿⚡: `.xquote`\
-\n↳ : Mengubah Pesan Menjadi sticker."
+    "✘ Pʟᴜɢɪɴ : Quotly\
+\n\n⚡𝘾𝙈𝘿⚡: `.q <Reply>`\
+\n↳ : Mengubah Text/Pesan Menjadi sticker."
 })
