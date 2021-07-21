@@ -23,7 +23,7 @@ from telethon.tl.functions.channels import (
     EditBannedRequest,
     EditPhotoRequest,
 )
-from telethon.tl.functions.messages import UpdatePinnedMessageRequest
+from telethon.tl.functions.messages import UpdatePinnedMessageRequest, EditChatDefaultBannedRightsRequest
 from telethon.tl.types import (
     ChannelParticipantsAdmins,
     ChannelParticipantsBots,
@@ -654,7 +654,7 @@ async def get_users(show):
             async for user in show.client.iter_participants(show.chat_id):
                 if not user.deleted:
                     mentions += (
-                        f"\n[{user.first_name}](tg://user?id={user.id}) `{user.id}`"
+                        f"\n[{user.first_name}](tg://user?id={user.id}) - `{user.id}`"
                     )
                 else:
                     mentions += f"\nDeleted Account `{user.id}`"
@@ -665,7 +665,7 @@ async def get_users(show):
             ):
                 if not user.deleted:
                     mentions += (
-                        f"\n[{user.first_name}](tg://user?id={user.id}) `{user.id}`"
+                        f"\n[{user.first_name}](tg://user?id={user.id}) - `{user.id}`"
                     )
                 else:
                     mentions += f"\nDeleted Account `{user.id}`"
@@ -746,7 +746,7 @@ async def get_usersdel(show):
             async for user in show.client.iter_participants(show.chat_id):
                 if not user.deleted:
                     mentions += (
-                        f"\n[{user.first_name}](tg://user?id={user.id}) `{user.id}`"
+                        f"\n[{user.first_name}](tg://user?id={user.id}) - `{user.id}`"
                     )
         #       else:
         #                mentions += f"\nDeleted Account `{user.id}`"
@@ -757,7 +757,7 @@ async def get_usersdel(show):
             ):
                 if not user.deleted:
                     mentions += (
-                        f"\n[{user.first_name}](tg://user?id={user.id}) `{user.id}`"
+                        f"\n[{user.first_name}](tg://user?id={user.id}) - `{user.id}`"
                     )
         #       else:
     #              mentions += f"\nDeleted Account `{user.id}`"
@@ -866,16 +866,104 @@ async def get_bots(show):
         remove("botlist.txt")
 
 
-@register(outgoing=True, pattern="^.allkick(?: |$)(.*)")
+@register(outgoing=True, pattern=r"^\.lock ?(.*)")
+async def locks(event):
+    input_str = event.pattern_match.group(1).lower()
+    peer_id = event.chat_id
+    msg = None
+    media = None
+    sticker = None
+    gif = None
+    gamee = None
+    ainline = None
+    gpoll = None
+    adduser = None
+    cpin = None
+    changeinfo = None
+    if input_str == "msg":
+        msg = True
+        what = "Pesan"
+    elif input_str == "media":
+        media = True
+        what = "Media"
+    elif input_str == "sticker":
+        sticker = True
+        what = "Sticker"
+    elif input_str == "gif":
+        gif = True
+        what = "GIF"
+    elif input_str == "game":
+        gamee = True
+        what = "Game"
+    elif input_str == "inline":
+        ainline = True
+        what = "Inline Bot"
+    elif input_str == "poll":
+        gpoll = True
+        what = "Poll"
+    elif input_str == "invite":
+        adduser = True
+        what = "Invite"
+    elif input_str == "pin":
+        cpin = True
+        what = "Pin"
+    elif input_str == "info":
+        changeinfo = True
+        what = "Info"
+    elif input_str == "all":
+        msg = True
+        media = True
+        sticker = True
+        gif = True
+        gamee = True
+        ainline = True
+        gpoll = True
+        adduser = True
+        cpin = True
+        changeinfo = True
+        what = "Semuanya"
+    else:
+        if not input_str:
+            await event.edit("`Sorry, What should I lock ?`")
+            return
+        else:
+            await event.edit(f"`Sorry, The type you want to lock is invalid.`\n`{input_str}`")
+            return
+
+    lock_rights = ChatBannedRights(
+        until_date=None,
+        send_messages=msg,
+        send_media=media,
+        send_stickers=sticker,
+        send_gifs=gif,
+        send_games=gamee,
+        send_inline=ainline,
+        send_polls=gpoll,
+        invite_users=adduser,
+        pin_messages=cpin,
+        change_info=changeinfo,
+    )
+    try:
+        await event.client(
+            EditChatDefaultBannedRightsRequest(peer=peer_id,
+                                               banned_rights=lock_rights))
+        await event.edit(f"`You have locked the` **{what}** `in this chat`")
+    except BaseException as e:
+        await event.edit(
+            f"`You don't have permission here...\n\n**Error:** {str(e)}")
+        return
+
+
+@register(outgoing=True, pattern=r"^\.allkick(?: |$)(.*)")
 async def allkick(event):
     lynxuser = await event.get_chat()
     lynxget = await event.client.get_me()
     admin = lynxuser.admin_rights
     creator = lynxuser.creator
     if not admin and not creator:
-        await event.edit("`Terjadi Kesalahan, Plugin ini Khusus Untuk Owner.`")
+        await event.edit("`#Disclaimer ❌\nThis plugin is specifically for Owners and Co-Founders.`")
         return
-    await event.edit("`Sedang Mengeluarkan Semua Member Dalam Group Ini...`")
+    await event.edit("`in Process...`")
 
     everyone = await event.client.get_participants(event.chat_id)
     for user in everyone:
@@ -886,7 +974,7 @@ async def allkick(event):
         except Exception as e:
             await event.edit(str(e))
         await sleep(.5)
-    await event.edit("☑️Berhasil, Anda Telah Menendang Semua Member Disini.")
+    await event.edit(f"#Successfully ☑️\nYou have kicked All Members here.")
 
 
 CMD_HELP.update({"admin": "✘ Pʟᴜɢɪɴ : Administrator Group"
@@ -911,11 +999,16 @@ CMD_HELP.update({"admin": "✘ Pʟᴜɢɪɴ : Administrator Group"
                  "\n↳ : Melihat Daftar Admin di Group."
                  "\n\n⚡𝘾𝙈𝘿⚡: `.bots`"
                  "\n↳ : Melihat Daftar Bot Dalam Group."
-                 "\n\n⚡𝘾𝙈𝘿⚡: `.users` Atau >`.users` <Nama Member>"
+                 "\n\n⚡𝘾𝙈𝘿⚡: `.users` or `.usersdel` <Nama Member>"
                  "\n↳ : Mendapatkan Daftar Pengguna Dalamm Group."
                  "\n\n⚡𝘾𝙈𝘿⚡: `.setgpic` <Reply ke Gambar>"
                  "\n↳ : Mengganti Photo Profile Group."
                  "\n\n⚡𝘾𝙈𝘿⚡: `.allkick`"
                  "\n↳ : Mengeluarkan Semua Member Di Dalam Group. (Only Owner)"
                  "\n\n⚡𝘾𝙈𝘿⚡: `.allunban`"
-                 "\n↳ : Menghapus/Membatalkan Semua Orang Yang Telah Di Ban Di Dalam Group."})
+                 "\n↳ : Menghapus/Membatalkan Semua Orang Yang Telah Di Ban Di Dalam Group."
+                 "\n\n⚡𝘾𝙈𝘿⚡: `.lock <all atau Jenis>` atau `.unlock <all atau Jenis>`"
+                 "\n↳ : Memungkinkan Anda mengunci atau membuka kunci, beberapa jenis pesan dalam obrolan."
+                 "\n[Anda Harus Jadi Admin Grup Untuk Menggunakan Perintah!]"
+                 "\n\nJenis pesan yang bisa dikunci atau dibuka adalah:"
+                 "\n`all, msg, media, sticker, gif, game, inline, poll, invite, pin, info`\n**Contoh:** `.lock msg` atau `.unlock msg`"})
