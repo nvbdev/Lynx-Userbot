@@ -42,7 +42,7 @@ async def yardim(event):
         await results[0].click(
             event.chat_id,
             reply_to=event.reply_to_msg_id,
-            hide_via=True
+            hide_via=False
         )
         await event.delete()
     else:
@@ -53,19 +53,19 @@ async def yardim(event):
     
 @register(outgoing=True, pattern=r"^\.alynx")
 async def alyynx(event):
-    lynxbotusername = BOT_USERNAME
-    if lynxbotusername and BOT_TOKEN:
+    botusername = BOT_USERNAME
+    if botusername and BOT_TOKEN:
         try:
-            results = await event.client.inline_query(
-                lynxbotusername,
+            resullt = await event.client.inline_query(
+                botusername,
                 "@LynxAliveRobot"
             )
         except BotInlineDisabledError:
             return await event.edit("`Bot can't be used in inline mode.\nMake sure to turn on inline mode!`")
-        await results[0].click(
+        await resullt[0].click(
             event.chat_id,
             reply_to=event.reply_to_msg_id,
-            hide_via=True
+            hide_via=False
         )
         await event.delete()
     else:
