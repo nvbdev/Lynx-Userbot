@@ -15,7 +15,7 @@ from userbot import CMD_HELP
 from userbot.events import register
 
 
-@register(outgoing=True, pattern="^.imp (.*)")
+@register(outgoing=True, pattern=r"^\.imp (.*)")
 async def f_load(message):
     clrs = {
         "red": 1,
@@ -92,7 +92,8 @@ async def bruh(message, user):
 
 CMD_HELP.update(
     {
-        "amongus": "`.imp`\
-    \nUsage: Kirimkan gambar seorang impostor Among US dengan kalimat dari Anda."
+        "amongus": "✘ Pʟᴜɢɪɴ : Among US\
+    \n\n⚡𝘾𝙈𝘿⚡: `.imp <Text>`\
+    \n↳ : Mengirim Sticker Impostor (Among US)."
     }
 )
