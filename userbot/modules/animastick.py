@@ -13,6 +13,11 @@ import requests
 import cv2
 import os
 
+from random import choice, randint
+from textwrap import wrap
+from io import BytesIO
+from requests import get
+
 from PIL import Image, ImageDraw, ImageFont
 from asyncio.exceptions import TimeoutError
 
