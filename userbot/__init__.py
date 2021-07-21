@@ -503,7 +503,7 @@ def alive_inline():
     return text, buttons
 
 def paginate_help(page_number, loaded_modules, prefix):
-    number_of_rows = 4
+    number_of_rows = 3
     number_of_cols = 2
     global unpage
     unpage = page_number
