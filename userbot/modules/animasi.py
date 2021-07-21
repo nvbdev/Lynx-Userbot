@@ -88,6 +88,319 @@ async def typewriter(typew):
 # Create by amiweird @SyndicateTwenty4
 
 
+@register(outgoing=True, pattern=r'^\.santet(?: |$)(.*)')
+async def typewriter(typew):
+    typew.pattern_match.group(1)
+    await typew.edit("`Sedang mengaktifkan santet online...`")
+    sleep(2)
+    await typew.edit("`Mencari nama orang ini...`")
+    sleep(1)
+    await typew.edit("`Nama sudah diketahui, santet online akan dimulai....`")
+    sleep(1)
+    await typew.edit("0%")
+    number = 1
+    await typew.edit(str(number) + "%   ▎")
+    number = number + 1
+    sleep(0.03)
+    await typew.edit(str(number) + "%   ▍")
+    number = number + 1
+    sleep(0.03)
+    await typew.edit(str(number) + "%   ▌")
+    number = number + 1
+    sleep(0.03)
+    await typew.edit(str(number) + "%   ▊")
+    number = number + 1
+    sleep(0.03)
+    await typew.edit(str(number) + "%   ▉")
+    number = number + 1
+    sleep(0.03)
+    await typew.edit(str(number) + "%   █")
+    number = number + 1
+    sleep(0.03)
+    await typew.edit(str(number) + "%   █▎")
+    number = number + 1
+    sleep(0.03)
+    await typew.edit(str(number) + "%   █▍")
+    number = number + 1
+    sleep(0.03)
+    await typew.edit(str(number) + "%   █▌")
+    number = number + 1
+    sleep(0.03)
+    await typew.edit(str(number) + "%   █▊")
+    number = number + 1
+    sleep(0.03)
+    await typew.edit(str(number) + "%   █▉")
+    number = number + 1
+    sleep(0.03)
+    await typew.edit(str(number) + "%   ██")
+    number = number + 1
+    sleep(0.03)
+    await typew.edit(str(number) + "%   ██▎")
+    number = number + 1
+    sleep(0.03)
+    await typew.edit(str(number) + "%   ██▍")
+    number = number + 1
+    sleep(0.03)
+    await typew.edit(str(number) + "%   ██▌")
+    number = number + 1
+    sleep(0.03)
+    await typew.edit(str(number) + "%   ██▊")
+    number = number + 1
+    sleep(0.03)
+    await typew.edit(str(number) + "%   ██▉")
+    number = number + 1
+    sleep(0.03)
+    await typew.edit(str(number) + "%   ███")
+    number = number + 1
+    sleep(0.03)
+    await typew.edit(str(number) + "%   ███▎")
+    number = number + 1
+    sleep(0.03)
+    await typew.edit(str(number) + "%   ███▍")
+    number = number + 1
+    sleep(0.03)
+    await typew.edit(str(number) + "%   ███▌")
+    number = number + 1
+    sleep(0.03)
+    await typew.edit(str(number) + "%   ███▊")
+    number = number + 1
+    sleep(0.03)
+    await typew.edit(str(number) + "%   ███▉")
+    number = number + 1
+    sleep(0.03)
+    await typew.edit(str(number) + "%   ████")
+    number = number + 1
+    sleep(0.03)
+    await typew.edit(str(number) + "%   ████▎")
+    number = number + 1
+    sleep(0.03)
+    await typew.edit(str(number) + "%   ████▍")
+    number = number + 1
+    sleep(0.03)
+    await typew.edit(str(number) + "%   ████▌")
+    number = number + 1
+    sleep(0.03)
+    await typew.edit(str(number) + "%   ████▊")
+    number = number + 1
+    sleep(0.03)
+    await typew.edit(str(number) + "%   ████▉")
+    number = number + 1
+    sleep(0.03)
+    await typew.edit(str(number) + "%   █████")
+    number = number + 1
+    sleep(0.03)
+    await typew.edit(str(number) + "%   █████▎")
+    number = number + 1
+    sleep(0.03)
+    await typew.edit(str(number) + "%   █████▍")
+    number = number + 1
+    sleep(0.03)
+    await typew.edit(str(number) + "%   █████▌")
+    number = number + 1
+    sleep(0.03)
+    await typew.edit(str(number) + "%   █████▊")
+    number = number + 1
+    sleep(0.03)
+    await typew.edit(str(number) + "%   █████▉")
+    number = number + 1
+    sleep(0.03)
+    await typew.edit(str(number) + "%   ██████")
+    number = number + 1
+    sleep(0.03)
+    await typew.edit(str(number) + "%   ██████▎")
+    number = number + 1
+    sleep(0.03)
+    await typew.edit(str(number) + "%   ██████▍")
+    number = number + 1
+    sleep(0.03)
+    await typew.edit(str(number) + "%   ██████▌")
+    number = number + 1
+    sleep(0.03)
+    await typew.edit(str(number) + "%   ██████▊")
+    number = number + 1
+    sleep(0.03)
+    await typew.edit(str(number) + "%   ██████▉")
+    number = number + 1
+    sleep(0.03)
+    await typew.edit(str(number) + "%   ███████")
+    number = number + 1
+    sleep(0.03)
+    await typew.edit(str(number) + "%   ███████▎")
+    number = number + 1
+    sleep(0.03)
+    await typew.edit(str(number) + "%   ███████▍")
+    number = number + 1
+    sleep(0.03)
+    await typew.edit(str(number) + "%   ███████▌")
+    number = number + 1
+    sleep(0.03)
+    await typew.edit(str(number) + "%   ███████▊")
+    number = number + 1
+    sleep(0.03)
+    await typew.edit(str(number) + "%   ███████▉")
+    number = number + 1
+    sleep(0.03)
+    await typew.edit(str(number) + "%   ████████")
+    number = number + 1
+    sleep(0.03)
+    await typew.edit(str(number) + "%   ████████▎")
+    number = number + 1
+    sleep(0.03)
+    await typew.edit(str(number) + "%   ████████▍")
+    number = number + 1
+    sleep(0.03)
+    await typew.edit(str(number) + "%   ████████▌")
+    number = number + 1
+    sleep(0.03)
+    await typew.edit(str(number) + "%   ████████▊")
+    number = number + 1
+    sleep(0.03)
+    await typew.edit(str(number) + "%   ████████▉")
+    number = number + 1
+    sleep(0.03)
+    await typew.edit(str(number) + "%   █████████")
+    number = number + 1
+    sleep(0.03)
+    await typew.edit(str(number) + "%   █████████▎")
+    number = number + 1
+    sleep(0.03)
+    await typew.edit(str(number) + "%   █████████▍")
+    number = number + 1
+    sleep(0.03)
+    await typew.edit(str(number) + "%   █████████▌")
+    number = number + 1
+    sleep(0.03)
+    await typew.edit(str(number) + "%   █████████▊")
+    number = number + 1
+    sleep(0.03)
+    await typew.edit(str(number) + "%   █████████▉")
+    number = number + 1
+    sleep(0.03)
+    await typew.edit(str(number) + "%   ██████████")
+    number = number + 1
+    sleep(0.03)
+    await typew.edit(str(number) + "%   ██████████▎")
+    number = number + 1
+    sleep(0.03)
+    await typew.edit(str(number) + "%   ██████████▍")
+    number = number + 1
+    sleep(0.03)
+    await typew.edit(str(number) + "%   ██████████▌")
+    number = number + 1
+    sleep(0.03)
+    await typew.edit(str(number) + "%   ██████████▊")
+    number = number + 1
+    sleep(0.03)
+    await typew.edit(str(number) + "%   ██████████▉")
+    number = number + 1
+    sleep(0.03)
+    await typew.edit(str(number) + "%   ███████████")
+    number = number + 1
+    sleep(0.03)
+    await typew.edit(str(number) + "%   ███████████▎")
+    number = number + 1
+    sleep(0.03)
+    await typew.edit(str(number) + "%   ███████████▍")
+    number = number + 1
+    sleep(0.03)
+    await typew.edit(str(number) + "%   ███████████▌")
+    number = number + 1
+    sleep(0.03)
+    await typew.edit(str(number) + "%   ███████████▊")
+    number = number + 1
+    sleep(0.03)
+    await typew.edit(str(number) + "%   ███████████▉")
+    number = number + 1
+    sleep(0.03)
+    await typew.edit(str(number) + "%   ████████████")
+    number = number + 1
+    sleep(0.03)
+    await typew.edit(str(number) + "%   ████████████▎")
+    number = number + 1
+    sleep(0.03)
+    await typew.edit(str(number) + "%   ████████████▍")
+    number = number + 1
+    sleep(0.03)
+    await typew.edit(str(number) + "%   ████████████▌")
+    number = number + 1
+    sleep(0.03)
+    await typew.edit(str(number) + "%   ████████████▊")
+    number = number + 1
+    sleep(0.03)
+    await typew.edit(str(number) + "%   ████████████▉")
+    number = number + 1
+    sleep(0.03)
+    await typew.edit(str(number) + "%   █████████████")
+    number = number + 1
+    sleep(0.03)
+    await typew.edit(str(number) + "%   █████████████▎")
+    number = number + 1
+    sleep(0.03)
+    await typew.edit(str(number) + "%   █████████████▍")
+    number = number + 1
+    sleep(0.03)
+    await typew.edit(str(number) + "%   █████████████▌")
+    number = number + 1
+    sleep(0.03)
+    await typew.edit(str(number) + "%   █████████████▊")
+    number = number + 1
+    sleep(0.03)
+    await typew.edit(str(number) + "%   █████████████▉")
+    number = number + 1
+    sleep(0.03)
+    await typew.edit(str(number) + "%   ██████████████")
+    number = number + 1
+    sleep(0.03)
+    await typew.edit(str(number) + "%   ██████████████▎")
+    number = number + 1
+    sleep(0.03)
+    await typew.edit(str(number) + "%   ██████████████▍")
+    number = number + 1
+    sleep(0.03)
+    await typew.edit(str(number) + "%   ██████████████▌")
+    number = number + 1
+    sleep(0.03)
+    await typew.edit(str(number) + "%   ██████████████▊")
+    number = number + 1
+    sleep(0.03)
+    await typew.edit(str(number) + "%   ██████████████▉")
+    number = number + 1
+    sleep(0.03)
+    await typew.edit(str(number) + "%   ███████████████")
+    number = number + 1
+    sleep(0.03)
+    await typew.edit(str(number) + "%   ███████████████▎")
+    number = number + 1
+    sleep(0.03)
+    await typew.edit(str(number) + "%   ███████████████▍")
+    number = number + 1
+    sleep(0.03)
+    await typew.edit(str(number) + "%   ███████████████▌")
+    number = number + 1
+    sleep(0.03)
+    await typew.edit(str(number) + "%   ███████████████▊")
+    number = number + 1
+    sleep(0.03)
+    await typew.edit(str(number) + "%   ███████████████▉")
+    number = number + 1
+    sleep(0.03)
+    await typew.edit(str(number) + "%   ████████████████")
+    number = number + 1
+    sleep(0.03)
+    await typew.edit(str(number) + "%   ████████████████▎")
+    number = number + 1
+    sleep(0.03)
+    await typew.edit(str(number) + "%   ████████████████▍")
+    number = number + 1
+    sleep(0.03)
+    await typew.edit(str(number) + "%   ████████████████▌")
+    number = number + 1
+    sleep(0.03)
+    await typew.edit(str(number) + "%   ████████████████▌")
+    sleep(1)
+    await typew.edit("🧞`Target Berhasil Tersantet Online.`")
+
+
 CMD_HELP.update({
     "animasi": "✘ Pʟᴜɢɪɴ : Animasi\
     \n\n⚡𝘾𝙈𝘿⚡: `.sadboy`\
@@ -96,6 +409,6 @@ CMD_HELP.update({
     \n↳ : Coba aja hehehe.\
     \n\n⚡𝘾𝙈𝘿⚡: `.idiot`\
     \n↳ : u're ediot xixixi.\
-    \n\n⚡𝘾𝙈𝘿⚡: `kosong`\
-    \n↳ : Tunggu update selanjutnya kawan."
+    \n\n⚡𝘾𝙈𝘿⚡: `.santet`\
+    \n↳ : Santet via Online."
 })
