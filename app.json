@@ -9,7 +9,7 @@
     "modular",
     "python"
   ],
-  "repository": "https://github.com/KENZO-404/Lynx-Userbot/tree/Beta",
+  "repository": "https://github.com/KENZO-404/Lynx-Userbot",
   "telegram": "https://t.me/SyndicateTwenty4",
   "stack": "container",
   "env": {
