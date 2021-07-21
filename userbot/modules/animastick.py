@@ -125,7 +125,7 @@ async def quotess(qotli):
                         from_users=1031952739))
                 msg = await bot.forward_messages(chat, reply_message)
                 response = await response
-                """ - don't spam notif - """
+# St No Effect
                 await bot.send_read_acknowledge(conv.chat_id)
             except YouBlockedUserError:
                 return await qotli.reply("```Please don't block `@QuotLyBot`\nUnblock or press start then try again.```")
@@ -135,7 +135,7 @@ async def quotess(qotli):
                 await qotli.delete()
                 await bot.forward_messages(qotli.chat_id, response.message)
                 await bot.send_read_acknowledge(qotli.chat_id)
-                """ - cleanup chat after completed - """
+# St No Effect
                 await qotli.client.delete_messages(conv.chat_id,
                                                    [msg.id, response.id])
     except TimeoutError:
