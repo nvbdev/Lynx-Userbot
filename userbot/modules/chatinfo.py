@@ -4,12 +4,14 @@
 # you may not use this file except in compliance with the License.
 """ Userbot module containing userid, chatid and log commands"""
 
+from asyncio.exceptions import TimeoutError
 from asyncio import sleep
 from userbot import ALIVE_NAME, BOTLOG, BOTLOG_CHATID, CMD_HELP, bot
 from datetime import datetime
 from telethon import functions
 from emoji import emojize
 from math import sqrt
+from telethon.errors.rpcerrorlist import YouBlockedUserError
 from telethon.tl.functions.channels import GetFullChannelRequest, GetParticipantsRequest
 from telethon.tl.functions.messages import GetFullChatRequest, GetHistoryRequest
 from telethon.tl.types import MessageActionChannelMigrateFrom, ChannelParticipantsAdmins
@@ -24,7 +26,7 @@ from userbot.modules.admin import get_user_from_event
 from telethon.utils import pack_bot_file_id
 
 
-@register(outgoing=True, pattern="^.getid(?: |$)(.*)")
+@register(outgoing=True, pattern=r"^\.getid(?: |$)(.*)")
 async def _(event):
     if event.fwd_from:
         return
@@ -40,7 +42,7 @@ async def _(event):
         await event.edit("ID Grup: `{}`".format(str(event.chat_id)))
 
 
-@register(outgoing=True, pattern="^.link(?: |$)(.*)")
+@register(outgoing=True, pattern=r"^\.link(?: |$)(.*)")
 async def permalink(mention):
     """For .link command, generates a link to the user's PM with a custom text."""
     user, custom = await get_user_from_event(mention)
@@ -54,7 +56,7 @@ async def permalink(mention):
         await mention.edit(f"[{tag}](tg://user?id={user.id})")
 
 
-@register(outgoing=True, pattern="^.getbot(?: |$)(.*)")
+@register(outgoing=True, pattern=r"^\.getbot(?: |$)(.*)")
 async def _(event):
     if event.fwd_from:
         return
@@ -84,7 +86,7 @@ async def _(event):
     await event.edit(mentions)
 
 
-@register(outgoing=True, pattern=r"^.logit(?: |$)([\s\S]*)")
+@register(outgoing=True, pattern=r"^\.logit(?: |$)([\s\S]*)")
 async def log(log_text):
     """For .log command, forwards a message or the command argument to the bot logs group."""
     if BOTLOG:
@@ -105,14 +107,14 @@ async def log(log_text):
     await log_text.delete()
 
 
-@register(outgoing=True, pattern="^.exit$")
+@register(outgoing=True, pattern=r"^\.exit$")
 async def exit(leave):
     """Basically it's .kickme command"""
     await leave.edit(f"#Succeeded ✅\n`{ALIVE_NAME} Has left the group...`")
     await leave.client.kick_participant(leave.chat_id, 'me')
 
 
-@register(outgoing=True, pattern="^.unmutechat$")
+@register(outgoing=True, pattern=r"^\.unmutechat$")
 async def unmute_chat(unm_e):
     """For .unmutechat command, unmute a muted chat."""
     try:
@@ -126,7 +128,7 @@ async def unmute_chat(unm_e):
     await unm_e.delete()
 
 
-@register(outgoing=True, pattern="^.mutechat$")
+@register(outgoing=True, pattern=r"^\.mutechat$")
 async def mute_chat(mute_e):
     """For .mutechat command, mute any chat."""
     try:
@@ -163,7 +165,7 @@ async def keep_read(message):
 regexNinja = False
 
 
-@register(outgoing=True, pattern="^s/")
+@register(outgoing=True, pattern=r"^s/")
 async def sedNinja(event):
     """Untuk Modul Regex-Ninja, Perintah Hapus Otomatis Yang Dimulai Dengan s/"""
     if regexNinja:
@@ -171,7 +173,7 @@ async def sedNinja(event):
         await event.delete()
 
 
-@register(outgoing=True, pattern="^.regexninja (on|off)$")
+@register(outgoing=True, pattern=r"^\.regexninja (on|off)$")
 async def sedNinjaToggle(event):
     """Aktifkan Atau Nonaktifkan Modul Regex Ninja."""
     global regexNinja
@@ -187,7 +189,7 @@ async def sedNinjaToggle(event):
         await event.delete()
 
 
-@register(pattern=".chatinfo(?: |$)(.*)", outgoing=True)
+@register(pattern=r"^\.chatinfo(?: |$)(.*)", outgoing=True)
 async def info(event):
     await event.edit("`Menganalisis Obrolan Ini...`")
     chat = await get_chatinfo(event)
@@ -433,9 +435,81 @@ async def _(event):
             await sleep(3)
             await event.delete()
 
+
+@register(outgoing=True, pattern=r"^\.sa(?: |$)(.*)")
+async def lastname(steal):
+    if steal.fwd_from:
+        return
+    if not steal.reply_to_msg_id:
+        await steal.edit("```Mohon Reply Ke Pesan Pengguna Yang Ingin Anda Scan.```")
+        return
+    message = await steal.get_reply_message()
+    chat = "@SangMataInfo_bot"
+    user_id = message.sender.id
+    id = f"/search_id {user_id}"
+    if message.sender.bot:
+        await steal.edit("```Reply Ke Pesan Pengguna Yang Ingin Di Scan.```")
+        return
+    await steal.edit("__C__")
+    await steal.edit("__Co__")
+    await steal.edit("__Con__")
+    await steal.edit("__Conn__")
+    await steal.edit("__Conne__")
+    await steal.edit("__Connec__")
+    await steal.edit("__Connect__")
+    await steal.edit("__Connecti__")
+    await steal.edit("__Connectin__")
+    await steal.edit("__Connecting__")
+    await steal.edit("__Connecting t__")
+    await steal.edit("__Connecting to__")
+    await steal.edit("__Connecting to s__")
+    await steal.edit("__Connecting to se__")
+    await steal.edit("__Connecting to ser__")
+    await steal.edit("__Connecting to serv__")
+    await steal.edit("__Connecting to serve__")
+    await steal.edit("__Connecting to server__")
+    await steal.edit("__Connecting to server.__")
+    await steal.edit("__Connecting to server..__")
+    await steal.edit("__Connecting to server...__")
+    try:
+        async with bot.conversation(chat) as conv:
+            try:
+                msg = await conv.send_message(id)
+                r = await conv.get_response()
+                response = await conv.get_response()
+            except YouBlockedUserError:
+                await steal.reply(
+                    "```Mohon Unblock `@sangmatainfo_bot` Dan Coba Scan Kembali.```"
+                )
+                return
+            if r.text.startswith("Name"):
+                respond = await conv.get_response()
+                await steal.edit(f"`{r.message}`")
+                await steal.client.delete_messages(
+                    conv.chat_id, [msg.id, r.id, response.id, respond.id]
+                )
+                return
+            if response.text.startswith("No records") or r.text.startswith(
+                "No records"
+            ):
+                await steal.edit("```Saya Tidak Menemukan Informasi Pergantian Nama Ini, Orang Ini Belum Pernah Mengganti Nama Sebelumnya```")
+                await steal.client.delete_messages(
+                    conv.chat_id, [msg.id, r.id, response.id]
+                )
+                return
+            else:
+                respond = await conv.get_response()
+                await steal.edit(f"```{response.message}```")
+            await steal.client.delete_messages(
+                conv.chat_id, [msg.id, r.id, response.id, respond.id]
+            )
+    except TimeoutError:
+        return await steal.edit("`Saya Sedang Sakit, Mohon Maaf.`")
+
+
 CMD_HELP.update({
-    "chat":
-    "✘ Pʟᴜɢɪɴ : Chat\
+    "chatinfo":
+    "✘ Pʟᴜɢɪɴ : Chat Info\
 \n\n⚡𝘾𝙈𝘿⚡: `.getid`\
 \n↳ : Dapatkan ID dari media Telegram mana pun, atau pengguna mana pun\
 \n\n⚡𝘾𝙈𝘿⚡: `.getbot`\
@@ -456,5 +530,6 @@ CMD_HELP.update({
 \n\n⚡𝘾𝙈𝘿⚡: `.chatinfo [opsional: <reply/tag/chat id/invite link>]`\
 \n↳ : Mendapatkan info obrolan. Beberapa info mungkin dibatasi karena izin yang hilang..\
 \n\n⚡𝘾𝙈𝘿⚡: `.invite` \
-\n↳ : Menambahkan pengguna ke obrolan, bukan ke pesan pribadi. "
-})
+\n↳ : Menambahkan pengguna ke obrolan, bukan ke pesan pribadi.\
+\n\n⚡𝘾𝙈𝘿⚡: `.sa` <Reply>\
+\n↳ : Mendapatkan Riwayat Nama Pengguna Yang Di Scan."})
