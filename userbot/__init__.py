@@ -770,7 +770,7 @@ with lynx:
         async def on_plug_in_callback_query_handler(event):
             if event.query.user_id == uid:
                 buttons = paginate_help(0, dugmeler, "helpme")
-                text = f"\n**Bᴏᴛ ᴏꜰ {DEFAULTUSER}**\n\n`Branch   :` __{repo.active_branch.name}__\n`Bot   :` __v{BOT_VER}__\n`Plugins  :` __{len(plugins)}__\n\n\n**Copyright © 𝟤𝟢𝟤𝟣 Lynx-Userbot\nLicense: Raphielscape Public License v1.d**"
+                text = f"\n**Bᴏᴛ ᴏꜰ {DEFAULTUSER}**\n\n`Branch :` __{repo.active_branch.name}__\n`Bot    :` __v{BOT_VER}__\n`Plugins :` __{len(plugins)}__\n\n\n**Copyright © 𝟤𝟢𝟤𝟣 Lynx-Userbot\nLicense: Raphielscape Public License v1.d**"
                 await event.edit(text,
                     file=lynxlogo,
                     buttons=buttons,
@@ -789,7 +789,7 @@ with lynx:
             if event.query.user_id == uid:
                 current_page_number = int(unpage)
                 buttons = paginate_help(current_page_number, plugins, "helpme")
-                text = f"\n**Bᴏᴛ ᴏꜰ {DEFAULTUSER}**\n\n`Branch   :` __{repo.active_branch.name}__\n`Bot   :` __v{BOT_VER}__\n`Plugins  :` __{len(plugins)}__\n\n\n**Copyright © 𝟤𝟢𝟤𝟣 Lynx-Userbot\nLicense: Raphielscape Public License v1.d**"
+                text = f"\n**Bᴏᴛ ᴏꜰ {DEFAULTUSER}**\n\n`Branch :` __{repo.active_branch.name}__\n`Bot    :` __v{BOT_VER}__\n`Plugins :` __{len(plugins)}__\n\n\n**Copyright © 𝟤𝟢𝟤𝟣 Lynx-Userbot\nLicense: Raphielscape Public License v1.d**"
                 await event.edit(text,
                     file=lynxlogo,
                     buttons=buttons,
