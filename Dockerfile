@@ -3,14 +3,14 @@ FROM kenzo404/lynxuser:Buster
 # ==========================================
 #              Lynx - Userbot
 # ==========================================
-RUN git clone -b Beta https://github.com/KENZO-404/Lynx-Userbot/tree/Beta /home/Beta \
-    && chmod 777 /home/Beta \
-    && mkdir /home/Beta/bin/
+RUN git clone -b Beta https://github.com/KENZO-404/Lynx-Userbot /home/Lynx-Userbot \
+    && chmod 777 /home/Lynx-Userbot \
+    && mkdir /home/Lynx-Userbot/bin/
 
 # Copies config.env (if exists)
-COPY ./sample_config.env ./config.env* /home/Beta/
+COPY ./sample_config.env ./config.env* /home/Lynx-Userbot/
 
-WORKDIR /home/Beta/
+WORKDIR /home/Lynx-Userbot/
 
 # Finishim
 CMD ["bash","./resource/startup/startup.sh"]
