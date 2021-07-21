@@ -13,7 +13,6 @@ import asyncio
 import math
 import os
 import time
-from typing import List
 from datetime import datetime
 from urllib.parse import unquote_plus
 
@@ -25,20 +24,8 @@ from telethon.tl.types import DocumentAttributeAudio, DocumentAttributeVideo
 
 from userbot import CMD_HELP, LOGS, TEMP_DOWNLOAD_DIRECTORY
 from userbot.events import register
-from userbot.utils import humanbytes, progress
+from userbot.utils import humanbytes, progress, run_cmd
 from userbot.utils.FastTelethon import download_file, upload_file
-
-
-async def run_cmd(cmd: List) -> (bytes, bytes):
-    process = await asyncio.create_subprocess_exec(
-        *cmd,
-        stdout=asyncio.subprocess.PIPE,
-        stderr=asyncio.subprocess.PIPE,
-    )
-    out, err = await process.communicate()
-    t_resp = out.strip()
-    e_resp = err.strip()
-    return t_resp, e_resp
 
 
 @register(pattern=r"^\.dl(?: |$)(.*)", outgoing=True)
@@ -59,10 +46,7 @@ async def download(target_file):
             file_name = file_name.strip()
             head, tail = os.path.split(file_name)
             if head:
-                if not os.path.isdir(
-                    os.path.join(
-                        TEMP_DOWNLOAD_DIRECTORY,
-                        head)):
+                if not os.path.isdir(os.path.join(TEMP_DOWNLOAD_DIRECTORY, head)):
                     os.makedirs(os.path.join(TEMP_DOWNLOAD_DIRECTORY, head))
                     file_name = os.path.join(head, tail)
         downloaded_file_name = TEMP_DOWNLOAD_DIRECTORY + "" + file_name
@@ -78,7 +62,7 @@ async def download(target_file):
             diff = now - c_time
             percentage = downloader.get_progress() * 100
             speed = downloader.get_speed()
-            progress_str = "[{0}{1}] `{2}%`".format(
+            progress_str = "[{}{}] `{}%`".format(
                 "".join(["●" for i in range(math.floor(percentage / 10))]),
                 "".join(["○" for i in range(10 - math.floor(percentage / 10))]),
                 round(percentage, 2),
@@ -94,19 +78,17 @@ async def download(target_file):
                     f"\n`ETA` -> {estimated_total_time}"
                 )
 
-                if round(
-                        diff %
-                        15.00) == 0 and current_message != display_message:
+                if round(diff % 15.00) == 0 and current_message != display_message:
                     await target_file.edit(current_message)
                     display_message = current_message
             except Exception as e:
                 LOGS.info(str(e))
         if downloader.isSuccessful():
             await target_file.edit(
-                "Downloaded to `{}` successfully !!".format(downloaded_file_name)
+                f"Downloaded to `{downloaded_file_name}` successfully !!"
             )
         else:
-            await target_file.edit("Incorrect URL\n{}".format(url))
+            await target_file.edit(f"Incorrect URL\n{url}")
     elif replied:
         if not replied.media:
             return await target_file.edit("`Reply to file or media `")
@@ -119,18 +101,12 @@ async def download(target_file):
                 if not filename:
                     if "audio" in mime_type:
                         filename = (
-                            "audio_" +
-                            datetime.now().isoformat(
-                                "_",
-                                "seconds") +
-                            ".ogg")
+                            "audio_" + datetime.now().isoformat("_", "seconds") + ".ogg"
+                        )
                     elif "video" in mime_type:
                         filename = (
-                            "video_" +
-                            datetime.now().isoformat(
-                                "_",
-                                "seconds") +
-                            ".mp4")
+                            "video_" + datetime.now().isoformat("_", "seconds") + ".mp4"
+                        )
                 outdir = TEMP_DOWNLOAD_DIRECTORY + filename
                 c_time = time.time()
                 start_time = datetime.now()
@@ -154,11 +130,11 @@ async def download(target_file):
         else:
             try:
                 await target_file.edit(
-                    "Downloaded to `{}` in `{}` seconds.".format(result.name, dl_time)
+                    f"Downloaded to `{result.name}` in `{dl_time}` seconds."
                 )
             except AttributeError:
                 await target_file.edit(
-                    "Downloaded to `{}` in `{}` seconds.".format(result, dl_time)
+                    f"Downloaded to `{result}` in `{dl_time}` seconds."
                 )
     else:
         await target_file.edit("See `.help download` for more info.")
@@ -166,15 +142,7 @@ async def download(target_file):
 
 async def get_video_thumb(file, output):
     """Get video thumbnail"""
-    command = [
-        "ffmpeg",
-        "-i",
-        file,
-        "-ss",
-        "00:00:01.000",
-        "-vframes",
-        "1",
-        output]
+    command = ["ffmpeg", "-i", file, "-ss", "00:00:01.000", "-vframes", "1", output]
     t_resp, e_resp = await run_cmd(command)
     if os.path.lexists(output):
         return output
