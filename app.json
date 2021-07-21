@@ -9,7 +9,7 @@
     "modular",
     "python"
   ],
-  "repository": "https://github.com/KENZO-404/Lynx-Userbot",
+  "repository": "https://github.com/KENZO-404/Lynx-Userbot/tree/Beta",
   "telegram": "https://t.me/SyndicateTwenty4",
   "stack": "container",
   "env": {
@@ -120,26 +120,6 @@
       "description": "When a new person joins, the old welcome message is deleted.",
       "value": "True"
     },
-    "LASTFM_API": {
-      "description": "API Key for Last.FM module. [Get one from - https://www.last.fm/api/account/create]",
-      "required": false
-    },
-    "LASTFM_SECRET": {
-      "description": "SECRET Key for Last.FM module. [Get one from - https://www.last.fm/api/account/create]",
-      "required": false
-    },
-    "LASTFM_USERNAME": {
-      "description": "Last.FM Username",
-      "required": false
-    },
-    "LASTFM_PASSWORD": {
-      "description": "Last.FM Password",
-      "required": false
-    },
-    "BIO_PREFIX": {
-      "description": "Prefix for Last.FM Module Bio.",
-      "required": false
-    },
     "DEFAULT_BIO": {
       "description": "Default Bio Mu.",
       "value": "⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡",
@@ -205,7 +185,7 @@
     },
     "TERM_ALIAS": {
       "description": "Display user for .term command",
-      "value": "Lynx-Userbot",
+      "value": "Beta",
       "required": false
     },
     "USR_TOKEN_UPTOBOX": {
