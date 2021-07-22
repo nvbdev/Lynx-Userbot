@@ -6,8 +6,6 @@
 """Userbot initialization."""
 
 
-from userbot.modules.sql_helper.globals import gvarstatus
-from git import Repo
 import signal
 import os
 import time
@@ -315,6 +313,12 @@ for binary, path in binaries.items():
     os.chmod(path, 0o755)
 
 
+# Logs
+from .core.logger import logging
+LOGS = logging.getLogger("userbot")
+
+# PM_LOG
+from userbot.modules.sql_helper.globals import gvarstatus
 if PM_LOGGER_GROUP_ID == 0:
     if gvarstatus("PM_LOGGER_GROUP_ID") is None:
         PM_LOGGER_GROUP_ID = -100
@@ -418,6 +422,9 @@ with bot:
             "BOTLOG_CHATID environment variable isn't a "
             "valid entity. Check your environment variables/config.env file.")
         quit(1)
+
+
+from git import Repo
 
 
 async def update_restart_msg(chat_id, msg_id):
