@@ -57,6 +57,7 @@ async def capture(url):
     with io.BytesIO(im_png) as out_file:
         out_file.name = "screencapture.png"
         await url.edit("`Uploading screenshot as file..`")
+        await url.delete()
         await url.client.send_file(
             url.chat_id,
             out_file,
