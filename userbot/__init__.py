@@ -506,8 +506,8 @@ def alive_inline():
         ),
         ),
         (custom.Button.inline(
-            "Open Main Menu",
-            data="opener",
+            "Back to Menu",
+            data="open_menu",
         ),
         ),
     ]
@@ -868,7 +868,7 @@ with lynx:
                             custom.Button.inline("ᴀʟɪᴠᴇ", data="allive")
                         ],
                         [
-                            custom.Button.inline("Close", data="close")
+                            custom.Button.inline("Back", data="open_menu")
                         ],
                     ]
                 )
