@@ -6,6 +6,7 @@
 """Userbot initialization."""
 
 
+from userbot.modules.sql_helper.globals import gvarstatus
 from git import Repo
 from .core.logger import logging
 import signal
@@ -317,9 +318,6 @@ for binary, path in binaries.items():
 # Logs
 
 LOGS = logging.getLogger("userbot")
-
-
-from userbot.modules.sql_helper.globals import gvarstatus
 
 
 if PM_LOGGER_GROUP_ID == 0:
