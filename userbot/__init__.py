@@ -8,7 +8,6 @@
 
 from userbot.modules.sql_helper.globals import gvarstatus
 from git import Repo
-from .core.logger import logging
 import signal
 import os
 import time
@@ -314,10 +313,6 @@ for binary, path in binaries.items():
     downloader = SmartDL(binary, path, progress_bar=False)
     downloader.start()
     os.chmod(path, 0o755)
-
-# Logs
-
-LOGS = logging.getLogger("userbot")
 
 
 if PM_LOGGER_GROUP_ID == 0:
