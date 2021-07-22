@@ -5,7 +5,7 @@
 # Ported @SyndicateTwenty4
 """Userbot initialization."""
 
-from userbot.modules.sql_helper.globals import gvarstatus  # pylint: disable=C0321
+
 from git import Repo
 from .core.logger import logging
 import signal
@@ -318,7 +318,8 @@ for binary, path in binaries.items():
 
 LOGS = logging.getLogger("userbot")
 
-# PM LOGGER GROUP
+from userbot.modules.sql_helper.globals import gvarstatus  # pylint: disable=E265
+
 if PM_LOGGER_GROUP_ID == 0:
     if gvarstatus("PM_LOGGER_GROUP_ID") is None:
         PM_LOGGER_GROUP_ID = -100
@@ -326,6 +327,7 @@ if PM_LOGGER_GROUP_ID == 0:
         PM_LOGGER_GROUP_ID = int(gvarstatus("PM_LOGGER_GROUP_ID"))
 elif str(PM_LOGGER_GROUP_ID)[0] != "-":
     PM_LOGGER_GROUP_ID = int("-" + str(PM_LOGGER_GROUP_ID))
+
 
 # Signal
 
