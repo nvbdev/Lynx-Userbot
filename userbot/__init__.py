@@ -320,11 +320,8 @@ LOGS = logging.getLogger("userbot")
 
 
 if PM_LOGGER_GROUP_ID == 0:
-    try:
-        from userbot.modules.sql_helper.globals import gvarstatus  # pylint: disable=E501
-    except AttributeError:
-        return None
-
+try:
+    from userbot.modules.sql_helper.globals import gvarstatus
     if gvarstatus("PM_LOGGER_GROUP_ID") is None:
         PM_LOGGER_GROUP_ID = -100
     else:
