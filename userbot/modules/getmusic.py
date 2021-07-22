@@ -91,7 +91,7 @@ async def _(event):
     await event.delete()
     os.system('/bin/echo rm -rf *.mp3')
     subprocess.check_output('/bin/echo rm -rf *.mp3',
-    shell=True)
+                            shell=True)
 
 
 @register(outgoing=True, pattern=r"^\.vsong(?: |$)(.*)")

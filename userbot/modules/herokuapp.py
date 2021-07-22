@@ -10,7 +10,7 @@ import aiohttp
 import math
 import sys
 
-from os import environ, execle, remove
+from os import environ, execle
 from userbot import (
     HEROKU_APP_NAME,
     HEROKU_API_KEY,

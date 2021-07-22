@@ -58,7 +58,10 @@ async def download(target_file):
             file_name = file_name.strip()
             head, tail = os.path.split(file_name)
             if head:
-                if not os.path.isdir(os.path.join(TEMP_DOWNLOAD_DIRECTORY, head)):
+                if not os.path.isdir(
+                    os.path.join(
+                        TEMP_DOWNLOAD_DIRECTORY,
+                        head)):
                     os.makedirs(os.path.join(TEMP_DOWNLOAD_DIRECTORY, head))
                     file_name = os.path.join(head, tail)
         downloaded_file_name = TEMP_DOWNLOAD_DIRECTORY + "" + file_name
@@ -90,7 +93,9 @@ async def download(target_file):
                     f"\n`ETA` -> {estimated_total_time}"
                 )
 
-                if round(diff % 15.00) == 0 and current_message != display_message:
+                if round(
+                        diff %
+                        15.00) == 0 and current_message != display_message:
                     await target_file.edit(current_message)
                     display_message = current_message
             except Exception as e:
@@ -113,12 +118,18 @@ async def download(target_file):
                 if not filename:
                     if "audio" in mime_type:
                         filename = (
-                            "audio_" + datetime.now().isoformat("_", "seconds") + ".ogg"
-                        )
+                            "audio_" +
+                            datetime.now().isoformat(
+                                "_",
+                                "seconds") +
+                            ".ogg")
                     elif "video" in mime_type:
                         filename = (
-                            "video_" + datetime.now().isoformat("_", "seconds") + ".mp4"
-                        )
+                            "video_" +
+                            datetime.now().isoformat(
+                                "_",
+                                "seconds") +
+                            ".mp4")
                 outdir = TEMP_DOWNLOAD_DIRECTORY + filename
                 c_time = time.time()
                 start_time = datetime.now()
@@ -154,7 +165,15 @@ async def download(target_file):
 
 async def get_video_thumb(file, output):
     """Get video thumbnail"""
-    command = ["ffmpeg", "-i", file, "-ss", "00:00:01.000", "-vframes", "1", output]
+    command = [
+        "ffmpeg",
+        "-i",
+        file,
+        "-ss",
+        "00:00:01.000",
+        "-vframes",
+        "1",
+        output]
     t_resp, e_resp = await run_cmd(command)
     if os.path.lexists(output):
         return output

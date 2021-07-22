@@ -5,6 +5,9 @@
 # Ported @SyndicateTwenty4
 """Userbot initialization."""
 
+from git import Repo
+from userbot.modules.sql_helper.globals import gvarstatus
+from .core.logger import logging
 import signal
 import os
 import time
@@ -313,11 +316,9 @@ for binary, path in binaries.items():
 
 # Logs
 
-from .core.logger import logging
 LOGS = logging.getLogger("userbot")
 
 # PM LOGGER GROUP
-from userbot.modules.sql_helper.globals import gvarstatus
 if PM_LOGGER_GROUP_ID == 0:
     if gvarstatus("PM_LOGGER_GROUP_ID") is None:
         PM_LOGGER_GROUP_ID = -100
@@ -327,12 +328,16 @@ elif str(PM_LOGGER_GROUP_ID)[0] != "-":
     PM_LOGGER_GROUP_ID = int("-" + str(PM_LOGGER_GROUP_ID))
 
 # Signal
+
+
 def shutdown_bot(signum, frame):
     LOGS.info("Received SIGTERM.")
     bot.disconnect()
     sys.exit(143)
 
+
 signal.signal(signal.SIGTERM, shutdown_bot)
+
 
 def migration_workaround():
     try:
@@ -362,6 +367,7 @@ def migration_workaround():
     addgvar("public_ip", new_ip)
     return None
 
+
 # 'bot' variable
 if STRING_SESSION:
     # pylint: disable=invalid-name
@@ -372,16 +378,17 @@ else:
 try:
     # pylint: disable=invalid-name
     bot = TelegramClient(
-      session=session,
-      api_id=API_KEY,
-      api_hash=API_HASH,
-      connection=ConnectionTcpAbridged,
-      auto_reconnect=True,
-      connection_retries=None,
-    )  
+        session=session,
+        api_id=API_KEY,
+        api_hash=API_HASH,
+        connection=ConnectionTcpAbridged,
+        auto_reconnect=True,
+        connection_retries=None,
+    )
 except Exception as e:
     print(f"STRING_SESSION - {str(e)}")
     sys.exit()
+
 
 async def check_botlog_chatid():
     if not BOTLOG_CHATID and LOGSPAMMER:
@@ -415,7 +422,6 @@ with bot:
             "valid entity. Check your environment variables/config.env file.")
         quit(1)
 
-from git import Repo
 
 async def update_restart_msg(chat_id, msg_id):
     DEFAULTUSER = ALIVE_NAME or "Set `ALIVE_NAME` ConfigVar!"
@@ -423,20 +429,19 @@ async def update_restart_msg(chat_id, msg_id):
     uname = platform.uname()
     cpufreq = psutil.cpu_freq()
     message = (
-           f"**╭─━━━━━━━━━━━━━━━━━━━━━─╮**\n"
-           f"**│ㅤㅤㅤ[⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡](t.me/LynxUserbot)**\n"
-           f"**│ ㅤis Back up and Running... 🐈**\n"
-           f"**╭─━━━━━━━━━━━━━━━━━━━━━─╯**\n"
-           f"**│** `OS       :` __Debian GNU/{uname.system} 10 {uname.machine}__\n"
-           f"**│** `Kernel   :` __{uname.release}__\n"
-           f"**│** `CPU      :` __Intel Xeon E5-2670 @ {cpufreq.current:.2f}Ghz__\n"
-           f"**│** `Branch   :` __{repo.active_branch.name}__\n"
-           f"**│** `Telethon :` __{version.__version__}__\n"
-           f"**│** `Python   :` __{python_version()}__\n"
-           f"**│** `User     :` __{DEFAULTUSER}__\n"
-           f"**╰━━━━━━━━━━━━━━━━━━━━━━─╯**\n"
-           f" Copyright © 𝟤𝟢𝟤𝟣 Lynx-Userbot\n License : Raphielscape Public License v1.d"
-        )
+        f"**╭─━━━━━━━━━━━━━━━━━━━━━─╮**\n"
+        f"**│ㅤㅤㅤ[⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡](t.me/LynxUserbot)**\n"
+        f"**│ ㅤis Back up and Running... 🐈**\n"
+        f"**╭─━━━━━━━━━━━━━━━━━━━━━─╯**\n"
+        f"**│** `OS       :` __Debian GNU/{uname.system} 10 {uname.machine}__\n"
+        f"**│** `Kernel   :` __{uname.release}__\n"
+        f"**│** `CPU      :` __Intel Xeon E5-2670 @ {cpufreq.current:.2f}Ghz__\n"
+        f"**│** `Branch   :` __{repo.active_branch.name}__\n"
+        f"**│** `Telethon :` __{version.__version__}__\n"
+        f"**│** `Python   :` __{python_version()}__\n"
+        f"**│** `User     :` __{DEFAULTUSER}__\n"
+        f"**╰━━━━━━━━━━━━━━━━━━━━━━─╯**\n"
+        f" Copyright © 𝟤𝟢𝟤𝟣 Lynx-Userbot\n License : Raphielscape Public License v1.d")
     await bot.edit_message(chat_id, msg_id, message)
     return True
 
@@ -471,6 +476,7 @@ DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else uname().node
 
 # -------------------------------- InlineBot ------------------------------------- #
 
+
 def alive_inline():
     repo = Repo()
     uname = platform.uname()
@@ -486,21 +492,23 @@ def alive_inline():
             \n`====================================`\
             \n Copyright © 𝟤𝟢𝟤𝟣 Lynx-Userbot\n License: Raphielscape Public License v1.d"
     buttons = [
-        (
-            custom.Button.url("🧪𝗥𝗘𝗣𝗢",
-                "https://zee.gl/lynx404",
-            ),
-            custom.Button.url("𝗥𝗣𝗟 𝘃𝟭.𝗱🎖️",
-                "https://github.com/KENZO-404/Lynx-Userbot/blob/Lynx-Userbot/LICENSE",
-            ),
+        (custom.Button.url(
+            "🧪𝗥𝗘𝗣𝗢",
+            "https://zee.gl/lynx404",
         ),
-        (
-            custom.Button.inline("Open Main Menu",
-                data="opener",
-            ),
+            custom.Button.url(
+            "𝗥𝗣𝗟 𝘃𝟭.𝗱🎖️",
+            "https://github.com/KENZO-404/Lynx-Userbot/blob/Lynx-Userbot/LICENSE",
+        ),
+        ),
+        (custom.Button.inline(
+            "Open Main Menu",
+            data="opener",
+        ),
         ),
     ]
     return text, buttons
+
 
 def paginate_help(page_number, loaded_modules, prefix):
     number_of_rows = 3
@@ -540,6 +548,7 @@ def paginate_help(page_number, loaded_modules, prefix):
 
 # -----------------------------------------Reg--------------------------------------- >
 
+
 with lynx:
     try:
         lynx.tgbot = tgbot = TelegramClient(
@@ -573,13 +582,11 @@ with lynx:
         else:
             lynxlogo = "resource/logo/LynxUserbot-Button.jpg"
 
-
         IN_PIC = str(INLINE_LOGO)
         if IN_PIC:
             aliplogo = IN_PIC
         else:
             aliplogo = "https://telegra.ph/file/b6580efa28fdc144749d5.jpg"
-
 
         AL_PIC = str(ALIVE_LOGO)
         if AL_PIC:
@@ -628,16 +635,16 @@ with lynx:
                     f"and For Maintaining Your Group 🛠️.\n"
                     f"I was **Created by :** @SyndicateTwenty4 For Various Userbots on Github.\n")
                 await lynx.tgbot.send_file(event.chat_id, file=lynxlogo,
-                                      caption=text,
-                                      buttons=[
-                                          [
-                                              custom.Button.url(
-                                                  text="🇮🇩 𝗥𝗲𝗽𝗼𝘀𝗶𝘁𝗼𝗿𝘆 🇮🇩",
-                                                  url="https://zee.gl/lynx404"
-                                              )
-                                          ]
-                                      ]
-                                      )
+                                           caption=text,
+                                           buttons=[
+                                               [
+                                                   custom.Button.url(
+                                                       text="🇮🇩 𝗥𝗲𝗽𝗼𝘀𝗶𝘁𝗼𝗿𝘆 🇮🇩",
+                                                       url="https://zee.gl/lynx404"
+                                                   )
+                                               ]
+                                           ]
+                                           )
 
         @lynx.tgbot.on(events.NewMessage(pattern=r"/alive"))
         async def handler(event):
@@ -694,7 +701,8 @@ with lynx:
                     (Button.inline("Open Main Menu", data="mainmenu"),),
                 ]
                 photo_bytesio = lynxlogo
-                result = builder.photo(photo_bytesio,
+                result = builder.photo(
+                    photo_bytesio,
                     link_preview=False,
                     text=f"**Copyright © 𝟤𝟢𝟤𝟣 Lynx-Userbot\nLicense: Raphielscape Public License v1.d**",
                     buttons=buttons,
@@ -718,8 +726,8 @@ with lynx:
                                 "Dᴇᴠᴇʟᴏᴘᴇʀ",
                                 "t.me/FederationSuperGroup/17")],
                         [custom.Button.url(
-                             "⚒️ 𝗗𝗘𝗣𝗟𝗢𝗬 ⚒️",
-                             "https://zee.gl/DeployToHeroku")]],
+                            "⚒️ 𝗗𝗘𝗣𝗟𝗢𝗬 ⚒️",
+                            "https://zee.gl/DeployToHeroku")]],
                     link_preview=True,
                 )
             await event.answer([result] if result else None)
@@ -729,14 +737,15 @@ with lynx:
             builder = event.builder
             result = None
             query = event.text
-            if event.query.user_id == uid and query.startswith("@LynxAliveRobot"):
+            if event.query.user_id == uid and query.startswith(
+                    "@LynxAliveRobot"):
                 _result = alive_inline()
                 photo_bytesio = alivvlogo
                 result = builder.photo(photo_bytesio,
-                    link_preview=False,
-                    text=_result[0],
-                    buttons=_result[1],
-                )
+                                       link_preview=False,
+                                       text=_result[0],
+                                       buttons=_result[1],
+                                       )
             elif query.startswith("tb_btn"):
                 result = builder.article(
                     "Bantuan Dari ⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡",
@@ -756,8 +765,8 @@ with lynx:
                                 "Dᴇᴠᴇʟᴏᴘᴇʀ",
                                 "t.me/FederationSuperGroup/17")],
                         [custom.Button.url(
-                             "⚒️ 𝗗𝗘𝗣𝗟𝗢𝗬 ⚒️",
-                             "https://zee.gl/DeployToHeroku")]],
+                            "⚒️ 𝗗𝗘𝗣𝗟𝗢𝗬 ⚒️",
+                            "https://zee.gl/DeployToHeroku")]],
                     link_preview=True,
                 )
             await event.answer([result] if result else None)
@@ -772,10 +781,10 @@ with lynx:
                 buttons = paginate_help(0, dugmeler, "helpme")
                 text = f"\n**Bᴏᴛ ᴏꜰ {DEFAULTUSER}**\n\n`Branch  :` __{repo.active_branch.name}__\n`Bot     :` __v{BOT_VER}__\n`Plugins :` __{len(plugins)}__\n\n\n**Copyright © 𝟤𝟢𝟤𝟣 Lynx-Userbot\nLicense: Raphielscape Public License v1.d**"
                 await event.edit(text,
-                    file=lynxlogo,
-                    buttons=buttons,
-                    link_preview=False,
-                )
+                                 file=lynxlogo,
+                                 buttons=buttons,
+                                 link_preview=False,
+                                 )
             else:
                 reply_pop_up_alert = f"❌ DISCLAIMER ❌\n © Lynx-Userbot"
                 await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
@@ -791,10 +800,10 @@ with lynx:
                 buttons = paginate_help(current_page_number, plugins, "helpme")
                 text = f"\n**Bᴏᴛ ᴏꜰ {DEFAULTUSER}**\n\n`Branch  :` __{repo.active_branch.name}__\n`Bot     :` __v{BOT_VER}__\n`Plugins :` __{len(plugins)}__\n\n\n**Copyright © 𝟤𝟢𝟤𝟣 Lynx-Userbot\nLicense: Raphielscape Public License v1.d**"
                 await event.edit(text,
-                    file=lynxlogo,
-                    buttons=buttons,
-                    link_preview=False,
-                )
+                                 file=lynxlogo,
+                                 buttons=buttons,
+                                 link_preview=False,
+                                 )
             else:
                 reply_pop_up_alert = f"❌ DISCLAIMER ❌\n © Lynx-Userbot"
                 await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
@@ -846,9 +855,9 @@ with lynx:
             if event.query.user_id == uid:
                 _result = alive_inline()
                 await event.edit(_result[0], buttons=_result[1],
-                    link_preview=False,
-                    file=alivvlogo,
-                )
+                                 link_preview=False,
+                                 file=alivvlogo,
+                                 )
             else:
                 reply_pop_up_alert = f"❌ DISCLAIMER ❌\n © Lynx-Userbot"
                 await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
@@ -884,9 +893,9 @@ with lynx:
                     buttons=[
                         [
                             custom.Button.url("Lynx-Userbot",
-                                       "t.me/LynxUserbot"),
+                                              "t.me/LynxUserbot"),
                             custom.Button.url("My Instagram",
-                                       f"{INSTAGRAM_ALIVE}")],
+                                              f"{INSTAGRAM_ALIVE}")],
                         [custom.Button.inline("⚙️ Settings ⚙️", data="settings")],
                         [custom.Button.inline("Close", data="close")],
                     ]

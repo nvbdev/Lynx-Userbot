@@ -1,6 +1,5 @@
 from telethon.tl.functions.channels import GetParticipantRequest
 from telethon.tl.types import ChannelParticipantAdmin, ChannelParticipantCreator
-from userbot import bot
 from ..core.logger import logging
 
 LOGS = logging.getLogger(__name__)
@@ -14,8 +13,9 @@ async def is_admin(bot, chat_id, userid):
         req_jo = await bot(GetParticipantRequest(chat_id, userid))
         chat_participant = req_jo.participant
         if isinstance(
-            chat_participant, (ChannelParticipantCreator, ChannelParticipantAdmin)
-        ):
+            chat_participant,
+            (ChannelParticipantCreator,
+             ChannelParticipantAdmin)):
             return True
     except Exception as e:
         LOGS.info(str(e))

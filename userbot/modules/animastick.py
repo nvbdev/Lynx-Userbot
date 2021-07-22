@@ -8,8 +8,6 @@
 
 import io
 import textwrap
-import random
-import requests
 import cv2
 import os
 
@@ -24,6 +22,8 @@ from userbot.events import register
 from userbot import CMD_HELP, bot
 
 # Credits Ultroid
+
+
 @register(outgoing=True, pattern=r"^\.honka (.*)")
 async def honkasays(event):
     await event.edit("`Sedang Memproses, Mohon Tunggu Sebentar...`")

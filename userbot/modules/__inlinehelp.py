@@ -48,9 +48,8 @@ async def yardim(event):
     else:
         return await event.edit("`The bot doesn't work! Please set the Bot Token and Username correctly.`"
                                 "\n`The module has been stopped.`")
-    
-    
-    
+
+
 @register(outgoing=True, pattern=r"^\.alynx")
 async def alyynx(event):
     botusername = BOT_USERNAME

@@ -78,7 +78,7 @@ async def on_snip_save(event):
         await event.edit(success.format('saved', keyword))
 
 
-@register(outgoing=True, pattern="^\.snips$")
+@register(outgoing=True, pattern="^\\.snips$")
 async def on_snip_list(event):
     """For .snips command, lists snips saved by you."""
     try:
