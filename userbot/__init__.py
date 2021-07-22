@@ -320,14 +320,14 @@ LOGS = logging.getLogger("userbot")
 
 
 if PM_LOGGER_GROUP_ID == 0:
-   try:
-       from userbot.modules.sql_helper.globals import gvarstatus  # pylint: disable=E501
-       if gvarstatus("PM_LOGGER_GROUP_ID") is None:
-           PM_LOGGER_GROUP_ID = -100
-       else:
-           PM_LOGGER_GROUP_ID = int(gvarstatus("PM_LOGGER_GROUP_ID"))
-   elif str(PM_LOGGER_GROUP_ID)[0] != "-":
-       PM_LOGGER_GROUP_ID = int("-" + str(PM_LOGGER_GROUP_ID))
+    try:
+        from userbot.modules.sql_helper.globals import gvarstatus  # pylint: disable=E501
+        if gvarstatus("PM_LOGGER_GROUP_ID") is None:
+            PM_LOGGER_GROUP_ID = -100
+        else:
+            PM_LOGGER_GROUP_ID = int(gvarstatus("PM_LOGGER_GROUP_ID"))
+    elif str(PM_LOGGER_GROUP_ID)[0] != "-":
+        PM_LOGGER_GROUP_ID = int("-" + str(PM_LOGGER_GROUP_ID))
 
 
 # Signal
