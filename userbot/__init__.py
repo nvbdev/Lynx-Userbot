@@ -702,7 +702,7 @@ with lynx:
             query = event.text
             if event.query.user_id == uid and query.startswith("@LynxRobot"):
                 buttons = [
-                    (Button.inline("Open Main Menu", data="mainmenu"),),
+                    (Button.inline("Open Main Menu", data="open_menu"),),
                 ]
                 photo_bytesio = lynxlogo
                 result = builder.photo(
@@ -814,6 +814,32 @@ with lynx:
 
         @lynx.tgbot.on(
             events.callbackquery.CallbackQuery(  # pylint:disable=E0602
+                data=re.compile(rb"open_menu")
+            )
+        )
+        async def on_plug_in_callback_query_handler(event):
+            if event.query.user_id == uid:  # Lynx-Openeer
+                # https://t.me/TelethonChat/115200
+                await event.edit(
+                    file=lynxlogo,
+                    link_preview=True,
+                    buttons=[
+                        [
+                            custom.Button.url("Lynx-Userbot",
+                                              "t.me/LynxUserbot"),
+                            custom.Button.url("My Instagram",
+                                              f"{INSTAGRAM_ALIVE}")],
+                        [custom.Button.inline("⚙️ Settings ⚙️", data="settings")],
+                        [custom.Button.inline("Plugins", data="mainmenu")],
+                        [custom.Button.inline("Close", data="close")],
+                    ]
+                )
+            else:
+                reply_pop_up_alert = f"❌ DISCLAIMER ❌\n © Lynx-Userbot"
+                await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
+
+        @lynx.tgbot.on(
+            events.callbackquery.CallbackQuery(  # pylint:disable=E0602
                 data=re.compile(rb"close")
             )
         )
@@ -901,6 +927,7 @@ with lynx:
                             custom.Button.url("My Instagram",
                                               f"{INSTAGRAM_ALIVE}")],
                         [custom.Button.inline("⚙️ Settings ⚙️", data="settings")],
+                        [custom.Button.inline("Plugins", data="mainmenu")],
                         [custom.Button.inline("Close", data="close")],
                     ]
                 )
