@@ -668,10 +668,10 @@ with lynx:
 
         @lynx.tgbot.on(events.ChatAction)
         async def handler(event):
-            if event.user_joined:
+            if event.user_joined or event.user_added:
                 u = await event.client.get_entity(event.chat_id)
                 c = await event.client.get_entity(event.user_id)
-                await event.reply(f"```Welcome to the``` [{get_display_name(u)}](tg://user?id={u.id})\n👤**User:** [{get_display_name(c)}](tg://user?id={c.id})")
+                await event.reply(f" Welcome to [{get_display_name(u)}](tg://user?id={u.id})\n\n👤**User :** [{get_display_name(c)}](tg://user?id={c.id}) \n💳**ID :** `{c.id}`")
 
         @lynx.tgbot.on(events.NewMessage(pattern=r"/ping"))
         async def handler(event):
