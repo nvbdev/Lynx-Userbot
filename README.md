@@ -114,9 +114,9 @@ and you ended up in a Finale Battle with Telegram and at the end
 
 ### <h1 align="center"> DEPLOY </p>
 
-<p align="left"> 𝗨𝘀𝗶𝗻𝗴 𝗛𝗲𝗿𝗼𝗸𝘂 </p> <p align="left"><a href="https://ganosecteam.my.id/"><img src="https://img.shields.io/badge/Don't%20Click%20Bro%20,%20Will be Ban-Purple?style=flat&logo=heroku" width="210" height="34.45" /></a></p>
+<p align="left"> 𝗨𝘀𝗶𝗻𝗴 𝗛𝗲𝗿𝗼𝗸𝘂 </p>
 
-[![Deploy To Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/KENZO-404/Lynx-Userbot)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/KENZO-404/Lynx-Userbot)
 
  𝗨𝘀𝗶𝗻𝗴 𝗚𝗶𝘁 𝗮𝗻𝗱 𝗣𝘆𝘁𝗵𝗼𝗻𝟯 -- 𝗼𝗻 (𝗟𝗶𝗻𝘂𝘅, 𝗺𝗮𝗰𝗢𝗦, 𝗮𝗻𝗱 𝗔𝗻𝗱𝗿𝗼𝗶𝗱 [𝘃𝗶𝗮 𝗧𝗲𝗿𝗺𝘂𝘅])
 1. Clone this repository on your local machine and `cd` (or `chdir`, anti bloat guy) to it
