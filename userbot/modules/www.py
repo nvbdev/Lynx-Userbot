@@ -46,7 +46,7 @@ async def get_readable_time(seconds: int) -> str:
     return up_time
 
 
-@register(outgoing=True, pattern="^.sping$")
+@register(outgoing=True, pattern=r"^\.sping$")
 async def sping(pong):
     """For .ping command, ping the userbot from any chat."""
     await get_readable_time((time.time() - StartTime))
@@ -70,7 +70,7 @@ async def sping(pong):
                     f"**╰━━━━━━━━━━━━━━━━━╯** \n" % (duration))
 
 
-@register(outgoing=True, pattern="^.lping$")
+@register(outgoing=True, pattern=r"^\.lping$")
 async def lping(pong):
     """For .ping command, ping the userbot from any chat."""
     uptime = await get_readable_time((time.time() - StartTime))
@@ -87,7 +87,7 @@ async def lping(pong):
                     f"**`{DEFAULTUSER}`**" % (duration))
 
 
-@register(outgoing=True, pattern="^.xping$")
+@register(outgoing=True, pattern=r"^\.xping$")
 async def xping(pong):
     """For .ping command, ping the userbot from any chat."""
     uptime = await get_readable_time((time.time() - StartTime))
@@ -110,7 +110,7 @@ async def xping(pong):
                     f"`{uptime}` \n" % (duration))
 
 
-@register(outgoing=True, pattern="^.ping$")
+@register(outgoing=True, pattern=r"^\.ping$")
 async def ping(pong):
     """For .ping command, ping the userbot from any chat."""
     uptime = await get_readable_time((time.time() - StartTime))
@@ -186,7 +186,7 @@ async def neardc(event):
     )
 
 
-@register(outgoing=True, pattern="^.pong$")
+@register(outgoing=True, pattern=r"^\.pong$")
 async def pingme(pong):
     """For .ping command, ping the userbot from any chat."""
     start = datetime.now()
