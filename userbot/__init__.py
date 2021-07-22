@@ -6,6 +6,7 @@
 """Userbot initialization."""
 
 
+from userbot.modules.sql_helper.globals import gvarstatus  # pylint: disable=E265
 from git import Repo
 from .core.logger import logging
 import signal
@@ -318,7 +319,6 @@ for binary, path in binaries.items():
 
 LOGS = logging.getLogger("userbot")
 
-from userbot.modules.sql_helper.globals import gvarstatus  # pylint: disable=E265
 
 if PM_LOGGER_GROUP_ID == 0:
     if gvarstatus("PM_LOGGER_GROUP_ID") is None:
