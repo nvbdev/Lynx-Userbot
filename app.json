@@ -166,7 +166,7 @@
    "value": "instagram.com/username_ig",
    "required": false
   },
-  "SPAMWATCH_API" {
+  "SPAMWATCH_API": {
    "description": "Pergi ke @SpamWatchBot di Telegram untuk mendapatkan SPAMWATCH_API.",
    "required": false
   },
