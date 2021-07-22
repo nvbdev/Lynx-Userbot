@@ -319,9 +319,10 @@ for binary, path in binaries.items():
 LOGS = logging.getLogger("userbot")
 
 
+from userbot.modules.sql_helper.globals import gvarstatus
+
+
 if PM_LOGGER_GROUP_ID == 0:
-try:
-    from userbot.modules.sql_helper.globals import gvarstatus
     if gvarstatus("PM_LOGGER_GROUP_ID") is None:
         PM_LOGGER_GROUP_ID = -100
     else:
