@@ -3,7 +3,7 @@ FROM kenzo404/lynxuser:Buster
 # ==========================================
 #              Lynx - Userbot
 # ==========================================
-RUN git clone -b Beta https://github.com/KENZO-404/Lynx-Userbot /home/Lynx-Userbot \
+RUN git clone -b Lynx-Userbot https://github.com/KENZO-404/Lynx-Userbot /home/Lynx-Userbot \
     && chmod 777 /home/Lynx-Userbot \
     && mkdir /home/Lynx-Userbot/bin/
 
