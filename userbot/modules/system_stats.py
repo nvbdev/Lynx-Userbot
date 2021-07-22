@@ -249,8 +249,7 @@ async def ireallyalive(event):
         f"⚙️ `Telethon    :` v. {version.__version__}\n"
         f"👨‍💻 `User        :` {DEFAULTUSER}\n"
         "`====================================`\n"
-        f" Copyright © 𝟤𝟢𝟤𝟣 Lynx-Userbot\n License : Raphielscape Public License v1.d"
-    )
+        f" Copyright © 𝟤𝟢𝟤𝟣 Lynx-Userbot\n License : Raphielscape Public License v1.d")
     if ALIVE_LOGO:
         try:
             logo = ALIVE_LOGO
@@ -363,7 +362,7 @@ async def amireallyaliveuser(username):
 @register(outgoing=True, pattern=r"^\.resetalive$")
 async def amireallyalivereset(ureset):
     """For .resetalive command, reset the username in the .alive command."""
-    DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else uname().node
+    str(ALIVE_NAME) if ALIVE_NAME else uname().node
     await ureset.edit("`" "Successfully reset user for alive!" "`")
 
 

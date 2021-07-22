@@ -14,7 +14,7 @@ from datetime import datetime
 from telethon import functions
 
 from speedtest import Speedtest
-from userbot import CMD_HELP, StartTime, ALIVE_NAME
+from userbot import CMD_HELP, StartTime, DEFAULTUSER
 from userbot.events import register
 from userbot.utils import humanbytes
 
@@ -23,7 +23,7 @@ async def get_readable_time(seconds: int) -> str:
     count = 0
     up_time = ""
     time_list = []
-    time_suffix_list = ["Dtk", "Mnt", "Jam", "Hari"]
+    time_suffix_list = ["s", "m", "h", "d"]
 
     while count < 4:
         count += 1
@@ -46,7 +46,7 @@ async def get_readable_time(seconds: int) -> str:
     return up_time
 
 
-@register(outgoing=True, pattern="^.sping$")
+@register(outgoing=True, pattern=r"^\.sping$")
 async def sping(pong):
     """For .ping command, ping the userbot from any chat."""
     await get_readable_time((time.time() - StartTime))
@@ -66,11 +66,11 @@ async def sping(pong):
                     f"**          - 𝐍 𝐄 𝐓 𝐖 𝐎 𝐑 𝐊 -** \n"
                     f"**   ▰▱▰▱▰▱▰▱▰▱▰▱** \n"
                     f"**        • ꜱɪɢɴᴀʟ  :** `%sms` \n"
-                    f"**        • ᴏᴡɴᴇʀ   :** `{ALIVE_NAME}` \n"
+                    f"**        • ᴏᴡɴᴇʀ   :** `{DEFAULTUSER}` \n"
                     f"**╰━━━━━━━━━━━━━━━━━╯** \n" % (duration))
 
 
-@register(outgoing=True, pattern="^.lping$")
+@register(outgoing=True, pattern=r"^\.lping$")
 async def lping(pong):
     """For .ping command, ping the userbot from any chat."""
     uptime = await get_readable_time((time.time() - StartTime))
@@ -78,14 +78,16 @@ async def lping(pong):
     await pong.edit("`Connecting to server...`")
     end = datetime.now()
     duration = (end - start).microseconds / 1000
-    await pong.edit(f"**`{ALIVE_NAME}`**\n"
-                    f"✧ **-ꜱɪɢɴᴀʟ- :** "
+    await pong.edit(f"█▀█ █▀█ █▄░█ █▀▀ █ \n"
+                    f"█▀▀ █▄█ █░▀█ █▄█ ▄ \n\n"
+                    f"Signal: "
                     f"`%sms` \n"
-                    f"✧ **-ᴜᴘᴛɪᴍᴇ- :** "
-                    f"`{uptime}` \n" % (duration))
+                    f"Uptime: "
+                    f"`{uptime}` \n"
+                    f"**`{DEFAULTUSER}`**" % (duration))
 
 
-@register(outgoing=True, pattern="^.xping$")
+@register(outgoing=True, pattern=r"^\.xping$")
 async def xping(pong):
     """For .ping command, ping the userbot from any chat."""
     uptime = await get_readable_time((time.time() - StartTime))
@@ -102,13 +104,13 @@ async def xping(pong):
     end = datetime.now()
     duration = (end - start).microseconds / 1000
     await pong.edit(f"**⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡**\n"
-                    f"➾ __Signal__    __:__ "
+                    f"➾ __Signal__    __:__  "
                     f"`%sms` \n"
-                    f"➾ __Uptime__ __:__ "
+                    f"➾ __Uptime__ __:__  "
                     f"`{uptime}` \n" % (duration))
 
 
-@register(outgoing=True, pattern="^.ping$")
+@register(outgoing=True, pattern=r"^\.ping$")
 async def ping(pong):
     """For .ping command, ping the userbot from any chat."""
     uptime = await get_readable_time((time.time() - StartTime))
@@ -133,7 +135,7 @@ async def ping(pong):
                     f"`%sms` \n"
                     f"**│⊙  Uᴘᴛɪᴍᴇ  :** "
                     f"`{uptime}` \n"
-                    f"**│⊙  Oᴡɴᴇʀ   :** `{ALIVE_NAME}` \n"
+                    f"**│⊙  Oᴡɴᴇʀ   :** `{DEFAULTUSER}` \n"
                     f"**╰━━━━━━━━━━━━━━━━━╯**" % (duration))
 
 
@@ -184,7 +186,7 @@ async def neardc(event):
     )
 
 
-@register(outgoing=True, pattern="^.pong$")
+@register(outgoing=True, pattern=r"^\.pong$")
 async def pingme(pong):
     """For .ping command, ping the userbot from any chat."""
     start = datetime.now()
@@ -193,7 +195,7 @@ async def pingme(pong):
     await pong.edit("😼")
     end = datetime.now()
     duration = (end - start).microseconds / 9000
-    await pong.edit(f"**🙅 Oᴡɴᴇʀ : {ALIVE_NAME}**\n`%sms`" % (duration))
+    await pong.edit(f"**🙅 Oᴡɴᴇʀ : {DEFAULTUSER}**\n`%sms`" % (duration))
 
 
 CMD_HELP.update({

@@ -73,5 +73,5 @@ CMD_HELP.update(
     {"ssvideo": "✘ Pʟᴜɢɪɴ : Screenshot Video"
      "\n\n⚡𝘾𝙈𝘿⚡: `.ssvideo` <Frame>"
      "\n↳ : To Screenshot Video Frame Perframe"
-    }
+     }
 )

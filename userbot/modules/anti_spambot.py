@@ -12,12 +12,10 @@ from requests import get
 from telethon.errors import ChatAdminRequiredError
 from telethon.events import ChatAction
 from telethon.tl.types import ChannelParticipantsAdmins
-from telethon.utils import get_display_name
 
 from userbot.modules.sql_helper.globalban_sql import get_gbanuser, is_gbanned
 from userbot.utils import edit_or_reply
 from userbot.events import register
-from userbot.utils.checker import is_admin
 
 from userbot import (
     ANTISPAMBOT_BAN,
@@ -119,7 +117,8 @@ if ANTISPAMBOT_BAN:
                     LOGS.info(e)
         if not lynxbanned:
             try:
-                casurl = "https://api.cas.chat/check?user_id={}".format(user.id)
+                casurl = "https://api.cas.chat/check?user_id={}".format(
+                    user.id)
                 data = get(casurl).json()
             except Exception as e:
                 LOGS.info(e)
@@ -172,15 +171,14 @@ async def caschecker(event):
                     banned_users += f"Deleted Account - `{user.id}`\n"
             members_count += 1
         text = "**⚠️ WARNING ⚠️**\n\nFound `{}` of `{}` Users are CAS Banned:\n".format(
-            cas_count, members_count
-        )
+            cas_count, members_count)
         text += banned_users
         if not cas_count:
             text = "No CAS Banned users found!"
-    except ChatAdminRequiredError as carerr:
+    except ChatAdminRequiredError:
         await lynxevent.edit("`CAS Check Failed: Admin Privileges are Required`")
         return
-    except BaseException as be:
+    except BaseException:
         await lynxevent.edit("`CAS Check Failed.`")
         return
     await lynxevent.edit(text)
@@ -211,15 +209,14 @@ async def caschecker(event):
                     banned_users += f"Deleted Account - `{user.id}`\n"
             members_count += 1
         text = "**⚠️ WARNING ⚠️**\nFound `{}` of `{}` users are SpamWatch Banned:\n".format(
-            cas_count, members_count
-        )
+            cas_count, members_count)
         text += banned_users
         if not cas_count:
             text = "No spamwatch Banned users found!"
-    except ChatAdminRequiredError as carerr:
+    except ChatAdminRequiredError:
         await lynxevent.edit("`SpamWatch Check Failed: Admin Privileges are Required.`")
         return
-    except BaseException as be:
+    except BaseException:
         await lynxevent.edit("`SpamWatch Check Failed.`")
         return
     await lynxevent.edit(text)
@@ -252,6 +249,6 @@ CMD_HELP.update(
         "\n\n⚡𝘾𝙈𝘿⚡: `.spamcheck`"
         "\n↳ : To check the users who are banned in spamwatch."
         "\n\n**Note:** When you use this command it will check every user in the group where you used whether"
-        "he is banned in spamwatch federation and will show there names if they are banned in spamwatch federation"  
+        "he is banned in spamwatch federation and will show there names if they are banned in spamwatch federation"
     }
 )

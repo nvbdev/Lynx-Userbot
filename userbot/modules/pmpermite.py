@@ -167,7 +167,6 @@ async def auto_accept(event):
         get_message = gvarstatus("unapproved_msg")
         if get_message is not None:
             UNAPPROVED_MSG = get_message
-            WARN_PIC = getmsg
         else:
             UNAPPROVED_MSG = DEF_UNAPPROVED_MSG
             UNAPPROVED_MSG = PM_PERMIT_PC

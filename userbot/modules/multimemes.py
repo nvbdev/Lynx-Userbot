@@ -12,7 +12,6 @@
 import asyncio
 import io
 import os
-import random
 import re
 import shlex
 import textwrap
@@ -24,7 +23,7 @@ from glitch_this import ImageGlitcher
 from hachoir.metadata import extractMetadata
 from hachoir.parser import createParser
 from PIL import Image, ImageDraw, ImageEnhance, ImageFont, ImageOps
-from telethon import events, functions, types
+from telethon import functions, types
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 from telethon.tl.types import DocumentAttributeFilename
 
@@ -153,7 +152,9 @@ async def memify(event):
         os.makedirs(TEMP_DOWNLOAD_DIRECTORY)
 
     input_file = await event.client.download_media(reply_msg, TEMP_DOWNLOAD_DIRECTORY)
-    input_file = os.path.join(TEMP_DOWNLOAD_DIRECTORY, os.path.basename(input_file))
+    input_file = os.path.join(
+        TEMP_DOWNLOAD_DIRECTORY,
+        os.path.basename(input_file))
 
     if input_file.endswith(".tgs"):
         await event.edit("`Extracting first frame...`")
@@ -272,7 +273,6 @@ async def take_screen_shot(
     command = f'''ffmpeg -ss {ttl} -i "{video_file}" -vframes 1 "{thumb_image_path}"'''
     err = (await runcmd(command))[1]
     return thumb_image_path if os.path.exists(thumb_image_path) else err
-
 
 
 @register(outgoing=True, pattern=r"^\.df(:? |$)([1-8])?")
@@ -451,8 +451,8 @@ CMD_HELP.update(
 
 CMD_HELP.update(
     {
-       "memify": "✘ Pʟᴜɢɪɴ : Memify"
-       "\n\n⚡𝘾𝙈𝘿⚡: `.mmf [Text Atas] ; [Text Bawah`]"
-       "\n↳ : Reply Ke Sticker/Image/Gif."
+        "memify": "✘ Pʟᴜɢɪɴ : Memify"
+        "\n\n⚡𝘾𝙈𝘿⚡: `.mmf [Text Atas] ; [Text Bawah`]"
+        "\n↳ : Reply Ke Sticker/Image/Gif."
     }
 )

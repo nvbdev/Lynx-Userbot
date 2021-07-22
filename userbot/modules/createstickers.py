@@ -90,7 +90,7 @@ async def get_font_file(client, channel_id):
 
 
 CMD_HELP.update({
-      "csticker": "✘ Pʟᴜɢɪɴ : Create Sticker"
-      "\n\n⚡𝘾𝙈𝘿⚡: `.cs` <Text>"
-      "\n↳ : Create Sticker [Random RGB]"
+    "csticker": "✘ Pʟᴜɢɪɴ : Create Sticker"
+    "\n\n⚡𝘾𝙈𝘿⚡: `.cs` <Text>"
+    "\n↳ : Create Sticker [Random RGB]"
 })

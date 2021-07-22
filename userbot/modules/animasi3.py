@@ -15,12 +15,12 @@ import asyncio
 
 ARTLYNX = """
  __    _       _  _ _ _    __  __      __
-|  |  \  \   /  /|     \  |  |\   \  /   /
-|  |   \  \_/  / |   \  \ |  | \   \/   /
-|  |    \     /  |   |\  \|  |  \      /
-|  |     |   |   |   | \     |  /      \
-|  \___/\|   |   |   |  \    | /   /\   \
-\_______/\_ _/   \_ _|   \ _ / \__/  \__/
+|  |  \\  \\   /  /|     \\  |  |\\   \\  /   /
+|  |   \\  \\_/  / |   \\  \\ |  | \\   \\/   /
+|  |    \\     /  |   |\\  \\|  |  \\      /
+|  |     |   |   |   | \\     |  /      \
+|  \\___/\\|   |   |   |  \\    | /   /\\   \
+\\_______/\\_ _/   \\_ _|   \\ _ / \\__/  \\__/
 """
 
 
@@ -37,17 +37,17 @@ ASCIILYNX = """
 # ------------------------------------------------- TEXT ART ------------------------------------------------- #
 
 
-@register(outgoing=True, pattern="^\.1D$")
+@register(outgoing=True, pattern="^\\.1D$")
 async def artlynx(event):
     await event.edit(ARTLYNX)
 
 
-@register(outgoing=True, pattern="^\.3D$")
+@register(outgoing=True, pattern="^\\.3D$")
 async def asciilynx(event):
     await event.edit(ASCIILYNX)
 
 
-@register(outgoing=True, pattern="^\.hua$")
+@register(outgoing=True, pattern="^\\.hua$")
 async def koc(e):
     if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
         await e.edit("أ‿أ")
@@ -82,7 +82,7 @@ async def koc(e):
         await e.edit("༼ ༎ຶ ෴ ༎ຶ༽")
 
 
-@register(outgoing=True, pattern='^\.huh(?: |$)(.*)')
+@register(outgoing=True, pattern='^\\.huh(?: |$)(.*)')
 async def typewriter(typew):
     typew.pattern_match.group(1)
     await typew.edit("`\n(\\_/)`"
@@ -170,7 +170,7 @@ async def _(event):
             await event.edit(animation_chars[i % 11])
 
 
-@register(outgoing=True, pattern='^\.nah(?: |$)(.*)')
+@register(outgoing=True, pattern='^\\.nah(?: |$)(.*)')
 async def typewriter(typew):
     typew.pattern_match.group(1)
     await typew.edit("`\n(\\_/)`"
