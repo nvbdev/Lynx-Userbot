@@ -995,7 +995,7 @@ with lynx:
                 reply_pop_up_alert = f"❌ DISCLAIMER ❌\n © Lynx-Userbot"
             await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
 
-        from userbot.modules.updater import print_changelogs, pull, push, gen_chlogs, upstream
+        from userbot.modules.updater import print_changelogs, pull, push, gen_chlog, upstream
         @lynx.tgbot.on(
             events.callbackquery.CallbackQuery(  # pylint:disable=E0602
                 data=re.compile(rb"updater")
