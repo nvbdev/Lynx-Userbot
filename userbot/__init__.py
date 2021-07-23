@@ -507,8 +507,8 @@ def alive_inline():
         ),
         ),
         (custom.Button.inline(
-            "Back to Menu",
-            data="open_menu",
+            "Back to Settings",
+            data="settings",
         ),
         ),
     ]
@@ -870,7 +870,7 @@ with lynx:
                             custom.Button.url("My Instagram",
                                               f"{INSTAGRAM_ALIVE}")
                         ],
-                        [custom.Button.inline("Close", data="close")],
+                        [custom.Button.inline("Back", data="open_menu")],
                     ]
                 )
             else:
