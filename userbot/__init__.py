@@ -782,6 +782,78 @@ with lynx:
                 )
             await event.answer([result] if result else None)
 
+        from userbot.modules.updater import print_changelogs, pull, push, gen_chlog, upstream
+        @lynx.tgbot.on(
+            events.callbackquery.CallbackQuery(  # pylint:disable=E0602
+                data=re.compile(rb"updater")
+            )
+        )
+        async def on_plug_in_callback_query_handler(event):
+            if event.query.user_id == uid:
+                check = await print_changelogs(event, ac_br, changelog)
+                if not check:
+                    return await event.client.send_message(
+                        event.chat_id,
+                        "You're Already On Latest Version",
+                    )
+                repo = Repo.init()
+                ac_br = repo.active_branch
+                changelog, changelog_str = await gen_chlog(repo, f"HEAD..upstream/{ac_br}")
+                changelog_str = changelog + f"\n\nClick the below button to update!"
+                if len(changelog_str) > 4096:
+                    await event.edit("`Changelog is too big, view the file to see it.`")
+                    file = open("output.txt", "w+")
+                    file.write(changelog_str)
+                    file.close()
+                    await event.client.send_message(
+                        event.chat_id,
+                        file="output.txt",
+                        buttons=[
+                            [Button.inline("Update Now", data="update_now")],
+                            [Button.inline("Back", data="open_menu")],
+                        ],
+                        reply_to=event.id,
+                    )
+                    remove("output.txt")
+                else:
+                    await event.client.send_message(
+                        event.chat_id,
+                        changelog_str,
+                        buttons=[
+                            [Button.inline("Update Now", data="update_now")],
+                            [Button.inline("Back", data="open_menu")],
+                        ],
+                        reply_to=event.id,
+                    )
+
+        @lynx.tgbot.on(
+            events.callbackquery.CallbackQuery(  # pylint:disable=E0602
+                data=re.compile(rb"update_now")
+            )
+        )
+        async def on_plug_in_callback_query_handler(event):
+            if event.query.user_id == uid:
+                async def pull(event, repo, ups_rem, ac_br):
+                    try:
+                       ups_rem.pull(ac_br)
+                    except GitCommandError:
+                       repo.git.reset("--hard", "FETCH_HEAD")
+                    await event.edit(
+                        "#Successfully ✅ Updated!\n" "`Bot is restarting... Wait for a second!`"
+                    )
+                    try:
+                       from userbot.modules.sql_helper.globals import addgvar, delgvar
+
+                       delgvar("restartstatus")
+                       addgvar("restartstatus", f"{event.chat_id}\n{event.id}")
+                    except AttributeError:
+                        pass
+                    # Spin a new instance of bot
+                    args = [sys.executable, "-m", "userbot"]
+                    execle(sys.executable, *args, environ)
+
+
+
         @lynx.tgbot.on(
             events.callbackquery.CallbackQuery(  # pylint:disable=E0602
                 data=re.compile(rb"mainmenu")
@@ -994,77 +1066,6 @@ with lynx:
             else:
                 reply_pop_up_alert = f"❌ DISCLAIMER ❌\n © Lynx-Userbot"
             await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
-
-        from userbot.modules.updater import print_changelogs, pull, push, gen_chlog, upstream
-        @lynx.tgbot.on(
-            events.callbackquery.CallbackQuery(  # pylint:disable=E0602
-                data=re.compile(rb"updater")
-            )
-        )
-        async def on_plug_in_callback_query_handler(event):
-            if event.query.user_id == uid:
-                check = await print_changelogs(event, ac_br, changelog)
-                if not check:
-                    return await event.client.send_message(
-                        event.chat_id,
-                        "You're Already On Latest Version",
-                    )
-                repo = Repo.init()
-                ac_br = repo.active_branch
-                changelog, changelog_str = await gen_chlog(repo, f"HEAD..upstream/{ac_br}")
-                changelog_str = changelog + f"\n\nClick the below button to update!"
-                if len(changelog_str) > 4096:
-                    await event.edit("`Changelog is too big, view the file to see it.`")
-                    file = open("output.txt", "w+")
-                    file.write(changelog_str)
-                    file.close()
-                    await event.client.send_message(
-                        event.chat_id,
-                        file="output.txt",
-                        buttons=[
-                            [Button.inline("Update Now", data="update_now")],
-                            [Button.inline("Back", data="open_menu")],
-                        ],
-                        reply_to=event.id,
-                    )
-                    remove("output.txt")
-                else:
-                    await event.client.send_message(
-                        event.chat_id,
-                        changelog_str,
-                        buttons=[
-                            [Button.inline("Update Now", data="update_now")],
-                            [Button.inline("Back", data="open_menu")],
-                        ],
-                        reply_to=event.id,
-                    )
-
-        @lynx.tgbot.on(
-            events.callbackquery.CallbackQuery(  # pylint:disable=E0602
-                data=re.compile(rb"update_now")
-            )
-        )
-        async def on_plug_in_callback_query_handler(event):
-            if event.query.user_id == uid:
-                async def pull(event, repo, ups_rem, ac_br):
-                    try:
-                       ups_rem.pull(ac_br)
-                    except GitCommandError:
-                       repo.git.reset("--hard", "FETCH_HEAD")
-                    await event.edit(
-                        "#Successfully ✅ Updated!\n" "`Bot is restarting... Wait for a second!`"
-                    )
-                    try:
-                       from userbot.modules.sql_helper.globals import addgvar, delgvar
-
-                       delgvar("restartstatus")
-                       addgvar("restartstatus", f"{event.chat_id}\n{event.id}")
-                    except AttributeError:
-                        pass
-                    # Spin a new instance of bot
-                    args = [sys.executable, "-m", "userbot"]
-                    execle(sys.executable, *args, environ)
-
 
     except BaseException:
         LOGS.info(
