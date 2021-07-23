@@ -22,6 +22,7 @@ from platform import python_version, uname
 from telethon import TelegramClient, version
 from sys import version_info
 import sys
+import asyncio
 from logging import basicConfig, getLogger, INFO, DEBUG
 from distutils.util import strtobool as sb
 from math import ceil
@@ -424,7 +425,9 @@ with bot:
         quit(1)
 
 
+from os import environ, execle, remove
 from git import Repo
+from git.exc import GitCommandError, InvalidGitRepositoryError, NoSuchPathError
 
 
 async def update_restart_msg(chat_id, msg_id):
