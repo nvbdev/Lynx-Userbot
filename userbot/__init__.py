@@ -830,26 +830,26 @@ with lynx:
         )
         async def on_plug_in_callback_query_handler(event):
             if event.query.user_id == uid:
-            async def pull(event, repo, ups_rem, ac_br):
-                try:
-                   ups_rem.pull(ac_br)
-                except GitCommandError:
-                   repo.git.reset("--hard", "FETCH_HEAD")
-                await event.edit(
-                    "#Successfully ✅ Updated!\n" "`Bot is restarting... Wait for a second!`"
-                )
+                async def pull(event, repo, ups_rem, ac_br):
+                    try:
+                       ups_rem.pull(ac_br)
+                    except GitCommandError:
+                       repo.git.reset("--hard", "FETCH_HEAD")
+                    await event.edit(
+                        "#Successfully ✅ Updated!\n" "`Bot is restarting... Wait for a second!`"
+                    )
 
-    try:
-        from userbot.modules.sql_helper.globals import addgvar, delgvar
+            try:
+               from userbot.modules.sql_helper.globals import addgvar, delgvar
 
-        delgvar("restartstatus")
-        addgvar("restartstatus", f"{event.chat_id}\n{event.id}")
-    except AttributeError:
-        pass
+                delgvar("restartstatus")
+                addgvar("restartstatus", f"{event.chat_id}\n{event.id}")
+            except AttributeError:
+                pass
 
-    # Spin a new instance of bot
-    args = [sys.executable, "-m", "userbot"]
-    execle(sys.executable, *args, environ)
+            # Spin a new instance of bot
+            args = [sys.executable, "-m", "userbot"]
+            execle(sys.executable, *args, environ)
 
 
         @lynx.tgbot.on(
