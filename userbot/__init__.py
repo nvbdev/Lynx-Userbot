@@ -857,7 +857,8 @@ with lynx:
         )
         async def on_plug_in_callback_query_handler(event):
             if event.query.user_id == uid:  # Lynx-Settings
-                await event.edit(
+                text = f"**Copyright © 𝟤𝟢𝟤𝟣 Lynx-Userbot\nLicense: Raphielscape Public License v1.d**"
+                await event.edit(text,
                     file=lynxlogo,
                     link_preview=False,
                     buttons=[
