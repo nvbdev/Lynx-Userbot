@@ -1005,9 +1005,8 @@ with lynx:
             if event.query.user_id == uid:
                 check = await print_changelogs(event, ac_br, changelog)
                 if not check:
-                    return await event.client.send_message(
-                        event.chat_id,
-                        "You're Already On Latest Version",
+                    return await event.answer(
+                        "You're Already On Latest Version", cache_time=0, alert=True
                     )
                 repo = Repo.init()
                 ac_br = repo.active_branch
@@ -1018,30 +1017,28 @@ with lynx:
                     file = open("output.txt", "w+")
                     file.write(changelog_str)
                     file.close()
-                    await event.client.send_message(
-                        event.chat_id,
+                    await event.edit(
                         file="output.txt",
                         buttons=[
                             [Button.inline("Update Now", data="updatenow")],
                             [Button.inline("Back", data="open_menu")],
                         ],
-                        reply_to=event.id,
                     )
                     remove("output.txt")
                 else:
-                    await event.client.send_message(
-                        event.chat_id,
+                    await event.edit(
                         changelog_str,
                         buttons=[
-                            [Button.inline("Update Now", data="update_now")],
+                            [Button.inline("Update Now", data="updatenow")],
                             [Button.inline("Back", data="open_menu")],
                         ],
-                        reply_to=event.id,
+                        parse_mode="html",
                     )
+                return True
 
         @lynx.tgbot.on(
             events.callbackquery.CallbackQuery(  # pylint:disable=E0602
-                data=re.compile(rb"update_now")
+                data=re.compile(rb"updatenow")
             )
         )
         async def on_plug_in_callback_query_handler(event):
