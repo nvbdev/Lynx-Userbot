@@ -941,7 +941,8 @@ with lynx:
                     link_preview=False,
                     buttons=[
                         [
-                            custom.Button.inline("ᴀʟɪᴠᴇ", data="allive")
+                            custom.Button.inline("ᴀʟɪᴠᴇ", data="allive"),
+                            custom.Button.inline("Check Update", data="updatenow")
                         ],
                         [
                             custom.Button.inline("Back", data="open_menu")
