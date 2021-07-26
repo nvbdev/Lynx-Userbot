@@ -39,6 +39,8 @@
 [![pre-commit.ci status](https://results.pre-commit.ci/badge/github/pre-commit/pre-commit/master.svg)](https://results.pre-commit.ci/latest/github/KENZO-404/Lynx-Userbot/Lynx-Userbot)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=yellow)](https://github.com/KENZO-404/Lynx-Userbot)
 [![Build Status](https://github.com/KENZO-404/Lynx-Userbot/workflows/pre-commit/badge.svg)](https://github.com/KENZO-404/Lynx-Userbot/actions)
+[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.0-4baaaa.svg)](https://github.com/KENZO-404/Lynx-Userbot/blob/Lynx-Userbot/CONTRIBUTING.md)
+[![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/5079/badge)](https://bestpractices.coreinfrastructure.org/projects/5079)
 <p align="center">
 </p>
 
