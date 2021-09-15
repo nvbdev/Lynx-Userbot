@@ -424,7 +424,7 @@ async def update_restart_msg(chat_id, msg_id):
     cpufreq = psutil.cpu_freq()
     message = (
            f"**╭─━━━━━━━━━━━━━━━━━━━━━─╮**\n"
-           f"**│ㅤㅤㅤ[⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡](t.me/LynxUserbot)**\n"
+           f"**│⚡𝙉𝙖𝙧𝙚𝙨𝙝-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡](t.me/LynxUserbot)**\n"
            f"**│ ㅤis Back up and Running... 🐈**\n"
            f"**╭─━━━━━━━━━━━━━━━━━━━━━─╯**\n"
            f"**│** `OS       :` __Debian GNU/{uname.system} 10 {uname.machine}__\n"
@@ -433,9 +433,9 @@ async def update_restart_msg(chat_id, msg_id):
            f"**│** `Branch   :` __{repo.active_branch.name}__\n"
            f"**│** `Telethon :` __{version.__version__}__\n"
            f"**│** `Python   :` __{python_version()}__\n"
-           f"**│** `User     :` __{DEFAULTUSER}__\n"
+           f"**│** `Naresh   :` __{DEFAULTUSER}__\n"
            f"**╰━━━━━━━━━━━━━━━━━━━━━━─╯**\n"
-           f" Copyright © 𝟤𝟢𝟤𝟣 Lynx-Userbot\n License : Raphielscape Public License v1.d"
+           f" Copyright © 𝟤𝟢𝟤𝟣 Naresh-Userbot\n License : Raphielscape Public License v1.d"
         )
     await bot.edit_message(chat_id, msg_id, message)
     return True
@@ -482,9 +482,9 @@ def alive_inline():
             \n💻 `CPU         :` Intel Xeon E5-2670 @ {cpufreq.current:.2f}Ghz\
             \n🐍 `Python      :` v. {python_version()}\
             \n⚙️ `Telethon    :` v. {version.__version__}\
-            \n👨‍💻 `User        :` {DEFAULTUSER}\
+            \n👨‍💻 `Naresh      :` {DEFAULTUSER}\
             \n`====================================`\
-            \n Copyright © 𝟤𝟢𝟤𝟣 Lynx-Userbot\n License: Raphielscape Public License v1.d"
+            \n Copyright © 𝟤𝟢𝟤𝟣 Naresh-Userbot\n License: Raphielscape Public License v1.d"
     buttons = [
         (
             custom.Button.url("🧪𝗥𝗘𝗣𝗢",
@@ -594,15 +594,15 @@ with lynx:
             if event.message.from_id != uid:
                 u = await event.client.get_entity(event.chat_id)
                 await event.reply(
-                    f"Hai 👋 [{get_display_name(u)}](tg://user?id={u.id}) Selamat Datang di ⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡\nJika Kalian Datang Kesini dan Ingin Mengetahui Lynx-Robot Lebih Lanjut,\nSilahkan Pilih **Menu Bantuan** Dibawah Ini.\n",
+                    f"Hai 👋 [{get_display_name(u)}](tg://user?id={u.id}) Selamat Datang di🍦𝙉𝙖𝙧𝙚𝙨𝙝-𝙐𝙎𝙀𝙍𝘽𝙊𝙏🍦\nJika Kalian Datang Kesini dan Ingin Mengetahui Naresh-Robot Lebih Lanjut,\nSilahkan Pilih **Menu Bantuan** Dibawah Ini.\n",
                     buttons=[
                         [
                             Button.url("📢 𝗖𝗵𝗮𝗻𝗻𝗲𝗹 📢",
-                                       "t.me/FederationSuperGroup/3"),
+                                       "t.me mutuualanaja 3"),
                             Button.url("🚨 𝗠𝗲𝗻𝘂-𝗕𝗮𝗻𝘁𝘂𝗮𝗻 🚨",
                                        "https://telegra.ph/Bantuan-06-11")],
                         [Button.url("👤 𝗗𝗲𝘃𝗲𝗹𝗼𝗽𝗲𝗿 👤",
-                                    "t.me/FederationSuperGroup/17")],
+                                    "t.me/urfavresh/17")],
                     ]
                 )
 
@@ -610,10 +610,10 @@ with lynx:
         async def handler(event):
             if event.message.from_id != uid:
                 await event.reply(
-                    f"⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡ Deploy to Heroku, Click Here 👇🏻",
+                    f"⚡𝙉𝙖𝙧𝙚𝙨𝙝-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡ Deploy to Heroku, Click Here 👇🏻",
                     buttons=[
                         [Button.url("⚒️ 𝗗𝗘𝗣𝗟𝗢𝗬 ⚒️", "https://zee.gl/DeployToHeroku")],
-                        [Button.url("👥 𝗚𝗥𝗢𝗨𝗣 👥", "t.me/GroupTidakDiketahui")],
+                        [Button.url("👥 𝗚𝗥𝗢𝗨𝗣 👥", "t.me/mutuualanaja")],
                     ],
                 )
 
@@ -623,11 +623,12 @@ with lynx:
                 u = await event.client.get_entity(event.chat_id)
                 await event.message.get_sender()
                 text = (
-                    f"Haii 😼 [{get_display_name(u)}](tg://user?id={u.id}) My Name is 𝗟𝘆𝗻𝘅 🐈\n"
-                    f"Lynx Used For Fun On Telegram✨,\n"
+                    f"Haii 😼 [{get_display_name(u)}](tg://user?id={u.id}) My Name is 𝙉𝙖𝙧𝙚𝙨𝙝 🍦\n"
+                    f"Naresh Used For Fun On Telegram✨,\n"
                     f"and For Maintaining Your Group 🛠️.\n"
-                    f"I was **Created by :** @SyndicateTwenty4 For Various Userbots on Github.\n")
-                await lynx.tgbot.send_file(event.chat_id, file=lynxlogo,
+                    f"I was **Created by :** @urfavresh For Various Userbots on Github.\n")
+                await l
+                Naresh.tgbot.send_file(event.chat_id, file=lynxlogo,
                                       caption=text,
                                       buttons=[
                                           [
@@ -652,9 +653,10 @@ with lynx:
                     f"💻 `CPU         :` Intel Xeon E5-2670 @ {cpufreq.current:.2f}Ghz\n"
                     f"🐍 `Python      :` v. {python_version()}\n"
                     f"⚙️ `Telethon    :` v. {version.__version__}\n"
-                    f"👨‍💻 `User        :` [{get_display_name(axel)}](tg://user?id={axel.id})\n"
+                    f"👨‍💻 `Naresh        :` [{get_display_name(axel)}](tg://user?id={axel.id})\n"
                     "`====================================`\n"
-                    f" Copyright © 𝟤𝟢𝟤𝟣 Lynx-Userbot\n License: Raphielscape Public License v1.d")
+                    f" Copyright © 𝟤𝟢𝟤𝟣 
+                    Naresh-Userbot\n License: Raphielscape Public License v1.d")
                 await lynx.tgbot.send_file(event.chat_id, file=alivvlogo,
                                            caption=text,
                                            buttons=[
@@ -679,9 +681,9 @@ with lynx:
                 start = datetime.now()
                 end = datetime.now()
                 ms = (end - start).microseconds / 1000
-                await lynx.tgbot.send_message(
+                await naresh.tgbot.send_message(
                     event.chat_id,
-                    f"**PONG !!**\n `{ms}ms`",
+                    f"**NARESH !!**\n `{ms}ms`",
                 )
 
         @lynx.tgbot.on(events.InlineQuery)  # pylint:disable=E0602
@@ -696,23 +698,23 @@ with lynx:
                 photo_bytesio = lynxlogo
                 result = builder.photo(photo_bytesio,
                     link_preview=False,
-                    text=f"**Copyright © 𝟤𝟢𝟤𝟣 Lynx-Userbot\nLicense: Raphielscape Public License v1.d**",
+                    text=f"**Copyright © 𝟤𝟢𝟤𝟣 Naresh-Userbot\nLicense: Raphielscape Public License v1.d**",
                     buttons=buttons,
                 )
             elif query.startswith("tb_btn"):
                 result = builder.article(
-                    "Bantuan Dari ⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡",
+                    "Bantuan Dari🍦𝙉𝙖𝙧𝙚𝙨𝙝-𝙐𝙎𝙀𝙍𝘽𝙊𝙏🍦",
                     text="Daftar Plugins",
                     buttons=[],
                     link_preview=True)
             else:
                 result = builder.article(
-                    "╔╡⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡╞╗",
-                    text="""**Anda Bisa Membuat ⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡ Anda Sendiri\nDengan Cara :**__Tekan Dibawah Ini__ 👇""",
+                    "╔🍦𝙉𝙖𝙧𝙚𝙨𝙝-𝙐𝙎𝙀𝙍𝘽𝙊𝙏🍦╞╗",
+                    text="""**Anda Bisa Membuat🍦𝙉𝙖𝙧𝙚𝙨𝙝-𝙐𝙎𝙀𝙍𝘽𝙊𝙏🍦 Anda Sendiri\nDengan Cara :**__Tekan Dibawah Ini__ 👇""",
                     buttons=[
                         [
                             custom.Button.url(
-                                "⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡",
+                                "🍦𝙉𝙖𝙧𝙚𝙨𝙝-𝙐𝙎𝙀𝙍𝘽𝙊𝙏🍦",
                                 "https://zee.gl/lynx404"),
                             custom.Button.url(
                                 "Dᴇᴠᴇʟᴏᴘᴇʀ",
@@ -739,18 +741,18 @@ with lynx:
                 )
             elif query.startswith("tb_btn"):
                 result = builder.article(
-                    "Bantuan Dari ⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡",
+                    "Bantuan Dari🍦𝙉𝙖𝙧𝙚𝙨𝙝-𝙐𝙎𝙀𝙍𝘽𝙊𝙏🍦",
                     text="Daftar Plugins",
                     buttons=[],
                     link_preview=True)
             else:
                 result = builder.article(
-                    "╔╡⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡╞╗",
-                    text="""**Anda Bisa Membuat ⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡ Anda Sendiri\nDengan Cara :**__Tekan Dibawah Ini__ 👇""",
+                    "╔╡🍦𝙉𝙖𝙧𝙚𝙨𝙝-𝙐𝙎𝙀𝙍𝘽𝙊𝙏🍦╞╗",
+                    text="""**Anda Bisa Membuat 🍦𝙉𝙖𝙧𝙚𝙨𝙝-𝙐𝙎𝙀𝙍𝘽𝙊𝙏🍦 Anda Sendiri\nDengan Cara :**__Tekan Dibawah Ini__ 👇""",
                     buttons=[
                         [
                             custom.Button.url(
-                                "⚡𝗟𝘆𝗻𝘅-𝙐𝙎𝙀𝙍𝘽𝙊𝙏⚡",
+                                🍦𝙉𝙖𝙧𝙚𝙨𝙝-𝙐𝙎𝙀𝙍𝘽𝙊𝙏🍦",
                                 "https://zee.gl/lynx404"),
                             custom.Button.url(
                                 "Dᴇᴠᴇʟᴏᴘᴇʀ",
@@ -883,8 +885,8 @@ with lynx:
                     link_preview=True,
                     buttons=[
                         [
-                            custom.Button.url("Lynx-Userbot",
-                                       "t.me/LynxUserbot"),
+                            custom.Button.url naresh-Userbot",
+                                       "t.me/urfavresh"),
                             custom.Button.url("My Instagram",
                                        f"{INSTAGRAM_ALIVE}")],
                         [custom.Button.inline("⚙️ Settings ⚙️", data="settings")],
@@ -892,7 +894,8 @@ with lynx:
                     ]
                 )
             else:
-                reply_pop_up_alert = f"❌ DISCLAIMER ❌\n © Lynx-Userbot"
+                reply_pop_up_alert = f"❌ DISCLAIMER ❌\n © Naresh-USERBOT'
+             
                 await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
 
         @lynx.tgbot.on(
